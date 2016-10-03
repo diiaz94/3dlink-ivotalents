@@ -1,0 +1,161 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_login"
+    tools:context="com.threedlink.ivotalents.LoginActivity">
+
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/logo"
+        android:layout_gravity="center_horizontal|top" />
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+    <TextView
+        android:id="@+id/fullscreen_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:keepScreenOn="true"
+        android:text="@string/dummy_content"
+        android:textColor="#33b5e5"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+    <FrameLayout
+        android:layout_width="250dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="190dp"
+        android:layout_gravity="center_horizontal|top"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
+            <ImageButton
+                android:background="@drawable/facebook_login"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/facebookBtn"
+                android:layout_gravity="center_horizontal|top" />
+            <ImageButton
+                android:background="@drawable/google_login"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/googleBtn"
+                android:layout_gravity="center_horizontal" />
+
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView2"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.1"
+                android:src="@drawable/use_email"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_email"
+                    android:gravity="center"
+                    android:textSize="17dp"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textAlignment="center" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_password"
+                    android:gravity="center"
+                    android:imeActionId="@+id/login"
+                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+            <ImageButton
+                android:background="@drawable/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/loginBtn"
+                android:layout_gravity="center_horizontal" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="¿Olvidó Contraseña?"
+                android:id="@+id/remember_password"
+                android:clickable="true"
+                android:textColor="@color/abc_background_cache_hint_selector_material_light"
+                android:textAlignment="center" />
+
+
+
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                >
+                <TextView
+                    android:layout_width="50pt"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="¿Aún no tienes ?"
+                    android:id="@+id/text_question"
+                    android:textColor="@color/abc_background_cache_hint_selector_material_light"
+                    android:layout_gravity="end"/>
+
+
+                <TextView
+                    android:layout_width="50pt"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Registrate Aquí"
+                    android:id="@+id/register_here"
+                    android:clickable="true"
+                    android:textColor="@color/accent_material_light"
+                    android:layout_gravity="end"/>
+
+            </TableRow>
+
+
+        </LinearLayout>
+
+
+
+
+    </FrameLayout>
+
+</FrameLayout>
