@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_register"
+    tools:context="com.threedlink.ivotalents.LoginActivity">
+
+
+    <ImageView
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/principal_text"
+        android:layout_gravity="center_horizontal|top" />
+    <!-- This FrameLayout insets its children based on system windows using
+     android:fitsSystemWindows. -->
+    <FrameLayout
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="140dp"
+        android:layout_gravity="center_horizontal|top"
+        android:fitsSystemWindows="true"
+        android:visibility="visible"
+        android:id="@+id/register_step_1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="1">
+            <ImageButton
+                android:background="@drawable/fb_register_buttom"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/facebookBtn"
+                android:layout_gravity="center_horizontal|top" />
+            <ImageButton
+                android:background="@drawable/google_register_buttom"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/googleBtn"
+                android:layout_gravity="center_horizontal" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView2"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.1"
+                android:src="@drawable/use_email"
+                android:layout_marginTop="10dp"/>
+            <EditText
+                android:background="@drawable/background_register_inputs"
+                android:layout_width="match_parent"
+                android:textColor="#ffff"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_height="30dp"
+                android:textSize="14dp"
+                android:hint="@string/hint_user"/>
+            <EditText
+                android:background="@drawable/background_register_inputs"
+                android:layout_width="match_parent"
+                android:textColor="#ffff"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="30dp"
+                android:textSize="14dp"
+                android:hint="@string/hint_email"/>
+            <EditText
+                android:background="@drawable/background_register_inputs"
+                android:layout_width="match_parent"
+                android:textColor="#ffff"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="30dp"
+                android:textSize="14dp"
+                android:hint="@string/hint_pass"/>
+            <EditText
+                android:background="@drawable/background_register_inputs"
+                android:layout_width="match_parent"
+                android:textColor="#ffff"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="30dp"
+                android:textSize="14dp"
+                android:hint="@string/hint_pass_confirmation"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/read_terms_text"
+                android:id="@+id/read_terms"
+                android:clickable="true"
+                android:textColor="@color/accent_material_light"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:textSize="15dp"/>
+
+            <ImageButton
+                android:background="@drawable/register_action_button"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/register_btn"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="150dp"
+        android:layout_gravity="center_horizontal|top"
+        android:fitsSystemWindows="true"
+        android:visibility="invisible"
+        android:id="@+id/register_step_2">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="1">
+            <ImageView
+                android:background="@drawable/register_question"
+                android:layout_width="250dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/register_question"
+                android:layout_gravity="center_horizontal" />
+
+            <ImageButton
+                android:background="@drawable/artist_btn"
+                android:layout_width="60pt"
+                android:layout_height="40dp"
+                android:layout_marginTop="40dp"
+                android:id="@+id/artist_btn"
+                android:layout_gravity="center_horizontal|top" />
+
+            <ImageButton
+                android:background="@drawable/industry_btn"
+                android:layout_width="60pt"
+                android:layout_height="40dp"
+                android:layout_marginTop="30dp"
+                android:id="@+id/industry_btn"
+                android:layout_gravity="center_horizontal|top" />
+
+            <ImageButton
+                android:background="@drawable/provider_btn"
+                android:layout_width="60pt"
+                android:layout_height="40dp"
+                android:layout_marginTop="30dp"
+                android:id="@+id/provider_btn"
+                android:layout_gravity="center_horizontal|top" />
+
+            <ImageButton
+                android:background="@drawable/fan_btn"
+                android:layout_width="60pt"
+                android:layout_height="40dp"
+                android:layout_marginTop="30dp"
+                android:id="@+id/fan_btn"
+                android:layout_gravity="center_horizontal|top" />
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+
+
+    </FrameLayout>
+</FrameLayout>
