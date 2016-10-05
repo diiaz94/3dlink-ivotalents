@@ -104,14 +104,37 @@ public class LoginActivity extends AppCompatActivity implements
     SessionManager session;
     private IvoTalentsApp mApp;
     public static final int RC_GOOGLE_LOGIN_OK = 100;
-
+    private ImageButton facebook_login;
+    private ImageButton google_login;
+    private TextView register_here;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        facebook_login = (ImageButton) findViewById(R.id.facebookBtn);
+        google_login = (ImageButton) findViewById(R.id.googleBtn);
+        register_here = (TextView) findViewById(R.id.register_here);
+        facebook_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btn_facebook_login.performClick();
+            }
+        });
+        google_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signInWithGoogle();
+            }
+        });
+        register_here.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goRegisterScreen();
+            }
+        });
+
         // Session Manager
         session = new SessionManager(getApplicationContext());
-
         // Set up the login form.
         mApp = ((IvoTalentsApp) getApplicationContext());
         //mApp = new PhotoTesterApp(getApplicationContext());
@@ -231,6 +254,11 @@ public class LoginActivity extends AppCompatActivity implements
 
     private void goMainScreen() {
         Intent intent = new Intent(this,MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | intent.FLAG_ACTIVITY_CLEAR_TASK | intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+    private void goRegisterScreen() {
+        Intent intent = new Intent(this,RegisterActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | intent.FLAG_ACTIVITY_CLEAR_TASK | intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
