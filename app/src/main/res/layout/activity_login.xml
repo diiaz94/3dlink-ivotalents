@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:weightSum="1">
-            <com.facebook.login.widget.LoginButton
+            <ImageButton
                 android:background="@drawable/facebook_login"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
@@ -65,7 +65,27 @@
                 android:layout_marginTop="10dp"
                 android:id="@+id/googleBtn"
                 android:layout_gravity="center_horizontal" />
-
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/btn_facebook_login"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/btn_google_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:layout_marginTop="5dp"
+                />
 
 
             <ImageView
@@ -159,7 +179,7 @@
                         android:text="@string/register_here_text"
                         android:id="@+id/register_here"
                         android:clickable="true"
-                        android:textColor="@color/accent_material_light"
+                        android:textColor="#00C4B3"
                         android:paddingLeft="5dp"
                         android:layout_gravity="end"
                         android:textSize="13dp"/>

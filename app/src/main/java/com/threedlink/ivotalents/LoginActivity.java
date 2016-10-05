@@ -20,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,8 +31,30 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.Profile;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -39,7 +62,8 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class LoginActivity extends AppCompatActivity implements
+        View.OnClickListener, LoaderCallbacks<Cursor>, GoogleApiClient.OnConnectionFailedListener {
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -50,7 +74,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * TODO: remove after connecting to a real authentication system.
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "diego@3dlink.com:ivotalent", "bar@example.com:world"
+            "foo@example.com:hello", "bar@example.com:world"
     };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -62,15 +86,103 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    private TextView register_here;
+    private LoginButton btn_facebook_login;
+    private CallbackManager callbackManager;
+    public static int RC_FB_LOGIN_OK ;
+
+
+    private SignInButton btn_google_login;
+    private TextView name;
+
+    private ImageButton btn_normal_login;
+
+    //private GoogleApiClient googleApiClient;
+    private GoogleSignInOptions googleSignInOptions;
+
+
+    // Session Manager Class
+    SessionManager session;
+    private IvoTalentsApp mApp;
+    public static final int RC_GOOGLE_LOGIN_OK = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        // Session Manager
+        session = new SessionManager(getApplicationContext());
+
         // Set up the login form.
+        mApp = ((IvoTalentsApp) getApplicationContext());
+        //mApp = new PhotoTesterApp(getApplicationContext());
+        callbackManager = CallbackManager.Factory.create();
+        btn_facebook_login = (LoginButton) findViewById(R.id.btn_facebook_login);
+        btn_facebook_login.setReadPermissions(Arrays.asList(
+                "public_profile", "email", "user_birthday", "user_friends"));
+        btn_facebook_login.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                GraphRequest request = GraphRequest.newMeRequest(
+                        loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(JSONObject object, GraphResponse response) {
+                                Log.v("LoginActivity", response.toString());
+                                // Application code
+                                try {
+                                    Log.e("FACEBOOK","Try access fb data::+"+object.toString());
+                                    session.createLoginSession(object.getString("name"),  object.getString("email"),"FACEBOOK");
+                                    String email = object.getString("email");
+                                    String birthday = object.getString("birthday"); // 01/31/1980 format
+                                    goMainScreen();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                                finish();
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,name,email,gender,birthday");
+                request.setParameters(parameters);
+                request.executeAsync();
+
+            }
+
+            @Override
+            public void onCancel() {
+                Toast.makeText(getApplicationContext(),R.string.cancel_login,Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Toast.makeText(getApplicationContext(),R.string.error_login,Toast.LENGTH_SHORT).show();
+            }
+        });
+        RC_FB_LOGIN_OK=btn_facebook_login.getRequestCode();
+
+        // Configure sign-in to request the user's ID, email address, and basic
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        // Build a GoogleApiClient with access to the Google Sign-In API and the
+        // options specified by gso.
+        mApp.setGoogleApiClient( new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions)
+                .build());
+
+        btn_google_login = (SignInButton) findViewById(R.id.btn_google_login);
+        btn_google_login.setSize(SignInButton.SIZE_WIDE);
+        btn_google_login.setScopes(googleSignInOptions.getScopeArray());
+        btn_google_login.setOnClickListener(this);
+
+
+
+
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        register_here = (TextView) findViewById(R.id.register_here);
         populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -85,43 +197,44 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
-        ImageButton mEmailSignInButton = (ImageButton) findViewById(R.id.loginBtn);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                attemptLogin();
-            }
-        });
+        Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
 
-        //mLoginFormView = findViewById(R.id.login_form);
-       // mProgressView = findViewById(R.id.login_progress);
+        btn_normal_login = (ImageButton) findViewById(R.id.loginBtn);
+        btn_normal_login.setOnClickListener(this);
 
-        register_here.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // request your webservice here. Possible use of AsyncTask and ProgressDialog
-                // show the result here - dialog or Toast
-                /*Intent intent = new Intent(this,MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | intent.FLAG_ACTIVITY_CLEAR_TASK | intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                */
-                goRegisterScreen();
-            }
-
-        });
+        mLoginFormView = findViewById(R.id.login_form);
+        mProgressView = findViewById(R.id.login_progress);
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        Log.e("requestCode::",String.valueOf(requestCode));
+        if(requestCode == RC_GOOGLE_LOGIN_OK ){
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            if (result.isSuccess()) {
+                GoogleSignInAccount account = result.getSignInAccount();
+                session.createLoginSession(account.getDisplayName(), account.getEmail(),"GOOGLE");
+                // Staring MainActivity
+                goMainScreen();
+                finish();
+                Log.e("NAME::", account.getDisplayName());
+            }
+        }
+        if(requestCode == RC_FB_LOGIN_OK){
+            callbackManager.onActivityResult(requestCode,resultCode,data);
+        }
+    }
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        Toast.makeText(getApplicationContext(),R.string.error_login,Toast.LENGTH_SHORT).show();
+    }
+
     private void goMainScreen() {
         Intent intent = new Intent(this,MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | intent.FLAG_ACTIVITY_CLEAR_TASK | intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
-    private void goRegisterScreen() {
-        Intent intent = new Intent(this,RegisterActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP  | intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
             return;
@@ -187,17 +300,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         boolean cancel = false;
         View focusView = null;
 
-
-        // Check for a valid password.
-        if (TextUtils.isEmpty(password)) {
+        // Check for a valid password, if the user entered one.
+        if (!TextUtils.isEmpty(password)) {
             mPasswordView.setError(getString(R.string.error_field_required));
             focusView = mPasswordView;
             cancel = true;
-        } else if (!isPasswordValid(password)) {
+        }
+        if (!isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
         }
+
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
             mEmailView.setError(getString(R.string.error_field_required));
@@ -311,6 +425,29 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailView.setAdapter(adapter);
     }
 
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+
+        switch (id) {
+            case R.id.btn_google_login:
+                signInWithGoogle();
+                break;
+            case R.id.loginBtn:
+                attemptLogin();
+                break;
+        }
+    }
+
+    private void signInWithGoogle() {
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mApp.getGoogleApiClient());
+        startActivityForResult(signInIntent, RC_GOOGLE_LOGIN_OK);
+    }
+
+
+
+
+
 
     private interface ProfileQuery {
         String[] PROJECTION = {
@@ -356,7 +493,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
 
             // TODO: register the new account here.
-            return true;
+            return false;
         }
 
         @Override
@@ -365,8 +502,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
-                finish();
+                session.createLoginSession("Ejemplo", mEmail,"NORMAL");
+                // Staring MainActivity
                 goMainScreen();
+                finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
