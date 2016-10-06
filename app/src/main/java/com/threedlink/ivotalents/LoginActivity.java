@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity implements
      * TODO: remove after connecting to a real authentication system.
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
+            "foo@example.com:hello", "bar@example.com:world", "diego@3dlink.com:ivotalent"
     };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -329,7 +329,7 @@ public class LoginActivity extends AppCompatActivity implements
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password)) {
+        if (TextUtils.isEmpty(password)) {
             mPasswordView.setError(getString(R.string.error_field_required));
             focusView = mPasswordView;
             cancel = true;

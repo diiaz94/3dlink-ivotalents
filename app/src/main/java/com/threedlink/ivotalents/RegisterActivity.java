@@ -53,39 +53,52 @@ public class RegisterActivity extends AppCompatActivity {
                 String email_text = email.getText().toString();
                 String pass_text = pass.getText().toString();
                 String pass_confirm_text = pass_confirm.getText().toString();
+                user.setError(null);
+                email.setError(null);
+                pass.setError(null);
+                pass_confirm.setError(null);
+
+                View focusView = null;
 
 
-                if (TextUtils.isEmpty(user_text)){
-                    user.setError(getString(R.string.error_field_required));
+
+
+
+                if (TextUtils.isEmpty(pass_confirm_text)){
+                    pass_confirm.setError(getString(R.string.error_field_required));
                     allValids=false;
+                    focusView=pass_confirm;
+                }
+                if (TextUtils.isEmpty(pass_text)){
+                    pass.setError(getString(R.string.error_field_required));
+                    allValids=false;
+                    focusView=pass;
                 }
 
                 if (TextUtils.isEmpty(email_text)){
                     email.setError(getString(R.string.error_field_required));
                     allValids=false;
+                    focusView=email;
                 }else{
                     if(!email.getText().toString().contains("@")){
                         email.setError(getString(R.string.error_invalid_email));
                         allValids=false;
+                        focusView=email;
                     }
                 }
 
-
-                if (!TextUtils.isEmpty(pass_text)){
-                    pass.setError(getString(R.string.error_field_required));
+                if (TextUtils.isEmpty(user_text)){
+                    user.setError(getString(R.string.error_field_required));
                     allValids=false;
+                    focusView=user;
                 }
-
-
-                if (!TextUtils.isEmpty(pass_confirm_text)){
-                    pass_confirm.setError(getString(R.string.error_field_required));
-                    allValids=false;
-                }
-
 
                 if(allValids){
                     register_step_1.setVisibility(View.INVISIBLE);
                     register_step_2.setVisibility(View.VISIBLE);
+                }else{
+                    focusView.requestFocus();
+
                 }
             }
         });
