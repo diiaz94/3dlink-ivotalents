@@ -75,6 +75,15 @@ public class RegisterActivity extends AppCompatActivity {
                     focusView=pass;
                 }
 
+                if (!TextUtils.isEmpty(pass_confirm_text) && !TextUtils.isEmpty(pass_text)){
+                    if (!pass_text.equalsIgnoreCase(pass_confirm_text)){
+                        pass.setError(getString(R.string.error_passwords_not_equals));
+                        allValids=false;
+                        focusView=pass;
+                    }
+                }
+
+
                 if (TextUtils.isEmpty(email_text)){
                     email.setError(getString(R.string.error_field_required));
                     allValids=false;
