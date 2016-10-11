@@ -27,7 +27,7 @@ public class RememberPopUpActivity extends AppCompatActivity {
                 goLoginScreen();
             }
 
-        });
+        }
     }
 
     private void goLoginScreen() {
