@@ -27,5 +27,6 @@
     <string name="hint_pass">Clave</string>
     <string name="hint_pass_confirmation">Confirmar Clave</string>
     <string name="logout">Cerrar Sesión</string>
+    <string name="error_register">Error en el registro</string>
 
 </resources>

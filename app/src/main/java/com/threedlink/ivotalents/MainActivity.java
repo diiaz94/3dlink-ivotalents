@@ -157,8 +157,11 @@ public class MainActivity extends AppCompatActivity implements
             request.setParameters(parameters);
             request.executeAsync();
         }
-        session.checkLogin();
-        setScreenUserSesion();
+        if(session.checkLogin()){
+            setScreenUserSesion();
+        }else{
+            finish();
+        }
     }
 
 

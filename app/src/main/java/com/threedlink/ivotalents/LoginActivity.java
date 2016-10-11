@@ -87,18 +87,17 @@ public class LoginActivity extends AppCompatActivity implements
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+
     private LoginButton btn_facebook_login;
     private CallbackManager callbackManager;
     public static int RC_FB_LOGIN_OK ;
-
-
     private SignInButton btn_google_login;
+    //private GoogleApiClient googleApiClient;
+    private GoogleSignInOptions googleSignInOptions;
+
     private TextView name;
 
     private ImageButton btn_normal_login;
-
-    //private GoogleApiClient googleApiClient;
-    private GoogleSignInOptions googleSignInOptions;
 
 
     // Session Manager Class
@@ -160,6 +159,7 @@ public class LoginActivity extends AppCompatActivity implements
                                     String email = object.getString("email");
                                     String birthday = object.getString("birthday"); // 01/31/1980 format
                                     goMainScreen();
+                                    finish();
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -270,7 +270,7 @@ public class LoginActivity extends AppCompatActivity implements
     }
     private void goRegisterScreen() {
         Intent intent = new Intent(this,RegisterActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | intent.FLAG_ACTIVITY_CLEAR_TASK | intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
