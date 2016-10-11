@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".RememberPopUpActivity"
+    android:background="#fe111111">
+    <ScrollView
+        android:id="@+id/login_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="180dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/logo_header"
+                        android:src="@drawable/logo_icono"
+                        android:layout_gravity="start|top" />
+                    <ImageButton
+                        android:layout_width="15dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/close_icon"
+                        android:src="@drawable/close_icon"
+                        android:layout_gravity="end|top" />
+                </FrameLayout>
+
+            </LinearLayout>
+
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="50dp"
+                android:id="@+id/text_remember"
+                android:src="@drawable/remember_text_line"
+                android:layout_gravity="" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="POR FAVOR ENVIAR UN CORREO PARA RECUPERAR CONTRASEÑA"
+                android:id="@+id/info_text_remember"
+                android:textSize="15dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textIsSelectable="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Usuario"
+                android:id="@+id/user_label"
+                android:textSize="16dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textColor="#00c4b4" />
+            <EditText
+                android:background="@drawable/background_remember_inputs"
+                android:layout_width="match_parent"
+                android:textColor="#ffff"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="1dp"
+                android:layout_height="35dp"
+                android:textSize="14dp"
+                android:id="@+id/user"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Email"
+                android:id="@+id/email_label"
+                android:textSize="16dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textColor="#00c4b4" />
+            <EditText
+                android:background="@drawable/background_remember_inputs"
+                android:layout_width="match_parent"
+                android:textColor="#ffff"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="1dp"
+                android:layout_height="35dp"
+                android:textSize="14dp"
+                android:id="@+id/email"/>
+
+
+
+            <ImageButton
+                android:background="@drawable/btn_send"
+                android:layout_width="100dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="30dp"
+                android:id="@+id/sent_btn"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

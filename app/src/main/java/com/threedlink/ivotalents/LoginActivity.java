@@ -108,6 +108,7 @@ public class LoginActivity extends AppCompatActivity implements
     private ImageButton facebook_login;
     private ImageButton google_login;
     private TextView register_here;
+    private TextView remember_password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -230,7 +231,13 @@ public class LoginActivity extends AppCompatActivity implements
         mProgressView = findViewById(R.id.login_progress);
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
+        remember_password = (TextView) findViewById(R.id.remember_password);
+        remember_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this,RememberPopUpActivity.class));
+            }
+        });
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){

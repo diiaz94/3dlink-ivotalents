@@ -15,11 +15,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     private ImageButton register_button;
     private FrameLayout register_step_1;
-    private FrameLayout register_step_2;
     private ImageButton artist_button;
     private ImageButton industry_button;
     private ImageButton provider_button;
     private ImageButton fan_button;
+    private FrameLayout register_step_2;
 
     private EditText user;
     private EditText email;
