@@ -43,9 +43,12 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".RememberPopUpActivity"
-            android:theme="@style/AppTheme.CustomTheme">
-        </activity>
+        <activity
+            android:name=".RememberPopUpActivity"
+            android:theme="@style/AppTheme.CustomTheme"></activity>
+        <activity
+            android:name=".PopupInfo"
+            android:theme="@style/AppTheme.CustomTheme"></activity>
     </application>
 
 </manifest>

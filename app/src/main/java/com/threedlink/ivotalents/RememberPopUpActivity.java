@@ -24,7 +24,7 @@ public class RememberPopUpActivity extends AppCompatActivity {
         close.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View popupView) {
-                goLoginScreen();
+                finish();
             }
 
         });
@@ -34,5 +34,6 @@ public class RememberPopUpActivity extends AppCompatActivity {
         Intent intent = new Intent(this,LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | intent.FLAG_ACTIVITY_CLEAR_TASK | intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
     }
 }

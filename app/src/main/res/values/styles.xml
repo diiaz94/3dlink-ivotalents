@@ -25,4 +25,15 @@
         <item name="android:windowCloseOnTouchOutside">true</item>
 
     </style>
+
+    <style name="Autocomplete" parent="Widget.AppCompat.Light.AutoCompleteTextView">
+        <item name="android:colorFocusedHighlight">@color/ivoGreen</item>
+        <item name="android:textColorHintInverse">@color/ivoGreen</item>
+        <item name="colorControlNormal">@color/ivoGreen</item>
+        <item name="colorControlActivated">@color/ivoGreen</item>
+    </style>
+
+    <style name="TextAppearence.App.TextInputLayout" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/ivoGreen</item>
+    </style>
 </resources>

@@ -1,12 +1,16 @@
 package com.threedlink.ivotalents;
 
+import android.app.Activity;
 import android.app.Application;
+import android.content.Intent;
 import android.util.Log;
 
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import java.util.ArrayList;
 
 /**
  * Created by diiaz94 on 04-10-2016.
@@ -46,5 +50,13 @@ public class IvoTalentsApp extends Application {
 
     public void setGoogleSignInOptions(GoogleSignInOptions googleSignInOptions) {
         this.googleSignInOptions = googleSignInOptions;
+    }
+
+    public void showError(Activity activity, ArrayList<String> errors){
+        Intent intent = new Intent(activity,PopupInfo.class);
+
+        intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putStringArrayListExtra("errors ",errors);
+        startActivity(intent);
     }
 }

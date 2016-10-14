@@ -235,9 +235,11 @@ public class LoginActivity extends AppCompatActivity implements
         remember_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this,RememberPopUpActivity.class));
+                Intent intent = new Intent(LoginActivity.this,RememberPopUpActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(intent);
             }
-        });
+       });
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -338,34 +340,38 @@ public class LoginActivity extends AppCompatActivity implements
 
         boolean cancel = false;
         View focusView = null;
-
-        // Check for a valid password, if the user entered one.
-        if (TextUtils.isEmpty(password)) {
-            mPasswordView.setError(getString(R.string.error_field_required));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-        if (!isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-
+        ArrayList<String> errors= new ArrayList<String>();
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
+            //mEmailView.setError(getString(R.string.error_field_required));
+            //focusView = mEmailView;
+            errors.add(getResources().getString(R.string.error_email_required));
             cancel = true;
         } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
+            //mEmailView.setError(getString(R.string.error_invalid_email));
+            //focusView = mEmailView;
+            errors.add(getResources().getString(R.string.error_invalid_email));
             cancel = true;
         }
+        // Check for a valid password, if the user entered one.
+        if (TextUtils.isEmpty(password)) {
+//            mPasswordView.setError(getString(R.string.error_field_required));
+//            focusView = mPasswordView;
+            errors.add(getResources().getString(R.string.error_password_required));
+            cancel = true;
+        }else if (!isPasswordValid(password)) {
+//            mPasswordView.setError(getString(R.string.error_invalid_password));
+//            focusView = mPasswordView;
+            errors.add(getResources().getString(R.string.error_invalid_password));
+            cancel = true;
+        }
+
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
-            focusView.requestFocus();
+            //focusView.requestFocus();
+            mApp.showError(LoginActivity.this,errors);
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
