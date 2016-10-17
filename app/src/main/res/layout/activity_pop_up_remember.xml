@@ -84,7 +84,8 @@
                 android:layout_marginTop="1dp"
                 android:layout_height="35dp"
                 android:textSize="14dp"
-                android:id="@+id/user"/>
+                android:id="@+id/user"
+                android:theme="@style/Autocomplete"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -105,7 +106,8 @@
                 android:layout_marginTop="1dp"
                 android:layout_height="35dp"
                 android:textSize="14dp"
-                android:id="@+id/email"/>
+                android:id="@+id/email"
+                android:theme="@style/Autocomplete"/>
 
 
 

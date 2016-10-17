@@ -95,7 +95,8 @@
                         android:layout_height="30dp"
                         android:textSize="14dp"
                         android:hint="@string/hint_user"
-                        android:id="@+id/user"/>
+                        android:id="@+id/user"
+                        android:theme="@style/Autocomplete"/>
                     <EditText
                         android:background="@drawable/background_register_inputs"
                         android:layout_width="match_parent"
@@ -105,7 +106,8 @@
                         android:layout_height="30dp"
                         android:textSize="14dp"
                         android:hint="@string/hint_email"
-                        android:id="@+id/email"/>
+                        android:id="@+id/email"
+                        android:theme="@style/Autocomplete"/>
                     <EditText
                         android:background="@drawable/background_register_inputs"
                         android:layout_width="match_parent"
@@ -116,7 +118,8 @@
                         android:textSize="14dp"
                         android:hint="@string/hint_pass"
                         android:id="@+id/pass"
-                        android:inputType="textPassword"/>
+                        android:inputType="textPassword"
+                        android:theme="@style/Autocomplete"/>
                     <EditText
                         android:background="@drawable/background_register_inputs"
                         android:layout_width="match_parent"
@@ -127,7 +130,8 @@
                         android:textSize="14dp"
                         android:hint="@string/hint_pass_confirmation"
                         android:id="@+id/pass_confirm"
-                        android:inputType="textPassword"/>
+                        android:inputType="textPassword"
+                        android:theme="@style/Autocomplete"/>
 
                     <TextView
                         android:layout_width="wrap_content"

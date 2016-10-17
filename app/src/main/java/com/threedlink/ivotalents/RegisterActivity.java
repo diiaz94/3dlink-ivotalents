@@ -1,5 +1,6 @@
 package com.threedlink.ivotalents;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -30,6 +32,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class RegisterActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
@@ -82,67 +85,7 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
         register_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean allValids = true;
-                String user_text = user.getText().toString();
-                String email_text = email.getText().toString();
-                String pass_text = pass.getText().toString();
-                String pass_confirm_text = pass_confirm.getText().toString();
-                user.setError(null);
-                email.setError(null);
-                pass.setError(null);
-                pass_confirm.setError(null);
-
-                View focusView = null;
-
-
-
-
-
-                if (TextUtils.isEmpty(pass_confirm_text)){
-                    pass_confirm.setError(getString(R.string.error_field_required));
-                    allValids=false;
-                    focusView=pass_confirm;
-                }
-                if (TextUtils.isEmpty(pass_text)){
-                    pass.setError(getString(R.string.error_field_required));
-                    allValids=false;
-                    focusView=pass;
-                }
-
-                if (!TextUtils.isEmpty(pass_confirm_text) && !TextUtils.isEmpty(pass_text)){
-                    if (!pass_text.equalsIgnoreCase(pass_confirm_text)){
-                        pass.setError(getString(R.string.error_passwords_not_equals));
-                        allValids=false;
-                        focusView=pass;
-                    }
-                }
-
-
-                if (TextUtils.isEmpty(email_text)){
-                    email.setError(getString(R.string.error_field_required));
-                    allValids=false;
-                    focusView=email;
-                }else{
-                    if(!email.getText().toString().contains("@")){
-                        email.setError(getString(R.string.error_invalid_email));
-                        allValids=false;
-                        focusView=email;
-                    }
-                }
-
-                if (TextUtils.isEmpty(user_text)){
-                    user.setError(getString(R.string.error_field_required));
-                    allValids=false;
-                    focusView=user;
-                }
-
-                if(allValids){
-                    register_step_1.setVisibility(View.INVISIBLE);
-                    register_step_2.setVisibility(View.VISIBLE);
-                }else{
-                    focusView.requestFocus();
-
-                }
+                attemptRegister();
             }
         });
         artist_button.setOnClickListener(new View.OnClickListener() {
@@ -253,6 +196,65 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
                 .build());
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
+
+    private void attemptRegister() {
+        String user_text = user.getText().toString();
+        String email_text = email.getText().toString();
+        String pass_text = pass.getText().toString();
+        String pass_confirm_text = pass_confirm.getText().toString();
+        user.setError(null);
+        email.setError(null);
+        pass.setError(null);
+        pass_confirm.setError(null);
+
+        View focusView = null;
+        boolean cancel = false;
+        ArrayList<String> errors= new ArrayList<String>();
+
+
+        if (TextUtils.isEmpty(user_text)){
+            errors.add(getString(R.string.error_user_required));
+            cancel = true;
+        }
+
+        if (TextUtils.isEmpty(email_text)){
+            errors.add(getString(R.string.error_email_required));
+            cancel = true;
+        }else{
+            if(!email.getText().toString().contains("@")){
+                errors.add(getString(R.string.error_invalid_email));
+                cancel = true;
+            }
+        }
+
+        if (TextUtils.isEmpty(pass_confirm_text)){
+            errors.add(getString(R.string.error_password_required));
+            cancel = true;
+        }
+        if (TextUtils.isEmpty(pass_text)){
+            errors.add(getString(R.string.error_password_confirm_required));
+            cancel = true;
+        }
+
+        if (!TextUtils.isEmpty(pass_confirm_text) && !TextUtils.isEmpty(pass_text)){
+            if (!pass_text.equalsIgnoreCase(pass_confirm_text)){
+                errors.add(getString(R.string.error_passwords_not_equals));
+                cancel = true;
+            }
+        }
+
+        if(cancel){
+            mApp.showError(RegisterActivity.this,errors);
+        }else{
+            View view = this.getCurrentFocus();
+            if (view != null) {
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+            register_step_1.setVisibility(View.INVISIBLE);
+            register_step_2.setVisibility(View.VISIBLE);
+        }
     }
 
     private void goMainScreen() {

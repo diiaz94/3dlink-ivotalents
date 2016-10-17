@@ -54,9 +54,8 @@ public class IvoTalentsApp extends Application {
 
     public void showError(Activity activity, ArrayList<String> errors){
         Intent intent = new Intent(activity,PopupInfo.class);
-
         intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putStringArrayListExtra("errors ",errors);
+        PopupInfo.lstError = errors;
         startActivity(intent);
     }
 }

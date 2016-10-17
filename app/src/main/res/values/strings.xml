@@ -17,6 +17,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="error_global">Ha ocurrido un error inesperado, intente nuevamente</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="register_here_text">Regístrate Aquí</string>
@@ -30,6 +31,7 @@
     <string name="error_register">Error en el registro</string>
     <string name="error_password_required">El campo Clave no puede estar vacío</string>
     <string name="error_email_required">El campo E-mail no puede estar vacío</string>
-    <string name="error_global">Ha ocurrido un error inesperado, intente nuevamente</string>
+    <string name="error_user_required">El campo Usuario no puede estar vacío</string>
+    <string name="error_password_confirm_required">El campo Confirmar Clave no puede estar vacío</string>
 
 </resources>
