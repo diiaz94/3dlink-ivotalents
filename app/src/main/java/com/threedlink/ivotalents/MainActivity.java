@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements
         Log.e("PEDRO","PASO onCreate MainAct");
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_main);
+
         // Session class instance
         session = new SessionManager(getApplicationContext());
         mApp = ((IvoTalentsApp) getApplicationContext());
@@ -74,7 +76,25 @@ public class MainActivity extends AppCompatActivity implements
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                // User chose the "Settings" item, show the app settings UI...
+                return true;
 
+            case R.id.action_favorite:
+                // User chose the "Favorite" action, mark the current item
+                // as a favorite...
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
     @Override
     public void onClick(View v) {
         int id = v.getId();
