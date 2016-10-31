@@ -6,18 +6,53 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:background="#050505">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            >
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/logo_header"
+                android:src="@drawable/logo_header"
+                />
+            <ImageButton
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="25dp"
+                android:id="@+id/close_icon"
+                android:background="@drawable/icon_alert"
+                android:layout_gravity="end"
+                />
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="20dp"
+                android:id="@+id/menu_icon"
+                android:background="@drawable/icon_menu"
+                 />
+        </GridLayout>
+
+
+
+    </LinearLayout>
     <RelativeLayout android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:background="@drawable/violin">
 
+        </FrameLayout>
     <!-- Name Label -->
     <TextView
         android:id="@+id/lblName"
@@ -32,7 +67,7 @@
         android:id="@+id/lblEmail"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dip"
+        android:layout_marginTop="70dip"
         android:layout_marginBottom="10dip"/>
 
 

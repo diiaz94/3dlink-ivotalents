@@ -137,7 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
-                android:textColorHint="#c1c2c4">
+                 android:textColorHint="#c1c2c4">
 
                 <EditText
                     android:id="@+id/password"

@@ -45,10 +45,13 @@
         <activity android:name=".RegisterActivity" />
         <activity
             android:name=".RememberPopUpActivity"
-            android:theme="@style/AppTheme.CustomTheme"></activity>
+            android:theme="@style/AppTheme.CustomTheme" />
         <activity
             android:name=".PopupInfo"
-            android:theme="@style/AppTheme.CustomTheme"></activity>
+            android:theme="@style/AppTheme.CustomTheme" />
+        <activity
+            android:name=".MenuActivity"
+            android:theme="@style/AppTheme.CustomTheme"/>
     </application>
 
 </manifest>

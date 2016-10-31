@@ -33,5 +33,7 @@
     <string name="error_email_required">El campo E-mail no puede estar vacío</string>
     <string name="error_user_required">El campo Usuario no puede estar vacío</string>
     <string name="error_password_confirm_required">El campo Confirmar Clave no puede estar vacío</string>
+    <string name="action_favorite">Notificaciones</string>
+    <string name="action_settings">Menu</string>
 
 </resources>

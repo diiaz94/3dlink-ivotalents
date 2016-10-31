@@ -24,7 +24,9 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -155,7 +157,8 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
                                     session.createLoginSession(object.getString("name"),  object.getString("email"),"FACEBOOK");
                                     String email = object.getString("email");
                                     String birthday = object.getString("birthday"); // 01/31/1980 format
-                                    goMainScreen();
+                                    register_step_1.setVisibility(View.INVISIBLE);
+                                    register_step_2.setVisibility(View.VISIBLE);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -197,7 +200,25 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        Log.e("requestCode::",String.valueOf(requestCode));
+        if(requestCode == RC_GOOGLE_LOGIN_OK ){
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            if (result.isSuccess()) {
+                GoogleSignInAccount account = result.getSignInAccount();
+                session.createLoginSession(account.getDisplayName(), account.getEmail(),"GOOGLE");
+                // Staring MainActivity
+                register_step_1.setVisibility(View.INVISIBLE);
+                register_step_2.setVisibility(View.VISIBLE);
+                Log.e("NAME::", account.getDisplayName());
+            }
+        }
+        if(requestCode == RC_FB_LOGIN_OK){
+            callbackManager.onActivityResult(requestCode,resultCode,data);
+        }
+    }
     private void attemptRegister() {
         String user_text = user.getText().toString();
         String email_text = email.getText().toString();
