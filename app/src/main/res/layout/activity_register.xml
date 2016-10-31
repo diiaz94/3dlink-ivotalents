@@ -10,7 +10,8 @@
         android:id="@+id/login_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="false">
+        android:fillViewport="false"
+        android:visibility="invisible">
         <LinearLayout
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
@@ -162,7 +163,7 @@
         android:layout_gravity="center_horizontal|top"
         android:fitsSystemWindows="true"
         android:layout_marginTop="140dp"
-        android:visibility="invisible"
+
         android:id="@+id/register_step_2">
        <LinearLayout
             android:layout_width="match_parent"
@@ -180,7 +181,7 @@
             <ImageButton
                 android:background="@drawable/artist_btn"
                 android:layout_width="60pt"
-                android:layout_height="40dp"
+                android:layout_height="20pt"
                 android:layout_marginTop="40dp"
                 android:id="@+id/artist_btn"
                 android:layout_gravity="center_horizontal|top" />
@@ -188,7 +189,7 @@
             <ImageButton
                 android:background="@drawable/industry_btn"
                 android:layout_width="60pt"
-                android:layout_height="40dp"
+                android:layout_height="20pt"
                 android:layout_marginTop="30dp"
                 android:id="@+id/industry_btn"
                 android:layout_gravity="center_horizontal|top" />
@@ -196,7 +197,7 @@
             <ImageButton
                 android:background="@drawable/provider_btn"
                 android:layout_width="60pt"
-                android:layout_height="40dp"
+                android:layout_height="20pt"
                 android:layout_marginTop="30dp"
                 android:id="@+id/provider_btn"
                 android:layout_gravity="center_horizontal|top" />
