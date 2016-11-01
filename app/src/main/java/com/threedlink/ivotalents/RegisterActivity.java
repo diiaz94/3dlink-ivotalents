@@ -202,7 +202,7 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
+           super.onActivityResult(requestCode,resultCode,data);
         Log.e("requestCode::",String.valueOf(requestCode));
         if(requestCode == RC_GOOGLE_LOGIN_OK ){
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);

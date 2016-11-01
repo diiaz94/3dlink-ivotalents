@@ -51,7 +51,7 @@
             android:theme="@style/AppTheme.CustomTheme" />
         <activity
             android:name=".MenuActivity"
-            android:theme="@style/AppTheme.CustomTheme"/>
+            android:theme="@style/AppTheme.CustomThemeTranslucent"/>
     </application>
 
 </manifest>

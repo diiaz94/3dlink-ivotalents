@@ -20,7 +20,7 @@ public class MenuActivity extends AppCompatActivity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int)(width*.9),(int)(height));
+        getWindow().setLayout((int)(width*.85),(int)(height));
         getWindow().setGravity(5);
         ImageButton close = (ImageButton) findViewById(R.id.close_icon_menu);
         close.setOnClickListener(new View.OnClickListener() {
