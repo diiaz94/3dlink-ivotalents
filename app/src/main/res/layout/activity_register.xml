@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="false"
-        android:visibility="invisible">
+        android:visibility="visible">
         <LinearLayout
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
@@ -163,7 +163,7 @@
         android:layout_gravity="center_horizontal|top"
         android:fitsSystemWindows="true"
         android:layout_marginTop="140dp"
-
+        android:visibility="invisible"
         android:id="@+id/register_step_2">
        <LinearLayout
             android:layout_width="match_parent"

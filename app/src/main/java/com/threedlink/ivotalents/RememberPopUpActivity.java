@@ -8,6 +8,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,8 @@ public class RememberPopUpActivity extends AppCompatActivity {
     private ImageButton sent_btn;
     private EditText user;
     private EditText email;
+    private TextView lbluser;
+    private TextView lblemail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,13 +30,14 @@ public class RememberPopUpActivity extends AppCompatActivity {
         sent_btn = (ImageButton) findViewById(R.id.sent_btn);
         user = (EditText) findViewById(R.id.user);
         email = (EditText) findViewById(R.id.email);
-
+        lbluser = (TextView) findViewById(R.id.user_label);
+        lblemail = (TextView) findViewById(R.id.email_label);
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int)(width*.9),(int)(height*.85));
+        getWindow().setLayout((int)(width),(int)(height));
 
         close.setOnClickListener(new View.OnClickListener() {
 
@@ -65,6 +69,8 @@ public class RememberPopUpActivity extends AppCompatActivity {
                         cancel = true;
                     }
                 }
+
+
                 if(cancel){
                     mApp.showError(RememberPopUpActivity.this,errors);
                 }else{
@@ -75,6 +81,10 @@ public class RememberPopUpActivity extends AppCompatActivity {
             }
 
         });
+        user.setTypeface(mApp.getFont());
+        email.setTypeface(mApp.getFont());
+        lbluser.setTypeface(mApp.getFont());
+        lblemail.setTypeface(mApp.getFont());
     }
 
     private void goLoginScreen() {

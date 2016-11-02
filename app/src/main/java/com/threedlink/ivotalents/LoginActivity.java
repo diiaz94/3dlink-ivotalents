@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,8 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.text.Layout;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -56,6 +59,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -84,7 +88,7 @@ public class LoginActivity extends AppCompatActivity implements
      */
     private UserLoginTask mAuthTask = null;
     // UI references.
-    private AutoCompleteTextView mEmailView;
+    private EditText mEmailView;
 
     private EditText mPasswordView;
     private View mProgressView;
@@ -109,14 +113,17 @@ public class LoginActivity extends AppCompatActivity implements
     private ImageButton facebook_login;
     private ImageButton google_login;
     private TextView register_here;
+    private TextView text_question;
     private TextView remember_password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         facebook_login = (ImageButton) findViewById(R.id.facebookBtn);
         google_login = (ImageButton) findViewById(R.id.googleBtn);
         register_here = (TextView) findViewById(R.id.register_here);
+        text_question = (TextView) findViewById(R.id.text_question);
         facebook_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,6 +147,8 @@ public class LoginActivity extends AppCompatActivity implements
         session = new SessionManager(getApplicationContext());
         // Set up the login form.
         mApp = ((IvoTalentsApp) getApplicationContext());
+
+
         //mApp = new PhotoTesterApp(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
         btn_facebook_login = (LoginButton) findViewById(R.id.btn_facebook_login);
@@ -209,10 +218,17 @@ public class LoginActivity extends AppCompatActivity implements
 
 
 
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        populateAutoComplete();
-
+        mEmailView = (EditText) findViewById(R.id.email);
+        //populateAutoComplete();
+        mEmailView.post(new Runnable() {
+                      @Override
+                      public void run() {
+                          setHintTypeface(mEmailView, mApp.getFont());
+                      }
+                  }
+        );
         mPasswordView = (EditText) findViewById(R.id.password);
+
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -237,11 +253,17 @@ public class LoginActivity extends AppCompatActivity implements
         remember_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(LoginActivity.this,RememberPopUpActivity.class);
-                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                //startActivity(intent);
+                Intent intent = new Intent(LoginActivity.this,RememberPopUpActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
        });
+
+        text_question.setTypeface(mApp.getFont());
+        register_here.setTypeface(mApp.getFont());
+        remember_password.setTypeface(mApp.getFont());
+        mEmailView.setTypeface(mApp.getFont());
+        mPasswordView.setTypeface(mApp.getFont());
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -321,7 +343,26 @@ public class LoginActivity extends AppCompatActivity implements
         }
     }
 
+    private void setHintTypeface(EditText editText, Typeface typeFace) {
+        try {
+            int hintColor = editText.getHintTextColors().getDefaultColor();
 
+            Field hintLayoutField = TextView.class.getDeclaredField("mHintLayout");
+            hintLayoutField.setAccessible(true);
+            Layout hintLayout = (Layout) hintLayoutField.get(editText);
+
+            TextPaint hintPaint = new TextPaint(hintLayout.getPaint());
+            hintPaint.setTypeface(typeFace);
+            hintPaint.setColor(hintColor);
+
+            Field paintField = Layout.class.getDeclaredField("mPaint");
+            paintField.setAccessible(true);
+            paintField.set(hintLayout, hintPaint);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * Attempts to sign in or register the account specified by the login form.
      * If there are form errors (invalid email, missing fields, etc.), the
@@ -474,7 +515,7 @@ public class LoginActivity extends AppCompatActivity implements
                 new ArrayAdapter<>(LoginActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
-        mEmailView.setAdapter(adapter);
+        //mEmailView.setAdapter(adapter);
     }
 
     @Override

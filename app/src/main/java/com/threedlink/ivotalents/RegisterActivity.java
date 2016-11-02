@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.CallbackManager;
@@ -52,6 +53,8 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
     private EditText pass;
     private EditText pass_confirm;
 
+    private TextView read_terms;
+
     private LoginButton btn_facebook_login;
     private CallbackManager callbackManager;
     public static int RC_FB_LOGIN_OK ;
@@ -82,7 +85,7 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
         pass = (EditText) findViewById(R.id.pass);
         pass_confirm = (EditText) findViewById(R.id.pass_confirm);
 
-
+        read_terms = (TextView) findViewById(R.id.read_terms);
 
         register_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,6 +202,12 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
                 .build());
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+        this.user.setTypeface(mApp.getFont());
+        this.email.setTypeface(mApp.getFont());
+        this.pass.setTypeface(mApp.getFont());
+        this.pass_confirm.setTypeface(mApp.getFont());
+        this.read_terms.setTypeface(mApp.getFont());
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){

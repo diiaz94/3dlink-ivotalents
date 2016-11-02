@@ -15,11 +15,14 @@ import java.util.ArrayList;
 public class PopupInfo extends AppCompatActivity {
     public static ArrayList<String> lstError;
     private TextView msgtext;
+    private IvoTalentsApp mApp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mApp = ((IvoTalentsApp) getApplicationContext());
         setContentView(R.layout.activity_popup_info);
         msgtext = (TextView) findViewById(R.id.msgtext);
+        msgtext.setTypeface(mApp.getFont());
         String formattedMsg = formatMsg();
         msgtext.setText(Html.fromHtml(formattedMsg));
         //The key argument here must match that used in the other activity

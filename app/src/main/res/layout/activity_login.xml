@@ -116,13 +116,13 @@
                 android:textColorHint="#c1c2c4"
                 >
 
-                <AutoCompleteTextView
+                <EditText
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_email"
                     android:gravity="center"
-                    android:textSize="17dp"
+                    android:textSize="15dp"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:singleLine="true"
@@ -145,6 +145,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_pass"
                     android:gravity="center"
+                    android:textSize="15dp"
                     android:imeActionId="@+id/login"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"

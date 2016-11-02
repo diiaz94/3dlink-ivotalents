@@ -3,6 +3,7 @@ package com.threedlink.ivotalents;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.util.Log;
 
 import com.facebook.FacebookSdk;
@@ -18,7 +19,11 @@ import java.util.ArrayList;
 public class IvoTalentsApp extends Application {
 
 
-
+    private Typeface face;
+    private Typeface faceBold;
+    private Typeface faceSemiBold;
+    private Typeface faceSemiBoldItalic;
+    private Typeface faceLight;
     private GoogleSignInOptions googleSignInOptions;
     private GoogleApiClient googleApiClient;
     @Override
@@ -31,10 +36,29 @@ public class IvoTalentsApp extends Application {
         googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
-
+        face=Typeface.createFromAsset(getAssets(),"fonts/Exo2-Regular.otf");
+        faceBold=Typeface.createFromAsset(getAssets(),"fonts/Exo2-Bold.otf");
+        faceSemiBold=Typeface.createFromAsset(getAssets(),"fonts/Exo2-SemiBold.otf");
+        faceSemiBoldItalic=Typeface.createFromAsset(getAssets(),"fonts/Exo2-SemiBoldItalic.otf");
+        faceLight=Typeface.createFromAsset(getAssets(),"fonts/Exo2-Light.otf");
     }
 
 
+    public Typeface getFont(){
+        return this.face;
+    }
+    public Typeface getFontBold(){
+        return this.faceBold;
+    }
+    public Typeface getFontSemiBold(){
+        return this.faceSemiBold;
+    }
+    public Typeface getFontSemiBoldItalic(){
+        return this.faceSemiBoldItalic;
+    }
+    public Typeface getFontLight(){
+        return this.faceLight;
+    }
 
     public GoogleApiClient getGoogleApiClient() {
         return googleApiClient;
