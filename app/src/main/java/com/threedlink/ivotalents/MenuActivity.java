@@ -84,4 +84,10 @@ public class MenuActivity extends AppCompatActivity {
         text_search.setTypeface(mApp.getFontLight());
 
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // The activity is about to be destroyed.
+        overridePendingTransition(R.anim.left_out, R.anim.push_out_left);
+    }
 }

@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements
                 Intent intent = new Intent(MainActivity.this,MenuActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                overridePendingTransition(R.anim.left_in, R.anim.right_in);
             }
         });
     }
