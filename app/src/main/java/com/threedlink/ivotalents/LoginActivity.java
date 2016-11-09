@@ -600,6 +600,7 @@ public class LoginActivity extends AppCompatActivity implements
                 goMainScreen();
                 finish();
             } else {
+                //Poner en popup
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
             }

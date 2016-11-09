@@ -1,13 +1,17 @@
 package com.threedlink.ivotalents;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,10 +32,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.threedlink.ivotalents.IvoTalentsApp;
-import com.threedlink.ivotalents.LoginActivity;
-import com.threedlink.ivotalents.R;
-import com.threedlink.ivotalents.SessionManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,7 +42,8 @@ import java.util.HashMap;
  * Created by diiaz94 on 26-08-2016.
  */
 public class MainActivity extends AppCompatActivity implements
-        View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
+        View.OnClickListener, GoogleApiClient.OnConnectionFailedListener, NavigationView.OnNavigationItemSelectedListener {
+    DrawerLayout drawer;
     private static final String TAG = MainActivity.class.getSimpleName();
     // Session Manager Class
     SessionManager session;
@@ -60,7 +61,21 @@ public class MainActivity extends AppCompatActivity implements
         Log.e("PEDRO","PASO onCreate MainAct");
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setLogo(R.drawable.logo_header);
+        toolbar.setTitle("");
 
+
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+        toggle.setDrawerIndicatorEnabled(false);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
         // Session class instance
         session = new SessionManager(getApplicationContext());
         mApp = ((IvoTalentsApp) getApplicationContext());
@@ -76,19 +91,85 @@ public class MainActivity extends AppCompatActivity implements
         Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
 
         btnLogout.setOnClickListener(this);
+        TextView artist_name = (TextView) findViewById(R.id.artist_name);
+        TextView artist_talent = (TextView) findViewById(R.id.artist_talent);
+        TextView artist_count_fans = (TextView) findViewById(R.id.artist_count_fans);
+        TextView text_fans = (TextView) findViewById(R.id.text_fans);
+        TextView text_view_my_profile = (TextView) findViewById(R.id.text_view_my_profile);
+        TextView text_dashboard = (TextView) findViewById(R.id.text_dashboard);
+        TextView text_receive_msg = (TextView) findViewById(R.id.text_receive_msg);
+        TextView count_receive_msg = (TextView) findViewById(R.id.count_receive_msg);
+        TextView text_send_msg = (TextView) findViewById(R.id.text_send_msg);
+        TextView text_my_castings = (TextView) findViewById(R.id.text_my_castings);
+        TextView text_talent = (TextView) findViewById(R.id.text_talent);
+        TextView text_industries = (TextView) findViewById(R.id.text_industries);
+        TextView text_castings = (TextView) findViewById(R.id.text_castings);
+        TextView text_providers = (TextView) findViewById(R.id.text_providers);
+        TextView text_search = (TextView) findViewById(R.id.text_search);
 
-        menu_icon = (ImageButton) findViewById(R.id.menu_icon);
-        menu_icon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,MenuActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                overridePendingTransition(R.anim.left_in, R.anim.right_in);
-            }
-        });
+        artist_name.setTypeface(mApp.getFontBold());
+        artist_talent.setTypeface(mApp.getFont());
+        artist_count_fans.setTypeface(mApp.getFontBold());
+        text_fans.setTypeface(mApp.getFontSemiBoldItalic());
+        text_view_my_profile.setTypeface(mApp.getFontSemiBoldItalic());
+        text_dashboard.setTypeface(mApp.getFontSemiBoldItalic());
+        text_receive_msg.setTypeface(mApp.getFontSemiBoldItalic());
+        count_receive_msg.setTypeface(mApp.getFont());
+        text_send_msg.setTypeface(mApp.getFontSemiBoldItalic());
+        text_my_castings.setTypeface(mApp.getFontSemiBoldItalic());
+        text_talent.setTypeface(mApp.getFontLight());
+        text_industries.setTypeface(mApp.getFontLight());
+        text_castings.setTypeface(mApp.getFontLight());
+        text_providers.setTypeface(mApp.getFontLight());
+        text_search.setTypeface(mApp.getFontLight());
+
+    }
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.END)) {
+            drawer.closeDrawer(GravityCompat.END);
+        } else {
+            super.onBackPressed();
+        }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.menuRight){
+            if (drawer.isDrawerOpen(Gravity.RIGHT)){
+                drawer.closeDrawer(Gravity.RIGHT);
+            }else{
+                drawer.openDrawer(Gravity.RIGHT);
+            }
+
+            return true;
+        }else{
+            if (id == R.id.close_icon_menu){
+                if (drawer.isDrawerOpen(Gravity.RIGHT)){
+                    drawer.closeDrawer(Gravity.RIGHT);
+                }else{
+                    drawer.openDrawer(Gravity.RIGHT);
+                }
+
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
     @Override
     public void onClick(View v) {
         int id = v.getId();
@@ -129,6 +210,11 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    public void goToPrincipal(View view){
+        Intent intent = new Intent(this,PrincipalActivity.class);
+        intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
 
     @Override
     public void onStart() {
@@ -194,5 +280,30 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_camera) {
+            // Handle the camera action
+        } else if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.text_my_castings2) {
+
+        } else if (id == R.id.text_dashboard) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.END);
+        return true;
     }
 }

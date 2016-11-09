@@ -12,4 +12,49 @@
     tools:context="com.threedlink.ivotalents.MainActivity"
     tools:showIn="@layout/activity_main">
 
-</RelativeLayout>
+
+
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:background="@drawable/violin">
+
+        </FrameLayout>
+        <!-- Name Label -->
+        <TextView
+            android:id="@+id/lblName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_marginTop="40dip"
+            android:layout_marginBottom="10dip"/>
+
+        <!-- Email Label -->
+        <TextView
+            android:id="@+id/lblEmail"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dip"
+            android:layout_marginBottom="10dip"/>
+
+
+        <!-- Button to show session data -->
+        <Button android:id="@+id/btnLogout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/logout"/>
+
+        <Button
+            android:onClick="logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/logout"
+            android:visibility="invisible"
+            />
+
+    </RelativeLayout>

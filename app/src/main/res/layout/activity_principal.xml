@@ -23,23 +23,18 @@
         android:theme="@style/AppTheme.CustomThemeTranslucent"
 
         >
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:paddingTop="15dp"
-            >
+            android:layout_height="70dp"
+            android:paddingTop="20dp">
 
             <ImageButton
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:id="@+id/close_icon_menu"
                 android:background="@drawable/close_icon"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginRight="25dp"
                 android:layout_gravity="end" />
         </FrameLayout>
 
@@ -47,7 +42,7 @@
             android:id="@+id/menu"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:paddingTop="10dp"
+            android:layout_marginTop="70dp"
             android:fillViewport="false">
             <LinearLayout android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -218,7 +213,7 @@
                                     android:textSize="12sp"
                                     android:textColor="#ffffff"
                                     android:background="@drawable/bg_recibidos"
-                                    android:layout_gravity="center"
+                                    android:textAlignment="center"
                                     android:paddingTop="2dp"
                                     android:id="@+id/count_receive_msg"/>
 
@@ -409,8 +404,6 @@
             </LinearLayout>
 
         </ScrollView>
-</LinearLayout>
-
     </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

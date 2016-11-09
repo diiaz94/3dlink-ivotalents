@@ -35,5 +35,9 @@
     <string name="error_password_confirm_required">El campo Confirmar Clave no puede estar vacío</string>
     <string name="action_favorite">Notificaciones</string>
     <string name="action_settings">Menu</string>
+    <string name="title_activity_principal">PrincipalActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
 </resources>

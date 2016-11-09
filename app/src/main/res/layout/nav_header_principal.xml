@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/close_icon_menu"
+            android:background="@drawable/close_icon"
+            android:layout_marginRight="25dp"
+            android:layout_gravity="end" />
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:clickable="true">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <ImageView
+                android:layout_width="50pt"
+                android:layout_height="50pt"
+                android:id="@+id/profile_photo"
+                android:src="@drawable/profile_photo"
+                android:layout_marginLeft="0dp"
+                android:layout_gravity="top|left" />
+            <LinearLayout android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="top|left"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alejandra Fernandez"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"
+                    android:id="@+id/artist_name"/>
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Violinista"
+                    android:textStyle="normal"
+                    android:textSize="12sp"
+                    android:textColor="#ffffff"
+                    android:id="@+id/artist_talent"/>
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp">
+                    <ImageView
+                        android:layout_width="8pt"
+                        android:layout_height="8pt"
+                        android:src="@drawable/corazon"
+                        android:layout_gravity="top|left" />
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="500 "
+                        android:textStyle="normal|bold"
+                        android:textSize="12sp"
+                        android:textColor="#ffffff"
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/artist_count_fans"/>
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="fans"
+                        android:textStyle="italic|bold"
+                        android:textSize="12sp"
+                        android:textColor="#ffffff"
+                        android:id="@+id/text_fans"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+                    <ImageView
+                        android:layout_width="8pt"
+                        android:layout_height="8pt"
+                        android:src="@drawable/fill_star"
+                        android:layout_gravity="top|left"
+                        android:layout_marginRight="1dp"/>
+                    <ImageView
+                        android:layout_width="8pt"
+                        android:layout_height="8pt"
+                        android:src="@drawable/fill_star"
+                        android:layout_gravity="top|left"
+                        android:layout_marginRight="1dp"/>
+                    <ImageView
+                        android:layout_width="8pt"
+                        android:layout_height="8pt"
+                        android:src="@drawable/fill_star"
+                        android:layout_gravity="top|left"
+                        android:layout_marginRight="1dp"/>
+                    <ImageView
+                        android:layout_width="8pt"
+                        android:layout_height="8pt"
+                        android:src="@drawable/fill_star"
+                        android:layout_gravity="top|left"
+                        android:layout_marginRight="1dp"/>
+                    <ImageView
+                        android:layout_width="8pt"
+                        android:layout_height="8pt"
+                        android:src="@drawable/empty_star"
+                        android:layout_gravity="top|left" />
+
+                </LinearLayout>
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ver mi perfil"
+                    android:textStyle="italic"
+                    android:textSize="12sp"
+                    android:textColor="#00C4B3"
+                    android:layout_marginTop="8dp"
+                    android:id="@+id/text_view_my_profile"/>
+            </LinearLayout>
+        </GridLayout>
+    </FrameLayout>
+
+</LinearLayout>
