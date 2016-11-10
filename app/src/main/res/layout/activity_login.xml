@@ -162,19 +162,22 @@
                 android:layout_marginTop="20dp"
                 android:id="@+id/loginBtn"
                 android:layout_gravity="center_horizontal" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:id="@+id/remember_password">
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="¿Olvidó Contraseña?"
-                android:id="@+id/remember_password"
                 android:clickable="true"
                 android:textColor="@android:color/white"
                 android:textAlignment="center"
                 android:textSize="13dp"/>
-
-
-
+            </FrameLayout>
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

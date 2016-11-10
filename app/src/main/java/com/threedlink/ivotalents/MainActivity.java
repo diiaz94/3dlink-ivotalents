@@ -91,6 +91,20 @@ public class MainActivity extends AppCompatActivity implements
         Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
 
         btnLogout.setOnClickListener(this);
+
+        ImageButton close_menu = (ImageButton)  findViewById(R.id.close_icon_menu);
+        close_menu.setOnClickListener(new View.OnClickListener() {
+
+          public void onClick(View popupView) {
+              if (drawer.isDrawerOpen(Gravity.RIGHT)) {
+                  drawer.closeDrawer(Gravity.RIGHT);
+              } else {
+                  drawer.openDrawer(Gravity.RIGHT);
+              }
+          }
+        });
+
+
         TextView artist_name = (TextView) findViewById(R.id.artist_name);
         TextView artist_talent = (TextView) findViewById(R.id.artist_talent);
         TextView artist_count_fans = (TextView) findViewById(R.id.artist_count_fans);
