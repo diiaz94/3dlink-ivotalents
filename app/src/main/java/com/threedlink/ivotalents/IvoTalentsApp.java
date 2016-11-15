@@ -5,11 +5,16 @@ import android.app.Application;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.util.Log;
+import android.view.View;
 
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 
 import java.util.ArrayList;
 
@@ -81,5 +86,28 @@ public class IvoTalentsApp extends Application {
         intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
         PopupInfo.lstError = errors;
         startActivity(intent);
+    }
+    public void logout(View view){
+      SessionManager session = new SessionManager(getApplicationContext());
+        // Clear the session data
+        // This will clear all session data and
+        // redirect user to LoginActivity
+        boolean isLoggedWithFacebook = session.isLoggedWithFacebook();
+        boolean isLoggedWithGoogle = session.isLoggedWithGoogle();
+        session.logoutUser();
+        if (isLoggedWithFacebook){
+            //Log.d(TAG,"Loggeado con facebook");
+            LoginManager.getInstance().logOut();
+        }
+        if (isLoggedWithGoogle){
+           // Log.d(TAG,"Loggeado con google");
+            Auth.GoogleSignInApi.signOut(this.getGoogleApiClient()).setResultCallback(
+                    new ResultCallback<Status>() {
+                        @Override
+                        public void onResult(Status status) {
+                            // ...
+                        }
+                    });
+        }
     }
 }

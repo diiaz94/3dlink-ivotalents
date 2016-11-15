@@ -1,9 +1,11 @@
 package com.threedlink.ivotalents;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -42,7 +44,7 @@ import java.util.HashMap;
  * Created by diiaz94 on 26-08-2016.
  */
 public class MainActivity extends AppCompatActivity implements
-        View.OnClickListener, GoogleApiClient.OnConnectionFailedListener, NavigationView.OnNavigationItemSelectedListener {
+        View.OnClickListener, GoogleApiClient.OnConnectionFailedListener, NavigationView.OnNavigationItemSelectedListener,ProfileArtist.OnFragmentInteractionListener {
     DrawerLayout drawer;
     private static final String TAG = MainActivity.class.getSimpleName();
     // Session Manager Class
@@ -76,6 +78,9 @@ public class MainActivity extends AppCompatActivity implements
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
         // Session class instance
         session = new SessionManager(getApplicationContext());
         mApp = ((IvoTalentsApp) getApplicationContext());
@@ -90,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements
 
         Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
 
-        btnLogout.setOnClickListener(this);
+        //btnLogout.setOnClickListener(this);
 
         ImageButton close_menu = (ImageButton)  findViewById(R.id.close_icon_menu);
         close_menu.setOnClickListener(new View.OnClickListener() {
@@ -280,6 +285,9 @@ public class MainActivity extends AppCompatActivity implements
 
 
     public void setScreenUserSesion(){
+
+
+
         // get user data from session
         HashMap<String, String> user = session.getUserDetails();
         // name
@@ -287,8 +295,13 @@ public class MainActivity extends AppCompatActivity implements
         // email
         String email = user.get(SessionManager.KEY_EMAIL);
         // displaying user data
-        lblName.setText(Html.fromHtml("Name: <b>" + name + "</b>"));
-        lblEmail.setText(Html.fromHtml("Email: <b>" + email + "</b>"));
+        //lblName.setText(Html.fromHtml("Name: <b>" + name + "</b>"));
+        //lblEmail.setText(Html.fromHtml("Email: <b>" + email + "</b>"));
+
+        Fragment fragment = null;
+        fragment = ProfileArtist.newInstance(name,email);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
     }
 
     @Override
@@ -319,5 +332,10 @@ public class MainActivity extends AppCompatActivity implements
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.END);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
