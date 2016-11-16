@@ -11,14 +11,14 @@
             android:orientation="vertical">
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="180dp"
+                    android:layout_height="160dp"
                     android:background="@drawable/violin">
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="6dp"
-                    android:background="#fc4513">
+                    android:background="@color/ivo_orange">
                 </FrameLayout>
 
 
@@ -33,26 +33,132 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:paddingTop="30dp"
+                            android:paddingTop="40dp"
                             android:paddingLeft="20dp"
-                            android:layout_weight="1">
-                                <FrameLayout
+                            android:layout_weight="0.9">
+                                <LinearLayout
                                     android:layout_width="fill_parent"
-                                    android:layout_height="200dp">
+                                    android:layout_height="200dp"
+                                    android:orientation="vertical"
+                                    >
+                                    <TextView android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="SIGUE A ALEJANDRA"
+                                        android:textSize="12sp"
+                                        android:textColor="@color/black"
+                                        android:id="@+id/follow_to_artist"
+                                        android:layout_gravity="center"/>
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_gravity="center">
+                                        <ImageView
+                                            android:layout_width="20dp"
+                                            android:layout_height="20dp"
+                                            android:id="@+id/ic_fb_orange"
+                                            android:src="@drawable/fb_logo_orange"
+                                            android:layout_marginRight="5dp"
+                                        />
+                                        <ImageView
+                                            android:layout_width="20dp"
+                                            android:layout_height="20dp"
+                                            android:id="@+id/ic_tw_orange"
+                                            android:src="@drawable/tw_logo_orange"
+                                            android:layout_marginRight="5dp"
+                                            />
+                                        <ImageView
+                                            android:layout_width="20dp"
+                                            android:layout_height="20dp"
+                                            android:id="@+id/ig_tw_orange"
+                                            android:src="@drawable/ig_logo_orange"
+                                            android:layout_marginRight="5dp"
+                                            />
+                                    </LinearLayout>
+                                    <TextView android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Web oficial"
+                                            android:textSize="12sp"
+                                            android:textColor="@color/ivo_orange"
+                                            android:id="@+id/official_web"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="10dp"
+                                            android:textStyle="italic"/>
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        android:layout_marginTop="12dp">
+                                        <ImageView
+                                            android:layout_width="12dp"
+                                            android:layout_height="12dp"
+                                            android:id="@+id/ic_address"
+                                            android:src="@drawable/ic_located_at"
+                                            android:layout_marginRight="2dp"
+                                            />
                                         <TextView android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="SIGUE A ALEJANDRA"
-                                            android:textSize="12sp"
+                                            android:text="Los Angeles, Estados Unidos"
+                                            android:textSize="10sp"
                                             android:textColor="@color/black"
-                                            android:id="@+id/follow_to_artist"/>
-                                </FrameLayout>
+                                            android:id="@+id/address_artist"
+                                            />
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        android:layout_marginTop="12dp">
+                                        <ImageView
+                                            android:layout_width="12dp"
+                                            android:layout_height="12dp"
+                                            android:src="@drawable/ic_register_at"
+                                            android:layout_marginRight="2dp"
+                                            />
+                                        <TextView android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Registrado septiembre 2016"
+                                            android:textSize="10sp"
+                                            android:textColor="@color/black"
+                                            android:id="@+id/ic_register_at"
+                                            />
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="fill_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:weightSum="2">
+                                            <LinearLayout
+                                                android:layout_width="10dp"
+                                                android:layout_height="50dp"
+                                                android:orientation="vertical"
+                                                android:layout_weight="0.9">
+                                            <Button
+                                                android:layout_width="fill_parent"
+                                                android:layout_height="25dp"
+                                                android:text="Seguir"
+                                                android:textColor="@color/ivoGreen"
+                                                android:textSize="10sp"
+                                                android:id="@+id/button"
+                                                android:background="@drawable/border_green_shape"
+                                                android:layout_marginTop="25dp"
+                                                android:layout_weight="1"
+
+                                                />
+                                        </LinearLayout>
+                                    </LinearLayout>
+
+
+                                </LinearLayout>
 
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:layout_weight="1">
+                            android:layout_weight="1.1">
                                 <FrameLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="200dp">
@@ -80,31 +186,36 @@
                     android:layout_marginBottom="10dip"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-                <GridLayout
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="60dp"
-                    android:paddingRight="20dp"
-                    android:paddingLeft="20dp"
-                    >
-
+                    android:orientation="vertical"
+                    android:layout_weight="0.9">
                         <ImageView
-                            android:layout_width="65pt"
-                            android:layout_height="65pt"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:id="@+id/profile_photo"
                             android:src="@drawable/profile_photo"
-                            android:layout_marginLeft="0dp"
-                            android:layout_gravity="top|left" />
-                        <LinearLayout android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="top|left"
-                            android:layout_marginLeft="10dp"
-                            android:orientation="vertical">
+                            />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:orientation="vertical"
+                    android:layout_weight="1.1"
+                    android:layout_gravity="center"
+                    android:padding="10dp">
+
                                 <TextView android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="MÚSICA"
@@ -157,46 +268,44 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal"
                                     android:layout_marginTop="5dp">
-                                        <ImageView
-                                            android:layout_width="8pt"
-                                            android:layout_height="8pt"
-                                            android:src="@drawable/fill_star"
-                                            android:layout_gravity="top|left"
-                                            android:layout_marginRight="1dp"/>
-                                        <ImageView
-                                            android:layout_width="8pt"
-                                            android:layout_height="8pt"
-                                            android:src="@drawable/fill_star"
-                                            android:layout_gravity="top|left"
-                                            android:layout_marginRight="1dp"/>
-                                        <ImageView
-                                            android:layout_width="8pt"
-                                            android:layout_height="8pt"
-                                            android:src="@drawable/fill_star"
-                                            android:layout_gravity="top|left"
-                                            android:layout_marginRight="1dp"/>
-                                        <ImageView
-                                            android:layout_width="8pt"
-                                            android:layout_height="8pt"
-                                            android:src="@drawable/fill_star"
-                                            android:layout_gravity="top|left"
-                                            android:layout_marginRight="1dp"/>
-                                        <ImageView
-                                            android:layout_width="8pt"
-                                            android:layout_height="8pt"
-                                            android:src="@drawable/fill_star"
-                                            android:layout_gravity="top|left"
-                                            android:layout_marginRight="1dp"/>
-                                </LinearLayout>
-
-                        </LinearLayout>
-                </GridLayout>
-        </FrameLayout>
+                                <ImageView
+                                    android:layout_width="8pt"
+                                    android:layout_height="8pt"
+                                    android:src="@drawable/fill_star"
+                                    android:layout_gravity="top|left"
+                                    android:layout_marginRight="1dp"/>
+                                <ImageView
+                                    android:layout_width="8pt"
+                                    android:layout_height="8pt"
+                                    android:src="@drawable/fill_star"
+                                    android:layout_gravity="top|left"
+                                    android:layout_marginRight="1dp"/>
+                                <ImageView
+                                    android:layout_width="8pt"
+                                    android:layout_height="8pt"
+                                    android:src="@drawable/fill_star"
+                                    android:layout_gravity="top|left"
+                                    android:layout_marginRight="1dp"/>
+                                <ImageView
+                                    android:layout_width="8pt"
+                                    android:layout_height="8pt"
+                                    android:src="@drawable/fill_star"
+                                    android:layout_gravity="top|left"
+                                    android:layout_marginRight="1dp"/>
+                                <ImageView
+                                    android:layout_width="8pt"
+                                    android:layout_height="8pt"
+                                    android:src="@drawable/fill_star"
+                                    android:layout_gravity="top|left"
+                                    android:layout_marginRight="1dp"/>
 
 
+                </LinearLayout>
 
 
+        </LinearLayout>
 
+        </LinearLayout>
 
 
 
