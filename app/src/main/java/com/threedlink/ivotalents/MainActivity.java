@@ -90,10 +90,9 @@ public class MainActivity extends AppCompatActivity implements
                 .build());
         lblName = (TextView) findViewById(R.id.lblName);
         lblEmail = (TextView) findViewById(R.id.lblEmail);
-        btnLogout = (Button) findViewById(R.id.btnLogout);
 
 
-        Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
 
         //btnLogout.setOnClickListener(this);
 
@@ -191,13 +190,7 @@ public class MainActivity extends AppCompatActivity implements
     }
     @Override
     public void onClick(View v) {
-        int id = v.getId();
 
-        switch (id) {
-            case R.id.btnLogout:
-                logout(v);
-                break;
-        }
     }
     private void goLoginScreen() {
         Intent intent = new Intent(this,LoginActivity.class);

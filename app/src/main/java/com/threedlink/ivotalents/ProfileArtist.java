@@ -76,11 +76,7 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
 
         View view= inflater.inflate(R.layout.fragment_profile_artist, container, false);
         logout_btn = (Button)view.findViewById(R.id.logout_btn);
-        logout_btn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-              mApp.logout(view);
-            }
-        });
+        logout_btn.setOnClickListener(this);
         lblName = (TextView) view.findViewById(R.id.lblName);
         lblEmail = (TextView) view.findViewById(R.id.lblEmail);
 
