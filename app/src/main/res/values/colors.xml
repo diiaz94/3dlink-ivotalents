@@ -3,10 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="ivoGreen">#00C4B3</color>
     <color name="white">#FFFFFF</color>
-    <color name="ivo_gray">#efefef</color>
+    <color name="ivo_gray_light">#efefef</color>
     <color name="black">#000000</color>
     <color name="ivo_orange">#fc4513</color>
     <color name="transparent">#00000000</color>
+    <color name="ivo_gray_dark">#707173</color>
+    <color name="ivo_green">#00C4B3</color>
+    <color name="ivo_black">#121313</color>
+    <color name="ivo_line_gray">#c6c7c8</color>
 </resources>

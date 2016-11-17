@@ -240,7 +240,7 @@ public class LoginActivity extends AppCompatActivity implements
             }
         });
 
-        Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
+       // Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
 
         btn_normal_login = (ImageButton) findViewById(R.id.loginBtn);
         btn_normal_login.setOnClickListener(this);
@@ -593,7 +593,7 @@ public class LoginActivity extends AppCompatActivity implements
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             showProgress(false);
-
+            ArrayList<String> errors= new ArrayList<String>();
             if (success) {
                 session.createLoginSession("Ejemplo", mEmail,"NORMAL");
                 // Staring MainActivity
@@ -601,8 +601,10 @@ public class LoginActivity extends AppCompatActivity implements
                 finish();
             } else {
                 //Poner en popup
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                //mPasswordView.setError(getString(R.string.error_incorrect_password));
+                //mPasswordView.requestFocus();
+                errors.add(getString(R.string.error_incorrect_password));
+                mApp.showError(LoginActivity.this,errors);
             }
         }
 

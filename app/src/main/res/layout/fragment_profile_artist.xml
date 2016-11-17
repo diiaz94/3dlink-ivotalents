@@ -4,187 +4,986 @@
     android:layout_height="match_parent"
     tools:context="com.threedlink.ivotalents.ProfileArtist">
 
-
+    <ScrollView
+        android:id="@+id/login_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="160dp"
-                    android:background="@drawable/violin">
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="6dp"
-                    android:background="@color/ivo_orange">
-                </FrameLayout>
-
-
+            android:orientation="vertical"
+            android:background="@color/ivo_gray_light">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="@drawable/violin">
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:background="@color/ivo_orange">
+            </FrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:weightSum="2"
-                    android:background="@color/ivo_gray">
+                    android:visibility="visible">
 
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="40dp"
+                        android:paddingLeft="10dp"
+                        android:layout_weight="0.9">
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:paddingTop="40dp"
-                            android:paddingLeft="20dp"
-                            android:layout_weight="0.9">
+                            >
+                            <TextView android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="SIGUE A ALEJANDRA"
+                                android:textSize="11sp"
+                                android:textColor="@color/ivo_black"
+                                android:id="@+id/follow_to_artist"
+                                android:layout_gravity="center"/>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="5dp"
+                                android:layout_gravity="center">
+                                <ImageView
+                                    android:layout_width="18dp"
+                                    android:layout_height="18dp"
+                                    android:id="@+id/ic_fb_orange"
+                                    android:src="@drawable/fb_logo_orange"
+                                    android:layout_marginRight="5dp"
+                                    />
+                                <ImageView
+                                    android:layout_width="18dp"
+                                    android:layout_height="18dp"
+                                    android:id="@+id/ic_tw_orange"
+                                    android:src="@drawable/tw_logo_orange"
+                                    android:layout_marginRight="5dp"
+                                    />
+                                <ImageView
+                                    android:layout_width="18dp"
+                                    android:layout_height="18dp"
+                                    android:id="@+id/ig_tw_orange"
+                                    android:src="@drawable/ig_logo_orange"
+                                    android:layout_marginRight="5dp"
+                                    />
+                            </LinearLayout>
+                            <TextView android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Web Oficial"
+                                android:textSize="10sp"
+                                android:textColor="@color/ivo_orange"
+                                android:id="@+id/official_web"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:textStyle="italic"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="12dp">
+                                <ImageView
+                                    android:layout_width="12dp"
+                                    android:layout_height="12dp"
+                                    android:id="@+id/ic_address"
+                                    android:src="@drawable/ic_located_at"
+                                    android:layout_marginRight="2dp"
+                                    />
+                                <TextView android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Los Angeles, Estados Unidos"
+                                    android:textSize="10sp"
+                                    android:textColor="@color/ivo_gray_dark"
+                                    android:id="@+id/address_artist"
+                                    android:textStyle="bold"
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="2dp">
+                                <ImageView
+                                    android:layout_width="12dp"
+                                    android:layout_height="12dp"
+                                    android:src="@drawable/ic_register_at"
+                                    android:layout_marginRight="2dp"
+                                    android:textStyle="bold"
+                                    />
+                                <TextView android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Registrado septiembre 2016"
+                                    android:textSize="10sp"
+                                    android:textColor="@color/ivo_gray_dark"
+                                    android:id="@+id/ic_register_at"
+                                    android:textStyle="bold"
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="25dp"
+                                android:weightSum="1">
                                 <LinearLayout
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="200dp"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
                                     android:orientation="vertical"
-                                    >
-                                    <TextView android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="SIGUE A ALEJANDRA"
-                                        android:textSize="12sp"
-                                        android:textColor="@color/black"
-                                        android:id="@+id/follow_to_artist"
-                                        android:layout_gravity="center"/>
-
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:layout_marginTop="5dp"
-                                        android:layout_gravity="center">
-                                        <ImageView
-                                            android:layout_width="20dp"
-                                            android:layout_height="20dp"
-                                            android:id="@+id/ic_fb_orange"
-                                            android:src="@drawable/fb_logo_orange"
-                                            android:layout_marginRight="5dp"
-                                        />
-                                        <ImageView
-                                            android:layout_width="20dp"
-                                            android:layout_height="20dp"
-                                            android:id="@+id/ic_tw_orange"
-                                            android:src="@drawable/tw_logo_orange"
-                                            android:layout_marginRight="5dp"
-                                            />
-                                        <ImageView
-                                            android:layout_width="20dp"
-                                            android:layout_height="20dp"
-                                            android:id="@+id/ig_tw_orange"
-                                            android:src="@drawable/ig_logo_orange"
-                                            android:layout_marginRight="5dp"
-                                            />
-                                    </LinearLayout>
-                                    <TextView android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Web oficial"
-                                            android:textSize="12sp"
-                                            android:textColor="@color/ivo_orange"
-                                            android:id="@+id/official_web"
-                                            android:layout_gravity="center"
-                                            android:layout_marginTop="10dp"
-                                            android:textStyle="italic"/>
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:layout_marginTop="12dp">
-                                        <ImageView
-                                            android:layout_width="12dp"
-                                            android:layout_height="12dp"
-                                            android:id="@+id/ic_address"
-                                            android:src="@drawable/ic_located_at"
-                                            android:layout_marginRight="2dp"
-                                            />
-                                        <TextView android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Los Angeles, Estados Unidos"
-                                            android:textSize="10sp"
-                                            android:textColor="@color/black"
-                                            android:id="@+id/address_artist"
-                                            />
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:layout_marginTop="12dp">
-                                        <ImageView
-                                            android:layout_width="12dp"
-                                            android:layout_height="12dp"
-                                            android:src="@drawable/ic_register_at"
-                                            android:layout_marginRight="2dp"
-                                            />
-                                        <TextView android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Registrado septiembre 2016"
-                                            android:textSize="10sp"
-                                            android:textColor="@color/black"
-                                            android:id="@+id/ic_register_at"
-                                            />
-                                    </LinearLayout>
-                                    <LinearLayout
+                                    android:layout_weight="0.1"/>
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_weight="0.8"
+                                    android:layout_centerHorizontal="true"
+                                    android:gravity="center_horizontal">
+                                    <Button
                                         android:layout_width="fill_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:weightSum="1">
-                                            <LinearLayout
-                                                android:layout_width="10dp"
-                                                android:layout_height="50dp"
-                                                android:orientation="vertical"
-                                                android:layout_weight="0.9"
-                                                android:layout_gravity="center">
-                                            <Button
-                                                android:layout_width="fill_parent"
-                                                android:layout_height="25dp"
-                                                android:text="Seguir"
-                                                android:textColor="@color/ivoGreen"
-                                                android:textSize="10sp"
-                                                android:id="@+id/button"
-                                                android:background="@drawable/border_green_shape"
-                                                android:layout_marginTop="25dp"
-                                                android:layout_weight="1"
+                                        android:layout_height="30dp"
+                                        android:text="Seguir"
+                                        android:textColor="@color/ivo_green"
+                                        android:textSize="10sp"
+                                        android:id="@+id/button"
+                                        android:background="@drawable/border_green_shape"
 
-                                                />
-                                        </LinearLayout>
-                                    </LinearLayout>
+                                        android:layout_weight="0.9"
+                                        android:layout_centerHorizontal="true"
 
-
+                                        />
                                 </LinearLayout>
+                            </LinearLayout>
 
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="5dp"
+                                android:layout_gravity="center">
+                                <ImageView
+                                    android:layout_width="14dp"
+                                    android:layout_height="14dp"
+                                    android:id="@+id/envelop_orange"
+                                    android:src="@drawable/envelop_orange"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_gravity="center"
+                                    />
+                                <TextView android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Enviar Mensaje"
+                                    android:textSize="10sp"
+                                    android:textColor="@color/ivo_orange"
+                                    android:id="@+id/sent_message"
+                                    android:layout_gravity="center"
+                                    android:textStyle="italic"/>
+                                />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="35dp"
+                        android:paddingLeft="5dp"
+                        android:layout_weight="1.1">
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="20dp"
+                                android:layout_weight="0.20"
+                                android:background="@drawable/bg_bio">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="BIO"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold"
+                                    android:gravity="center|center"/>
+                            </LinearLayout>
                         </LinearLayout>
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_weight="1.1">
-                                <FrameLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="200dp">
-
-                                </FrameLayout>
-
+                            android:layout_marginTop="8dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="8dp">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="@string/dummie_bio"
+                                android:textSize="11sp"
+                                android:textColor="@color/ivo_black"
+                                />
                         </LinearLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
-                <!-- Name Label -->
-                <TextView
-                    android:id="@+id/lblName"
-                    android:layout_width="fill_parent"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:layout_marginTop="40dip"
-                    android:layout_marginBottom="10dip"/>
+                    android:orientation="vertical"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:visibility="visible">
 
-                <!-- Email Label -->
-                <TextView
-                    android:id="@+id/lblEmail"
-                    android:layout_width="fill_parent"
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:background="@drawable/bg_bio"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="INTERESES"
+                            android:textSize="16sp"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:gravity="center|center"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="center">
+                            <ImageView
+                                android:layout_width="35dp"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_music"
+
+                                />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Música"
+                                android:textSize="11sp"
+                                android:textColor="@color/ivo_black"
+                                android:layout_marginTop="3dp"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp">
+                            <ImageView
+                                android:layout_width="35dp"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_conciertos"
+                                android:layout_gravity="center"
+                                />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Conciertos y Eventos"
+                                android:textSize="11sp"
+                                android:textColor="@color/ivo_black"
+                                android:layout_marginTop="3dp"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="center">
+                            <ImageView
+                                android:layout_width="35dp"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_industrias"
+                                android:layout_gravity="center"
+                                />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Industria Musical"
+                                android:textSize="11sp"
+                                android:textColor="@color/ivo_black"
+                                android:layout_marginTop="3dp"/>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/ivo_line_gray">
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="70dip"
-                    android:layout_marginBottom="10dip"/>
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginRight="3dp"
+                        >
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_nacimiento"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="NACIMIENTO"
+                            android:textSize="10sp"
+                            android:textColor="@color/ivo_green"
+                            android:layout_marginTop="3dp"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="12 Nov 1991"
+                            android:textSize="10sp"
+                            android:textColor="@color/ivo_black"
+                            android:layout_marginTop="1dp"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Edad 24"
+                            android:textSize="10sp"
+                            android:textStyle="italic"
+                            android:textColor="@color/ivo_gray_dark"
+                            android:layout_marginTop="1dp"
+                            android:layout_gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        >
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_genero"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SEXO"
+                            android:textSize="10sp"
+                            android:textColor="@color/ivo_green"
+                            android:layout_marginTop="3dp"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Femenino"
+                            android:textSize="10sp"
+                            android:textColor="@color/ivo_black"
+                            android:layout_marginTop="1dp"
+                            android:layout_gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        >
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_medidas"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MEDIDAS"
+                            android:textSize="10sp"
+                            android:textColor="@color/ivo_green"
+                            android:layout_marginTop="3dp"
+                            android:layout_gravity="center"/>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Busto"
+                                android:textSize="10sp"
+                                android:textColor="@color/ivo_black"
+                                android:layout_marginTop="1dp"
+                                android:layout_gravity="center"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=" 85 cm"
+                                android:textStyle="italic"
+                                android:textSize="10sp"
+                                android:textColor="@color/ivo_gray_dark"
+                                android:layout_marginTop="1dp"
+                                android:layout_gravity="center"/>
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Cintura"
+                                android:textSize="10sp"
+                                android:textColor="@color/ivo_black"
+                                android:layout_marginTop="1dp"
+                                android:layout_gravity="center"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=" 60 cm"
+                                android:textStyle="italic"
+                                android:textSize="10sp"
+                                android:textColor="@color/ivo_gray_dark"
+                                android:layout_marginTop="1dp"
+                                android:layout_gravity="center"/>
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Cadera"
+                                android:textSize="10sp"
+                                android:textColor="@color/ivo_black"
+                                android:layout_marginTop="1dp"
+                                android:layout_gravity="center"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=" 90 cm"
+                                android:textStyle="italic"
+                                android:textSize="10sp"
+                                android:textColor="@color/ivo_gray_dark"
+                                android:layout_marginTop="1dp"
+                                android:layout_gravity="center"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        >
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_altura"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ALTURA"
+                            android:textSize="10sp"
+                            android:textColor="@color/ivo_green"
+                            android:layout_marginTop="3dp"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1.74 m"
+                            android:textSize="10sp"
+                            android:textColor="@color/ivo_black"
+                            android:layout_marginTop="1dp"
+                            android:layout_gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="3dp"
+                        >
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_etnia"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ETNIA"
+                            android:textSize="10sp"
+                            android:textColor="@color/ivo_green"
+                            android:layout_marginTop="3dp"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hispánico"
+                            android:textSize="10sp"
+                            android:textColor="@color/ivo_black"
+                            android:layout_marginTop="1dp"
+                            android:layout_gravity="center"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        >
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_ojos"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="OJOS"
+                            android:textSize="10sp"
+                            android:textColor="@color/ivo_green"
+                            android:layout_marginTop="3dp"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Marrones"
+                            android:textSize="10sp"
+                            android:textColor="@color/ivo_black"
+                            android:layout_marginTop="1dp"
+                            android:layout_gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        >
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_cabello"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CABELLO"
+                            android:textSize="10sp"
+                            android:textColor="@color/ivo_green"
+                            android:layout_marginTop="3dp"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Castaño"
+                            android:textSize="10sp"
+                            android:textColor="@color/ivo_black"
+                            android:layout_marginTop="1dp"
+                            android:layout_gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        >
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_tatuajes"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TATUAJES"
+                            android:textSize="10sp"
+                            android:textColor="@color/ivo_green"
+                            android:layout_marginTop="3dp"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SI"
+                            android:textSize="10sp"
+                            android:textColor="@color/ivo_black"
+                            android:layout_marginTop="1dp"
+                            android:layout_gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        >
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_viajar"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="VIAJAR"
+                            android:textSize="10sp"
+                            android:textColor="@color/ivo_green"
+                            android:layout_marginTop="3dp"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SI"
+                            android:textSize="10sp"
+                            android:textColor="@color/ivo_black"
+                            android:layout_marginTop="1dp"
+                            android:layout_gravity="center"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@color/ivo_line_gray">
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="200dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="200dp"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:weightSum="2">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.5"
+                            android:orientation="vertical"
+                            >
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="NACIONALIDAD"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/ivo_black"
+                                    android:layout_marginTop="3dp"/>
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Venezolana "
+                                        android:textStyle="italic"
+                                        android:textSize="11sp"
+                                        android:textColor="@color/ivo_gray_dark"
+                                        android:layout_marginTop="5dp"/>
+                                    <ImageView
+                                        android:layout_width="30dp"
+                                        android:layout_height="15dp"
+                                        android:src="@drawable/flag_vnzla"
+                                        android:layout_gravity="center"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginTop="4dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="PAÍS DE RESIDENCIA"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/ivo_black"
+                                    android:layout_marginTop="3dp"/>
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="E.E.U.U "
+                                        android:textStyle="italic"
+                                        android:textSize="11sp"
+                                        android:textColor="@color/ivo_gray_dark"
+                                        android:layout_marginTop="5dp"/>
+                                    <ImageView
+                                        android:layout_width="30dp"
+                                        android:layout_height="15dp"
+                                        android:src="@drawable/flag_usa"
+                                        android:layout_gravity="center"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginTop="4dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="CIUDAD DE RESIDENCIA"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/ivo_black"
+                                    android:layout_marginTop="3dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Los Ángeles"
+                                    android:textStyle="italic"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/ivo_gray_dark"
+                                    android:layout_marginTop="2dp"/>
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginTop="4dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="PASAPORTE"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/ivo_black"
+                                    android:layout_marginTop="3dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="V00000000000"
+                                    android:textStyle="italic"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/ivo_gray_dark"
+                                    android:layout_marginTop="2dp"/>
+
+                            </LinearLayout>
+
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="200dp"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:weightSum="2">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.2"
+                            />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.5"
+                            android:orientation="vertical"
+                            >
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="VISAS"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/ivo_black"
+                                    android:layout_marginTop="3dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Si"
+                                    android:textStyle="italic"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/ivo_gray_dark"
+                                    android:layout_marginTop="2dp"/>
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginTop="4dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="TELÉFONO"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/ivo_black"
+                                    android:layout_marginTop="3dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="00000000000"
+                                    android:textStyle="italic"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/ivo_gray_dark"
+                                    android:layout_marginTop="2dp"/>
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginTop="4dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="AGENCIA O MANAGER"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/ivo_black"
+                                    android:layout_marginTop="3dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Orange Agency"
+                                    android:textStyle="italic"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/ivo_gray_dark"
+                                    android:layout_marginTop="2dp"/>
+
+                            </LinearLayout>
+
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <!-- Name Label -->
+            <TextView
+                android:id="@+id/lblName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:layout_marginTop="40dip"
+                android:layout_marginBottom="10dip"
+                android:visibility="gone"/>
+
+            <!-- Email Label -->
+            <TextView
+                android:id="@+id/lblEmail"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dip"
+                android:layout_marginBottom="10dip"
+                android:visibility="gone"/>
+            <!-- Logout button Label -->
+            <Button
+                android:id="@+id/logout_btn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/logout"
+
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -307,17 +1106,6 @@
         </LinearLayout>
 
         </LinearLayout>
-
-
-
-        <Button
-            android:id="@+id/logout_btn"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:text="@string/logout"
-
-            />
-
-    </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

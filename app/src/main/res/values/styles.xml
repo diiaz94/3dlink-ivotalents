@@ -38,13 +38,13 @@
     </style>
 
     <style name="Autocomplete" parent="Widget.AppCompat.Light.AutoCompleteTextView">
-        <item name="android:colorFocusedHighlight">@color/ivoGreen</item>
-        <item name="android:textColorHintInverse">@color/ivoGreen</item>
-        <item name="colorControlNormal">@color/ivoGreen</item>
-        <item name="colorControlActivated">@color/ivoGreen</item>
+        <item name="android:colorFocusedHighlight">@color/ivo_green</item>
+        <item name="android:textColorHintInverse">@color/ivo_green</item>
+        <item name="colorControlNormal">@color/ivo_green</item>
+        <item name="colorControlActivated">@color/ivo_green</item>
     </style>
 
     <style name="TextAppearence.App.TextInputLayout" parent="@android:style/TextAppearance">
-        <item name="android:textColor">@color/ivoGreen</item>
+        <item name="android:textColor">@color/ivo_green</item>
     </style>
 </resources>
