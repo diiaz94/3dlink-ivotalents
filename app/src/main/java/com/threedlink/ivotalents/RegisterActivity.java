@@ -40,6 +40,7 @@ import java.util.Arrays;
 
 public class RegisterActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
+    private boolean attempregister;
     private ImageButton register_button;
     private FrameLayout register_step_1;
     private ImageButton artist_button;
@@ -70,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        attempregister = false;
         register_button = (ImageButton) findViewById(R.id.register_btn);
         register_step_1 = (FrameLayout) findViewById(R.id.register_step_1);
         register_step_2 = (FrameLayout) findViewById(R.id.register_step_2);
@@ -162,11 +163,10 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
                                     String birthday = object.getString("birthday"); // 01/31/1980 format
                                     register_step_1.setVisibility(View.INVISIBLE);
                                     register_step_2.setVisibility(View.VISIBLE);
+                                    attempregister=true;
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-
-                                finish();
                             }
                         });
                 Bundle parameters = new Bundle();
@@ -210,6 +210,12 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
         this.read_terms.setTypeface(mApp.getFont());
     }
     @Override
+    public void onBackPressed (){
+        if (!attempregister) {
+            super.onBackPressed();
+        }
+    }
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
            super.onActivityResult(requestCode,resultCode,data);
         Log.e("requestCode::",String.valueOf(requestCode));
@@ -221,6 +227,7 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
                 // Staring MainActivity
                 register_step_1.setVisibility(View.INVISIBLE);
                 register_step_2.setVisibility(View.VISIBLE);
+                attempregister =true;
                 Log.e("NAME::", account.getDisplayName());
             }
         }
@@ -284,6 +291,7 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
             }
             register_step_1.setVisibility(View.INVISIBLE);
             register_step_2.setVisibility(View.VISIBLE);
+            attempregister=true;
         }
     }
 

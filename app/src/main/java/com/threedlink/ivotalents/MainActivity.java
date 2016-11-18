@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements
 
     TextView lblName;
     TextView lblEmail;
+    TextView logout_text;
     private IvoTalentsApp mApp;
     private ImageButton menu_icon;
     private ImageButton alert_icon;
@@ -79,7 +80,13 @@ public class MainActivity extends AppCompatActivity implements
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        logout_text = (TextView) findViewById(R.id.logout_text);
+        logout_text.setOnClickListener(new View.OnClickListener() {
 
+            public void onClick(View popupView) {
+              logout(popupView);
+            }
+        });
 
         // Session class instance
         session = new SessionManager(getApplicationContext());
@@ -130,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements
         artist_count_fans.setTypeface(mApp.getFontBold());
         text_fans.setTypeface(mApp.getFontSemiBoldItalic());
         text_view_my_profile.setTypeface(mApp.getFontSemiBoldItalic());
+        logout_text.setTypeface(mApp.getFontSemiBoldItalic());
         text_dashboard.setTypeface(mApp.getFontSemiBoldItalic());
         text_receive_msg.setTypeface(mApp.getFontSemiBoldItalic());
         count_receive_msg.setTypeface(mApp.getFont());
