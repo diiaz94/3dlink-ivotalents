@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:weightSum="2"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -279,8 +279,7 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_gravity="center">
+                            android:orientation="vertical">
                             <ImageView
                                 android:layout_width="35dp"
                                 android:layout_height="wrap_content"
@@ -360,8 +359,93 @@
                 </FrameLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp">
+                    android:layout_width="fill_parent"
+                    android:layout_height="35dp"
+                    android:background="@drawable/border_orange_shape"
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    >
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border_orange_shape_solid"
+                        android:orientation="horizontal"
+                        android:layout_weight="0.25"
+                        android:gravity="center"
+                        >
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center|center">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="FOTOS"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border_orange_shape"
+                        android:orientation="horizontal"
+                        android:layout_weight="0.25"
+                        android:gravity="center">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center|center">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="AUDIOS"
+                                android:textColor="@color/ivo_orange"
+                                android:textSize="15sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border_orange_shape"
+                        android:orientation="horizontal"
+                        android:layout_weight="0.25"
+                        android:gravity="center">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center|center">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="VIDEOS"
+                                android:textColor="@color/ivo_orange"
+                                android:textSize="12sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border_orange_shape"
+                        android:orientation="horizontal"
+                        android:layout_weight="0.25"
+                        android:gravity="center">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center|center">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="EXPERIENCIA"
+                                android:textColor="@color/ivo_orange"
+                                android:textSize="12sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -371,7 +455,7 @@
                     android:orientation="horizontal"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="wrap_content"

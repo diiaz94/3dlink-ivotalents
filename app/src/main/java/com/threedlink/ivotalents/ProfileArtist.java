@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TabHost;
 import android.widget.TextView;
 
 
@@ -79,7 +80,34 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
         logout_btn.setOnClickListener(this);
         lblName = (TextView) view.findViewById(R.id.lblName);
         lblEmail = (TextView) view.findViewById(R.id.lblEmail);
+        //Manejo de tabs
 
+        TabHost tabs = (TabHost)view.findViewById(R.id.tabHost);
+        tabs.setup();
+
+        TabHost.TabSpec spec;
+
+        spec = tabs.newTabSpec("Fotos");
+        spec.setContent(R.id.tab_fotos);
+        spec.setIndicator("Fotos");
+        tabs.addTab(spec);
+
+        spec = tabs.newTabSpec("Audios");
+        spec.setContent(R.id.tab_fotos);
+        spec.setIndicator("Audios");
+        tabs.addTab(spec);
+
+        spec = tabs.newTabSpec("Videos");
+        spec.setContent(R.id.tab_fotos);
+        spec.setIndicator("Videos");
+        tabs.addTab(spec);
+
+        spec = tabs.newTabSpec("Experiencia");
+        spec.setContent(R.id.tab_fotos);
+        spec.setIndicator("Experiencia");
+        tabs.addTab(spec);
+
+        tabs.setCurrentTab(0);
         return view;
     }
 
