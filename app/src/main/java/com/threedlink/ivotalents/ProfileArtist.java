@@ -75,6 +75,7 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mApp = ((IvoTalentsApp) getActivity().getApplicationContext());
+        currentTab = "tabFotos";
         if (getArguments() != null) {
             mParam1 = getArguments().getString(NAME);
             mParam2 = getArguments().getString(EMAIL);
@@ -91,16 +92,32 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
         logout_btn.setOnClickListener(this);
         lblName = (TextView) view.findViewById(R.id.lblName);
         lblEmail = (TextView) view.findViewById(R.id.lblEmail);
+
         //Manejo de tabs
 
         tabFotos = (LinearLayout)view.findViewById(R.id.tabFotos);
         tabFotos.setOnClickListener(this);
+        tabTextFotos = (TextView)view.findViewById(R.id.tabTextFotos);
+
         tabAudios = (LinearLayout)view.findViewById(R.id.tabAudios);
         tabAudios.setOnClickListener(this);
-        LinearLayout tabVideos = (LinearLayout)view.findViewById(R.id.tabVideos);
+        tabTextAudios = (TextView)view.findViewById(R.id.tabTextAudios);
+
+        tabVideos = (LinearLayout)view.findViewById(R.id.tabVideos);
         tabVideos.setOnClickListener(this);
+        tabTextVideos = (TextView)view.findViewById(R.id.tabTextVideos);
+
         tabExperiencias = (LinearLayout)view.findViewById(R.id.tabExperiencias);
         tabExperiencias.setOnClickListener(this);
+        tabTextExperiencias = (TextView)view.findViewById(R.id.tabTextExperiencias);
+        LinearLayout datosPrincipales = (LinearLayout)view.findViewById(R.id.datosPrincipales);
+        datosPrincipales.setVisibility(View.VISIBLE);
+        LinearLayout intereses = (LinearLayout)view.findViewById(R.id.intereses);
+        datosPrincipales.setVisibility(View.VISIBLE);
+        LinearLayout caracteristicas = (LinearLayout)view.findViewById(R.id.caracteristicas);
+        datosPrincipales.setVisibility(View.VISIBLE);
+        LinearLayout caracteristicas2 = (LinearLayout)view.findViewById(R.id.caracteristicas2);
+        datosPrincipales.setVisibility(View.VISIBLE);
         return view;
     }
 
@@ -163,7 +180,7 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
                 activateTab("tabFotos");
                 break;
             case R.id.tabAudios:
-                activateTab("tabFotos");
+                activateTab("tabAudios");
                 break;
             case R.id.tabVideos:
                 activateTab("tabVideos");
@@ -199,20 +216,28 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
             }
 
         }
+        if(text!=null){
+            text.setTextColor(getResources().getColor(R.color.white));
+        }
         resetPreviusTab();
         currentTab = tab;
     }
 
     private void resetPreviusTab() {
         LinearLayout layout = null;
+        TextView text = null;
         if(currentTab.equalsIgnoreCase("tabFotos")){
             layout = tabFotos;
+            text = tabTextFotos;
         }else if(currentTab.equalsIgnoreCase("tabAudios")){
             layout = tabAudios;
+            text = tabTextAudios;
         }else if(currentTab.equalsIgnoreCase("tabVideos")){
             layout = tabVideos;
+            text = tabTextVideos;
         }else if(currentTab.equalsIgnoreCase("tabExperiencias")){
             layout = tabExperiencias;
+            text = tabTextExperiencias;
         }
         if(layout!=null){
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -220,7 +245,9 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
             }else{
                 layout.setBackgroundDrawable(getResources().getDrawable(R.drawable.border_orange_shape));
             }
-            layout.findViewWithTag("TextView").setcolo;
+        }
+        if(text!=null){
+            text.setTextColor(getResources().getColor(R.color.ivo_orange));
         }
 
     }
