@@ -3,6 +3,7 @@ package com.threedlink.ivotalents;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
@@ -31,13 +33,22 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    LinearLayout tabFotos;
+    LinearLayout tabAudios;
+    LinearLayout tabVideos;
+    LinearLayout tabExperiencias;
+    TextView tabTextFotos;
+    TextView tabTextAudios;
+    TextView tabTextVideos;
+    TextView tabTextExperiencias;
     private OnFragmentInteractionListener mListener;
     Button logout_btn;
     TextView lblName;
     TextView lblEmail;
 
     private IvoTalentsApp mApp;
+    private String currentTab;
+
     public ProfileArtist() {
         // Required empty public constructor
     }
@@ -82,32 +93,14 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
         lblEmail = (TextView) view.findViewById(R.id.lblEmail);
         //Manejo de tabs
 
-        TabHost tabs = (TabHost)view.findViewById(R.id.tabHost);
-        tabs.setup();
-
-        TabHost.TabSpec spec;
-
-        spec = tabs.newTabSpec("Fotos");
-        spec.setContent(R.id.tab_fotos);
-        spec.setIndicator("Fotos");
-        tabs.addTab(spec);
-
-        spec = tabs.newTabSpec("Audios");
-        spec.setContent(R.id.tab_fotos);
-        spec.setIndicator("Audios");
-        tabs.addTab(spec);
-
-        spec = tabs.newTabSpec("Videos");
-        spec.setContent(R.id.tab_fotos);
-        spec.setIndicator("Videos");
-        tabs.addTab(spec);
-
-        spec = tabs.newTabSpec("Experiencia");
-        spec.setContent(R.id.tab_fotos);
-        spec.setIndicator("Experiencia");
-        tabs.addTab(spec);
-
-        tabs.setCurrentTab(0);
+        tabFotos = (LinearLayout)view.findViewById(R.id.tabFotos);
+        tabFotos.setOnClickListener(this);
+        tabAudios = (LinearLayout)view.findViewById(R.id.tabAudios);
+        tabAudios.setOnClickListener(this);
+        LinearLayout tabVideos = (LinearLayout)view.findViewById(R.id.tabVideos);
+        tabVideos.setOnClickListener(this);
+        tabExperiencias = (LinearLayout)view.findViewById(R.id.tabExperiencias);
+        tabExperiencias.setOnClickListener(this);
         return view;
     }
 
@@ -166,7 +159,70 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
             case R.id.logout_btn:
                 mApp.logout(v);
                 break;
+            case R.id.tabFotos:
+                activateTab("tabFotos");
+                break;
+            case R.id.tabAudios:
+                activateTab("tabFotos");
+                break;
+            case R.id.tabVideos:
+                activateTab("tabVideos");
+                break;
+            case R.id.tabExperiencias:
+                activateTab("tabExperiencias");
+                break;
+
         }
+    }
+
+    private void activateTab(String tab){
+        LinearLayout layout = null;
+        TextView text = null;
+        if(tab.equalsIgnoreCase("tabFotos")){
+            layout = tabFotos;
+            text = tabTextFotos;
+        }else if(tab.equalsIgnoreCase("tabAudios")){
+            layout = tabAudios;
+            text = tabTextAudios;
+        }else if(tab.equalsIgnoreCase("tabVideos")){
+            layout = tabVideos;
+            text = tabTextVideos;
+        }else if(tab.equalsIgnoreCase("tabExperiencias")){
+            layout = tabExperiencias;
+            text = tabTextExperiencias;
+        }
+        if(layout!=null){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                layout.setBackground(getResources().getDrawable(R.drawable.border_orange_shape_solid));
+            }else{
+                layout.setBackgroundDrawable(getResources().getDrawable(R.drawable.border_orange_shape_solid));
+            }
+
+        }
+        resetPreviusTab();
+        currentTab = tab;
+    }
+
+    private void resetPreviusTab() {
+        LinearLayout layout = null;
+        if(currentTab.equalsIgnoreCase("tabFotos")){
+            layout = tabFotos;
+        }else if(currentTab.equalsIgnoreCase("tabAudios")){
+            layout = tabAudios;
+        }else if(currentTab.equalsIgnoreCase("tabVideos")){
+            layout = tabVideos;
+        }else if(currentTab.equalsIgnoreCase("tabExperiencias")){
+            layout = tabExperiencias;
+        }
+        if(layout!=null){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                layout.setBackground(getResources().getDrawable(R.drawable.border_orange_shape));
+            }else{
+                layout.setBackgroundDrawable(getResources().getDrawable(R.drawable.border_orange_shape));
+            }
+            layout.findViewWithTag("TextView").setcolo;
+        }
+
     }
 
 

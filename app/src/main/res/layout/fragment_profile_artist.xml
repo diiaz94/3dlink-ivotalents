@@ -366,6 +366,8 @@
                     android:weightSum="1"
                     >
                     <LinearLayout
+                        android:id="@+id/tabFotos"
+                        android:clickable="true"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:background="@drawable/border_orange_shape_solid"
@@ -379,14 +381,17 @@
                             android:orientation="horizontal"
                             android:layout_gravity="center|center">
                             <TextView
+                                android:id="@+id/tabTextFotos"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="FOTOS"
                                 android:textColor="@color/white"
-                                android:textSize="15sp"/>
+                                android:textSize="12sp"/>
                         </LinearLayout>
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/tabAudios"
+                        android:clickable="true"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:background="@drawable/border_orange_shape"
@@ -399,14 +404,17 @@
                             android:orientation="horizontal"
                             android:layout_gravity="center|center">
                             <TextView
+                                android:id="@+id/tabTextAudios"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="AUDIOS"
                                 android:textColor="@color/ivo_orange"
-                                android:textSize="15sp"/>
+                                android:textSize="12sp"/>
                         </LinearLayout>
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/tabVideos"
+                        android:clickable="true"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:background="@drawable/border_orange_shape"
@@ -419,6 +427,7 @@
                             android:orientation="horizontal"
                             android:layout_gravity="center|center">
                             <TextView
+                                android:id="@+id/tabTextVideos"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="VIDEOS"
@@ -427,18 +436,22 @@
                         </LinearLayout>
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/tabExperiencias"
+                        android:clickable="true"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:background="@drawable/border_orange_shape"
                         android:orientation="horizontal"
                         android:layout_weight="0.25"
-                        android:gravity="center">
+                        android:gravity="center"
+                        >
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:layout_gravity="center|center">
                             <TextView
+                                android:id="@+id/tabTextExperiencias"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="EXPERIENCIA"
@@ -681,7 +694,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -822,18 +836,15 @@
                         android:layout_height="200dp"
                         android:orientation="horizontal"
                         android:layout_weight="1"
-                        android:weightSum="2">
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            />
+                        android:weightSum="2"
+                        android:gravity="end">
+
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.5"
+                            android:layout_weight="1.8"
                             android:orientation="vertical"
-                            >
+                            android:layout_marginRight="5dp">
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -949,16 +960,14 @@
                         android:orientation="horizontal"
                         android:layout_weight="1"
                         android:weightSum="2">
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.2"
-                            />
+
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.5"
+                            android:layout_weight="1.8"
                             android:orientation="vertical"
+                            android:gravity="start"
+                            android:layout_marginLeft="5dp"
                             >
 
                             <LinearLayout
