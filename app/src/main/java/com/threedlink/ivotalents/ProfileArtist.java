@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -48,6 +49,8 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
 
     private IvoTalentsApp mApp;
     private String currentTab;
+    private LinearLayout currentFotoLayout;
+    private ImageView currentFotoContent;
 
     public ProfileArtist() {
         // Required empty public constructor
@@ -110,6 +113,8 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
         tabExperiencias = (LinearLayout)view.findViewById(R.id.tabExperiencias);
         tabExperiencias.setOnClickListener(this);
         tabTextExperiencias = (TextView)view.findViewById(R.id.tabTextExperiencias);
+
+        //Para que se vean todos los layouts
         LinearLayout datosPrincipales = (LinearLayout)view.findViewById(R.id.datosPrincipales);
         datosPrincipales.setVisibility(View.VISIBLE);
         LinearLayout intereses = (LinearLayout)view.findViewById(R.id.intereses);
@@ -118,6 +123,26 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
         datosPrincipales.setVisibility(View.VISIBLE);
         LinearLayout caracteristicas2 = (LinearLayout)view.findViewById(R.id.caracteristicas2);
         datosPrincipales.setVisibility(View.VISIBLE);
+
+        LinearLayout foto_1 = (LinearLayout)view.findViewById(R.id.foto_1);
+        foto_1.setOnClickListener(this);
+        LinearLayout foto_2 = (LinearLayout)view.findViewById(R.id.foto_2);
+        foto_2.setOnClickListener(this);
+        LinearLayout foto_3 = (LinearLayout)view.findViewById(R.id.foto_3);
+        foto_3.setOnClickListener(this);
+        LinearLayout foto_4 = (LinearLayout)view.findViewById(R.id.foto_4);
+        foto_4.setOnClickListener(this);
+        LinearLayout foto_5 = (LinearLayout)view.findViewById(R.id.foto_5);
+        foto_5.setOnClickListener(this);
+        LinearLayout foto_6 = (LinearLayout)view.findViewById(R.id.foto_6);
+        foto_6.setOnClickListener(this);
+        LinearLayout foto_7 = (LinearLayout)view.findViewById(R.id.foto_7);
+        foto_7.setOnClickListener(this);
+        LinearLayout foto_8 = (LinearLayout)view.findViewById(R.id.foto_8);
+        foto_8.setOnClickListener(this);
+        LinearLayout foto_9 = (LinearLayout)view.findViewById(R.id.foto_9);
+        foto_9.setOnClickListener(this);
+
         return view;
     }
 
@@ -188,8 +213,50 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
             case R.id.tabExperiencias:
                 activateTab("tabExperiencias");
                 break;
+            case R.id.foto_1:
+                activateFotoOver(v,R.id.foto_1,R.id.foto_content1);
+                break;
+            case R.id.foto_2:
+                activateFotoOver(v,R.id.foto_2,R.id.foto_content2);
+                break;
+            case R.id.foto_3:
+                activateFotoOver(v,R.id.foto_3,R.id.foto_content3);
+                break;
+            case R.id.foto_4:
+                activateFotoOver(v,R.id.foto_4,R.id.foto_content4);
+                break;
+            case R.id.foto_5:
+                activateFotoOver(v,R.id.foto_5,R.id.foto_content5);
+                break;
+            case R.id.foto_6:
+                activateFotoOver(v,R.id.foto_6,R.id.foto_content6);
+                break;
+            case R.id.foto_7:
+                activateFotoOver(v,R.id.foto_7,R.id.foto_content7);
+                break;
+            case R.id.foto_8:
+                activateFotoOver(v,R.id.foto_8,R.id.foto_content8);
+                break;
+            case R.id.foto_9:
+                activateFotoOver(v,R.id.foto_9,R.id.foto_content9);
+                break;
 
         }
+    }
+
+    private void activateFotoOver(View v,int fotoId,int fotoContentId) {
+        currentFotoLayout = (LinearLayout)v.findViewById(fotoId);
+        currentFotoLayout.setBackgroundColor(getResources().getColor(R.color.ivo_green));
+        currentFotoContent = (ImageView)v.findViewById(fotoContentId);
+        currentFotoContent.setVisibility(View.VISIBLE);
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        currentFotoContent.setBackgroundColor(getResources().getColor(R.color.ivo_gray_grid));
+                        currentFotoContent.setVisibility(View.GONE);
+                    }
+                },
+                100);
     }
 
     private void activateTab(String tab){
@@ -219,11 +286,11 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
         if(text!=null){
             text.setTextColor(getResources().getColor(R.color.white));
         }
-        resetPreviusTab();
+        resetCurrentTab();
         currentTab = tab;
     }
 
-    private void resetPreviusTab() {
+    private void resetCurrentTab() {
         LinearLayout layout = null;
         TextView text = null;
         if(currentTab.equalsIgnoreCase("tabFotos")){

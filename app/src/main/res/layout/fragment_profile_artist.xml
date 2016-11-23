@@ -488,16 +488,26 @@
                             android:weightSum="3"
                             android:layout_weight="1">
                             <LinearLayout
+                                android:id="@+id/foto_1"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:orientation="vertical"
                                 android:background="@color/ivo_gray_grid"
                                 android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp">
-
+                                android:layout_marginBottom="0.5dp"
+                                android:clickable="true"
+                                android:gravity="center">
+                                <ImageView
+                                    android:id="@+id/foto_content1"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@drawable/ic_foto_over"
+                                    android:visibility="gone"
+                                    />
                             </LinearLayout>
                             <LinearLayout
+                                android:id="@+id/foto_2"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -505,18 +515,36 @@
                                 android:background="@color/ivo_gray_grid"
                                 android:layout_marginLeft="0.5dp"
                                 android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp">
+                                android:layout_marginBottom="0.5dp"
+                                android:clickable="true"
+                                android:gravity="center">
+                                <ImageView
+                                    android:id="@+id/foto_content2"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@drawable/ic_foto_over"
+                                    android:visibility="gone"
+                                    />
 
                             </LinearLayout>
                             <LinearLayout
+                                android:id="@+id/foto_3"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:orientation="vertical"
                                 android:background="@color/ivo_gray_grid"
                                 android:layout_marginLeft="0.5dp"
-                                android:layout_marginBottom="0.5dp">
-
+                                android:layout_marginBottom="0.5dp"
+                                android:clickable="true"
+                                android:gravity="center">
+                                <ImageView
+                                    android:id="@+id/foto_content3"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@drawable/ic_foto_over"
+                                    android:visibility="gone"
+                                    />>
                             </LinearLayout>
                         </LinearLayout>
                         <LinearLayout
@@ -526,6 +554,7 @@
                             android:weightSum="3"
                             android:layout_weight="1">
                             <LinearLayout
+                                android:id="@+id/foto_4"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -533,10 +562,19 @@
                                 android:background="@color/ivo_gray_grid"
                                 android:layout_marginRight="0.5dp"
                                 android:layout_marginBottom="0.5dp"
-                                android:layout_marginTop="0.5dp">
-
+                                android:layout_marginTop="0.5dp"
+                                android:clickable="true"
+                                android:gravity="center">
+                                <ImageView
+                                    android:id="@+id/foto_content4"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@drawable/ic_foto_over"
+                                    android:visibility="gone"
+                                    />>
                             </LinearLayout>
                             <LinearLayout
+                                android:id="@+id/foto_5"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -545,10 +583,19 @@
                                 android:layout_marginLeft="0.5dp"
                                 android:layout_marginRight="0.5dp"
                                 android:layout_marginBottom="0.5dp"
-                                android:layout_marginTop="0.5dp">
-
+                                android:layout_marginTop="0.5dp"
+                                android:clickable="true"
+                                android:gravity="center">
+                                <ImageView
+                                    android:id="@+id/foto_content5"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@drawable/ic_foto_over"
+                                    android:visibility="gone"
+                                    />>
                             </LinearLayout>
                             <LinearLayout
+                                android:id="@+id/foto_6"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -556,8 +603,16 @@
                                 android:background="@color/ivo_gray_grid"
                                 android:layout_marginLeft="0.5dp"
                                 android:layout_marginBottom="0.5dp"
-                                android:layout_marginTop="0.5dp">
-
+                                android:layout_marginTop="0.5dp"
+                                android:clickable="true"
+                                android:gravity="center">
+                                <ImageView
+                                    android:id="@+id/foto_content6"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@drawable/ic_foto_over"
+                                    android:visibility="gone"
+                                    />>
                             </LinearLayout>
                         </LinearLayout>
                         <LinearLayout
@@ -567,16 +622,26 @@
                             android:weightSum="3"
                             android:layout_weight="1">
                             <LinearLayout
+                                android:id="@+id/foto_7"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:orientation="vertical"
                                 android:background="@color/ivo_gray_grid"
                                 android:layout_marginRight="0.5dp"
-                                android:layout_marginTop="0.5dp">
-
+                                android:layout_marginTop="0.5dp"
+                                android:clickable="true"
+                                android:gravity="center">
+                                <ImageView
+                                    android:id="@+id/foto_content7"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@drawable/ic_foto_over"
+                                    android:visibility="gone"
+                                    />>
                             </LinearLayout>
                             <LinearLayout
+                                android:id="@+id/foto_8"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -584,18 +649,35 @@
                                 android:background="@color/ivo_gray_grid"
                                 android:layout_marginLeft="0.5dp"
                                 android:layout_marginRight="0.5dp"
-                                android:layout_marginTop="0.5dp">
-
+                                android:layout_marginTop="0.5dp"
+                                android:clickable="true"
+                                android:gravity="center">
+                                <ImageView
+                                    android:id="@+id/foto_content8"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@drawable/ic_foto_over"
+                                    android:visibility="gone"
+                                    />>
                             </LinearLayout>
                             <LinearLayout
+                                android:id="@+id/foto_9"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:orientation="vertical"
                                 android:background="@color/ivo_gray_grid"
                                 android:layout_marginLeft="0.5dp"
-                                android:layout_marginTop="0.5dp">
-
+                                android:layout_marginTop="0.5dp"
+                                android:clickable="true"
+                                android:gravity="center">
+                                <ImageView
+                                    android:id="@+id/foto_content9"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@drawable/ic_foto_over"
+                                    android:visibility="gone"
+                                    />>
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
@@ -604,14 +686,54 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:layout_marginTop="10dp">
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:src="@drawable/ic_subir"></ImageView>
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/ic_subir"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="SUBIR"
+                                android:textSize="15sp"
+                                android:textColor="@color/ivo_black"
+                                android:layout_gravity="bottom"
+                                android:layout_marginLeft="1dp"/>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="10dp">
+                                <ImageView
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:src="@drawable/simple_point"
+                                    android:layout_marginRight="5dp"
+                                    />
+                                <ImageView
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:src="@drawable/simple_point"
+                                    android:layout_marginRight="5dp"
+                                    />
+                                <ImageView
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:src="@drawable/selected_point"
+                                    android:layout_marginRight="5dp"
+                                    />
+                                <ImageView
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:src="@drawable/simple_point"
+                                    android:layout_marginRight="5dp"
+                                    />
+
+                            </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
