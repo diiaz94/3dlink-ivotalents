@@ -92,13 +92,9 @@ public class MainActivity extends AppCompatActivity implements
         // Session class instance
         session = new SessionManager(getApplicationContext());
         mApp = ((IvoTalentsApp) getApplicationContext());
-        mApp.setGoogleApiClient(new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, mApp.getGoogleSignInOptions())
-                .build());
         lblName = (TextView) findViewById(R.id.lblName);
         lblEmail = (TextView) findViewById(R.id.lblEmail);
-
+        setScreenUserSesion();
 
         //Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
 
@@ -240,53 +236,7 @@ public class MainActivity extends AppCompatActivity implements
         startActivity(intent);
     }
 
-    @Override
-    public void onStart() {
-        Log.e("PEDRO","PASO onStart MainAct");
-        super.onStart();
 
-
-        OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mApp.getGoogleApiClient());
-        if (opr.isDone()) {
-            // If the user's cached credentials are valid, the OptionalPendingResult will be "done"
-            // and the GoogleSignInResult will be available instantly.
-            Log.d(TAG, "Got cached sign-in");
-            GoogleSignInAccount acct = opr.get().getSignInAccount();
-            session.createLoginSession(acct.getDisplayName(),acct.getEmail(),"GOOGLE");
-
-        }
-        if(AccessToken.getCurrentAccessToken() != null) {
-            GraphRequest request = GraphRequest.newMeRequest(
-                    AccessToken.getCurrentAccessToken(),
-                    new GraphRequest.GraphJSONObjectCallback() {
-                        @Override
-                        public void onCompleted(JSONObject object, GraphResponse response) {
-                            Log.v(TAG, response.toString());
-                            // Application code
-                            try {
-                                Log.e("FACEBOOK","Try access fb data::+"+object.toString());
-                                session.createLoginSession(object.getString("name"),  object.getString("email"),"FACEBOOK");
-                                String email = object.getString("email");
-                                String birthday = object.getString("birthday"); // 01/31/1980 format
-                                setScreenUserSesion();
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                            //finish();
-                        }
-                    });
-            Bundle parameters = new Bundle();
-            parameters.putString("fields", "id,name,email,gender,birthday");
-            request.setParameters(parameters);
-            request.executeAsync();
-        }
-        if(session.checkLogin()){
-            setScreenUserSesion();
-        }else{
-            finish();
-        }
-    }
 
 
     public void setScreenUserSesion(){
