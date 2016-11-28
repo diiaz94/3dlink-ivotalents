@@ -110,4 +110,8 @@ public class IvoTalentsApp extends Application {
                     });
         }
     }
+    public int getResourcebyname(String resourceName){
+        return getResources().getIdentifier(resourceName, "id", getPackageName());
+
+    }
 }

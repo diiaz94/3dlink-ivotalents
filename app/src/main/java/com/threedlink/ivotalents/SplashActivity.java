@@ -53,46 +53,50 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
         Log.e("PEDRO","PASO onStart MainAct");
         super.onStart();
 
+        if(session.checkLogin()){
+            goToMainScreen();
+        }else{
+            OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mApp.getGoogleApiClient());
+            if (opr.isDone()) {
+                // If the user's cached credentials are valid, the OptionalPendingResult will be "done"
+                // and the GoogleSignInResult will be available instantly.
+                Log.d(TAG, "Got cached sign-in");
+                GoogleSignInAccount acct = opr.get().getSignInAccount();
+                session.createLoginSession(acct.getDisplayName(),acct.getEmail(),"GOOGLE");
 
-        OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mApp.getGoogleApiClient());
-        if (opr.isDone()) {
-            // If the user's cached credentials are valid, the OptionalPendingResult will be "done"
-            // and the GoogleSignInResult will be available instantly.
-            Log.d(TAG, "Got cached sign-in");
-            GoogleSignInAccount acct = opr.get().getSignInAccount();
-            session.createLoginSession(acct.getDisplayName(),acct.getEmail(),"GOOGLE");
+            }else
+            if(AccessToken.getCurrentAccessToken() != null) {
+                GraphRequest request = GraphRequest.newMeRequest(
+                        AccessToken.getCurrentAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(JSONObject object, GraphResponse response) {
+                                Log.v(TAG, response.toString());
+                                // Application code
+                                try {
+                                    Log.e("FACEBOOK","Try access fb data::+"+object.toString());
+                                    session.createLoginSession(object.getString("name"),  object.getString("email"),"FACEBOOK");
+                                    String email = object.getString("email");
+                                    String birthday = object.getString("birthday"); // 01/31/1980 format
 
-        }
-        if(AccessToken.getCurrentAccessToken() != null) {
-            GraphRequest request = GraphRequest.newMeRequest(
-                    AccessToken.getCurrentAccessToken(),
-                    new GraphRequest.GraphJSONObjectCallback() {
-                        @Override
-                        public void onCompleted(JSONObject object, GraphResponse response) {
-                            Log.v(TAG, response.toString());
-                            // Application code
-                            try {
-                                Log.e("FACEBOOK","Try access fb data::+"+object.toString());
-                                session.createLoginSession(object.getString("name"),  object.getString("email"),"FACEBOOK");
-                                String email = object.getString("email");
-                                String birthday = object.getString("birthday"); // 01/31/1980 format
-                                if(session.checkLogin()){
-                                    goToMainScreen();
-                                }else{
-                                    finish();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
 
-                            //finish();
-                        }
-                    });
-            Bundle parameters = new Bundle();
-            parameters.putString("fields", "id,name,email,gender,birthday");
-            request.setParameters(parameters);
-            request.executeAsync();
+                                //finish();
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,name,email,gender,birthday");
+                request.setParameters(parameters);
+                request.executeAsync();
+            }else{
+                finish();
+            }
+
+
         }
+
 
     }
 
