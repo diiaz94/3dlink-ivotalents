@@ -282,6 +282,7 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
     private void activateTab(String tab){
         LinearLayout layout = null;
         TextView text = null;
+        LinearLayout layoutContent = null;
         if(tab.equalsIgnoreCase("tabFotos")){
             layout = tabFotos;
             text = tabTextFotos;
