@@ -41,6 +41,10 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
     LinearLayout tabAudios;
     LinearLayout tabVideos;
     LinearLayout tabExperiencias;
+    LinearLayout tabContentFotos;
+    LinearLayout tabContentAudios;
+    LinearLayout tabContentVideos;
+    LinearLayout tabContentExperiencias;
     TextView tabTextFotos;
     TextView tabTextAudios;
     TextView tabTextVideos;
@@ -52,8 +56,8 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
 
     private IvoTalentsApp mApp;
     private String currentTab;
-    private LinearLayout currentFotoLayout;
-    private ImageView currentFotoContent;
+    private LinearLayout currentLayoutContent;
+
     LinearLayout[] fotoLayouts = new LinearLayout[GRID_SIZE];
     ImageView[] fotoContents = new ImageView[GRID_SIZE];
     private int currentIdx;
@@ -85,6 +89,7 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         mApp = ((IvoTalentsApp) getActivity().getApplicationContext());
         currentTab = "tabFotos";
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(NAME);
             mParam2 = getArguments().getString(EMAIL);
@@ -104,21 +109,34 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
 
         //Manejo de tabs
 
+        tabContentFotos= (LinearLayout)view.findViewById(R.id.tabContentFotos);
+        tabContentFotos.setVisibility(View.VISIBLE);
         tabFotos = (LinearLayout)view.findViewById(R.id.tabFotos);
         tabFotos.setOnClickListener(this);
         tabTextFotos = (TextView)view.findViewById(R.id.tabTextFotos);
 
+        tabContentAudios= (LinearLayout)view.findViewById(R.id.tabContentAudios);
         tabAudios = (LinearLayout)view.findViewById(R.id.tabAudios);
         tabAudios.setOnClickListener(this);
         tabTextAudios = (TextView)view.findViewById(R.id.tabTextAudios);
 
+        tabContentVideos= (LinearLayout)view.findViewById(R.id.tabContentVideos);
         tabVideos = (LinearLayout)view.findViewById(R.id.tabVideos);
         tabVideos.setOnClickListener(this);
         tabTextVideos = (TextView)view.findViewById(R.id.tabTextVideos);
 
+        tabContentExperiencias= (LinearLayout)view.findViewById(R.id.tabContentExperiencias);
         tabExperiencias = (LinearLayout)view.findViewById(R.id.tabExperiencias);
         tabExperiencias.setOnClickListener(this);
         tabTextExperiencias = (TextView)view.findViewById(R.id.tabTextExperiencias);
+
+
+        for (int i=0;i<this.fotoLayouts.length;i++) {
+
+            fotoLayouts[i] = (LinearLayout) view.findViewById(mApp.getResourcebyname("foto_"+String.valueOf(i+1)));
+            fotoContents[i] = (ImageView) view.findViewById(mApp.getResourcebyname("foto_content"+String.valueOf(i+1)));
+            fotoLayouts[i].setOnClickListener(this);
+        }
 
         //Para que se vean todos los layouts
         LinearLayout datosPrincipales = (LinearLayout)view.findViewById(R.id.datosPrincipales);
@@ -130,32 +148,7 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
         LinearLayout caracteristicas2 = (LinearLayout)view.findViewById(R.id.caracteristicas2);
         datosPrincipales.setVisibility(View.VISIBLE);
 
-        for (int i=0;i<this.fotoLayouts.length;i++) {
 
-            fotoLayouts[i] = (LinearLayout) view.findViewById(mApp.getResourcebyname("foto_"+String.valueOf(i+1)));
-            fotoContents[i] = (ImageView) view.findViewById(mApp.getResourcebyname("foto_content"+String.valueOf(i+1)));
-            fotoLayouts[i].setOnClickListener(this);
-        }
-        /*
-        LinearLayout foto_1 = (LinearLayout)view.findViewById(R.id.foto_1);
-        foto_1.setOnClickListener(this);
-        LinearLayout foto_2 = (LinearLayout)view.findViewById(R.id.foto_2);
-        foto_2.setOnClickListener(this);
-        LinearLayout foto_3 = (LinearLayout)view.findViewById(R.id.foto_3);
-        foto_3.setOnClickListener(this);
-        LinearLayout foto_4 = (LinearLayout)view.findViewById(R.id.foto_4);
-        foto_4.setOnClickListener(this);
-        LinearLayout foto_5 = (LinearLayout)view.findViewById(R.id.foto_5);
-        foto_5.setOnClickListener(this);
-        LinearLayout foto_6 = (LinearLayout)view.findViewById(R.id.foto_6);
-        foto_6.setOnClickListener(this);
-        LinearLayout foto_7 = (LinearLayout)view.findViewById(R.id.foto_7);
-        foto_7.setOnClickListener(this);
-        LinearLayout foto_8 = (LinearLayout)view.findViewById(R.id.foto_8);
-        foto_8.setOnClickListener(this);
-        LinearLayout foto_9 = (LinearLayout)view.findViewById(R.id.foto_9);
-        foto_9.setOnClickListener(this);
-        */
         return view;
     }
 
@@ -280,53 +273,70 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
     }
 
     private void activateTab(String tab){
-        LinearLayout layout = null;
-        TextView text = null;
-        LinearLayout layoutContent = null;
-        if(tab.equalsIgnoreCase("tabFotos")){
-            layout = tabFotos;
-            text = tabTextFotos;
+        if(currentTab!=tab){
+            LinearLayout layout = null;
+            TextView text = null;
+            LinearLayout layoutContent = null;
+            if(tab.equalsIgnoreCase("tabFotos")){
+                layout = tabFotos;
+                text = tabTextFotos;
+                layoutContent = tabContentFotos;
 
-        }else if(tab.equalsIgnoreCase("tabAudios")){
-            layout = tabAudios;
-            text = tabTextAudios;
-        }else if(tab.equalsIgnoreCase("tabVideos")){
-            layout = tabVideos;
-            text = tabTextVideos;
-        }else if(tab.equalsIgnoreCase("tabExperiencias")){
-            layout = tabExperiencias;
-            text = tabTextExperiencias;
-        }
-        if(layout!=null){
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                layout.setBackground(getResources().getDrawable(R.drawable.border_orange_shape_solid));
-            }else{
-                layout.setBackgroundDrawable(getResources().getDrawable(R.drawable.border_orange_shape_solid));
+            }else if(tab.equalsIgnoreCase("tabAudios")){
+                layout = tabAudios;
+                text = tabTextAudios;
+                layoutContent = tabContentAudios;
+            }else if(tab.equalsIgnoreCase("tabVideos")){
+                layout = tabVideos;
+                text = tabTextVideos;
+                layoutContent = tabContentVideos;
+            }else if(tab.equalsIgnoreCase("tabExperiencias")){
+                layout = tabExperiencias;
+                text = tabTextExperiencias;
+                layoutContent = tabContentExperiencias;
+            }
+            if(layout!=null){
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    layout.setBackground(getResources().getDrawable(R.drawable.border_orange_shape_solid));
+                }else{
+                    layout.setBackgroundDrawable(getResources().getDrawable(R.drawable.border_orange_shape_solid));
+                }
+
+            }
+            if(text!=null){
+                text.setTextColor(getResources().getColor(R.color.white));
+            }
+            if(layoutContent!=null){
+                layoutContent.setVisibility(View.VISIBLE);
             }
 
+            resetCurrentTab();
+            currentTab = tab;
+            currentLayoutContent = layoutContent;
         }
-        if(text!=null){
-            text.setTextColor(getResources().getColor(R.color.white));
-        }
-        resetCurrentTab();
-        currentTab = tab;
     }
 
     private void resetCurrentTab() {
         LinearLayout layout = null;
         TextView text = null;
+        LinearLayout layoutContent = null;
         if(currentTab.equalsIgnoreCase("tabFotos")){
             layout = tabFotos;
             text = tabTextFotos;
+            layoutContent = tabContentFotos;
+
         }else if(currentTab.equalsIgnoreCase("tabAudios")){
             layout = tabAudios;
             text = tabTextAudios;
+            layoutContent = tabContentAudios;
         }else if(currentTab.equalsIgnoreCase("tabVideos")){
             layout = tabVideos;
             text = tabTextVideos;
+            layoutContent = tabContentVideos;
         }else if(currentTab.equalsIgnoreCase("tabExperiencias")){
             layout = tabExperiencias;
             text = tabTextExperiencias;
+            layoutContent = tabContentExperiencias;
         }
         if(layout!=null){
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -338,7 +348,9 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
         if(text!=null){
             text.setTextColor(getResources().getColor(R.color.ivo_orange));
         }
-
+        if(layoutContent!=null){
+            layoutContent.setVisibility(View.GONE);
+        }
     }
     public static int getResId(String resName, Class<?> c) {
 

@@ -13,4 +13,5 @@
     <color name="ivo_black">#121313</color>
     <color name="ivo_line_gray">#c6c7c8</color>
     <color name="ivo_gray_grid">#d4d4d4</color>
+    <color name="ivo_gray_audio_dark">#bfbebe</color>
 </resources>
