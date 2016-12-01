@@ -148,7 +148,7 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
         LinearLayout caracteristicas2 = (LinearLayout)view.findViewById(R.id.caracteristicas2);
         datosPrincipales.setVisibility(View.VISIBLE);
 
-
+        activateTab("tabFotos");
         return view;
     }
 

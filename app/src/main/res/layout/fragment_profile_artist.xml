@@ -362,7 +362,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="320dp"
                     android:orientation="vertical"
                     android:layout_marginTop="20dp">
                     <LinearLayout
@@ -472,13 +472,16 @@
                     </LinearLayout>
 
                 </LinearLayout>
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp">
 
                     <LinearLayout
                         android:id="@+id/tab_content"
                         android:layout_width="match_parent"
-                        android:layout_height="250dp"
-                        android:orientation="vertical"
-                        android:layout_marginTop="20dp">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
                         <LinearLayout android:id="@+id/tabContentFotos"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -488,10 +491,9 @@
                             <LinearLayout
                                 android:id="@+id/content_tab_fotos"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="200dp"
                                 android:orientation="vertical"
-                                android:weightSum="3"
-                                android:layout_marginTop="10dp">
+                                android:weightSum="3">
 
                                 <LinearLayout
                                     android:layout_width="fill_parent"
@@ -697,7 +699,7 @@
                             </LinearLayout>
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="50dp"
                                 android:orientation="vertical"
                                 android:gravity="center"
                                 android:layout_marginTop="10dp">
@@ -750,56 +752,243 @@
                                 </LinearLayout>
                             </LinearLayout>
 
-                        </LinearLayout>
+                    </LinearLayout>
 
                         <LinearLayout android:id="@+id/tabContentAudios"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
-                            android:visibility="visible"
-                            >
+                            android:visibility="gone">
 
-
-                            <LinearLayout
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="140dp"
-                                android:background="@color/ivo_gray_grid">
-
+                                android:layout_height="40dp"
+                                android:background="@color/ivo_gray_grid"
+                                android:orientation="vertical">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:weightSum="1"
+                                    android:orientation="horizontal">
                                     <LinearLayout
-                                        android:layout_width="100dp"
+                                        android:layout_width="0dp"
                                         android:layout_height="match_parent"
                                         android:background="@color/ivo_green"
-                                        android:layout_weight="1"
-                                        android:layout_marginTop="-50dp"/>
+                                        android:layout_weight="0.75"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
                                     <ImageView
                                         android:layout_width="30dp"
                                         android:layout_height="30dp"
                                         android:src="@drawable/btn_play"
-                                        android:layout_gravity="center_vertical"/>
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginLeft="10dp"/>
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="Nombre del audio"
                                         android:textColor="@color/ivo_gray_dark"
                                         android:layout_gravity="center_vertical"
-                                        android:layout_marginLeft="50dp"
+                                        android:layout_marginLeft="15dp"
                                         />
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="end|center">
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="00:00"
+                                            android:textColor="@color/ivo_gray_dark"
+                                            android:layout_marginRight="15dp"
+                                            android:gravity="end|right"
+                                            />
+                                    </LinearLayout>
+
+
+                                </LinearLayout>
 
 
 
-                            </LinearLayout>
-                            <LinearLayout
+
+
+
+                            </RelativeLayout>
+                            <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
-                                android:background="@color/ivo_gray_audio_dark"></LinearLayout>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="AUDIOS"
-                                android:textColor="@color/black"
-                                />
+                                android:background="@color/ivo_gray_audio_dark"
+                                android:orientation="vertical">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:weightSum="1"
+                                    android:orientation="horizontal">
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/ivo_green"
+                                        android:layout_weight="0"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+                                    <ImageView
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:src="@drawable/btn_play"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginLeft="10dp"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Nombre del audio"
+                                        android:textColor="@color/ivo_gray_dark"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginLeft="15dp"
+                                        />
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="end|center">
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="00:00"
+                                            android:textColor="@color/ivo_gray_dark"
+                                            android:layout_marginRight="15dp"
+                                            android:gravity="end|right"
+                                            />
+                                    </LinearLayout>
+
+
+
+                                </LinearLayout>
+
+
+
+
+
+
+                            </RelativeLayout>
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:background="@color/ivo_gray_grid"
+                                android:orientation="vertical">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:weightSum="1"
+                                    android:orientation="horizontal">
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/ivo_green"
+                                        android:layout_weight="0"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+                                    <ImageView
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:src="@drawable/btn_play"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginLeft="10dp"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Nombre del audio"
+                                        android:textColor="@color/ivo_gray_dark"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginLeft="15dp"
+                                        />
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="end|center">
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="00:00"
+                                            android:textColor="@color/ivo_gray_dark"
+                                            android:layout_marginRight="15dp"
+                                            android:gravity="end|right"
+                                            />
+                                    </LinearLayout>
+
+
+                                </LinearLayout>
+
+
+
+
+
+
+                            </RelativeLayout>
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:background="@color/ivo_gray_audio_dark"
+                                android:orientation="vertical">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:weightSum="1"
+                                    android:orientation="horizontal">
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/ivo_green"
+                                        android:layout_weight="0"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+                                    <ImageView
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:src="@drawable/btn_play"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginLeft="10dp"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Nombre del audio"
+                                        android:textColor="@color/ivo_gray_dark"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginLeft="15dp"
+                                        />
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="end|center">
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="00:00"
+                                            android:textColor="@color/ivo_gray_dark"
+                                            android:layout_marginRight="15dp"
+                                            android:gravity="end|right"
+                                            />
+                                    </LinearLayout>
+
+
+                                </LinearLayout>
+
+
+
+
+
+
+                            </RelativeLayout>
+
 
                         </LinearLayout>
+
                         <LinearLayout android:id="@+id/tabContentVideos"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -813,23 +1002,26 @@
                                 />
 
                         </LinearLayout>
+
                         <LinearLayout android:id="@+id/tabContentExperiencias"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
-                            android:visibility="gone">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="EXPERIENCIAS"
-                                android:textColor="@color/black"
-                                />
+                            android:visibility="visible">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+
+                            </LinearLayout>
+
+
 
                         </LinearLayout>
 
 
                     </LinearLayout>
-
+                </ScrollView>
 
                 </LinearLayout>
 
