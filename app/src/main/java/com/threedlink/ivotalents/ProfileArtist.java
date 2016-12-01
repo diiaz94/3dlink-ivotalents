@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
@@ -147,8 +149,31 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
         datosPrincipales.setVisibility(View.VISIBLE);
         LinearLayout caracteristicas2 = (LinearLayout)view.findViewById(R.id.caracteristicas2);
         datosPrincipales.setVisibility(View.VISIBLE);
+        LinearLayout tabsSection = (LinearLayout)view.findViewById(R.id.tabsSection);
+        tabsSection.setVisibility(View.VISIBLE);
 
         activateTab("tabFotos");
+        ScrollView parentScrollView = (ScrollView) view.findViewById(R.id.parentScrollView);
+        parentScrollView.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event)
+            {
+                v.findViewById(R.id.childScrollView).getParent().requestDisallowInterceptTouchEvent(false);
+                return false;
+            }
+        });
+        ScrollView childScrollView = (ScrollView) view.findViewById(R.id.childScrollView);
+        childScrollView.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event)
+            {
+
+                //Disallow the touch request for parent scroll on touch of
+                //child view
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
         return view;
     }
 
