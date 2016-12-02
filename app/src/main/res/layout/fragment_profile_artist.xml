@@ -5,7 +5,7 @@
     tools:context="com.threedlink.ivotalents.ProfileArtist">
 
     <ScrollView
-        android:id="@+id/login_form"
+        android:id="@+id/parentScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="false">
@@ -361,10 +361,12 @@
                 </FrameLayout>
 
                 <LinearLayout
+                    android:id="@+id/tabsSection"
                     android:layout_width="match_parent"
                     android:layout_height="320dp"
                     android:orientation="vertical"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone">
                     <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="35dp"
@@ -472,557 +474,839 @@
                     </LinearLayout>
 
                 </LinearLayout>
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="15dp">
-
-                    <LinearLayout
-                        android:id="@+id/tab_content"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-                        <LinearLayout android:id="@+id/tabContentFotos"
+                        android:layout_height="match_parent">
+                        <ScrollView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:visibility="gone">
+                            android:layout_marginTop="15dp"
+                            android:fillViewport="false"
+                            android:id="@+id/childScrollView">
 
                             <LinearLayout
-                                android:id="@+id/content_tab_fotos"
+                                android:id="@+id/tab_content"
                                 android:layout_width="match_parent"
-                                android:layout_height="200dp"
-                                android:orientation="vertical"
-                                android:weightSum="3">
-
-                                <LinearLayout
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="0dp"
-                                    android:orientation="horizontal"
-                                    android:weightSum="3"
-                                    android:layout_weight="1">
-                                    <LinearLayout
-                                        android:id="@+id/foto_1"
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="1"
-                                        android:orientation="vertical"
-                                        android:background="@color/ivo_gray_grid"
-                                        android:layout_marginRight="0.5dp"
-                                        android:layout_marginBottom="0.5dp"
-                                        android:clickable="true"
-                                        android:gravity="center">
-                                        <ImageView
-                                            android:id="@+id/foto_content1"
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:src="@drawable/ic_foto_over"
-                                            android:visibility="gone"
-                                            />
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:id="@+id/foto_2"
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="1"
-                                        android:orientation="vertical"
-                                        android:background="@color/ivo_gray_grid"
-                                        android:layout_marginLeft="0.5dp"
-                                        android:layout_marginRight="0.5dp"
-                                        android:layout_marginBottom="0.5dp"
-                                        android:clickable="true"
-                                        android:gravity="center">
-                                        <ImageView
-                                            android:id="@+id/foto_content2"
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:src="@drawable/ic_foto_over"
-                                            android:visibility="gone"
-                                            />
-
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:id="@+id/foto_3"
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="1"
-                                        android:orientation="vertical"
-                                        android:background="@color/ivo_gray_grid"
-                                        android:layout_marginLeft="0.5dp"
-                                        android:layout_marginBottom="0.5dp"
-                                        android:clickable="true"
-                                        android:gravity="center">
-                                        <ImageView
-                                            android:id="@+id/foto_content3"
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:src="@drawable/ic_foto_over"
-                                            android:visibility="gone"
-                                            />>
-                                    </LinearLayout>
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="0dp"
-                                    android:orientation="horizontal"
-                                    android:weightSum="3"
-                                    android:layout_weight="1">
-                                    <LinearLayout
-                                        android:id="@+id/foto_4"
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="1"
-                                        android:orientation="vertical"
-                                        android:background="@color/ivo_gray_grid"
-                                        android:layout_marginRight="0.5dp"
-                                        android:layout_marginBottom="0.5dp"
-                                        android:layout_marginTop="0.5dp"
-                                        android:clickable="true"
-                                        android:gravity="center">
-                                        <ImageView
-                                            android:id="@+id/foto_content4"
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:src="@drawable/ic_foto_over"
-                                            android:visibility="gone"
-                                            />>
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:id="@+id/foto_5"
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="1"
-                                        android:orientation="vertical"
-                                        android:background="@color/ivo_gray_grid"
-                                        android:layout_marginLeft="0.5dp"
-                                        android:layout_marginRight="0.5dp"
-                                        android:layout_marginBottom="0.5dp"
-                                        android:layout_marginTop="0.5dp"
-                                        android:clickable="true"
-                                        android:gravity="center">
-                                        <ImageView
-                                            android:id="@+id/foto_content5"
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:src="@drawable/ic_foto_over"
-                                            android:visibility="gone"
-                                            />>
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:id="@+id/foto_6"
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="1"
-                                        android:orientation="vertical"
-                                        android:background="@color/ivo_gray_grid"
-                                        android:layout_marginLeft="0.5dp"
-                                        android:layout_marginBottom="0.5dp"
-                                        android:layout_marginTop="0.5dp"
-                                        android:clickable="true"
-                                        android:gravity="center">
-                                        <ImageView
-                                            android:id="@+id/foto_content6"
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:src="@drawable/ic_foto_over"
-                                            android:visibility="gone"
-                                            />>
-                                    </LinearLayout>
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="0dp"
-                                    android:orientation="horizontal"
-                                    android:weightSum="3"
-                                    android:layout_weight="1">
-                                    <LinearLayout
-                                        android:id="@+id/foto_7"
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="1"
-                                        android:orientation="vertical"
-                                        android:background="@color/ivo_gray_grid"
-                                        android:layout_marginRight="0.5dp"
-                                        android:layout_marginTop="0.5dp"
-                                        android:clickable="true"
-                                        android:gravity="center">
-                                        <ImageView
-                                            android:id="@+id/foto_content7"
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:src="@drawable/ic_foto_over"
-                                            android:visibility="gone"
-                                            />
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:id="@+id/foto_8"
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="1"
-                                        android:orientation="vertical"
-                                        android:background="@color/ivo_gray_grid"
-                                        android:layout_marginLeft="0.5dp"
-                                        android:layout_marginRight="0.5dp"
-                                        android:layout_marginTop="0.5dp"
-                                        android:clickable="true"
-                                        android:gravity="center">
-                                        <ImageView
-                                            android:id="@+id/foto_content8"
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:src="@drawable/ic_foto_over"
-                                            android:visibility="gone"
-                                            />
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:id="@+id/foto_9"
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="1"
-                                        android:orientation="vertical"
-                                        android:background="@color/ivo_gray_grid"
-                                        android:layout_marginLeft="0.5dp"
-                                        android:layout_marginTop="0.5dp"
-                                        android:clickable="true"
-                                        android:gravity="center">
-                                        <ImageView
-                                            android:id="@+id/foto_content9"
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:src="@drawable/ic_foto_over"
-                                            android:visibility="gone"
-                                            />
-                                    </LinearLayout>
-                                </LinearLayout>
-
-
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="50dp"
-                                android:orientation="vertical"
-                                android:gravity="center"
-                                android:layout_marginTop="10dp">
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content">
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/ic_subir"/>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="SUBIR"
-                                        android:textSize="15sp"
-                                        android:textColor="@color/ivo_black"
-                                        android:layout_gravity="bottom"
-                                        android:layout_marginLeft="1dp"/>
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center_vertical"
-                                        android:layout_marginLeft="10dp">
-                                        <ImageView
-                                            android:layout_width="15dp"
-                                            android:layout_height="15dp"
-                                            android:src="@drawable/simple_point"
-                                            android:layout_marginRight="5dp"
-                                            />
-                                        <ImageView
-                                            android:layout_width="15dp"
-                                            android:layout_height="15dp"
-                                            android:src="@drawable/simple_point"
-                                            android:layout_marginRight="5dp"
-                                            />
-                                        <ImageView
-                                            android:layout_width="15dp"
-                                            android:layout_height="15dp"
-                                            android:src="@drawable/selected_point"
-                                            android:layout_marginRight="5dp"
-                                            />
-                                        <ImageView
-                                            android:layout_width="15dp"
-                                            android:layout_height="15dp"
-                                            android:src="@drawable/simple_point"
-                                            android:layout_marginRight="5dp"
-                                            />
-
-                                    </LinearLayout>
-                                </LinearLayout>
-                            </LinearLayout>
-
-                    </LinearLayout>
-
-                        <LinearLayout android:id="@+id/tabContentAudios"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:visibility="gone">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:background="@color/ivo_gray_grid"
-                                android:orientation="vertical">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:weightSum="1"
-                                    android:orientation="horizontal">
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:background="@color/ivo_green"
-                                        android:layout_weight="0.75"/>
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-                                    <ImageView
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"
-                                        android:src="@drawable/btn_play"
-                                        android:layout_gravity="center_vertical"
-                                        android:layout_marginLeft="10dp"/>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Nombre del audio"
-                                        android:textColor="@color/ivo_gray_dark"
-                                        android:layout_gravity="center_vertical"
-                                        android:layout_marginLeft="15dp"
-                                        />
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="end|center">
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="00:00"
-                                            android:textColor="@color/ivo_gray_dark"
-                                            android:layout_marginRight="15dp"
-                                            android:gravity="end|right"
-                                            />
-                                    </LinearLayout>
-
-
-                                </LinearLayout>
-
-
-
-
-
-
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:background="@color/ivo_gray_audio_dark"
-                                android:orientation="vertical">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:weightSum="1"
-                                    android:orientation="horizontal">
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:background="@color/ivo_green"
-                                        android:layout_weight="0"/>
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-                                    <ImageView
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"
-                                        android:src="@drawable/btn_play"
-                                        android:layout_gravity="center_vertical"
-                                        android:layout_marginLeft="10dp"/>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Nombre del audio"
-                                        android:textColor="@color/ivo_gray_dark"
-                                        android:layout_gravity="center_vertical"
-                                        android:layout_marginLeft="15dp"
-                                        />
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="end|center">
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="00:00"
-                                            android:textColor="@color/ivo_gray_dark"
-                                            android:layout_marginRight="15dp"
-                                            android:gravity="end|right"
-                                            />
-                                    </LinearLayout>
-
-
-
-                                </LinearLayout>
-
-
-
-
-
-
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:background="@color/ivo_gray_grid"
-                                android:orientation="vertical">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:weightSum="1"
-                                    android:orientation="horizontal">
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:background="@color/ivo_green"
-                                        android:layout_weight="0"/>
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-                                    <ImageView
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"
-                                        android:src="@drawable/btn_play"
-                                        android:layout_gravity="center_vertical"
-                                        android:layout_marginLeft="10dp"/>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Nombre del audio"
-                                        android:textColor="@color/ivo_gray_dark"
-                                        android:layout_gravity="center_vertical"
-                                        android:layout_marginLeft="15dp"
-                                        />
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="end|center">
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="00:00"
-                                            android:textColor="@color/ivo_gray_dark"
-                                            android:layout_marginRight="15dp"
-                                            android:gravity="end|right"
-                                            />
-                                    </LinearLayout>
-
-
-                                </LinearLayout>
-
-
-
-
-
-
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:background="@color/ivo_gray_audio_dark"
-                                android:orientation="vertical">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:weightSum="1"
-                                    android:orientation="horizontal">
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:background="@color/ivo_green"
-                                        android:layout_weight="0"/>
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-                                    <ImageView
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"
-                                        android:src="@drawable/btn_play"
-                                        android:layout_gravity="center_vertical"
-                                        android:layout_marginLeft="10dp"/>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Nombre del audio"
-                                        android:textColor="@color/ivo_gray_dark"
-                                        android:layout_gravity="center_vertical"
-                                        android:layout_marginLeft="15dp"
-                                        />
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="end|center">
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="00:00"
-                                            android:textColor="@color/ivo_gray_dark"
-                                            android:layout_marginRight="15dp"
-                                            android:gravity="end|right"
-                                            />
-                                    </LinearLayout>
-
-
-                                </LinearLayout>
-
-
-
-
-
-
-                            </RelativeLayout>
-
-
-                        </LinearLayout>
-
-                        <LinearLayout android:id="@+id/tabContentVideos"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:visibility="gone">
-                            <TextView
-                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="VIDEOS"
-                                android:textColor="@color/black"
-                                />
+                                android:orientation="vertical">
+                                <LinearLayout android:id="@+id/tabContentFotos"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:visibility="gone">
 
-                        </LinearLayout>
+                                    <LinearLayout
+                                        android:id="@+id/content_tab_fotos"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="200dp"
+                                        android:orientation="vertical"
+                                        android:weightSum="3">
 
-                        <LinearLayout android:id="@+id/tabContentExperiencias"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:visibility="visible">
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                        <LinearLayout
+                                            android:layout_width="fill_parent"
+                                            android:layout_height="0dp"
+                                            android:orientation="horizontal"
+                                            android:weightSum="3"
+                                            android:layout_weight="1">
+                                            <LinearLayout
+                                                android:id="@+id/foto_1"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:orientation="vertical"
+                                                android:background="@color/ivo_gray_grid"
+                                                android:layout_marginRight="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:clickable="true"
+                                                android:gravity="center">
+                                                <ImageView
+                                                    android:id="@+id/foto_content1"
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:src="@drawable/ic_foto_over"
+                                                    android:visibility="gone"
+                                                    />
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:id="@+id/foto_2"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:orientation="vertical"
+                                                android:background="@color/ivo_gray_grid"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_marginRight="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:clickable="true"
+                                                android:gravity="center">
+                                                <ImageView
+                                                    android:id="@+id/foto_content2"
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:src="@drawable/ic_foto_over"
+                                                    android:visibility="gone"
+                                                    />
 
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:id="@+id/foto_3"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:orientation="vertical"
+                                                android:background="@color/ivo_gray_grid"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:clickable="true"
+                                                android:gravity="center">
+                                                <ImageView
+                                                    android:id="@+id/foto_content3"
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:src="@drawable/ic_foto_over"
+                                                    android:visibility="gone"
+                                                    />>
+                                            </LinearLayout>
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:layout_width="fill_parent"
+                                            android:layout_height="0dp"
+                                            android:orientation="horizontal"
+                                            android:weightSum="3"
+                                            android:layout_weight="1">
+                                            <LinearLayout
+                                                android:id="@+id/foto_4"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:orientation="vertical"
+                                                android:background="@color/ivo_gray_grid"
+                                                android:layout_marginRight="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:clickable="true"
+                                                android:gravity="center">
+                                                <ImageView
+                                                    android:id="@+id/foto_content4"
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:src="@drawable/ic_foto_over"
+                                                    android:visibility="gone"
+                                                    />>
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:id="@+id/foto_5"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:orientation="vertical"
+                                                android:background="@color/ivo_gray_grid"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_marginRight="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:clickable="true"
+                                                android:gravity="center">
+                                                <ImageView
+                                                    android:id="@+id/foto_content5"
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:src="@drawable/ic_foto_over"
+                                                    android:visibility="gone"
+                                                    />>
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:id="@+id/foto_6"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:orientation="vertical"
+                                                android:background="@color/ivo_gray_grid"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:clickable="true"
+                                                android:gravity="center">
+                                                <ImageView
+                                                    android:id="@+id/foto_content6"
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:src="@drawable/ic_foto_over"
+                                                    android:visibility="gone"
+                                                    />>
+                                            </LinearLayout>
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:layout_width="fill_parent"
+                                            android:layout_height="0dp"
+                                            android:orientation="horizontal"
+                                            android:weightSum="3"
+                                            android:layout_weight="1">
+                                            <LinearLayout
+                                                android:id="@+id/foto_7"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:orientation="vertical"
+                                                android:background="@color/ivo_gray_grid"
+                                                android:layout_marginRight="0.5dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:clickable="true"
+                                                android:gravity="center">
+                                                <ImageView
+                                                    android:id="@+id/foto_content7"
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:src="@drawable/ic_foto_over"
+                                                    android:visibility="gone"
+                                                    />
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:id="@+id/foto_8"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:orientation="vertical"
+                                                android:background="@color/ivo_gray_grid"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_marginRight="0.5dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:clickable="true"
+                                                android:gravity="center">
+                                                <ImageView
+                                                    android:id="@+id/foto_content8"
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:src="@drawable/ic_foto_over"
+                                                    android:visibility="gone"
+                                                    />
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:id="@+id/foto_9"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:orientation="vertical"
+                                                android:background="@color/ivo_gray_grid"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:clickable="true"
+                                                android:gravity="center">
+                                                <ImageView
+                                                    android:id="@+id/foto_content9"
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:src="@drawable/ic_foto_over"
+                                                    android:visibility="gone"
+                                                    />
+                                            </LinearLayout>
+                                        </LinearLayout>
+
+
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="50dp"
+                                        android:orientation="vertical"
+                                        android:gravity="center"
+                                        android:layout_marginTop="10dp">
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content">
+                                            <ImageView
+                                                android:layout_width="25dp"
+                                                android:layout_height="25dp"
+                                                android:src="@drawable/ic_subir"/>
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="SUBIR"
+                                                android:textSize="15sp"
+                                                android:textColor="@color/ivo_black"
+                                                android:layout_gravity="bottom"
+                                                android:layout_marginLeft="1dp"/>
+                                            <LinearLayout
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center_vertical"
+                                                android:layout_marginLeft="10dp">
+                                                <ImageView
+                                                    android:layout_width="15dp"
+                                                    android:layout_height="15dp"
+                                                    android:src="@drawable/simple_point"
+                                                    android:layout_marginRight="5dp"
+                                                    />
+                                                <ImageView
+                                                    android:layout_width="15dp"
+                                                    android:layout_height="15dp"
+                                                    android:src="@drawable/simple_point"
+                                                    android:layout_marginRight="5dp"
+                                                    />
+                                                <ImageView
+                                                    android:layout_width="15dp"
+                                                    android:layout_height="15dp"
+                                                    android:src="@drawable/selected_point"
+                                                    android:layout_marginRight="5dp"
+                                                    />
+                                                <ImageView
+                                                    android:layout_width="15dp"
+                                                    android:layout_height="15dp"
+                                                    android:src="@drawable/simple_point"
+                                                    android:layout_marginRight="5dp"
+                                                    />
+
+                                            </LinearLayout>
+                                        </LinearLayout>
+                                    </LinearLayout>
 
                             </LinearLayout>
 
+                                <LinearLayout android:id="@+id/tabContentAudios"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:visibility="gone">
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@color/ivo_gray_grid"
+                                        android:orientation="vertical">
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:weightSum="1"
+                                            android:orientation="horizontal">
+                                            <LinearLayout
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@color/ivo_green"
+                                                android:layout_weight="0.75"/>
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+                                            <ImageView
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:src="@drawable/btn_play"
+                                                android:layout_gravity="center_vertical"
+                                                android:layout_marginLeft="10dp"/>
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Nombre del audio"
+                                                android:textColor="@color/ivo_gray_dark"
+                                                android:layout_gravity="center_vertical"
+                                                android:layout_marginLeft="15dp"
+                                                />
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:gravity="end|center">
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="00:00"
+                                                    android:textColor="@color/ivo_gray_dark"
+                                                    android:layout_marginRight="15dp"
+                                                    android:gravity="end|right"
+                                                    />
+                                            </LinearLayout>
 
 
-                        </LinearLayout>
+                                        </LinearLayout>
 
 
-                    </LinearLayout>
-                </ScrollView>
 
+
+
+
+                                    </RelativeLayout>
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@color/ivo_gray_audio_dark"
+                                        android:orientation="vertical">
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:weightSum="1"
+                                            android:orientation="horizontal">
+                                            <LinearLayout
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@color/ivo_green"
+                                                android:layout_weight="0"/>
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+                                            <ImageView
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:src="@drawable/btn_play"
+                                                android:layout_gravity="center_vertical"
+                                                android:layout_marginLeft="10dp"/>
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Nombre del audio"
+                                                android:textColor="@color/ivo_gray_dark"
+                                                android:layout_gravity="center_vertical"
+                                                android:layout_marginLeft="15dp"
+                                                />
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:gravity="end|center">
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="00:00"
+                                                    android:textColor="@color/ivo_gray_dark"
+                                                    android:layout_marginRight="15dp"
+                                                    android:gravity="end|right"
+                                                    />
+                                            </LinearLayout>
+
+
+
+                                        </LinearLayout>
+
+
+
+
+
+
+                                    </RelativeLayout>
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@color/ivo_gray_grid"
+                                        android:orientation="vertical">
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:weightSum="1"
+                                            android:orientation="horizontal">
+                                            <LinearLayout
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@color/ivo_green"
+                                                android:layout_weight="0"/>
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+                                            <ImageView
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:src="@drawable/btn_play"
+                                                android:layout_gravity="center_vertical"
+                                                android:layout_marginLeft="10dp"/>
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Nombre del audio"
+                                                android:textColor="@color/ivo_gray_dark"
+                                                android:layout_gravity="center_vertical"
+                                                android:layout_marginLeft="15dp"
+                                                />
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:gravity="end|center">
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="00:00"
+                                                    android:textColor="@color/ivo_gray_dark"
+                                                    android:layout_marginRight="15dp"
+                                                    android:gravity="end|right"
+                                                    />
+                                            </LinearLayout>
+
+
+                                        </LinearLayout>
+
+
+
+
+
+
+                                    </RelativeLayout>
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@color/ivo_gray_audio_dark"
+                                        android:orientation="vertical">
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:weightSum="1"
+                                            android:orientation="horizontal">
+                                            <LinearLayout
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@color/ivo_green"
+                                                android:layout_weight="0"/>
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+                                            <ImageView
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:src="@drawable/btn_play"
+                                                android:layout_gravity="center_vertical"
+                                                android:layout_marginLeft="10dp"/>
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Nombre del audio"
+                                                android:textColor="@color/ivo_gray_dark"
+                                                android:layout_gravity="center_vertical"
+                                                android:layout_marginLeft="15dp"
+                                                />
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:gravity="end|center">
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="00:00"
+                                                    android:textColor="@color/ivo_gray_dark"
+                                                    android:layout_marginRight="15dp"
+                                                    android:gravity="end|right"
+                                                    />
+                                            </LinearLayout>
+
+
+                                        </LinearLayout>
+
+
+
+
+
+
+                                    </RelativeLayout>
+
+
+                                </LinearLayout>
+
+                                <LinearLayout android:id="@+id/tabContentVideos"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:visibility="gone">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="VIDEOS"
+                                        android:textColor="@color/black"
+                                        />
+
+                                </LinearLayout>
+
+                                <LinearLayout android:id="@+id/tabContentExperiencias"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:visibility="gone">
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="vertical">
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:orientation="vertical"
+                                            android:layout_marginTop="20dp"
+                                            android:visibility="visible">
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:text="EXPERIENCIA"
+                                                android:textColor="@color/ivo_green"
+                                                android:textSize="18sp"/>
+                                            <LinearLayout
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:layout_marginTop="5dp">
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:text="Primer Violín"
+                                                    android:textColor="@color/ivo_black"
+                                                    android:textSize="12sp"/>
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:orientation="horizontal">
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Orquesta Sinfónica de Houston"
+                                                        android:textColor="@color/ivo_black"
+                                                        android:textSize="12sp"
+                                                        android:textStyle="bold"/>
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Mar 2013 - Dec 2015"
+                                                        android:textColor="@color/ivo_black"
+                                                        android:textSize="12sp"
+                                                        android:layout_marginLeft="5dp"/>
+
+
+                                                </LinearLayout>
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:layout_marginTop="5dp">
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:text="Título Experiencia"
+                                                    android:textColor="@color/ivo_black"
+                                                    android:textSize="12sp"/>
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:orientation="horizontal">
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Lugar o empresa"
+                                                        android:textColor="@color/ivo_black"
+                                                        android:textSize="12sp"
+                                                        android:textStyle="bold"/>
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Mes 0000 - Mes 0000"
+                                                        android:textColor="@color/ivo_black"
+                                                        android:textSize="12sp"
+                                                        android:layout_marginLeft="5dp"/>
+
+
+                                                </LinearLayout>
+                                            </LinearLayout>
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:orientation="vertical"
+                                            android:layout_marginTop="20dp"
+                                            android:visibility="visible">
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:text="EDUCACIÓN"
+                                                android:textColor="@color/ivo_green"
+                                                android:textSize="18sp"/>
+                                            <LinearLayout
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:layout_marginTop="5dp">
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:text="Bachelor's degree"
+                                                    android:textColor="@color/ivo_black"
+                                                    android:textSize="12sp"/>
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:orientation="horizontal">
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Berklee College of Music,"
+                                                        android:textColor="@color/ivo_black"
+                                                        android:textSize="12sp"
+                                                        android:textStyle="bold"/>
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Boston 2007 - 2010 (3 years)"
+                                                        android:textColor="@color/ivo_black"
+                                                        android:textSize="12sp"
+                                                        android:layout_marginLeft="5dp"/>
+
+
+                                                </LinearLayout>
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:layout_marginTop="5dp">
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:text="Título Dos"
+                                                    android:textColor="@color/ivo_black"
+                                                    android:textSize="12sp"/>
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:orientation="horizontal">
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Lugar de colegiatura o curso,"
+                                                        android:textColor="@color/ivo_black"
+                                                        android:textSize="12sp"
+                                                        android:textStyle="bold"/>
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Ciudad 0000 - 0000 (0 years)"
+                                                        android:textColor="@color/ivo_black"
+                                                        android:textSize="12sp"
+                                                        android:layout_marginLeft="5dp"/>
+
+
+                                                </LinearLayout>
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:layout_marginTop="5dp">
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:text="Título Dos"
+                                                    android:textColor="@color/ivo_black"
+                                                    android:textSize="12sp"/>
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:orientation="horizontal">
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Lugar de colegiatura o curso,"
+                                                        android:textColor="@color/ivo_black"
+                                                        android:textSize="12sp"
+                                                        android:textStyle="bold"/>
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Ciudad 0000 - 0000 (0 years)"
+                                                        android:textColor="@color/ivo_black"
+                                                        android:textSize="12sp"
+                                                        android:layout_marginLeft="5dp"/>
+
+
+                                                </LinearLayout>
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:orientation="vertical"
+                                            android:layout_marginTop="20dp">
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:text="IDIOMAS"
+                                                android:textColor="@color/ivo_green"
+                                                android:textSize="18sp"/>
+                                            <LinearLayout
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:layout_marginTop="5dp">
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:text="Inglés"
+                                                    android:textColor="@color/ivo_black"
+                                                    android:textSize="12sp"/>
+
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:layout_marginTop="5dp">
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:text="Español"
+                                                    android:textColor="@color/ivo_black"
+                                                    android:textSize="12sp"/>
+
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:layout_marginTop="5dp">
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:text="Italiano"
+                                                    android:textColor="@color/ivo_black"
+                                                    android:textSize="12sp"/>
+
+                                            </LinearLayout>
+
+
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:orientation="vertical"
+                                            android:layout_marginTop="20dp">
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:text="CITA"
+                                                android:textColor="@color/ivo_green"
+                                                android:textSize="18sp"/>
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="horizontal"
+                                                android:layout_marginTop="5dp"
+                                                android:weightSum="1">
+                                                <TextView
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="match_parent"
+                                                    android:text="@string/cita_dummie"
+                                                    android:textStyle="bold"
+                                                    android:textColor="@color/ivo_orange"
+                                                    android:textSize="16sp"
+                                                    android:layout_weight="0.5"/>
+
+                                            </LinearLayout>
+
+
+
+                                        </LinearLayout>
+
+
+                                    </LinearLayout>
+
+
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+                        </ScrollView>
+                    </FrameLayout>
                 </LinearLayout>
 
 
@@ -1401,7 +1685,7 @@
                         android:layout_width="0dp"
                         android:layout_height="200dp"
                         android:orientation="horizontal"
-                        android:layout_weight="1"
+                        android:layout_weight="1.1"
                         android:weightSum="2"
                         android:gravity="end">
 
@@ -1524,13 +1808,13 @@
                         android:layout_width="0dp"
                         android:layout_height="200dp"
                         android:orientation="horizontal"
-                        android:layout_weight="1"
+                        android:layout_weight="0.9"
                         android:weightSum="2">
 
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.8"
+                            android:layout_weight="2"
                             android:orientation="vertical"
                             android:gravity="start"
                             android:layout_marginLeft="5dp"
