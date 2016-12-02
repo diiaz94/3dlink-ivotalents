@@ -1,12 +1,24 @@
 package com.threedlink.ivotalents;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TabHost;
+import android.widget.TextView;
+
+import java.lang.reflect.Field;
 
 
 /**
@@ -17,17 +29,37 @@ import android.view.ViewGroup;
  * Use the {@link ProfileIndustry#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProfileIndustry extends Fragment {
+public class ProfileIndustry extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String NAME = "name";
+    private static final String EMAIL = "email";
+    private static final int GRID_SIZE = 9;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    LinearLayout tabFotos;
+    LinearLayout tabAudios;
+    LinearLayout tabVideos;
+    LinearLayout tabContentFotos;
+    LinearLayout tabContentAudios;
+    LinearLayout tabContentVideos;
+    TextView tabTextFotos;
+    TextView tabTextAudios;
+    TextView tabTextVideos;
     private OnFragmentInteractionListener mListener;
+    Button logout_btn;
+    TextView lblName;
+    TextView lblEmail;
+
+    private IvoTalentsApp mApp;
+    private String currentTab;
+    private LinearLayout currentLayoutContent;
+
+    LinearLayout[] fotoLayouts = new LinearLayout[GRID_SIZE];
+    ImageView[] fotoContents = new ImageView[GRID_SIZE];
+    private int currentIdx;
 
     public ProfileIndustry() {
         // Required empty public constructor
@@ -37,16 +69,16 @@ public class ProfileIndustry extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param name Parameter 1.
+     * @param email Parameter 2.
      * @return A new instance of fragment ProfileIndustry.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProfileIndustry newInstance(String param1, String param2) {
+    public static ProfileIndustry newInstance(String name, String email) {
         ProfileIndustry fragment = new ProfileIndustry();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(NAME, name);
+        args.putString(EMAIL, email);
         fragment.setArguments(args);
         return fragment;
     }
@@ -54,9 +86,12 @@ public class ProfileIndustry extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mApp = ((IvoTalentsApp) getActivity().getApplicationContext());
+        currentTab = "tabFotos";
+
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam1 = getArguments().getString(NAME);
+            mParam2 = getArguments().getString(EMAIL);
         }
     }
 
@@ -64,9 +99,80 @@ public class ProfileIndustry extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile_industry, container, false);
+
+        View view= inflater.inflate(R.layout.fragment_profile_industry, container, false);
+        logout_btn = (Button)view.findViewById(R.id.logout_btn);
+        logout_btn.setOnClickListener(this);
+        lblName = (TextView) view.findViewById(R.id.lblName);
+        lblEmail = (TextView) view.findViewById(R.id.lblEmail);
+
+        //Manejo de tabs
+
+        tabContentFotos= (LinearLayout)view.findViewById(R.id.tabContentFotos);
+        tabContentFotos.setVisibility(View.VISIBLE);
+        tabFotos = (LinearLayout)view.findViewById(R.id.tabFotos);
+        tabFotos.setOnClickListener(this);
+        tabTextFotos = (TextView)view.findViewById(R.id.tabTextFotos);
+
+        tabContentAudios= (LinearLayout)view.findViewById(R.id.tabContentAudios);
+        tabAudios = (LinearLayout)view.findViewById(R.id.tabAudios);
+        tabAudios.setOnClickListener(this);
+        tabTextAudios = (TextView)view.findViewById(R.id.tabTextAudios);
+
+        tabContentVideos= (LinearLayout)view.findViewById(R.id.tabContentVideos);
+        tabVideos = (LinearLayout)view.findViewById(R.id.tabVideos);
+        tabVideos.setOnClickListener(this);
+        tabTextVideos = (TextView)view.findViewById(R.id.tabTextVideos);
+
+        
+        for (int i=0;i<this.fotoLayouts.length;i++) {
+
+            fotoLayouts[i] = (LinearLayout) view.findViewById(mApp.getResourcebyname("foto_"+String.valueOf(i+1)));
+            fotoContents[i] = (ImageView) view.findViewById(mApp.getResourcebyname("foto_content"+String.valueOf(i+1)));
+            fotoLayouts[i].setOnClickListener(this);
+        }
+
+        //Para que se vean todos los layouts
+        LinearLayout datosPrincipales = (LinearLayout)view.findViewById(R.id.datosPrincipales);
+        datosPrincipales.setVisibility(View.VISIBLE);
+        LinearLayout intereses = (LinearLayout)view.findViewById(R.id.intereses);
+        intereses.setVisibility(View.VISIBLE);
+        LinearLayout tabsSection = (LinearLayout)view.findViewById(R.id.tabsSection);
+        tabsSection.setVisibility(View.VISIBLE);
+
+        activateTab("tabFotos");
+        ScrollView parentScrollView = (ScrollView) view.findViewById(R.id.parentScrollView);
+        parentScrollView.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event)
+            {
+                v.findViewById(R.id.childScrollView).getParent().requestDisallowInterceptTouchEvent(false);
+                return false;
+            }
+        });
+        ScrollView childScrollView = (ScrollView) view.findViewById(R.id.childScrollView);
+        childScrollView.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event)
+            {
+
+                //Disallow the touch request for parent scroll on touch of
+                //child view
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+        return view;
     }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState){
+        super.onActivityCreated(savedInstanceState);
+        String name = getArguments().getString(NAME);
+        String email = getArguments().getString(EMAIL);
+        lblName.setText(Html.fromHtml("Name: <b>" + name + "</b>"));
+        lblEmail.setText(Html.fromHtml("Email: <b>" + email + "</b>"));
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -96,7 +202,7 @@ public class ProfileIndustry extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p/>
+     * <p>
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
@@ -105,4 +211,158 @@ public class ProfileIndustry extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+
+        switch (id) {
+            case R.id.logout_btn:
+                mApp.logout(v);
+                break;
+            case R.id.tabFotos:
+                activateTab("tabFotos");
+                break;
+            case R.id.tabAudios:
+                activateTab("tabAudios");
+                break;
+            case R.id.tabVideos:
+                activateTab("tabVideos");
+                break;
+            case R.id.foto_1:
+                activateFotoOver(0);
+                break;
+            case R.id.foto_2:
+                activateFotoOver(1);
+                break;
+            case R.id.foto_3:
+                activateFotoOver(2);
+                break;
+            case R.id.foto_4:
+                activateFotoOver(3);
+                break;
+            case R.id.foto_5:
+                activateFotoOver(4);
+                break;
+            case R.id.foto_6:
+                activateFotoOver(5);
+                break;
+            case R.id.foto_7:
+                activateFotoOver(6);
+                break;
+            case R.id.foto_8:
+                activateFotoOver(7);
+                break;
+            case R.id.foto_9:
+                activateFotoOver(8);
+                break;
+
+        }
+    }
+
+    private void activateFotoOver(int idx) {
+        currentIdx = idx;
+        for (int i = 0;i<GRID_SIZE;i++){
+            if(i==idx){
+                fotoLayouts[i].setBackgroundColor(getResources().getColor(R.color.ivo_green));
+                fotoContents[i].setVisibility(View.VISIBLE);
+            }else{
+                fotoLayouts[i].setBackgroundColor(getResources().getColor(R.color.ivo_gray_grid));
+                fotoContents[i].setVisibility(View.GONE);
+            }
+        }
+
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        fotoLayouts[currentIdx].setBackgroundColor(getResources().getColor(R.color.ivo_gray_grid));
+                        fotoContents[currentIdx].setVisibility(View.GONE);
+                    }
+                },
+                100);
+    }
+
+    private void activateTab(String tab){
+        if(currentTab!=tab){
+            LinearLayout layout = null;
+            TextView text = null;
+            LinearLayout layoutContent = null;
+            if(tab.equalsIgnoreCase("tabFotos")){
+                layout = tabFotos;
+                text = tabTextFotos;
+                layoutContent = tabContentFotos;
+
+            }else if(tab.equalsIgnoreCase("tabAudios")){
+                layout = tabAudios;
+                text = tabTextAudios;
+                layoutContent = tabContentAudios;
+            }else if(tab.equalsIgnoreCase("tabVideos")){
+                layout = tabVideos;
+                text = tabTextVideos;
+                layoutContent = tabContentVideos;
+            }
+            if(layout!=null){
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    layout.setBackground(getResources().getDrawable(R.drawable.border_blue_shape_solid));
+                }else{
+                    layout.setBackgroundDrawable(getResources().getDrawable(R.drawable.border_blue_shape_solid));
+                }
+
+            }
+            if(text!=null){
+                text.setTextColor(getResources().getColor(R.color.white));
+            }
+            if(layoutContent!=null){
+                layoutContent.setVisibility(View.VISIBLE);
+            }
+
+            resetCurrentTab();
+            currentTab = tab;
+            currentLayoutContent = layoutContent;
+        }
+    }
+
+    private void resetCurrentTab() {
+        LinearLayout layout = null;
+        TextView text = null;
+        LinearLayout layoutContent = null;
+        if(currentTab.equalsIgnoreCase("tabFotos")){
+            layout = tabFotos;
+            text = tabTextFotos;
+            layoutContent = tabContentFotos;
+
+        }else if(currentTab.equalsIgnoreCase("tabAudios")){
+            layout = tabAudios;
+            text = tabTextAudios;
+            layoutContent = tabContentAudios;
+        }else if(currentTab.equalsIgnoreCase("tabVideos")){
+            layout = tabVideos;
+            text = tabTextVideos;
+            layoutContent = tabContentVideos;
+        }
+        if(layout!=null){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                layout.setBackground(getResources().getDrawable(R.drawable.border_blue_shape));
+            }else{
+                layout.setBackgroundDrawable(getResources().getDrawable(R.drawable.border_blue_shape));
+            }
+        }
+        if(text!=null){
+            text.setTextColor(getResources().getColor(R.color.ivo_blue));
+        }
+        if(layoutContent!=null){
+            layoutContent.setVisibility(View.GONE);
+        }
+    }
+    public static int getResId(String resName, Class<?> c) {
+
+        try {
+            Field idField = c.getDeclaredField(resName);
+            return idField.getInt(idField);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
 }

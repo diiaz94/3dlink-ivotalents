@@ -81,7 +81,8 @@ public class LoginActivity extends AppCompatActivity implements
      * TODO: remove after connecting to a real authentication system.
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world", "diego@3dlink.com:ivotalent"
+            "foo@example.com:hello", "bar@example.com:world", "diego@3dlink.com:ivotalent",
+            "artist@artist.com:artist","industry@industry.com:industry"
     };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -595,7 +596,7 @@ public class LoginActivity extends AppCompatActivity implements
             showProgress(false);
             ArrayList<String> errors= new ArrayList<String>();
             if (success) {
-                session.createLoginSession("Ejemplo", mEmail,"NORMAL");
+                session.createLoginSession(mEmail.split("@")[0], mEmail,"NORMAL");
                 // Staring MainActivity
                 goMainScreen();
                 finish();

@@ -144,11 +144,11 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
         LinearLayout datosPrincipales = (LinearLayout)view.findViewById(R.id.datosPrincipales);
         datosPrincipales.setVisibility(View.VISIBLE);
         LinearLayout intereses = (LinearLayout)view.findViewById(R.id.intereses);
-        datosPrincipales.setVisibility(View.VISIBLE);
+        intereses.setVisibility(View.VISIBLE);
         LinearLayout caracteristicas = (LinearLayout)view.findViewById(R.id.caracteristicas);
-        datosPrincipales.setVisibility(View.VISIBLE);
+        caracteristicas.setVisibility(View.VISIBLE);
         LinearLayout caracteristicas2 = (LinearLayout)view.findViewById(R.id.caracteristicas2);
-        datosPrincipales.setVisibility(View.VISIBLE);
+        caracteristicas2.setVisibility(View.VISIBLE);
         LinearLayout tabsSection = (LinearLayout)view.findViewById(R.id.tabsSection);
         tabsSection.setVisibility(View.VISIBLE);
 

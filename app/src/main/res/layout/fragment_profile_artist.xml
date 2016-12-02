@@ -498,7 +498,7 @@
                                     <LinearLayout
                                         android:id="@+id/content_tab_fotos"
                                         android:layout_width="match_parent"
-                                        android:layout_height="200dp"
+                                        android:layout_height="230dp"
                                         android:orientation="vertical"
                                         android:weightSum="3">
 
@@ -1966,7 +1966,7 @@
                                     android:textSize="10sp"
                                     android:textColor="#fc4513"
                                     android:id="@+id/talent_name"
-                                    android:background="#000000"
+                                    android:background="@color/black"
                                     android:padding="2dp"
                                     />
                                 <TextView android:layout_width="wrap_content"
