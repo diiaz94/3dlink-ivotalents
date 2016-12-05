@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -55,7 +56,10 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
     Button logout_btn;
     TextView lblName;
     TextView lblEmail;
-
+    ImageView ic_fb_orange;
+    ImageView ic_tw_orange;
+    ImageView ic_ig_orange;
+    ImageView ic_edit_social;
     private IvoTalentsApp mApp;
     private String currentTab;
     private LinearLayout currentLayoutContent;
@@ -174,6 +178,35 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
                 return false;
             }
         });
+
+        ic_fb_orange = (ImageView) view.findViewById(R.id.ic_fb_orange);
+        ic_fb_orange.setOnClickListener(this);
+        ic_tw_orange = (ImageView) view.findViewById(R.id.ic_tw_orange);
+        ic_tw_orange.setOnClickListener(this);
+        ic_ig_orange = (ImageView) view.findViewById(R.id.ic_ig_orange);
+        ic_ig_orange.setOnClickListener(this);
+
+        ic_edit_social = (ImageView) view.findViewById(R.id.ic_edit_social);
+
+
+        RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_profile_artist);
+        for( int i = 0; i < myLayout.getChildCount(); i++ ) {
+            if (myLayout.getChildAt(i) instanceof TextView){
+                TextView textView= (TextView) myLayout.getChildAt(i);
+                if(textView.getTag().toString().indexOf("normal")!=-1){
+                    textView.setTypeface(mApp.getFont());
+                }
+                if(textView.getTag().toString().indexOf("bold")!=-1){
+                    textView.setTypeface(mApp.getFontBold());
+                }
+                if(textView.getTag().toString().indexOf("normal")!=-1){
+                    textView.setTypeface(mApp.getFont());
+                }
+                if(textView.getTag().toString().indexOf("normal")!=-1){
+                    textView.setTypeface(mApp.getFont());
+                }
+            }
+        }
         return view;
     }
 
@@ -272,7 +305,21 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
                 activateFotoOver(8);
                 break;
 
+            case R.id.ic_fb_orange:
+                break;
+            case R.id.ic_tw_orange:
+                break;
+            case R.id.ic_ig_orange:
+                break;
+            case R.id.ic_edit_social:
+                editSocialMedia();
+                break;
+
         }
+    }
+
+    private void editSocialMedia() {
+
     }
 
     private void activateFotoOver(int idx) {

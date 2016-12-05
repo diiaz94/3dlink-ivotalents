@@ -162,6 +162,10 @@ public class ProfileIndustry extends Fragment implements View.OnClickListener {
                 return false;
             }
         });
+
+
+
+
         return view;
     }
 
