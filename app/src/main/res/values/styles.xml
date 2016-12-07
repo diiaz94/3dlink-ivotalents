@@ -56,4 +56,10 @@
         <item name="colorControlNormal">@color/ivo_orange</item>
         <item name="colorControlActivated">@color/ivo_orange</item>
     </style>
+    <style name="EditProfileIndustry" parent="Widget.AppCompat.Light.AutoCompleteTextView">
+        <item name="android:colorFocusedHighlight">@color/ivo_blue</item>
+        <item name="android:textColorHintInverse">@color/ivo_blue</item>
+        <item name="colorControlNormal">@color/ivo_blue</item>
+        <item name="colorControlActivated">@color/ivo_blue</item>
+    </style>
 </resources>

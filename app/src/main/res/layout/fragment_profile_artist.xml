@@ -121,8 +121,8 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="end">
                                     <ImageButton
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"
+                                        android:layout_width="25dp"
+                                        android:layout_height="25dp"
                                         android:layout_gravity="end"
                                         android:background="@drawable/pencil_edit"
                                         android:id="@+id/ic_edit_social"
@@ -361,8 +361,8 @@
 
                             </LinearLayout>
                             <ImageButton
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
                                 android:layout_gravity="end"
                                 android:background="@drawable/pencil_edit"
                                 android:id="@+id/ic_edit_bio"
@@ -403,6 +403,7 @@
                                 android:visibility="gone"
                                 android:theme="@style/EditProfileArtist"/>
                         </LinearLayout>
+
                     </LinearLayout>
 
                 </LinearLayout>

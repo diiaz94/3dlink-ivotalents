@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.threedlink.ivotalents.ProfileArtist"
-    >
+    tools:context="com.threedlink.ivotalents.ProfileIndustry"
+    android:id="@+id/fragment_profile_industry">
 
     <ScrollView
         android:id="@+id/parentScrollView"
@@ -40,7 +40,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:weightSum="2"
-                        android:visibility="gone">
+                        android:visibility="visible">
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -53,6 +53,8 @@
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
+                                android:id="@+id/left_info"
+                                android:visibility="visible"
                                 >
                                 <TextView android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -62,43 +64,72 @@
                                     android:id="@+id/follow_to_artist"
                                     android:layout_gravity="center"/>
 
-                                <LinearLayout
+                                <RelativeLayout
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="match_parent"
                                     android:orientation="horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_gravity="center">
-                                    <ImageView
-                                        android:layout_width="18dp"
-                                        android:layout_height="18dp"
-                                        android:id="@+id/ic_fb_orange"
-                                        android:src="@drawable/fb_logo_blue"
-                                        android:layout_marginRight="5dp"
-                                        />
-                                    <ImageView
-                                        android:layout_width="18dp"
-                                        android:layout_height="18dp"
-                                        android:id="@+id/ic_tw_orange"
-                                        android:src="@drawable/tw_logo_blue"
-                                        android:layout_marginRight="5dp"
-                                        />
-                                    <ImageView
-                                        android:layout_width="18dp"
-                                        android:layout_height="18dp"
-                                        android:id="@+id/ig_tw_orange"
-                                        android:src="@drawable/ig_logo_blue"
-                                        android:layout_marginRight="5dp"
-                                        />
-                                </LinearLayout>
-                                <TextView android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Web Oficial"
-                                    android:textSize="10sp"
-                                    android:textColor="@color/ivo_blue"
-                                    android:id="@+id/official_web"
-                                    android:layout_gravity="center"
-                                    android:layout_marginTop="10dp"
-                                    android:textStyle="italic"/>
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal"
+                                            android:layout_marginTop="5dp"
+                                            android:layout_gravity="center">
+                                            <ImageView
+                                                android:layout_width="18dp"
+                                                android:layout_height="18dp"
+                                                android:id="@+id/ic_fb_orange"
+                                                android:src="@drawable/fb_logo_blue"
+                                                android:layout_marginRight="5dp"
+                                                android:clickable="true"
+                                                />
+                                            <ImageView
+                                                android:layout_width="18dp"
+                                                android:layout_height="18dp"
+                                                android:id="@+id/ic_tw_orange"
+                                                android:src="@drawable/tw_logo_blue"
+                                                android:layout_marginRight="5dp"
+                                                android:clickable="true"
+                                                />
+                                            <ImageView
+                                                android:layout_width="18dp"
+                                                android:layout_height="18dp"
+                                                android:id="@+id/ic_ig_orange"
+                                                android:src="@drawable/ig_logo_blue"
+                                                android:layout_marginRight="5dp"
+                                                android:clickable="true"
+                                                />
+                                        </LinearLayout>
+                                        <TextView android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Web Oficial"
+                                            android:textSize="10sp"
+                                            android:textColor="@color/ivo_blue"
+                                            android:id="@+id/official_web"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="10dp"
+                                            android:textStyle="italic"
+                                            android:tag="semibolditalic"/>
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="end">
+                                        <ImageButton
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"
+                                            android:layout_gravity="end"
+                                            android:background="@drawable/pencil_edit"
+                                            android:id="@+id/ic_edit_social"
+                                            />
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -196,9 +227,108 @@
                                         android:textColor="@color/white"
                                         android:id="@+id/sent_message"
                                         android:layout_gravity="center"
-                                        android:textStyle="italic"/>
+                                        android:tag="semibolditalic"/>
                                     />
                                 </LinearLayout>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/left_info_edit"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/fb_logo_blue"
+                                        android:layout_gravity="center"/>
+                                    <EditText
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:textSize="14sp"
+                                        android:hint="Facebook"
+                                        android:textColorHint="@color/ivo_gray_light"
+                                        android:layout_marginLeft="15dp"
+                                        android:id="@+id/url_social_fb"
+                                        android:theme="@style/EditProfileIndustry"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/tw_logo_blue"
+                                        android:layout_gravity="center"/>
+                                    <EditText
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:textSize="14sp"
+                                        android:hint="Twitter"
+                                        android:textColorHint="@color/ivo_gray_light"
+                                        android:layout_marginLeft="15dp"
+                                        android:id="@+id/url_social_tw"
+                                        android:theme="@style/EditProfileIndustry"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/ig_logo_blue"
+                                        android:layout_gravity="center"/>
+                                    <EditText
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:textSize="14sp"
+                                        android:hint="Instagram"
+                                        android:textColorHint="@color/ivo_gray_light"
+                                        android:layout_marginLeft="15dp"
+                                        android:id="@+id/url_social_ig"
+                                        android:theme="@style/EditProfileIndustry"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+                                    <TextView
+                                        android:layout_width="30dp"
+                                        android:layout_height="25dp"
+                                        android:text="Web Oficial"
+                                        android:textStyle="italic"
+                                        android:tag="semibolditalic"
+                                        android:textSize="10sp"
+                                        android:textColor="@color/ivo_blue"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"/>
+                                    <EditText
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/black"
+                                        android:textSize="14sp"
+                                        android:hint="http://"
+                                        android:textColorHint="@color/ivo_gray_light"
+                                        android:layout_marginLeft="7dp"
+                                        android:theme="@style/EditProfileIndustry"/>
+                                </LinearLayout>
+
+                                <ImageButton
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:background="@drawable/save_artist"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="10dp"
+                                    android:id="@+id/ic_save_social"/>
                             </LinearLayout>
                         </LinearLayout>
                         <LinearLayout
@@ -224,23 +354,52 @@
                                         android:text="BIO"
                                         android:textSize="16sp"
                                         android:textColor="@color/white"
-                                        android:textStyle="bold"
+                                        android:tag="bold"
                                         android:gravity="center|center"/>
+
                                 </LinearLayout>
+                                <ImageButton
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_gravity="end"
+                                    android:background="@drawable/pencil_edit"
+                                    android:id="@+id/ic_edit_bio"
+                                    android:layout_marginLeft="10dp"/>
+                                <ImageButton
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="end"
+                                    android:background="@drawable/save_artist"
+                                    android:id="@+id/ic_save_bio"
+                                    android:layout_marginLeft="10dp"
+                                    android:visibility="gone"/>
                             </LinearLayout>
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 android:layout_marginRight="10dp"
-                                android:layout_marginLeft="8dp">
+                                android:layout_marginLeft="8dp"
+                                android:orientation="vertical">
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:text="@string/dummie_bio"
                                     android:textSize="11sp"
                                     android:textColor="@color/white"
+                                    android:visibility="visible"
+                                    android:id="@+id/text_bio"
+                                    android:tag="normal"
+
                                     />
+                                <EditText
+                                    android:id="@+id/edit_bio"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/white"
+                                    android:visibility="gone"
+                                    android:theme="@style/EditProfileIndustry"/>
                             </LinearLayout>
                         </LinearLayout>
 
@@ -367,7 +526,7 @@
                         android:layout_height="340dp"
                         android:orientation="vertical"
                         android:layout_marginTop="20dp"
-                        android:visibility="visible">
+                        android:visibility="gone">
                         <LinearLayout
                             android:layout_width="fill_parent"
                             android:layout_height="35dp"
@@ -1211,14 +1370,16 @@
                         android:textStyle="bold"
                         android:textSize="14sp"
                         android:textColor="#ffffff"
-                        android:id="@+id/artist_name"/>
+                        android:id="@+id/artist_name"
+                        android:tag="bold"/>
                     <TextView android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Producción de Eventos"
                         android:textStyle="normal"
                         android:textSize="12sp"
                         android:textColor="#ffffff"
-                        android:id="@+id/artist_talent"/>
+                        android:id="@+id/artist_talent"
+                        android:tag="normal"/>
                     <LinearLayout android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -1235,14 +1396,16 @@
                             android:textSize="12sp"
                             android:textColor="#ffffff"
                             android:layout_marginLeft="5dp"
-                            android:id="@+id/artist_count_fans"/>
+                            android:id="@+id/artist_count_fans"
+                            android:tag="bold"/>
                         <TextView android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="fans"
                             android:textStyle="italic|bold"
                             android:textSize="12sp"
                             android:textColor="#ffffff"
-                            android:id="@+id/text_fans"/>
+                            android:id="@+id/text_fans"
+                            android:tag="semibolditalic"/>
                     </LinearLayout>
                     <LinearLayout android:layout_width="match_parent"
                         android:layout_height="wrap_content"

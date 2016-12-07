@@ -212,14 +212,14 @@ public class IvoTalentsApp extends Application {
         if(tag.indexOf("normal")!=-1){
             return getFont();
         }
-        if(tag.indexOf("bold")!=-1){
-            return getFontBold();
+        if(tag.indexOf("semibolditalic")!=-1) {
+            return getFontSemiBoldItalic();
         }
         if(tag.indexOf("semibold")!=-1){
             return getFontSemiBold();
         }
-        if(tag.indexOf("semibolditalic")!=-1) {
-            return getFontSemiBoldItalic();
+        if(tag.indexOf("bold")!=-1){
+            return getFontBold();
         }
         if(tag.indexOf("light")!=-1) {
             return getFontLight();

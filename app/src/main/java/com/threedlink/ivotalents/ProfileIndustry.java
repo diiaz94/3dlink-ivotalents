@@ -11,9 +11,13 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -60,6 +64,14 @@ public class ProfileIndustry extends Fragment implements View.OnClickListener {
     LinearLayout[] fotoLayouts = new LinearLayout[GRID_SIZE];
     ImageView[] fotoContents = new ImageView[GRID_SIZE];
     private int currentIdx;
+    TextView text_bio;
+    EditText edit_bio;
+    ImageButton ic_edit_bio;
+    ImageButton ic_save_bio;
+    ImageButton ic_edit_social;
+    ImageButton ic_save_social;
+    LinearLayout left_info;
+    LinearLayout left_info_edit;
 
     public ProfileIndustry() {
         // Required empty public constructor
@@ -164,6 +176,23 @@ public class ProfileIndustry extends Fragment implements View.OnClickListener {
         });
 
 
+        RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_profile_industry);
+        mApp.setFontsOnRelative(myLayout);
+
+        ic_edit_social = (ImageButton)view.findViewById(R.id.ic_edit_social);
+        ic_edit_social.setOnClickListener(this);
+        ic_edit_bio = (ImageButton)view.findViewById(R.id.ic_edit_bio);
+        ic_edit_bio.setOnClickListener(this);
+        ic_save_social = (ImageButton)view.findViewById(R.id.ic_save_social);
+        ic_save_social.setOnClickListener(this);
+        ic_save_bio = (ImageButton)view.findViewById(R.id.ic_save_bio);
+        ic_save_bio.setOnClickListener(this);
+
+        text_bio = (TextView)view.findViewById(R.id.text_bio);
+        edit_bio = (EditText)view.findViewById(R.id.edit_bio);
+
+        left_info = (LinearLayout) view.findViewById(R.id.left_info);
+        left_info_edit = (LinearLayout) view.findViewById(R.id.left_info_edit);
 
 
         return view;
@@ -260,8 +289,57 @@ public class ProfileIndustry extends Fragment implements View.OnClickListener {
             case R.id.foto_9:
                 activateFotoOver(8);
                 break;
-
+            case R.id.ic_fb_orange:
+                break;
+            case R.id.ic_tw_orange:
+                break;
+            case R.id.ic_ig_orange:
+                break;
+            case R.id.ic_edit_social:
+                editSocialMedia();
+                break;
+            case R.id.ic_save_social:
+                saveSocialmedia();
+                break;
+            case R.id.ic_edit_bio:
+                editBio(v);
+                break;
+            case R.id.ic_save_bio:
+                saveBio(v);
+                break;
         }
+    }
+
+    private void editBio(View v) {
+        edit_bio.setText(text_bio.getText());
+        text_bio.setVisibility(View.GONE);
+        edit_bio.setVisibility(View.VISIBLE);
+        ic_edit_bio.setVisibility(View.GONE);
+        ic_save_bio.setVisibility(View.VISIBLE);
+
+    }
+
+    private void saveBio(View v) {
+        text_bio.setText(edit_bio.getText());
+        text_bio.setVisibility(View.VISIBLE);
+        edit_bio.setVisibility(View.GONE);
+        ic_edit_bio.setVisibility(View.VISIBLE);
+        ic_save_bio.setVisibility(View.GONE);
+        final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+    }
+
+    private void editSocialMedia() {
+        left_info.setVisibility(View.GONE);
+        left_info_edit.setVisibility(View.VISIBLE);
+    }
+
+    private void saveSocialmedia() {
+        left_info.setVisibility(View.VISIBLE);
+        left_info_edit.setVisibility(View.GONE);
+
+        final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
     }
 
     private void activateFotoOver(int idx) {
