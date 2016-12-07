@@ -47,4 +47,13 @@
     <style name="TextAppearence.App.TextInputLayout" parent="@android:style/TextAppearance">
         <item name="android:textColor">@color/ivo_green</item>
     </style>
+    <style name="TextAppearence.App.TextInputLayoutArtist" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/ivo_orange</item>
+    </style>
+    <style name="EditProfileArtist" parent="Widget.AppCompat.Light.AutoCompleteTextView">
+        <item name="android:colorFocusedHighlight">@color/ivo_orange</item>
+        <item name="android:textColorHintInverse">@color/ivo_orange</item>
+        <item name="colorControlNormal">@color/ivo_orange</item>
+        <item name="colorControlActivated">@color/ivo_orange</item>
+    </style>
 </resources>

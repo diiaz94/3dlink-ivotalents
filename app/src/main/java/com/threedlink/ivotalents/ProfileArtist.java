@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -201,26 +202,7 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
 
 
         RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_profile_artist);
-        for( int i = 0; i < myLayout.getChildCount(); i++ ) {
-            if (myLayout.getChildAt(i) instanceof TextView){
-                TextView textView= (TextView) myLayout.getChildAt(i);
-                if(textView.getTag().toString().indexOf("normal")!=-1){
-                    textView.setTypeface(mApp.getFont());
-                }
-                if(textView.getTag().toString().indexOf("bold")!=-1){
-                    textView.setTypeface(mApp.getFontBold());
-                }
-                if(textView.getTag().toString().indexOf("semibold")!=-1){
-                    textView.setTypeface(mApp.getFontSemiBold());
-                }
-                if(textView.getTag().toString().indexOf("semibolditalic")!=-1){
-                    textView.setTypeface(mApp.getFontSemiBoldItalic());
-                }
-                if(textView.getTag().toString().indexOf("light")!=-1){
-                    textView.setTypeface(mApp.getFontLight());
-                }
-            }
-        }
+        mApp.setFontsOnRelative(myLayout);
 
         ic_edit_social = (ImageButton)view.findViewById(R.id.ic_edit_social);
         ic_edit_social.setOnClickListener(this);

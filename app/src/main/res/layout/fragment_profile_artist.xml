@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.threedlink.ivotalents.ProfileArtist"
     android:id="@+id/fragment_profile_artist">
 
@@ -112,7 +113,8 @@
                                         android:id="@+id/official_web"
                                         android:layout_gravity="center"
                                         android:layout_marginTop="10dp"
-                                        android:textStyle="italic"/>
+                                        android:textStyle="italic"
+                                        android:tag="semibolditalic"/>
                                 </LinearLayout>
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -226,7 +228,8 @@
                                     android:textColor="@color/ivo_orange"
                                     android:id="@+id/sent_message"
                                     android:layout_gravity="center"
-                                    android:textStyle="italic"/>
+                                    android:textStyle="italic"
+                                    android:tag="semibolditalic"/>
                                 />
                             </LinearLayout>
                         </LinearLayout>
@@ -241,8 +244,8 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
                                 <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
                                     android:src="@drawable/fb_logo_orange"
                                     android:layout_gravity="center"/>
                                 <EditText
@@ -253,7 +256,8 @@
                                     android:hint="Facebook"
                                     android:textColorHint="@color/ivo_gray_dark"
                                     android:layout_marginLeft="15dp"
-                                    android:id="@+id/url_social_fb"/>
+                                    android:id="@+id/url_social_fb"
+                                    android:theme="@style/EditProfileArtist"/>
                             </LinearLayout>
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -272,7 +276,8 @@
                                     android:hint="Twitter"
                                     android:textColorHint="@color/ivo_gray_dark"
                                     android:layout_marginLeft="15dp"
-                                    android:id="@+id/url_social_tw"/>
+                                    android:id="@+id/url_social_tw"
+                                    android:theme="@style/EditProfileArtist"/>
                             </LinearLayout>
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -291,7 +296,8 @@
                                     android:hint="Instagram"
                                     android:textColorHint="@color/ivo_gray_dark"
                                     android:layout_marginLeft="15dp"
-                                    android:id="@+id/url_social_ig"/>
+                                    android:id="@+id/url_social_ig"
+                                    android:theme="@style/EditProfileArtist"/>
                             </LinearLayout>
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -299,9 +305,10 @@
                                 android:orientation="horizontal">
                                 <TextView
                                     android:layout_width="30dp"
-                                    android:layout_height="20dp"
+                                    android:layout_height="25dp"
                                     android:text="Web Oficial"
                                     android:textStyle="italic"
+                                    android:tag="semibolditalic"
                                     android:textSize="10sp"
                                     android:textColor="@color/ivo_orange"
                                     android:layout_gravity="center"
@@ -313,7 +320,8 @@
                                     android:textSize="14sp"
                                     android:hint="http://"
                                     android:textColorHint="@color/ivo_gray_dark"
-                                    android:layout_marginLeft="7dp"/>
+                                    android:layout_marginLeft="7dp"
+                                    android:theme="@style/EditProfileArtist"/>
                             </LinearLayout>
 
                             <ImageButton
@@ -348,7 +356,7 @@
                                     android:text="BIO"
                                     android:textSize="16sp"
                                     android:textColor="@color/white"
-                                    android:textStyle="bold"
+                                    android:tag="bold"
                                     android:gravity="center|center"/>
 
                             </LinearLayout>
@@ -384,6 +392,7 @@
                                 android:visibility="visible"
                                 android:id="@+id/text_bio"
                                 android:tag="normal"
+
                                 />
                             <EditText
                                 android:id="@+id/edit_bio"
@@ -391,7 +400,8 @@
                                 android:layout_height="match_parent"
                                 android:textSize="11sp"
                                 android:textColor="@color/ivo_black"
-                                android:visibility="gone"/>
+                                android:visibility="gone"
+                                android:theme="@style/EditProfileArtist"/>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -1504,6 +1514,7 @@
                             android:text="Edad 24"
                             android:textSize="10sp"
                             android:textStyle="italic"
+                            android:tag="semibolditalic"
                             android:textColor="@color/ivo_gray_dark"
                             android:layout_marginTop="1dp"
                             android:layout_gravity="center"/>
@@ -2127,14 +2138,16 @@
                                     android:textStyle="bold"
                                     android:textSize="14sp"
                                     android:textColor="#ffffff"
-                                    android:id="@+id/artist_name"/>
+                                    android:id="@+id/artist_name"
+                                    android:tag="bold"/>
                                 <TextView android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Violinista"
                                     android:textStyle="normal"
                                     android:textSize="12sp"
                                     android:textColor="#ffffff"
-                                    android:id="@+id/artist_talent"/>
+                                    android:id="@+id/artist_talent"
+                                    android:tag="normal"/>
                                 <LinearLayout android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal"
@@ -2151,14 +2164,16 @@
                                             android:textSize="12sp"
                                             android:textColor="#ffffff"
                                             android:layout_marginLeft="5dp"
-                                            android:id="@+id/artist_count_fans"/>
+                                            android:id="@+id/artist_count_fans"
+                                            android:tag="bold"/>
                                         <TextView android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="fans"
                                             android:textStyle="italic|bold"
                                             android:textSize="12sp"
                                             android:textColor="#ffffff"
-                                            android:id="@+id/text_fans"/>
+                                            android:id="@+id/text_fans"
+                                            android:tag="semibolditalic"/>
                                 </LinearLayout>
                                 <LinearLayout android:layout_width="match_parent"
                                     android:layout_height="wrap_content"

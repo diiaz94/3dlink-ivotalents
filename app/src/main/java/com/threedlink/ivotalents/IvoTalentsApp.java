@@ -4,8 +4,14 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
@@ -114,4 +120,113 @@ public class IvoTalentsApp extends Application {
         return getResources().getIdentifier(resourceName, "id", getPackageName());
 
     }
+
+    public void setFontsOnRelative(RelativeLayout layout) {
+        for( int i = 0; i < layout.getChildCount(); i++ ) {
+            if (layout.getChildAt(i) instanceof TextView){
+                TextView textView= (TextView) layout.getChildAt(i);
+                if(textView.getTag()!=null){
+                    textView.setTypeface(getFontApply(textView.getTag().toString()));
+                }else{
+                    textView.setTypeface(getFont());
+                }
+            }else if(layout.getChildAt(i) instanceof EditText){
+                EditText editText= (EditText) layout.getChildAt(i);
+                if(editText.getTag()!=null){
+                    editText.setTypeface(getFontApply(editText.getTag().toString()));
+                }else{
+                    editText.setTypeface(getFont());
+                }
+            }else if(layout.getChildAt(i) instanceof LinearLayout){
+                LinearLayout linear= (LinearLayout) layout.getChildAt(i);
+                setFontsOnLinear(linear);
+            }else if(layout.getChildAt(i) instanceof RelativeLayout){
+                RelativeLayout relative= (RelativeLayout) layout.getChildAt(i);
+                setFontsOnRelative(relative);
+            }else if(layout.getChildAt(i) instanceof ScrollView){
+                ScrollView scroll= (ScrollView) layout.getChildAt(i);
+                setFontsOnScroll(scroll);
+            }
+        }
+
+    }
+    public void setFontsOnLinear(LinearLayout layout) {
+        for( int i = 0; i < layout.getChildCount(); i++ ) {
+            if (layout.getChildAt(i) instanceof TextView){
+                TextView textView= (TextView) layout.getChildAt(i);
+                if(textView.getTag()!=null){
+                    textView.setTypeface(getFontApply(textView.getTag().toString()));
+                }else{
+                    textView.setTypeface(getFont());
+                }
+            }else if(layout.getChildAt(i) instanceof EditText){
+                EditText editText= (EditText) layout.getChildAt(i);
+                if(editText.getTag()!=null){
+                    editText.setTypeface(getFontApply(editText.getTag().toString()));
+                }else{
+                    editText.setTypeface(getFont());
+                }
+            }else if(layout.getChildAt(i) instanceof LinearLayout){
+                LinearLayout linear= (LinearLayout) layout.getChildAt(i);
+                setFontsOnLinear(linear);
+            }else if(layout.getChildAt(i) instanceof RelativeLayout){
+                RelativeLayout relative= (RelativeLayout) layout.getChildAt(i);
+                setFontsOnRelative(relative);
+            }else if(layout.getChildAt(i) instanceof ScrollView){
+                ScrollView scroll= (ScrollView) layout.getChildAt(i);
+                setFontsOnScroll(scroll);
+            }
+        }
+    }
+    public void setFontsOnScroll(ScrollView layout) {
+        for( int i = 0; i < layout.getChildCount(); i++ ) {
+            if (layout.getChildAt(i) instanceof TextView){
+                TextView textView= (TextView) layout.getChildAt(i);
+                if(textView.getTag()!=null){
+                    textView.setTypeface(getFontApply(textView.getTag().toString()));
+                }else{
+                    textView.setTypeface(getFont());
+                }
+            }else if(layout.getChildAt(i) instanceof EditText){
+                EditText editText= (EditText) layout.getChildAt(i);
+                if(editText.getTag()!=null){
+                    editText.setTypeface(getFontApply(editText.getTag().toString()));
+                }else{
+                    editText.setTypeface(getFont());
+                }
+            }else if(layout.getChildAt(i) instanceof LinearLayout){
+                LinearLayout linear= (LinearLayout) layout.getChildAt(i);
+                setFontsOnLinear(linear);
+            }else if(layout.getChildAt(i) instanceof RelativeLayout){
+                RelativeLayout relative= (RelativeLayout) layout.getChildAt(i);
+                setFontsOnRelative(relative);
+            }else if(layout.getChildAt(i) instanceof ScrollView){
+                ScrollView scroll= (ScrollView) layout.getChildAt(i);
+                setFontsOnScroll(scroll);
+            }
+        }
+
+    }
+
+    public Typeface getFontApply(String tag){
+        if(tag.indexOf("normal")!=-1){
+            return getFont();
+        }
+        if(tag.indexOf("bold")!=-1){
+            return getFontBold();
+        }
+        if(tag.indexOf("semibold")!=-1){
+            return getFontSemiBold();
+        }
+        if(tag.indexOf("semibolditalic")!=-1) {
+            return getFontSemiBoldItalic();
+        }
+        if(tag.indexOf("light")!=-1) {
+            return getFontLight();
+        }
+
+        return getFont();
+
+    }
+
 }

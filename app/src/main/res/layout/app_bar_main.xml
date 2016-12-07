@@ -15,9 +15,10 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="60dp"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            android:background="#050505"/>
+            android:background="#050505"
+            />
 
     </android.support.design.widget.AppBarLayout>
 
