@@ -84,7 +84,7 @@
                                             android:layout_width="18dp"
                                             android:layout_height="18dp"
                                             android:id="@+id/ic_fb_orange"
-                                            android:src="@drawable/fb_logo_orange"
+                                            android:src="@drawable/fb_logo_orange_disabled"
                                             android:layout_marginRight="5dp"
                                             android:clickable="true"
                                             />
@@ -92,7 +92,7 @@
                                             android:layout_width="18dp"
                                             android:layout_height="18dp"
                                             android:id="@+id/ic_tw_orange"
-                                            android:src="@drawable/tw_logo_orange"
+                                            android:src="@drawable/tw_logo_orange_disabled"
                                             android:layout_marginRight="5dp"
                                             android:clickable="true"
                                             />
@@ -100,7 +100,7 @@
                                             android:layout_width="18dp"
                                             android:layout_height="18dp"
                                             android:id="@+id/ic_ig_orange"
-                                            android:src="@drawable/ig_logo_orange"
+                                            android:src="@drawable/ig_logo_orange_disabled"
                                             android:layout_marginRight="5dp"
                                             android:clickable="true"
                                             />
@@ -256,7 +256,7 @@
                                     android:hint="Facebook"
                                     android:textColorHint="@color/ivo_gray_dark"
                                     android:layout_marginLeft="15dp"
-                                    android:id="@+id/url_social_fb"
+                                    android:id="@+id/url_social_fb_artist"
                                     android:theme="@style/EditProfileArtist"/>
                             </LinearLayout>
                             <LinearLayout
@@ -276,7 +276,7 @@
                                     android:hint="Twitter"
                                     android:textColorHint="@color/ivo_gray_dark"
                                     android:layout_marginLeft="15dp"
-                                    android:id="@+id/url_social_tw"
+                                    android:id="@+id/url_social_tw_artist"
                                     android:theme="@style/EditProfileArtist"/>
                             </LinearLayout>
                             <LinearLayout
@@ -296,7 +296,7 @@
                                     android:hint="Instagram"
                                     android:textColorHint="@color/ivo_gray_dark"
                                     android:layout_marginLeft="15dp"
-                                    android:id="@+id/url_social_ig"
+                                    android:id="@+id/url_social_ig_artist"
                                     android:theme="@style/EditProfileArtist"/>
                             </LinearLayout>
                             <LinearLayout

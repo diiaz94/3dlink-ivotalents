@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -72,6 +73,12 @@ public class ProfileIndustry extends Fragment implements View.OnClickListener {
     ImageButton ic_save_social;
     LinearLayout left_info;
     LinearLayout left_info_edit;
+    private ImageView ic_fb_blue;
+    private ImageView ic_tw_blue;
+    private ImageView ic_ig_blue;
+    private EditText url_social_fb_industry;
+    private EditText url_social_tw_industry;
+    private EditText url_social_ig_industry;
 
     public ProfileIndustry() {
         // Required empty public constructor
@@ -194,6 +201,9 @@ public class ProfileIndustry extends Fragment implements View.OnClickListener {
         left_info = (LinearLayout) view.findViewById(R.id.left_info);
         left_info_edit = (LinearLayout) view.findViewById(R.id.left_info_edit);
 
+        url_social_fb_industry = (EditText) view.findViewById(R.id.url_social_fb_industry);
+        url_social_tw_industry = (EditText) view.findViewById(R.id.url_social_tw_industry);
+        url_social_ig_industry = (EditText) view.findViewById(R.id.url_social_ig_industry);
 
         return view;
     }
@@ -289,11 +299,11 @@ public class ProfileIndustry extends Fragment implements View.OnClickListener {
             case R.id.foto_9:
                 activateFotoOver(8);
                 break;
-            case R.id.ic_fb_orange:
+            case R.id.ic_fb_blue:
                 break;
-            case R.id.ic_tw_orange:
+            case R.id.ic_tw_blue:
                 break;
-            case R.id.ic_ig_orange:
+            case R.id.ic_ig_blue:
                 break;
             case R.id.ic_edit_social:
                 editSocialMedia();
@@ -340,6 +350,10 @@ public class ProfileIndustry extends Fragment implements View.OnClickListener {
 
         final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+        ic_fb_blue.setImageDrawable(getResources().getDrawable(url_social_fb_industry.getText().toString().isEmpty()?R.drawable.fb_logo_blue_disabled:R.drawable.fb_logo_blue));
+        ic_tw_blue.setImageDrawable(getResources().getDrawable(url_social_tw_industry.getText().toString().isEmpty()?R.drawable.tw_logo_blue_disabled:R.drawable.tw_logo_blue));
+        ic_ig_blue.setImageDrawable(getResources().getDrawable(url_social_ig_industry.getText().toString().isEmpty()?R.drawable.ig_logo_blue_disabled:R.drawable.ig_logo_blue));
+
     }
 
     private void activateFotoOver(int idx) {

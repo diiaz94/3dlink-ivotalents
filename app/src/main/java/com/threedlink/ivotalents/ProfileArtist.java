@@ -81,6 +81,10 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
     LinearLayout left_info;
     LinearLayout left_info_edit;
 
+
+    EditText url_social_fb_artist;
+    EditText url_social_tw_artist;
+    EditText url_social_ig_artist;
     public ProfileArtist() {
         // Required empty public constructor
     }
@@ -219,6 +223,10 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
         left_info = (LinearLayout) view.findViewById(R.id.left_info);
         left_info_edit = (LinearLayout) view.findViewById(R.id.left_info_edit);
 
+
+        url_social_fb_artist = (EditText) view.findViewById(R.id.url_social_fb_artist);
+        url_social_tw_artist = (EditText) view.findViewById(R.id.url_social_tw_artist);
+        url_social_ig_artist = (EditText) view.findViewById(R.id.url_social_ig_artist);
         return view;
     }
 
@@ -368,6 +376,12 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
 
         final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+
+
+        ic_fb_orange.setImageDrawable(getResources().getDrawable(url_social_fb_artist.getText().toString().isEmpty()?R.drawable.fb_logo_orange_disabled:R.drawable.fb_logo_orange));
+        ic_tw_orange.setImageDrawable(getResources().getDrawable(url_social_tw_artist.getText().toString().isEmpty()?R.drawable.tw_logo_orange_disabled:R.drawable.tw_logo_orange));
+        ic_ig_orange.setImageDrawable(getResources().getDrawable(url_social_ig_artist.getText().toString().isEmpty()?R.drawable.ig_logo_orange_disabled:R.drawable.ig_logo_orange));
+
     }
 
     private void activateFotoOver(int idx) {
