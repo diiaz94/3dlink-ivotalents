@@ -32,9 +32,13 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
     private IvoTalentsApp mApp;
     private int idxLayoutActual;
     private OnFragmentInteractionListener mListener;
-    private static int LimitFilters=2;
+    private static int LimitFilters=5;
     private ImageButton nextFilter;
     private ImageButton backFilter;
+    private LinearLayout current;
+    private LinearLayout next;
+    private LinearLayout[] filtersLayouts = new LinearLayout[LimitFilters];
+    private LinearLayout layoutBuscar;
 
     public AdvancedSearch() {
         // Required empty public constructor
@@ -75,11 +79,19 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
         View view =  inflater.inflate(R.layout.fragment_advanced_search, container, false);
         RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_advanced_search);
         mApp.setFontsOnRelative(myLayout);
-        idxLayoutActual=1;
+        idxLayoutActual=0;
         nextFilter = (ImageButton) view.findViewById(R.id.nexFilter);
         nextFilter.setOnClickListener(this);
         backFilter = (ImageButton) view.findViewById(R.id.backFilter);
         backFilter.setOnClickListener(this);
+        layoutBuscar = (LinearLayout) view.findViewById(R.id.layoutBuscar);
+
+        for (int i=0;i<this.filtersLayouts.length;i++) {
+
+            filtersLayouts[i] = (LinearLayout) view.findViewById(mApp.getResourcebyname("filter_"+String.valueOf(i)));
+
+        }
+
         return view;
     }
 
@@ -123,23 +135,23 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
     }
 
     private void nextFilter(View v) {
-        if(idxLayoutActual+1<=LimitFilters){
-            LinearLayout current = (LinearLayout) v.findViewById(mApp.getResourcebyname("filter_"+String.valueOf(idxLayoutActual)));
-            LinearLayout next = (LinearLayout) v.findViewById(mApp.getResourcebyname("filter_"+String.valueOf(idxLayoutActual+1)));
-            current.setVisibility(View.GONE);
-            next.setVisibility(View.VISIBLE);
+        if(idxLayoutActual+1<LimitFilters){
+            filtersLayouts[idxLayoutActual].setVisibility(View.GONE);
+            filtersLayouts[idxLayoutActual+1].setVisibility(View.VISIBLE);
             idxLayoutActual++;
-            nextFilter.setVisibility(idxLayoutActual<LimitFilters?View.VISIBLE:View.GONE);
+            nextFilter.setVisibility(idxLayoutActual<LimitFilters-1?View.VISIBLE:View.INVISIBLE);
+            backFilter.setVisibility(idxLayoutActual>0?View.VISIBLE:View.INVISIBLE);
+            layoutBuscar.setVisibility(idxLayoutActual==LimitFilters-1?View.VISIBLE:View.GONE);
         }
     }
     private void backFilter(View v) {
-        if(idxLayoutActual-1>0){
-            LinearLayout current = (LinearLayout) v.findViewById(mApp.getResourcebyname("filter_"+String.valueOf(idxLayoutActual)));
-            LinearLayout next = (LinearLayout) v.findViewById(mApp.getResourcebyname("filter_"+String.valueOf(idxLayoutActual-1)));
-            current.setVisibility(View.GONE);
-            next.setVisibility(View.VISIBLE);
+        if(idxLayoutActual>0){
+            filtersLayouts[idxLayoutActual].setVisibility(View.GONE);
+            filtersLayouts[idxLayoutActual-1].setVisibility(View.VISIBLE);
             idxLayoutActual--;
-            backFilter.setVisibility(idxLayoutActual>1?View.VISIBLE:View.GONE);
+            nextFilter.setVisibility(idxLayoutActual<LimitFilters-1?View.VISIBLE:View.INVISIBLE);
+            backFilter.setVisibility(idxLayoutActual>0?View.VISIBLE:View.INVISIBLE);
+            layoutBuscar.setVisibility(idxLayoutActual==LimitFilters-1?View.VISIBLE:View.GONE);
         }
     }
 

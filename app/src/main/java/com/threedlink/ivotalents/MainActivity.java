@@ -45,7 +45,11 @@ import java.util.HashMap;
  * Created by diiaz94 on 26-08-2016.
  */
 public class MainActivity extends AppCompatActivity implements
-        View.OnClickListener, GoogleApiClient.OnConnectionFailedListener, NavigationView.OnNavigationItemSelectedListener,ProfileArtist.OnFragmentInteractionListener,ProfileIndustry.OnFragmentInteractionListener,AdvancedSearch.OnFragmentInteractionListener {
+        View.OnClickListener, GoogleApiClient.OnConnectionFailedListener, NavigationView.OnNavigationItemSelectedListener,
+        ProfileArtist.OnFragmentInteractionListener,
+        ProfileIndustry.OnFragmentInteractionListener,
+        AdvancedSearch.OnFragmentInteractionListener,
+        ProfileProvider.OnFragmentInteractionListener{
     DrawerLayout drawer;
     private static final String TAG = MainActivity.class.getSimpleName();
     // Session Manager Class

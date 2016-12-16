@@ -29,12 +29,12 @@ import java.lang.reflect.Field;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ProfileIndustry.OnFragmentInteractionListener} interface
+ * {@link ProfileProvider.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ProfileIndustry#newInstance} factory method to
+ * Use the {@link ProfileProvider#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProfileIndustry extends Fragment implements View.OnClickListener {
+public class ProfileProvider extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String NAME = "name";
@@ -76,11 +76,11 @@ public class ProfileIndustry extends Fragment implements View.OnClickListener {
     private ImageView ic_fb_blue;
     private ImageView ic_tw_blue;
     private ImageView ic_ig_blue;
-    private EditText url_social_fb_industry;
-    private EditText url_social_tw_industry;
-    private EditText url_social_ig_industry;
+    private EditText url_social_fb_provider;
+    private EditText url_social_tw_provider;
+    private EditText url_social_ig_provider;
 
-    public ProfileIndustry() {
+    public ProfileProvider() {
         // Required empty public constructor
     }
 
@@ -90,11 +90,11 @@ public class ProfileIndustry extends Fragment implements View.OnClickListener {
      *
      * @param name Parameter 1.
      * @param email Parameter 2.
-     * @return A new instance of fragment ProfileIndustry.
+     * @return A new instance of fragment ProfileProvider.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProfileIndustry newInstance(String name, String email) {
-        ProfileIndustry fragment = new ProfileIndustry();
+    public static ProfileProvider newInstance(String name, String email) {
+        ProfileProvider fragment = new ProfileProvider();
         Bundle args = new Bundle();
         args.putString(NAME, name);
         args.putString(EMAIL, email);
@@ -119,7 +119,7 @@ public class ProfileIndustry extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view= inflater.inflate(R.layout.fragment_profile_industry, container, false);
+        View view= inflater.inflate(R.layout.fragment_profile_provider, container, false);
         logout_btn = (Button)view.findViewById(R.id.logout_btn);
         logout_btn.setOnClickListener(this);
         lblName = (TextView) view.findViewById(R.id.lblName);
@@ -143,7 +143,7 @@ public class ProfileIndustry extends Fragment implements View.OnClickListener {
         tabVideos.setOnClickListener(this);
         tabTextVideos = (TextView)view.findViewById(R.id.tabTextVideos);
 
-        
+
         for (int i=0;i<this.fotoLayouts.length;i++) {
 
             fotoLayouts[i] = (LinearLayout) view.findViewById(mApp.getResourcebyname("foto_"+String.valueOf(i+1)));
@@ -189,7 +189,7 @@ public class ProfileIndustry extends Fragment implements View.OnClickListener {
         ic_ig_blue = (ImageView) view.findViewById(R.id.ic_ig_blue);
         ic_ig_blue.setOnClickListener(this);
 
-        RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_profile_industry);
+        RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_profile_provider);
         mApp.setFontsOnRelative(myLayout);
 
         ic_edit_social = (ImageButton)view.findViewById(R.id.ic_edit_social);
@@ -207,9 +207,9 @@ public class ProfileIndustry extends Fragment implements View.OnClickListener {
         left_info = (LinearLayout) view.findViewById(R.id.left_info);
         left_info_edit = (LinearLayout) view.findViewById(R.id.left_info_edit);
 
-        url_social_fb_industry = (EditText) view.findViewById(R.id.url_social_fb_industry);
-        url_social_tw_industry = (EditText) view.findViewById(R.id.url_social_tw_industry);
-        url_social_ig_industry = (EditText) view.findViewById(R.id.url_social_ig_industry);
+        url_social_fb_provider = (EditText) view.findViewById(R.id.url_social_fb_provider);
+        url_social_tw_provider = (EditText) view.findViewById(R.id.url_social_tw_provider);
+        url_social_ig_provider = (EditText) view.findViewById(R.id.url_social_ig_provider);
 
         return view;
     }
@@ -356,9 +356,9 @@ public class ProfileIndustry extends Fragment implements View.OnClickListener {
 
         final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
-        ic_fb_blue.setImageDrawable(getResources().getDrawable(url_social_fb_industry.getText().toString().isEmpty()?R.drawable.fb_logo_blue_disabled:R.drawable.fb_logo_blue));
-        ic_tw_blue.setImageDrawable(getResources().getDrawable(url_social_tw_industry.getText().toString().isEmpty()?R.drawable.tw_logo_blue_disabled:R.drawable.tw_logo_blue));
-        ic_ig_blue.setImageDrawable(getResources().getDrawable(url_social_ig_industry.getText().toString().isEmpty()?R.drawable.ig_logo_blue_disabled:R.drawable.ig_logo_blue));
+        ic_fb_blue.setImageDrawable(getResources().getDrawable(url_social_fb_provider.getText().toString().isEmpty()?R.drawable.fb_logo_blue_disabled:R.drawable.fb_logo_blue));
+        ic_tw_blue.setImageDrawable(getResources().getDrawable(url_social_tw_provider.getText().toString().isEmpty()?R.drawable.tw_logo_blue_disabled:R.drawable.tw_logo_blue));
+        ic_ig_blue.setImageDrawable(getResources().getDrawable(url_social_ig_provider.getText().toString().isEmpty()?R.drawable.ig_logo_blue_disabled:R.drawable.ig_logo_blue));
 
     }
 

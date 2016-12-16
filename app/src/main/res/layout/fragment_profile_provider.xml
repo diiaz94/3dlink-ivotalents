@@ -1,0 +1,1454 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.threedlink.ivotalents.ProfileIndustry"
+    android:id="@+id/fragment_profile_provider">
+
+    <ScrollView
+        android:id="@+id/parentScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/black">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:background="@drawable/concert">
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:background="@color/ivo_pink">
+                </FrameLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+                    <LinearLayout
+                        android:id="@+id/datosPrincipales"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2"
+                        android:visibility="visible">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingTop="40dp"
+                            android:paddingLeft="10dp"
+                            android:layout_weight="0.9">
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:id="@+id/left_info"
+                                android:visibility="visible"
+                                >
+                                <TextView android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="SÍGUENOS"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/white"
+                                    android:id="@+id/follow_to_provider"
+                                    android:layout_gravity="center"/>
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:layout_gravity="center">
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal"
+                                            android:layout_marginTop="5dp"
+                                            android:layout_gravity="center">
+                                            <ImageView
+                                                android:layout_width="18dp"
+                                                android:layout_height="18dp"
+                                                android:id="@+id/ic_fb_blue"
+                                                android:src="@drawable/fb_logo_blue_disabled"
+                                                android:layout_marginRight="5dp"
+                                                android:clickable="true"
+                                                />
+                                            <ImageView
+                                                android:layout_width="18dp"
+                                                android:layout_height="18dp"
+                                                android:id="@+id/ic_tw_blue"
+                                                android:src="@drawable/tw_logo_blue_disabled"
+                                                android:layout_marginRight="5dp"
+                                                android:clickable="true"
+                                                />
+                                            <ImageView
+                                                android:layout_width="18dp"
+                                                android:layout_height="18dp"
+                                                android:id="@+id/ic_ig_blue"
+                                                android:src="@drawable/ig_logo_blue_disabled"
+                                                android:layout_marginRight="5dp"
+                                                android:clickable="true"
+                                                />
+                                        </LinearLayout>
+                                        <TextView android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Web Oficial"
+                                            android:textSize="10sp"
+                                            android:textColor="@color/ivo_pink"
+                                            android:id="@+id/official_web"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="10dp"
+                                            android:textStyle="italic"
+                                            android:tag="semibolditalic"/>
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="end">
+                                        <ImageButton
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"
+                                            android:layout_gravity="end"
+                                            android:background="@drawable/pencil_edit"
+                                            android:id="@+id/ic_edit_social"
+                                            />
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_marginTop="12dp">
+                                    <ImageView
+                                        android:layout_width="12dp"
+                                        android:layout_height="12dp"
+                                        android:id="@+id/ic_address"
+                                        android:src="@drawable/ic_located_at"
+                                        android:layout_marginRight="2dp"
+                                        />
+                                    <TextView android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Los Angeles, Estados Unidos"
+                                        android:textSize="10sp"
+                                        android:textColor="@color/ivo_gray_dark"
+                                        android:id="@+id/address_provider"
+                                        android:textStyle="bold"
+                                        />
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_marginTop="2dp">
+                                    <ImageView
+                                        android:layout_width="12dp"
+                                        android:layout_height="12dp"
+                                        android:src="@drawable/ic_register_at"
+                                        android:layout_marginRight="2dp"
+                                        android:textStyle="bold"
+                                        />
+                                    <TextView android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Registrado septiembre 2016"
+                                        android:textSize="10sp"
+                                        android:textColor="@color/ivo_gray_dark"
+                                        android:id="@+id/ic_register_at"
+                                        android:textStyle="bold"
+                                        />
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_marginTop="25dp"
+                                    android:weightSum="1">
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:layout_weight="0.1"/>
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:layout_weight="0.8"
+                                        android:layout_centerHorizontal="true"
+                                        android:gravity="center_horizontal">
+                                        <Button
+                                            android:layout_width="fill_parent"
+                                            android:layout_height="30dp"
+                                            android:text="Seguir"
+                                            android:textColor="@color/ivo_green"
+                                            android:textSize="10sp"
+                                            android:id="@+id/button"
+                                            android:background="@drawable/border_green_shape"
+
+                                            android:layout_weight="0.9"
+                                            android:layout_centerHorizontal="true"
+
+                                            />
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center">
+                                    <ImageView
+                                        android:layout_width="14dp"
+                                        android:layout_height="14dp"
+                                        android:id="@+id/envelop_blue"
+                                        android:src="@drawable/envelop_white"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_gravity="center"
+                                        />
+                                    <TextView android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Enviar Mensaje"
+                                        android:textSize="10sp"
+                                        android:textColor="@color/white"
+                                        android:id="@+id/sent_message"
+                                        android:layout_gravity="center"
+                                        android:tag="semibolditalic"/>
+                                    />
+                                </LinearLayout>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/left_info_edit"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/fb_logo_blue"
+                                        android:layout_gravity="center"/>
+                                    <EditText
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:textSize="14sp"
+                                        android:hint="Facebook"
+                                        android:textColorHint="@color/ivo_gray_light"
+                                        android:layout_marginLeft="15dp"
+                                        android:id="@+id/url_social_fb_provider"
+                                        android:theme="@style/EditProfileIndustry"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/tw_logo_blue"
+                                        android:layout_gravity="center"/>
+                                    <EditText
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:textSize="14sp"
+                                        android:hint="Twitter"
+                                        android:textColorHint="@color/ivo_gray_light"
+                                        android:layout_marginLeft="15dp"
+                                        android:id="@+id/url_social_tw_provider"
+                                        android:theme="@style/EditProfileIndustry"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/ig_logo_blue"
+                                        android:layout_gravity="center"/>
+                                    <EditText
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:textSize="14sp"
+                                        android:hint="Instagram"
+                                        android:textColorHint="@color/ivo_gray_light"
+                                        android:layout_marginLeft="15dp"
+                                        android:id="@+id/url_social_ig_provider"
+                                        android:theme="@style/EditProfileIndustry"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+                                    <TextView
+                                        android:layout_width="30dp"
+                                        android:layout_height="25dp"
+                                        android:text="Web Oficial"
+                                        android:textStyle="italic"
+                                        android:tag="semibolditalic"
+                                        android:textSize="10sp"
+                                        android:textColor="@color/ivo_blue"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"/>
+                                    <EditText
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/black"
+                                        android:textSize="14sp"
+                                        android:hint="http://"
+                                        android:textColorHint="@color/ivo_gray_light"
+                                        android:layout_marginLeft="7dp"
+                                        android:theme="@style/EditProfileIndustry"/>
+                                </LinearLayout>
+
+                                <ImageButton
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:background="@drawable/save_provider"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="10dp"
+                                    android:id="@+id/ic_save_social"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingTop="35dp"
+                            android:paddingLeft="5dp"
+                            android:layout_weight="1.1">
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:weightSum="1">
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="20dp"
+                                    android:layout_weight="0.20"
+                                    android:background="@drawable/bg_bio_blue">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:text="BIO"
+                                        android:textSize="16sp"
+                                        android:textColor="@color/white"
+                                        android:tag="bold"
+                                        android:gravity="center|center"/>
+
+                                </LinearLayout>
+                                <ImageButton
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_gravity="end"
+                                    android:background="@drawable/pencil_edit"
+                                    android:id="@+id/ic_edit_bio"
+                                    android:layout_marginLeft="10dp"/>
+                                <ImageButton
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="end"
+                                    android:background="@drawable/save_provider"
+                                    android:id="@+id/ic_save_bio"
+                                    android:layout_marginLeft="10dp"
+                                    android:visibility="gone"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginLeft="8dp"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="@string/dummie_bio"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/white"
+                                    android:visibility="visible"
+                                    android:id="@+id/text_bio"
+                                    android:tag="normal"
+
+                                    />
+                                <EditText
+                                    android:id="@+id/edit_bio"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/white"
+                                    android:visibility="gone"
+                                    android:theme="@style/EditProfileIndustry"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/intereses"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:visibility="gone">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:background="@drawable/bg_bio_blue"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="INTERESES"
+                                android:textSize="16sp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:gravity="center|center"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <ImageView
+                                    android:layout_width="35dp"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_music"
+
+                                    />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Música"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/white"
+                                    android:layout_marginTop="3dp"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp">
+                                <ImageView
+                                    android:layout_width="35dp"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_conciertos"
+                                    android:layout_gravity="center"
+                                    />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Conciertos y Eventos"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/white"
+                                    android:layout_marginTop="3dp"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_gravity="center">
+                                <ImageView
+                                    android:layout_width="35dp"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_industrias"
+                                    android:layout_gravity="center"
+                                    />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Industria Musical"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/white"
+                                    android:layout_marginTop="3dp"/>
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/ivo_line_gray">
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:id="@+id/tabsSection"
+                        android:layout_width="match_parent"
+                        android:layout_height="340dp"
+                        android:orientation="vertical"
+                        android:layout_marginTop="20dp"
+                        android:visibility="gone">
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="35dp"
+
+                            android:orientation="horizontal"
+                            android:weightSum="1"
+                            >
+                            <LinearLayout
+                                android:id="@+id/tabFotos"
+                                android:clickable="true"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/border_blue_shape_solid"
+                                android:orientation="horizontal"
+                                android:layout_weight="0.25"
+                                android:gravity="center"
+                                android:layout_marginLeft="-2.5px"
+                                >
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_gravity="center|center">
+                                    <TextView
+                                        android:id="@+id/tabTextFotos"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="FOTOS"
+                                        android:textColor="@color/white"
+                                        android:textSize="12sp"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/tabAudios"
+                                android:clickable="true"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/border_blue_shape"
+                                android:orientation="horizontal"
+                                android:layout_weight="0.25"
+                                android:layout_marginLeft="-2.5px"
+                                android:gravity="center">
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_gravity="center|center">
+                                    <TextView
+                                        android:id="@+id/tabTextAudios"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="AUDIOS"
+                                        android:textColor="@color/ivo_blue"
+                                        android:textSize="12sp"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/tabVideos"
+                                android:clickable="true"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/border_blue_shape"
+                                android:orientation="horizontal"
+                                android:layout_weight="0.25"
+                                android:gravity="center"
+                                android:layout_marginLeft="-2.5px">
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_gravity="center|center">
+                                    <TextView
+                                        android:id="@+id/tabTextVideos"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="VIDEOS"
+                                        android:textColor="@color/ivo_blue"
+                                        android:textSize="12sp"/>
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <ScrollView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="15dp"
+                                android:fillViewport="false"
+                                android:id="@+id/childScrollView">
+
+                                <LinearLayout
+                                    android:id="@+id/tab_content"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+                                    <LinearLayout android:id="@+id/tabContentFotos"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="vertical"
+                                        android:visibility="gone">
+
+                                        <LinearLayout
+                                            android:id="@+id/content_tab_fotos"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="230dp"
+                                            android:orientation="vertical"
+                                            android:weightSum="3">
+
+                                            <LinearLayout
+                                                android:layout_width="fill_parent"
+                                                android:layout_height="0dp"
+                                                android:orientation="horizontal"
+                                                android:weightSum="3"
+                                                android:layout_weight="1">
+                                                <LinearLayout
+                                                    android:id="@+id/foto_1"
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_weight="1"
+                                                    android:orientation="vertical"
+                                                    android:background="@color/ivo_gray_grid"
+                                                    android:layout_marginRight="0.5dp"
+                                                    android:layout_marginBottom="0.5dp"
+                                                    android:clickable="true"
+                                                    android:gravity="center">
+                                                    <ImageView
+                                                        android:id="@+id/foto_content1"
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:src="@drawable/ic_foto_over"
+                                                        android:visibility="gone"
+                                                        />
+                                                </LinearLayout>
+                                                <LinearLayout
+                                                    android:id="@+id/foto_2"
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_weight="1"
+                                                    android:orientation="vertical"
+                                                    android:background="@color/ivo_gray_grid"
+                                                    android:layout_marginLeft="0.5dp"
+                                                    android:layout_marginRight="0.5dp"
+                                                    android:layout_marginBottom="0.5dp"
+                                                    android:clickable="true"
+                                                    android:gravity="center">
+                                                    <ImageView
+                                                        android:id="@+id/foto_content2"
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:src="@drawable/ic_foto_over"
+                                                        android:visibility="gone"
+                                                        />
+
+                                                </LinearLayout>
+                                                <LinearLayout
+                                                    android:id="@+id/foto_3"
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_weight="1"
+                                                    android:orientation="vertical"
+                                                    android:background="@color/ivo_gray_grid"
+                                                    android:layout_marginLeft="0.5dp"
+                                                    android:layout_marginBottom="0.5dp"
+                                                    android:clickable="true"
+                                                    android:gravity="center">
+                                                    <ImageView
+                                                        android:id="@+id/foto_content3"
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:src="@drawable/ic_foto_over"
+                                                        android:visibility="gone"
+                                                        />>
+                                                </LinearLayout>
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:layout_width="fill_parent"
+                                                android:layout_height="0dp"
+                                                android:orientation="horizontal"
+                                                android:weightSum="3"
+                                                android:layout_weight="1">
+                                                <LinearLayout
+                                                    android:id="@+id/foto_4"
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_weight="1"
+                                                    android:orientation="vertical"
+                                                    android:background="@color/ivo_gray_grid"
+                                                    android:layout_marginRight="0.5dp"
+                                                    android:layout_marginBottom="0.5dp"
+                                                    android:layout_marginTop="0.5dp"
+                                                    android:clickable="true"
+                                                    android:gravity="center">
+                                                    <ImageView
+                                                        android:id="@+id/foto_content4"
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:src="@drawable/ic_foto_over"
+                                                        android:visibility="gone"
+                                                        />>
+                                                </LinearLayout>
+                                                <LinearLayout
+                                                    android:id="@+id/foto_5"
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_weight="1"
+                                                    android:orientation="vertical"
+                                                    android:background="@color/ivo_gray_grid"
+                                                    android:layout_marginLeft="0.5dp"
+                                                    android:layout_marginRight="0.5dp"
+                                                    android:layout_marginBottom="0.5dp"
+                                                    android:layout_marginTop="0.5dp"
+                                                    android:clickable="true"
+                                                    android:gravity="center">
+                                                    <ImageView
+                                                        android:id="@+id/foto_content5"
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:src="@drawable/ic_foto_over"
+                                                        android:visibility="gone"
+                                                        />>
+                                                </LinearLayout>
+                                                <LinearLayout
+                                                    android:id="@+id/foto_6"
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_weight="1"
+                                                    android:orientation="vertical"
+                                                    android:background="@color/ivo_gray_grid"
+                                                    android:layout_marginLeft="0.5dp"
+                                                    android:layout_marginBottom="0.5dp"
+                                                    android:layout_marginTop="0.5dp"
+                                                    android:clickable="true"
+                                                    android:gravity="center">
+                                                    <ImageView
+                                                        android:id="@+id/foto_content6"
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:src="@drawable/ic_foto_over"
+                                                        android:visibility="gone"
+                                                        />>
+                                                </LinearLayout>
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:layout_width="fill_parent"
+                                                android:layout_height="0dp"
+                                                android:orientation="horizontal"
+                                                android:weightSum="3"
+                                                android:layout_weight="1">
+                                                <LinearLayout
+                                                    android:id="@+id/foto_7"
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_weight="1"
+                                                    android:orientation="vertical"
+                                                    android:background="@color/ivo_gray_grid"
+                                                    android:layout_marginRight="0.5dp"
+                                                    android:layout_marginTop="0.5dp"
+                                                    android:clickable="true"
+                                                    android:gravity="center">
+                                                    <ImageView
+                                                        android:id="@+id/foto_content7"
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:src="@drawable/ic_foto_over"
+                                                        android:visibility="gone"
+                                                        />
+                                                </LinearLayout>
+                                                <LinearLayout
+                                                    android:id="@+id/foto_8"
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_weight="1"
+                                                    android:orientation="vertical"
+                                                    android:background="@color/ivo_gray_grid"
+                                                    android:layout_marginLeft="0.5dp"
+                                                    android:layout_marginRight="0.5dp"
+                                                    android:layout_marginTop="0.5dp"
+                                                    android:clickable="true"
+                                                    android:gravity="center">
+                                                    <ImageView
+                                                        android:id="@+id/foto_content8"
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:src="@drawable/ic_foto_over"
+                                                        android:visibility="gone"
+                                                        />
+                                                </LinearLayout>
+                                                <LinearLayout
+                                                    android:id="@+id/foto_9"
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_weight="1"
+                                                    android:orientation="vertical"
+                                                    android:background="@color/ivo_gray_grid"
+                                                    android:layout_marginLeft="0.5dp"
+                                                    android:layout_marginTop="0.5dp"
+                                                    android:clickable="true"
+                                                    android:gravity="center">
+                                                    <ImageView
+                                                        android:id="@+id/foto_content9"
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:src="@drawable/ic_foto_over"
+                                                        android:visibility="gone"
+                                                        />
+                                                </LinearLayout>
+                                            </LinearLayout>
+
+
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="50dp"
+                                            android:orientation="vertical"
+                                            android:gravity="center"
+                                            android:layout_marginTop="10dp">
+                                            <LinearLayout
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content">
+                                                <ImageView
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:src="@drawable/ic_subir"/>
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="SUBIR"
+                                                    android:textSize="15sp"
+                                                    android:textColor="@color/white"
+                                                    android:layout_gravity="bottom"
+                                                    android:layout_marginLeft="1dp"/>
+                                                <LinearLayout
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="center_vertical"
+                                                    android:layout_marginLeft="10dp">
+                                                    <ImageView
+                                                        android:layout_width="15dp"
+                                                        android:layout_height="15dp"
+                                                        android:src="@drawable/simple_point_white"
+                                                        android:layout_marginRight="5dp"
+                                                        />
+                                                    <ImageView
+                                                        android:layout_width="15dp"
+                                                        android:layout_height="15dp"
+                                                        android:src="@drawable/simple_point_white"
+                                                        android:layout_marginRight="5dp"
+                                                        />
+                                                    <ImageView
+                                                        android:layout_width="15dp"
+                                                        android:layout_height="15dp"
+                                                        android:src="@drawable/selected_point_blue"
+                                                        android:layout_marginRight="5dp"
+                                                        />
+                                                    <ImageView
+                                                        android:layout_width="15dp"
+                                                        android:layout_height="15dp"
+                                                        android:src="@drawable/simple_point_white"
+                                                        android:layout_marginRight="5dp"
+                                                        />
+
+                                                </LinearLayout>
+                                            </LinearLayout>
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout android:id="@+id/tabContentAudios"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="vertical"
+                                        android:visibility="gone">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:background="@color/ivo_gray_grid"
+                                            android:orientation="vertical">
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:weightSum="1"
+                                                android:orientation="horizontal">
+                                                <LinearLayout
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@color/ivo_green"
+                                                    android:layout_weight="0.75"/>
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent">
+                                                <ImageView
+                                                    android:layout_width="30dp"
+                                                    android:layout_height="30dp"
+                                                    android:src="@drawable/btn_play_blue"
+                                                    android:layout_gravity="center_vertical"
+                                                    android:layout_marginLeft="10dp"/>
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Nombre del audio"
+                                                    android:textColor="@color/ivo_gray_dark"
+                                                    android:layout_gravity="center_vertical"
+                                                    android:layout_marginLeft="15dp"
+                                                    />
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:gravity="end|center">
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="00:00"
+                                                        android:textColor="@color/ivo_gray_dark"
+                                                        android:layout_marginRight="15dp"
+                                                        android:gravity="end|right"
+                                                        />
+                                                </LinearLayout>
+
+
+                                            </LinearLayout>
+
+
+
+
+
+
+                                        </RelativeLayout>
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:background="@color/ivo_gray_audio_dark"
+                                            android:orientation="vertical">
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:weightSum="1"
+                                                android:orientation="horizontal">
+                                                <LinearLayout
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@color/ivo_green"
+                                                    android:layout_weight="0"/>
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent">
+                                                <ImageView
+                                                    android:layout_width="30dp"
+                                                    android:layout_height="30dp"
+                                                    android:src="@drawable/btn_play_blue"
+                                                    android:layout_gravity="center_vertical"
+                                                    android:layout_marginLeft="10dp"/>
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Nombre del audio"
+                                                    android:textColor="@color/ivo_gray_dark"
+                                                    android:layout_gravity="center_vertical"
+                                                    android:layout_marginLeft="15dp"
+                                                    />
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:gravity="end|center">
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="00:00"
+                                                        android:textColor="@color/ivo_gray_dark"
+                                                        android:layout_marginRight="15dp"
+                                                        android:gravity="end|right"
+                                                        />
+                                                </LinearLayout>
+
+
+
+                                            </LinearLayout>
+
+
+
+
+
+
+                                        </RelativeLayout>
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:background="@color/ivo_gray_grid"
+                                            android:orientation="vertical">
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:weightSum="1"
+                                                android:orientation="horizontal">
+                                                <LinearLayout
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@color/ivo_green"
+                                                    android:layout_weight="0"/>
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent">
+                                                <ImageView
+                                                    android:layout_width="30dp"
+                                                    android:layout_height="30dp"
+                                                    android:src="@drawable/btn_play_blue"
+                                                    android:layout_gravity="center_vertical"
+                                                    android:layout_marginLeft="10dp"/>
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Nombre del audio"
+                                                    android:textColor="@color/ivo_gray_dark"
+                                                    android:layout_gravity="center_vertical"
+                                                    android:layout_marginLeft="15dp"
+                                                    />
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:gravity="end|center">
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="00:00"
+                                                        android:textColor="@color/ivo_gray_dark"
+                                                        android:layout_marginRight="15dp"
+                                                        android:gravity="end|right"
+                                                        />
+                                                </LinearLayout>
+
+
+                                            </LinearLayout>
+
+
+
+
+
+
+                                        </RelativeLayout>
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:background="@color/ivo_gray_audio_dark"
+                                            android:orientation="vertical">
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:weightSum="1"
+                                                android:orientation="horizontal">
+                                                <LinearLayout
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@color/ivo_green"
+                                                    android:layout_weight="0"/>
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent">
+                                                <ImageView
+                                                    android:layout_width="30dp"
+                                                    android:layout_height="30dp"
+                                                    android:src="@drawable/btn_play_blue"
+                                                    android:layout_gravity="center_vertical"
+                                                    android:layout_marginLeft="10dp"/>
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Nombre del audio"
+                                                    android:textColor="@color/ivo_gray_dark"
+                                                    android:layout_gravity="center_vertical"
+                                                    android:layout_marginLeft="15dp"
+                                                    />
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:gravity="end|center">
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="00:00"
+                                                        android:textColor="@color/ivo_gray_dark"
+                                                        android:layout_marginRight="15dp"
+                                                        android:gravity="end|right"
+                                                        />
+                                                </LinearLayout>
+
+
+                                            </LinearLayout>
+
+
+
+
+
+
+                                        </RelativeLayout>
+
+
+                                    </LinearLayout>
+
+                                    <LinearLayout android:id="@+id/tabContentVideos"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="vertical"
+                                        android:visibility="gone">
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="VIDEOS"
+                                            android:textColor="@color/white"
+                                            />
+
+                                    </LinearLayout>
+
+
+
+
+                                </LinearLayout>
+                            </ScrollView>
+                        </FrameLayout>
+                    </LinearLayout>
+
+
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="25dp"
+                        android:background="@color/ivo_line_gray">
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="200dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="200dp"
+                            android:orientation="horizontal"
+                            android:layout_weight="1.1"
+                            android:weightSum="2"
+                            android:gravity="end">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.7"
+                                android:orientation="vertical"
+                                android:layout_marginRight="5dp">
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="PAÍS"
+                                        android:textSize="12sp"
+                                        android:textColor="@color/white"
+                                        android:layout_marginTop="3dp"/>
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Venezuela "
+                                            android:textStyle="italic"
+                                            android:textSize="11sp"
+                                            android:textColor="@color/ivo_gray_dark"
+                                            android:layout_marginTop="5dp"/>
+                                        <ImageView
+                                            android:layout_width="30dp"
+                                            android:layout_height="15dp"
+                                            android:src="@drawable/flag_vnzla"
+                                            android:layout_gravity="center"/>
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_marginTop="4dp">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="DIRECCIÓN"
+                                        android:textSize="12sp"
+                                        android:textColor="@color/white"
+                                        android:layout_marginTop="3dp"/>
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="@string/provider_address_dummie"
+                                            android:textStyle="italic"
+                                            android:textSize="11sp"
+                                            android:textColor="@color/ivo_gray_dark"
+                                            android:layout_marginTop="5dp"/>
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_marginTop="4dp">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="TELÉFONO"
+                                        android:textSize="12sp"
+                                        android:textColor="@color/white"
+                                        android:layout_marginTop="3dp"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="00000000000"
+                                        android:textStyle="italic"
+                                        android:textSize="11sp"
+                                        android:textColor="@color/ivo_gray_dark"
+                                        android:layout_marginTop="2dp"/>
+
+                                </LinearLayout>
+
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center">
+                            <TextView
+                                android:id="@+id/title_castings_provider"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="22sp"
+                                android:textStyle="bold"
+                                android:text="CASTINGS DE MUSIC RECORDS"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <!-- Name Label -->
+                <TextView
+                    android:id="@+id/lblName"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:layout_marginTop="40dip"
+                    android:layout_marginBottom="10dip"
+                    android:visibility="gone"/>
+
+                <!-- Email Label -->
+                <TextView
+                    android:id="@+id/lblEmail"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="70dip"
+                    android:layout_marginBottom="10dip"
+                    android:visibility="gone"/>
+                <!-- Logout button Label -->
+                <Button
+                    android:id="@+id/logout_btn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/logout"
+                    android:visibility="gone"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="200dp"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="0.9">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/provider_photo"
+                        android:src="@drawable/provider_photo"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:orientation="vertical"
+                    android:layout_weight="1.1"
+                    android:layout_gravity="center"
+                    android:padding="10dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PRODUCTORA"
+                        android:textSize="10sp"
+                        android:textColor="@color/ivo_blue"
+                        android:id="@+id/talent_name"
+                        android:background="@color/white"
+                        android:padding="2dp"
+                        />
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Music Records"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="#ffffff"
+                        android:id="@+id/provider_name"
+                        android:tag="bold"/>
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Producción de Eventos"
+                        android:textStyle="normal"
+                        android:textSize="12sp"
+                        android:textColor="#ffffff"
+                        android:id="@+id/provider_talent"
+                        android:tag="normal"/>
+                    <LinearLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="8pt"
+                            android:layout_height="8pt"
+                            android:src="@drawable/corazon"
+                            android:layout_gravity="top|left" />
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="500 "
+                            android:textStyle="normal|bold"
+                            android:textSize="12sp"
+                            android:textColor="#ffffff"
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/provider_count_fans"
+                            android:tag="bold"/>
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="fans"
+                            android:textStyle="italic|bold"
+                            android:textSize="12sp"
+                            android:textColor="#ffffff"
+                            android:id="@+id/text_fans"
+                            android:tag="semibolditalic"/>
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp">
+                        <ImageView
+                            android:layout_width="8pt"
+                            android:layout_height="8pt"
+                            android:src="@drawable/fill_star"
+                            android:layout_gravity="top|left"
+                            android:layout_marginRight="1dp"/>
+                        <ImageView
+                            android:layout_width="8pt"
+                            android:layout_height="8pt"
+                            android:src="@drawable/fill_star"
+                            android:layout_gravity="top|left"
+                            android:layout_marginRight="1dp"/>
+                        <ImageView
+                            android:layout_width="8pt"
+                            android:layout_height="8pt"
+                            android:src="@drawable/fill_star"
+                            android:layout_gravity="top|left"
+                            android:layout_marginRight="1dp"/>
+                        <ImageView
+                            android:layout_width="8pt"
+                            android:layout_height="8pt"
+                            android:src="@drawable/fill_star"
+                            android:layout_gravity="top|left"
+                            android:layout_marginRight="1dp"/>
+                        <ImageView
+                            android:layout_width="8pt"
+                            android:layout_height="8pt"
+                            android:src="@drawable/fill_star"
+                            android:layout_gravity="top|left"
+                            android:layout_marginRight="1dp"/>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
