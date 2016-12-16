@@ -45,7 +45,7 @@ import java.util.HashMap;
  * Created by diiaz94 on 26-08-2016.
  */
 public class MainActivity extends AppCompatActivity implements
-        View.OnClickListener, GoogleApiClient.OnConnectionFailedListener, NavigationView.OnNavigationItemSelectedListener,ProfileArtist.OnFragmentInteractionListener,ProfileIndustry.OnFragmentInteractionListener {
+        View.OnClickListener, GoogleApiClient.OnConnectionFailedListener, NavigationView.OnNavigationItemSelectedListener,ProfileArtist.OnFragmentInteractionListener,ProfileIndustry.OnFragmentInteractionListener,AdvancedSearch.OnFragmentInteractionListener {
     DrawerLayout drawer;
     private static final String TAG = MainActivity.class.getSimpleName();
     // Session Manager Class
@@ -146,7 +146,19 @@ public class MainActivity extends AppCompatActivity implements
         text_providers.setTypeface(mApp.getFontLight());
         text_search.setTypeface(mApp.getFontLight());
 
+        text_search.setOnClickListener(new View.OnClickListener() {
 
+            public void onClick(View popupView) {
+                Fragment fragment = null;
+                fragment = AdvancedSearch.newInstance("param1","param2");
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
+                if (drawer.isDrawerOpen(Gravity.RIGHT)) {
+                    drawer.closeDrawer(Gravity.RIGHT);
+                } else {
+                    drawer.openDrawer(Gravity.RIGHT);
+                }
+            }
+        });
 
 
     }

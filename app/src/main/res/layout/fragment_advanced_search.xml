@@ -1,16 +1,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_profile_industry"
+    android:id="@+id/fragment_advanced_search"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/ivo_green"
-    tools:context="com.threedlink.ivotalents.ProfileIndustry">
+    tools:context="com.threedlink.ivotalents.AdvancedSearch">
 
     <ScrollView
         android:id="@+id/parentScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="false">
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,11 +46,13 @@
                 android:background="@color/ivo_gray_grid"></FrameLayout>
 
             <LinearLayout
+                android:id="@+id/filter_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:layout_marginLeft="45dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -59,20 +61,566 @@
                     android:textColor="@color/black"
                     android:tag="bold"
                     android:textStyle="bold"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Estilista"
+                        android:tag="normal"
+                        android:textColor="@color/black"
+                        style="@android:style/Widget.DeviceDefault.CompoundButton.CheckBox"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Medios de Comunicación"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Eventos"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Maquillista"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Fotógrafo"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Diseñador"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Estilista de cabello"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Protocolo"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Estética y Belleza"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Otros proveedores"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/filter_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="45dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="¿Buscas un talento?"
+                    android:textColor="@color/black"
+                    android:tag="bold"
+                    android:textStyle="bold"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Músico"
+                        android:tag="normal"
+                        android:textColor="@color/black"
+                        style="@android:style/Widget.DeviceDefault.CompoundButton.CheckBox"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cantante"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Actor"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Modelo"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bailarín"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Fotógrafo"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Presentador"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Otros talentos"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Requerimientos especiales"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/black"
+                    android:tag="bold"
+                    android:textStyle="bold"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Con agencia"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Con pasaporte"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Con visa"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Disponbilidad para viajar"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/filter_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <CheckBox
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center">
 
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textColor="@color/black" />
+                        <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Requerimientos para modelo"
+                        android:textColor="@color/black"
+                        android:tag="bold"
+                        android:textStyle="bold"/>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp">
+
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:tag="normal"
+                            android:text="Tatuajes:"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:gravity="center"
+                            />
+
+                        <RadioGroup
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Si"
+                                android:id="@+id/tatuajesSi"
+                                android:textColor="@color/black"/>
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="No"
+                                android:id="@+id/tatuajesNo"
+                                android:textColor="@color/black"/>
+                        </RadioGroup>
                     </LinearLayout>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="Etnia"
+                            android:paddingTop="10dp"
+                            android:paddingLeft="10dp"
+                            android:textColor="@color/black"
+                            android:layout_gravity="center"
+                            android:tag="normal"
+                            android:background="@drawable/select_bg_search"
+                            android:layout_marginTop="10dp">
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="Color de ojos"
+                            android:paddingTop="10dp"
+                            android:paddingLeft="10dp"
+                            android:textColor="@color/black"
+                            android:layout_gravity="center"
+                            android:tag="normal"
+                            android:background="@drawable/select_bg_search"
+                            android:layout_marginTop="10dp">
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="Color de cabello"
+                            android:paddingTop="10dp"
+                            android:paddingLeft="10dp"
+                            android:textColor="@color/black"
+                            android:layout_gravity="center"
+                            android:tag="normal"
+                            android:background="@drawable/select_bg_search"
+                            android:layout_marginTop="10dp">
+
+                        </TextView>
+                    </LinearLayout>
+                </LinearLayout>
+
+
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/filter_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="45dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="¿Buscas una industria?"
+                    android:textColor="@color/black"
+                    android:tag="bold"
+                    android:textStyle="bold"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Agencias de Publicidad"
+                        android:tag="normal"
+                        android:textColor="@color/black"
+                        style="@android:style/Widget.DeviceDefault.CompoundButton.CheckBox"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Productoras"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Instituciones / Academias"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Clientes"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Independientes"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Manager"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Agencias de casting"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Agencias de modelaje"
+                        android:tag="normal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/filter_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:orientation="vertical"
+                android:visibility="visible">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pais de residencia"
+                            android:textColor="@color/black"
+                            android:tag="bold"
+                            android:textStyle="bold"/>
+                       <TextView
+                            android:layout_width="220dp"
+                            android:layout_height="40dp"
+                            android:text="Etnia"
+                            android:paddingTop="10dp"
+                            android:paddingLeft="10dp"
+                            android:textColor="@color/black"
+                            android:layout_gravity="center"
+                            android:tag="normal"
+                            android:background="@drawable/select_bg_search"
+                            android:layout_marginTop="10dp">
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="Color de ojos"
+                            android:paddingTop="10dp"
+                            android:paddingLeft="10dp"
+                            android:textColor="@color/black"
+                            android:layout_gravity="center"
+                            android:tag="normal"
+                            android:background="@drawable/select_bg_search"
+                            android:layout_marginTop="10dp">
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="Color de cabello"
+                            android:paddingTop="10dp"
+                            android:paddingLeft="10dp"
+                            android:textColor="@color/black"
+                            android:layout_gravity="center"
+                            android:tag="normal"
+                            android:background="@drawable/select_bg_search"
+                            android:layout_marginTop="10dp">
+
+                        </TextView>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
         </LinearLayout>
     </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/backFilter"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/left_arrow"
+                android:background="@color/transparent"
+                android:layout_marginRight="15dp"
+                android:visibility="gone"/>
+            <ImageButton
+                android:id="@+id/nexFilter"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/right_arrow"
+                android:background="@color/transparent"
+                android:layout_marginLeft="50dp"/>
+        </LinearLayout>
 
+    </LinearLayout>
 
 
 

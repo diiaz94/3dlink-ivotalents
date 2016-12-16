@@ -7,6 +7,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 
 /**
@@ -17,7 +20,7 @@ import android.view.ViewGroup;
  * Use the {@link AdvancedSearch#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AdvancedSearch extends Fragment {
+public class AdvancedSearch extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -26,8 +29,12 @@ public class AdvancedSearch extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private IvoTalentsApp mApp;
+    private int idxLayoutActual;
     private OnFragmentInteractionListener mListener;
+    private static int LimitFilters=2;
+    private ImageButton nextFilter;
+    private ImageButton backFilter;
 
     public AdvancedSearch() {
         // Required empty public constructor
@@ -58,13 +65,22 @@ public class AdvancedSearch extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        mApp = ((IvoTalentsApp) getActivity().getApplicationContext());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_advanced_search, container, false);
+        View view =  inflater.inflate(R.layout.fragment_advanced_search, container, false);
+        RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_advanced_search);
+        mApp.setFontsOnRelative(myLayout);
+        idxLayoutActual=1;
+        nextFilter = (ImageButton) view.findViewById(R.id.nexFilter);
+        nextFilter.setOnClickListener(this);
+        backFilter = (ImageButton) view.findViewById(R.id.backFilter);
+        backFilter.setOnClickListener(this);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -89,6 +105,42 @@ public class AdvancedSearch extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+
+        switch (id) {
+            case R.id.nexFilter:
+                nextFilter(v);
+                break;
+            case R.id.backFilter:
+                backFilter(v);
+                break;
+
+        }
+    }
+
+    private void nextFilter(View v) {
+        if(idxLayoutActual+1<=LimitFilters){
+            LinearLayout current = (LinearLayout) v.findViewById(mApp.getResourcebyname("filter_"+String.valueOf(idxLayoutActual)));
+            LinearLayout next = (LinearLayout) v.findViewById(mApp.getResourcebyname("filter_"+String.valueOf(idxLayoutActual+1)));
+            current.setVisibility(View.GONE);
+            next.setVisibility(View.VISIBLE);
+            idxLayoutActual++;
+            nextFilter.setVisibility(idxLayoutActual<LimitFilters?View.VISIBLE:View.GONE);
+        }
+    }
+    private void backFilter(View v) {
+        if(idxLayoutActual-1>0){
+            LinearLayout current = (LinearLayout) v.findViewById(mApp.getResourcebyname("filter_"+String.valueOf(idxLayoutActual)));
+            LinearLayout next = (LinearLayout) v.findViewById(mApp.getResourcebyname("filter_"+String.valueOf(idxLayoutActual-1)));
+            current.setVisibility(View.GONE);
+            next.setVisibility(View.VISIBLE);
+            idxLayoutActual--;
+            backFilter.setVisibility(idxLayoutActual>1?View.VISIBLE:View.GONE);
+        }
     }
 
     /**

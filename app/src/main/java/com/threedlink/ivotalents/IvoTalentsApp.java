@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.text.Layout;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -136,6 +137,13 @@ public class IvoTalentsApp extends Application {
                     editText.setTypeface(getFontApply(editText.getTag().toString()));
                 }else{
                     editText.setTypeface(getFont());
+                }
+            }else if(layout.getChildAt(i) instanceof CheckBox){
+                CheckBox checkText= (CheckBox) layout.getChildAt(i);
+                if(checkText.getTag()!=null){
+                    checkText.setTypeface(getFontApply(checkText.getTag().toString()));
+                }else{
+                    checkText.setTypeface(getFont());
                 }
             }else if(layout.getChildAt(i) instanceof LinearLayout){
                 LinearLayout linear= (LinearLayout) layout.getChildAt(i);

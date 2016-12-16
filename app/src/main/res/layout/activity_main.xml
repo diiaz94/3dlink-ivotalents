@@ -384,6 +384,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="2dp"
                                 android:id="@+id/text_search"
+                                android:clickable="true"
                                 />
 
 
