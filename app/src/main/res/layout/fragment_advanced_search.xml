@@ -646,7 +646,7 @@
                 android:layout_height="40dp"
                 android:background="@drawable/left_arrow"
                 android:layout_marginRight="25dp"
-                android:visibility="visible"
+                android:visibility="invisible"
                 android:orientation="horizontal"
                 android:clickable="true"/>
             <LinearLayout
@@ -662,12 +662,12 @@
         <LinearLayout
             android:id="@+id/layoutBuscar"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="50dp"
             android:background="@color/black"
             android:orientation="horizontal"
             android:gravity="center"
             android:clickable="true"
-            android:visibility="visible"
+            android:visibility="gone"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -675,7 +675,8 @@
                 android:text="BUSCAR"
                 android:textStyle="bold"
                 android:tag="bold"
-                android:textSize="24sp"/>
+                android:textSize="24sp"
+                android:textColor="@color/white"/>
         </LinearLayout>
 
     </LinearLayout>

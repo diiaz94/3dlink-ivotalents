@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -151,7 +152,9 @@ public class MainActivity extends AppCompatActivity implements
         text_providers.setTypeface(mApp.getFontLight());
         text_search.setTypeface(mApp.getFontLight());
 
-        text_search.setOnClickListener(new View.OnClickListener() {
+
+        FrameLayout opcion_search = (FrameLayout) findViewById(R.id.opcion_search);
+        opcion_search.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View popupView) {
                 Fragment fragment = null;

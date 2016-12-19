@@ -365,7 +365,9 @@
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
-                        android:paddingLeft="20dp">
+                        android:paddingLeft="20dp"
+                        android:id="@+id/opcion_search"
+                        android:clickable="true" >
                         <GridLayout android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -384,7 +386,6 @@
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="2dp"
                                 android:id="@+id/text_search"
-                                android:clickable="true"
                                 />
 
 
