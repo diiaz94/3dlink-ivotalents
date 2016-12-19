@@ -33,8 +33,8 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
     private int idxLayoutActual;
     private OnFragmentInteractionListener mListener;
     private static int LimitFilters=5;
-    private ImageButton nextFilter;
-    private ImageButton backFilter;
+    private LinearLayout nextFilter;
+    private LinearLayout backFilter;
     private LinearLayout current;
     private LinearLayout next;
     private LinearLayout[] filtersLayouts = new LinearLayout[LimitFilters];
@@ -80,9 +80,9 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
         RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_advanced_search);
         mApp.setFontsOnRelative(myLayout);
         idxLayoutActual=0;
-        nextFilter = (ImageButton) view.findViewById(R.id.nexFilter);
+        nextFilter = (LinearLayout) view.findViewById(R.id.nextFilter);
         nextFilter.setOnClickListener(this);
-        backFilter = (ImageButton) view.findViewById(R.id.backFilter);
+        backFilter = (LinearLayout) view.findViewById(R.id.backFilter);
         backFilter.setOnClickListener(this);
         layoutBuscar = (LinearLayout) view.findViewById(R.id.layoutBuscar);
 
@@ -124,7 +124,7 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
         int id = v.getId();
 
         switch (id) {
-            case R.id.nexFilter:
+            case R.id.nextFilter:
                 nextFilter(v);
                 break;
             case R.id.backFilter:

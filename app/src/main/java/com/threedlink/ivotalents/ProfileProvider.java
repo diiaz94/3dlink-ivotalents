@@ -73,9 +73,9 @@ public class ProfileProvider extends Fragment implements View.OnClickListener {
     ImageButton ic_save_social;
     LinearLayout left_info;
     LinearLayout left_info_edit;
-    private ImageView ic_fb_blue;
-    private ImageView ic_tw_blue;
-    private ImageView ic_ig_blue;
+    private ImageView ic_fb_pink;
+    private ImageView ic_tw_pink;
+    private ImageView ic_ig_pink;
     private EditText url_social_fb_provider;
     private EditText url_social_tw_provider;
     private EditText url_social_ig_provider;
@@ -154,8 +154,6 @@ public class ProfileProvider extends Fragment implements View.OnClickListener {
         //Para que se vean todos los layouts
         LinearLayout datosPrincipales = (LinearLayout)view.findViewById(R.id.datosPrincipales);
         datosPrincipales.setVisibility(View.VISIBLE);
-        LinearLayout intereses = (LinearLayout)view.findViewById(R.id.intereses);
-        intereses.setVisibility(View.VISIBLE);
         LinearLayout tabsSection = (LinearLayout)view.findViewById(R.id.tabsSection);
         tabsSection.setVisibility(View.VISIBLE);
 
@@ -182,12 +180,12 @@ public class ProfileProvider extends Fragment implements View.OnClickListener {
             }
         });
 
-        ic_fb_blue = (ImageView) view.findViewById(R.id.ic_fb_blue);
-        ic_fb_blue.setOnClickListener(this);
-        ic_tw_blue = (ImageView) view.findViewById(R.id.ic_tw_blue);
-        ic_tw_blue.setOnClickListener(this);
-        ic_ig_blue = (ImageView) view.findViewById(R.id.ic_ig_blue);
-        ic_ig_blue.setOnClickListener(this);
+        ic_fb_pink = (ImageView) view.findViewById(R.id.ic_fb_pink);
+        ic_fb_pink.setOnClickListener(this);
+        ic_tw_pink = (ImageView) view.findViewById(R.id.ic_tw_pink);
+        ic_tw_pink.setOnClickListener(this);
+        ic_ig_pink = (ImageView) view.findViewById(R.id.ic_ig_pink);
+        ic_ig_pink.setOnClickListener(this);
 
         RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_profile_provider);
         mApp.setFontsOnRelative(myLayout);
@@ -305,11 +303,11 @@ public class ProfileProvider extends Fragment implements View.OnClickListener {
             case R.id.foto_9:
                 activateFotoOver(8);
                 break;
-            case R.id.ic_fb_blue:
+            case R.id.ic_fb_pink:
                 break;
-            case R.id.ic_tw_blue:
+            case R.id.ic_tw_pink:
                 break;
-            case R.id.ic_ig_blue:
+            case R.id.ic_ig_pink:
                 break;
             case R.id.ic_edit_social:
                 editSocialMedia();
@@ -356,9 +354,9 @@ public class ProfileProvider extends Fragment implements View.OnClickListener {
 
         final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
-        ic_fb_blue.setImageDrawable(getResources().getDrawable(url_social_fb_provider.getText().toString().isEmpty()?R.drawable.fb_logo_blue_disabled:R.drawable.fb_logo_blue));
-        ic_tw_blue.setImageDrawable(getResources().getDrawable(url_social_tw_provider.getText().toString().isEmpty()?R.drawable.tw_logo_blue_disabled:R.drawable.tw_logo_blue));
-        ic_ig_blue.setImageDrawable(getResources().getDrawable(url_social_ig_provider.getText().toString().isEmpty()?R.drawable.ig_logo_blue_disabled:R.drawable.ig_logo_blue));
+        ic_fb_pink.setImageDrawable(getResources().getDrawable(url_social_fb_provider.getText().toString().isEmpty()?R.drawable.fb_logo_pink_disabled:R.drawable.fb_logo_pink));
+        ic_tw_pink.setImageDrawable(getResources().getDrawable(url_social_tw_provider.getText().toString().isEmpty()?R.drawable.tw_logo_pink_disabled:R.drawable.tw_logo_pink));
+        ic_ig_pink.setImageDrawable(getResources().getDrawable(url_social_ig_provider.getText().toString().isEmpty()?R.drawable.ig_logo_pink_disabled:R.drawable.ig_logo_pink));
 
     }
 
@@ -405,9 +403,9 @@ public class ProfileProvider extends Fragment implements View.OnClickListener {
             }
             if(layout!=null){
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    layout.setBackground(getResources().getDrawable(R.drawable.border_blue_shape_solid));
+                    layout.setBackground(getResources().getDrawable(R.drawable.border_pink_shape_solid));
                 }else{
-                    layout.setBackgroundDrawable(getResources().getDrawable(R.drawable.border_blue_shape_solid));
+                    layout.setBackgroundDrawable(getResources().getDrawable(R.drawable.border_pink_shape_solid));
                 }
 
             }
@@ -444,13 +442,13 @@ public class ProfileProvider extends Fragment implements View.OnClickListener {
         }
         if(layout!=null){
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                layout.setBackground(getResources().getDrawable(R.drawable.border_blue_shape));
+                layout.setBackground(getResources().getDrawable(R.drawable.border_pink_shape));
             }else{
-                layout.setBackgroundDrawable(getResources().getDrawable(R.drawable.border_blue_shape));
+                layout.setBackgroundDrawable(getResources().getDrawable(R.drawable.border_pink_shape));
             }
         }
         if(text!=null){
-            text.setTextColor(getResources().getColor(R.color.ivo_blue));
+            text.setTextColor(getResources().getColor(R.color.ivo_pink));
         }
         if(layoutContent!=null){
             layoutContent.setVisibility(View.GONE);

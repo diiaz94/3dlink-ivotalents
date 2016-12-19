@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.threedlink.ivotalents.ProfileIndustry"
+    tools:context="com.threedlink.ivotalents.ProfileProvider"
     android:id="@+id/fragment_profile_provider">
 
     <ScrollView
@@ -82,24 +82,24 @@
                                             <ImageView
                                                 android:layout_width="18dp"
                                                 android:layout_height="18dp"
-                                                android:id="@+id/ic_fb_blue"
-                                                android:src="@drawable/fb_logo_blue_disabled"
+                                                android:id="@+id/ic_fb_pink"
+                                                android:src="@drawable/fb_logo_pink_disabled"
                                                 android:layout_marginRight="5dp"
                                                 android:clickable="true"
                                                 />
                                             <ImageView
                                                 android:layout_width="18dp"
                                                 android:layout_height="18dp"
-                                                android:id="@+id/ic_tw_blue"
-                                                android:src="@drawable/tw_logo_blue_disabled"
+                                                android:id="@+id/ic_tw_pink"
+                                                android:src="@drawable/tw_logo_pink_disabled"
                                                 android:layout_marginRight="5dp"
                                                 android:clickable="true"
                                                 />
                                             <ImageView
                                                 android:layout_width="18dp"
                                                 android:layout_height="18dp"
-                                                android:id="@+id/ic_ig_blue"
-                                                android:src="@drawable/ig_logo_blue_disabled"
+                                                android:id="@+id/ic_ig_pink"
+                                                android:src="@drawable/ig_logo_pink_disabled"
                                                 android:layout_marginRight="5dp"
                                                 android:clickable="true"
                                                 />
@@ -244,7 +244,7 @@
                                     <ImageView
                                         android:layout_width="20dp"
                                         android:layout_height="20dp"
-                                        android:src="@drawable/fb_logo_blue"
+                                        android:src="@drawable/fb_logo_pink"
                                         android:layout_gravity="center"/>
                                     <EditText
                                         android:layout_width="match_parent"
@@ -255,7 +255,7 @@
                                         android:textColorHint="@color/ivo_gray_light"
                                         android:layout_marginLeft="15dp"
                                         android:id="@+id/url_social_fb_provider"
-                                        android:theme="@style/EditProfileIndustry"/>
+                                        android:theme="@style/EditProfileProvider"/>
                                 </LinearLayout>
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -264,7 +264,7 @@
                                     <ImageView
                                         android:layout_width="20dp"
                                         android:layout_height="20dp"
-                                        android:src="@drawable/tw_logo_blue"
+                                        android:src="@drawable/tw_logo_pink"
                                         android:layout_gravity="center"/>
                                     <EditText
                                         android:layout_width="match_parent"
@@ -275,7 +275,7 @@
                                         android:textColorHint="@color/ivo_gray_light"
                                         android:layout_marginLeft="15dp"
                                         android:id="@+id/url_social_tw_provider"
-                                        android:theme="@style/EditProfileIndustry"/>
+                                        android:theme="@style/EditProfileProvider"/>
                                 </LinearLayout>
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -284,7 +284,7 @@
                                     <ImageView
                                         android:layout_width="20dp"
                                         android:layout_height="20dp"
-                                        android:src="@drawable/ig_logo_blue"
+                                        android:src="@drawable/ig_logo_pink"
                                         android:layout_gravity="center"/>
                                     <EditText
                                         android:layout_width="match_parent"
@@ -295,7 +295,7 @@
                                         android:textColorHint="@color/ivo_gray_light"
                                         android:layout_marginLeft="15dp"
                                         android:id="@+id/url_social_ig_provider"
-                                        android:theme="@style/EditProfileIndustry"/>
+                                        android:theme="@style/EditProfileProvider"/>
                                 </LinearLayout>
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -308,7 +308,7 @@
                                         android:textStyle="italic"
                                         android:tag="semibolditalic"
                                         android:textSize="10sp"
-                                        android:textColor="@color/ivo_blue"
+                                        android:textColor="@color/ivo_pink"
                                         android:layout_gravity="center"
                                         android:gravity="center"/>
                                     <EditText
@@ -319,7 +319,7 @@
                                         android:hint="http://"
                                         android:textColorHint="@color/ivo_gray_light"
                                         android:layout_marginLeft="7dp"
-                                        android:theme="@style/EditProfileIndustry"/>
+                                        android:theme="@style/EditProfileProvider"/>
                                 </LinearLayout>
 
                                 <ImageButton
@@ -347,7 +347,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="20dp"
                                     android:layout_weight="0.20"
-                                    android:background="@drawable/bg_bio_blue">
+                                    android:background="@drawable/bg_bio_pink">
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
@@ -399,121 +399,12 @@
                                     android:textSize="11sp"
                                     android:textColor="@color/white"
                                     android:visibility="gone"
-                                    android:theme="@style/EditProfileIndustry"/>
+                                    android:theme="@style/EditProfileProvider"/>
                             </LinearLayout>
                         </LinearLayout>
 
                     </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/intereses"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
-                        android:visibility="gone">
-
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:background="@drawable/bg_bio_blue"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:text="INTERESES"
-                                android:textSize="16sp"
-                                android:textColor="@color/white"
-                                android:textStyle="bold"
-                                android:gravity="center|center"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="10dp">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-                                <ImageView
-                                    android:layout_width="35dp"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_music"
-
-                                    />
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Música"
-                                    android:textSize="11sp"
-                                    android:textColor="@color/white"
-                                    android:layout_marginTop="3dp"/>
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginRight="20dp">
-                                <ImageView
-                                    android:layout_width="35dp"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_conciertos"
-                                    android:layout_gravity="center"
-                                    />
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Conciertos y Eventos"
-                                    android:textSize="11sp"
-                                    android:textColor="@color/white"
-                                    android:layout_marginTop="3dp"/>
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_gravity="center">
-                                <ImageView
-                                    android:layout_width="35dp"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_industrias"
-                                    android:layout_gravity="center"
-                                    />
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Industria Musical"
-                                    android:textSize="11sp"
-                                    android:textColor="@color/white"
-                                    android:layout_marginTop="3dp"/>
-                            </LinearLayout>
-
-
-                        </LinearLayout>
-
-
-
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-                    <FrameLayout
+                   <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:layout_marginTop="15dp"
@@ -526,7 +417,7 @@
                         android:layout_height="340dp"
                         android:orientation="vertical"
                         android:layout_marginTop="20dp"
-                        android:visibility="gone">
+                        android:visibility="visible">
                         <LinearLayout
                             android:layout_width="fill_parent"
                             android:layout_height="35dp"
@@ -539,7 +430,7 @@
                                 android:clickable="true"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:background="@drawable/border_blue_shape_solid"
+                                android:background="@drawable/border_pink_shape_solid"
                                 android:orientation="horizontal"
                                 android:layout_weight="0.25"
                                 android:gravity="center"
@@ -564,7 +455,7 @@
                                 android:clickable="true"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:background="@drawable/border_blue_shape"
+                                android:background="@drawable/border_pink_shape"
                                 android:orientation="horizontal"
                                 android:layout_weight="0.25"
                                 android:layout_marginLeft="-2.5px"
@@ -579,7 +470,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="AUDIOS"
-                                        android:textColor="@color/ivo_blue"
+                                        android:textColor="@color/ivo_pink"
                                         android:textSize="12sp"/>
                                 </LinearLayout>
                             </LinearLayout>
@@ -588,7 +479,7 @@
                                 android:clickable="true"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:background="@drawable/border_blue_shape"
+                                android:background="@drawable/border_pink_shape"
                                 android:orientation="horizontal"
                                 android:layout_weight="0.25"
                                 android:gravity="center"
@@ -603,7 +494,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="VIDEOS"
-                                        android:textColor="@color/ivo_blue"
+                                        android:textColor="@color/ivo_pink"
                                         android:textSize="12sp"/>
                                 </LinearLayout>
                             </LinearLayout>
@@ -881,7 +772,7 @@
                                                     <ImageView
                                                         android:layout_width="15dp"
                                                         android:layout_height="15dp"
-                                                        android:src="@drawable/selected_point_blue"
+                                                        android:src="@drawable/selected_point_pink"
                                                         android:layout_marginRight="5dp"
                                                         />
                                                     <ImageView
@@ -1233,7 +1124,7 @@
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="@string/provider_address_dummie"
+                                            android:text="@string/industry_address_dummie"
                                             android:textStyle="italic"
                                             android:textSize="11sp"
                                             android:textColor="@color/ivo_gray_dark"
@@ -1274,23 +1165,7 @@
                     </LinearLayout>
 
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center">
-                            <TextView
-                                android:id="@+id/title_castings_provider"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="22sp"
-                                android:textStyle="bold"
-                                android:text="CASTINGS DE MUSIC RECORDS"/>
-                        </LinearLayout>
-                    </LinearLayout>
                 </LinearLayout>
 
 
@@ -1324,17 +1199,26 @@
 
                     />
             </LinearLayout>
-
             <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="200dp"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
-
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
                 <LinearLayout
+                    android:layout_width="30dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/edit_img"/>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="200dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:layout_marginTop="-10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -1343,10 +1227,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/provider_photo"
-                        android:src="@drawable/provider_photo"
+                        android:src="@drawable/profile_photo_provider"
+                        />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/provider_photo_edit"
+                        android:src="@drawable/edit_img_profile"
                         />
 
-                </LinearLayout>
+                </RelativeLayout>
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="150dp"
@@ -1357,16 +1247,16 @@
 
                     <TextView android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="PRODUCTORA"
+                        android:text="ESCENOGRAFOS"
                         android:textSize="10sp"
-                        android:textColor="@color/ivo_blue"
+                        android:textColor="@color/ivo_pink"
                         android:id="@+id/talent_name"
                         android:background="@color/white"
                         android:padding="2dp"
                         />
                     <TextView android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Music Records"
+                        android:text="Tarimasca"
                         android:textStyle="bold"
                         android:textSize="14sp"
                         android:textColor="#ffffff"
@@ -1374,7 +1264,7 @@
                         android:tag="bold"/>
                     <TextView android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Producción de Eventos"
+                        android:text="Productoras de eventos"
                         android:textStyle="normal"
                         android:textSize="12sp"
                         android:textColor="#ffffff"
@@ -1448,6 +1338,7 @@
 
                 </LinearLayout>
 
+            </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>

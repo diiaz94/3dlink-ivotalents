@@ -62,4 +62,20 @@
         <item name="colorControlNormal">@color/ivo_blue</item>
         <item name="colorControlActivated">@color/ivo_blue</item>
     </style>
+    <style name="EditProfileProvider" parent="Widget.AppCompat.Light.AutoCompleteTextView">
+        <item name="android:colorFocusedHighlight">@color/ivo_pink</item>
+        <item name="android:textColorHintInverse">@color/ivo_pink</item>
+        <item name="colorControlNormal">@color/ivo_pink</item>
+        <item name="colorControlActivated">@color/ivo_pink</item>
+    </style>
+    <style name="AdvancedSearchCheckbox" parent="Theme.AppCompat.Light">
+    <item name="colorControlNormal">@color/white</item>
+    <item name="android:colorBackground">@color/white</item>
+    <item name="colorControlActivated">@color/ivo_orange</item>
+    </style>
+    <style name="AdvancedSearchRadio" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/white</item>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="colorControlActivated">@color/ivo_orange</item>
+    </style>
 </resources>

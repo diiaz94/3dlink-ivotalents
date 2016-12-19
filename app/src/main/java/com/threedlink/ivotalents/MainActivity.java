@@ -35,6 +35,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.security.ProviderInstaller;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -275,6 +276,8 @@ public class MainActivity extends AppCompatActivity implements
             fragment = ProfileIndustry.newInstance(name,email);
         else if(name.equalsIgnoreCase("artist"))
             fragment = ProfileArtist.newInstance(name,email);
+        else if(name.equalsIgnoreCase("provider"))
+        fragment = ProfileProvider.newInstance(name,email);
         else
             fragment = ProfileArtist.newInstance(name,email);
 

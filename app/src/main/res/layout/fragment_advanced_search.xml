@@ -29,6 +29,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:tag="bold"
+                    android:textColor="@color/white"
                     android:text="BÚSQUEDA AVANZADA"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -70,7 +71,10 @@
                         android:layout_height="wrap_content"
                         android:text="Estilista"
                         android:tag="normal"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox"
+                        android:checked="false"
+                       />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -80,7 +84,9 @@
                         android:layout_height="wrap_content"
                         android:text="Medios de Comunicación"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:checked="false"
+                        android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -90,7 +96,8 @@
                         android:layout_height="wrap_content"
                         android:text="Eventos"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -100,7 +107,8 @@
                         android:layout_height="wrap_content"
                         android:text="Maquillista"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -110,7 +118,8 @@
                         android:layout_height="wrap_content"
                         android:text="Fotógrafo"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -120,7 +129,8 @@
                         android:layout_height="wrap_content"
                         android:text="Diseñador"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -130,7 +140,8 @@
                         android:layout_height="wrap_content"
                         android:text="Estilista de cabello"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -140,7 +151,8 @@
                         android:layout_height="wrap_content"
                         android:text="Protocolo"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -150,7 +162,8 @@
                         android:layout_height="wrap_content"
                         android:text="Estética y Belleza"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -160,7 +173,8 @@
                         android:layout_height="wrap_content"
                         android:text="Otros proveedores"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -188,7 +202,7 @@
                         android:text="Músico"
                         android:tag="normal"
                         android:textColor="@color/black"
-                        />
+                        android:theme="@style/AdvancedSearchCheckbox" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -198,7 +212,8 @@
                         android:layout_height="wrap_content"
                         android:text="Cantante"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -208,7 +223,8 @@
                         android:layout_height="wrap_content"
                         android:text="Actor"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -218,7 +234,8 @@
                         android:layout_height="wrap_content"
                         android:text="Modelo"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -228,7 +245,8 @@
                         android:layout_height="wrap_content"
                         android:text="Bailarín"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -238,7 +256,8 @@
                         android:layout_height="wrap_content"
                         android:text="Fotógrafo"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -248,7 +267,8 @@
                         android:layout_height="wrap_content"
                         android:text="Presentador"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -258,7 +278,8 @@
                         android:layout_height="wrap_content"
                         android:text="Otros talentos"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
 
                 <TextView
@@ -278,7 +299,8 @@
                         android:layout_height="wrap_content"
                         android:text="Con agencia"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -288,7 +310,8 @@
                         android:layout_height="wrap_content"
                         android:text="Con pasaporte"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -298,7 +321,8 @@
                         android:layout_height="wrap_content"
                         android:text="Con visa"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -308,7 +332,8 @@
                         android:layout_height="wrap_content"
                         android:text="Disponbilidad para viajar"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -366,13 +391,15 @@
                                 android:layout_height="wrap_content"
                                 android:text="Si"
                                 android:id="@+id/tatuajesSi"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/black"
+                                android:theme="@style/AdvancedSearchRadio"/>
                             <RadioButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="No"
                                 android:id="@+id/tatuajesNo"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/black"
+                                android:theme="@style/AdvancedSearchRadio"/>
                         </RadioGroup>
                     </LinearLayout>
                         <TextView
@@ -443,7 +470,8 @@
                         android:layout_height="wrap_content"
                         android:text="Agencias de Publicidad"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -453,7 +481,8 @@
                         android:layout_height="wrap_content"
                         android:text="Productoras"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -463,7 +492,8 @@
                         android:layout_height="wrap_content"
                         android:text="Instituciones / Academias"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -473,7 +503,8 @@
                         android:layout_height="wrap_content"
                         android:text="Clientes"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -483,7 +514,8 @@
                         android:layout_height="wrap_content"
                         android:text="Independientes"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -493,7 +525,8 @@
                         android:layout_height="wrap_content"
                         android:text="Manager"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -503,7 +536,8 @@
                         android:layout_height="wrap_content"
                         android:text="Agencias de casting"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -513,7 +547,8 @@
                         android:layout_height="wrap_content"
                         android:text="Agencias de modelaje"
                         android:tag="normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -593,7 +628,7 @@
     </ScrollView>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="20dp"
         android:layout_alignParentBottom="true"
@@ -605,31 +640,34 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:visibility="visible">
-            <ImageButton
+            <LinearLayout
                 android:id="@+id/backFilter"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:src="@drawable/left_arrow"
-                android:background="@color/transparent"
-                android:layout_marginRight="15dp"
-                android:visibility="gone"/>
-            <ImageButton
-                android:id="@+id/nexFilter"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:src="@drawable/right_arrow"
-                android:background="@color/transparent"
-                android:layout_marginLeft="50dp"/>
+                android:layout_width="25dp"
+                android:layout_height="40dp"
+                android:background="@drawable/left_arrow"
+                android:layout_marginRight="25dp"
+                android:visibility="visible"
+                android:orientation="horizontal"
+                android:clickable="true"/>
+            <LinearLayout
+                android:id="@+id/nextFilter"
+                android:layout_width="25dp"
+                android:layout_height="40dp"
+                android:background="@drawable/right_arrow"
+                android:layout_marginLeft="25dp"
+                android:visibility="visible"
+                android:orientation="horizontal"
+                android:clickable="true"/>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/layoutBuscar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="70dp"
             android:background="@color/black"
             android:orientation="horizontal"
             android:gravity="center"
             android:clickable="true"
-            android:visibility="gone"
+            android:visibility="visible"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -637,7 +675,7 @@
                 android:text="BUSCAR"
                 android:textStyle="bold"
                 android:tag="bold"
-                android:textSize="20dp"/>
+                android:textSize="24sp"/>
         </LinearLayout>
 
     </LinearLayout>

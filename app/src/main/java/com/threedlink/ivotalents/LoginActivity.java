@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity implements
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world", "diego@3dlink.com:ivotalent",
-            "artist@artist.com:artist","industry@industry.com:industry"
+            "artist@artist.com:artist","industry@industry.com:industry","provider@provider.com:provider"
     };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.

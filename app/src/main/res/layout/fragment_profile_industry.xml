@@ -40,7 +40,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:weightSum="2"
-                        android:visibility="visible">
+                        android:visibility="gone">
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -1321,20 +1321,29 @@
                     android:layout_centerHorizontal="true"
                     android:text="@string/logout"
                     android:visibility="gone"
-
                     />
             </LinearLayout>
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="30dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/edit_img"/>
+                <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="200dp"
                 android:orientation="horizontal"
                 android:weightSum="2"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="-10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -1345,8 +1354,14 @@
                         android:id="@+id/industry_photo"
                         android:src="@drawable/industry_photo"
                         />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/industry_photo_edit"
+                        android:src="@drawable/edit_img_profile"
+                        />
 
-                </LinearLayout>
+                </RelativeLayout>
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="150dp"
@@ -1448,6 +1463,7 @@
 
                 </LinearLayout>
 
+            </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
