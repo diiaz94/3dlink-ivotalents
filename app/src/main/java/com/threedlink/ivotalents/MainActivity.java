@@ -51,7 +51,9 @@ public class MainActivity extends AppCompatActivity implements
         ProfileArtist.OnFragmentInteractionListener,
         ProfileIndustry.OnFragmentInteractionListener,
         AdvancedSearch.OnFragmentInteractionListener,
-        ProfileProvider.OnFragmentInteractionListener{
+        ProfileProvider.OnFragmentInteractionListener,
+        DashboardArtist.OnFragmentInteractionListener,
+        DashboardCasting.OnFragmentInteractionListener{
     DrawerLayout drawer;
     private static final String TAG = MainActivity.class.getSimpleName();
     // Session Manager Class
@@ -159,6 +161,36 @@ public class MainActivity extends AppCompatActivity implements
             public void onClick(View popupView) {
                 Fragment fragment = null;
                 fragment = AdvancedSearch.newInstance("param1","param2");
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
+                if (drawer.isDrawerOpen(Gravity.RIGHT)) {
+                    drawer.closeDrawer(Gravity.RIGHT);
+                } else {
+                    drawer.openDrawer(Gravity.RIGHT);
+                }
+            }
+        });
+
+        FrameLayout opcion_talents = (FrameLayout) findViewById(R.id.opcion_talents);
+        opcion_talents.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View popupView) {
+                Fragment fragment = null;
+                fragment = DashboardArtist.newInstance("param1","param2");
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
+                if (drawer.isDrawerOpen(Gravity.RIGHT)) {
+                    drawer.closeDrawer(Gravity.RIGHT);
+                } else {
+                    drawer.openDrawer(Gravity.RIGHT);
+                }
+            }
+        });
+
+        FrameLayout opcion_castings = (FrameLayout) findViewById(R.id.opcion_castings);
+        opcion_castings.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View popupView) {
+                Fragment fragment = null;
+                fragment = DashboardCasting.newInstance("param1","param2");
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
                 if (drawer.isDrawerOpen(Gravity.RIGHT)) {
                     drawer.closeDrawer(Gravity.RIGHT);
@@ -282,7 +314,7 @@ public class MainActivity extends AppCompatActivity implements
         else if(name.equalsIgnoreCase("provider"))
         fragment = ProfileProvider.newInstance(name,email);
         else
-            fragment = ProfileArtist.newInstance(name,email);
+            fragment = DashboardArtist.newInstance(name,email);
 
 
         getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();

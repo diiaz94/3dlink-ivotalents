@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:gravity="center">
+        <LinearLayout
+            android:id="@+id/ind_layout_casting_1"
+            android:layout_width="0dp"
+            android:layout_height="180dp"
+            android:layout_weight="0.9"
+            android:orientation="vertical"
+            android:layout_marginRight="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ivo_blue">
+                <TextView
+                    android:id="@+id/ind_category_casting_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MÚSICA"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"
+                    android:padding="5dp"
+                    android:layout_marginLeft="5dp"/>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/ind_image_casting_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/music_records_casting"
+                    android:scaleType="fitXY"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+                    <TextView
+                        android:id="@+id/ind_title_casting_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="Titulo del casting"
+                        android:textStyle="bold"
+                        android:tag="bold"
+                        android:textSize="16sp"
+                        android:layout_marginTop="5dp"/>
+                    <TextView
+                        android:id="@+id/ind_subtitle_casting_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="Subtitulo"
+                        android:textStyle="bold"
+                        android:tag="normal"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/ind_description_casting_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an."
+                        android:textStyle="bold"
+                        android:tag="normal"
+                        android:textSize="9sp"
+                        android:layout_marginTop="15dp"/>
+                    <Button
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="VER CASTING"
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        android:id="@+id/button"
+                        android:background="@drawable/border_white_shape"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:tag="normal"
+                        />
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ind_layout_casting_2"
+            android:layout_width="0dp"
+            android:layout_height="180dp"
+            android:layout_weight="0.9"
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ivo_blue">
+                <TextView
+                    android:id="@+id/ind_category_casting_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MÚSICA"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"
+                    android:padding="5dp"
+                    android:layout_marginLeft="5dp"/>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/ind_image_casting_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/music_records_casting"
+                    android:scaleType="fitXY"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+                    <TextView
+                        android:id="@+id/ind_title_casting_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="Titulo del casting"
+                        android:textStyle="bold"
+                        android:tag="bold"
+                        android:textSize="16sp"
+                        android:layout_marginTop="5dp"/>
+                    <TextView
+                        android:id="@+id/ind_subtitle_casting_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="Subtitulo"
+                        android:textStyle="bold"
+                        android:tag="normal"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/ind_description_casting_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an."
+                        android:textStyle="bold"
+                        android:tag="normal"
+                        android:textSize="9sp"
+                        android:layout_marginTop="15dp"/>
+                    <Button
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="VER CASTING"
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        android:id="@+id/button"
+                        android:background="@drawable/border_white_shape"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:tag="normal"
+                        />
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

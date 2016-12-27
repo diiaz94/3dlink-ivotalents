@@ -305,10 +305,11 @@
                     android:background="#00c4b4"
                     android:orientation="vertical"
                     android:paddingTop="15dp">
-                    <FrameLayout
+                    <FrameLayout android:id="@+id/opcion_talents"
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
-                        android:paddingLeft="20dp">
+                        android:paddingLeft="20dp"
+                        android:clickable="true">
                         <TextView android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Talentos"
@@ -334,10 +335,11 @@
                             android:id="@+id/text_industries"
                             />
                     </FrameLayout>
-                    <FrameLayout
+                    <FrameLayout android:id="@+id/opcion_castings"
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
-                        android:paddingLeft="20dp">
+                        android:paddingLeft="20dp"
+                        android:clickable="true">
                         <TextView android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Casting / Audiciones"
@@ -362,11 +364,11 @@
                             android:id="@+id/text_providers"
                             />
                     </FrameLayout>
-                    <FrameLayout
+                    <FrameLayout android:id="@+id/opcion_search"
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
                         android:paddingLeft="20dp"
-                        android:id="@+id/opcion_search"
+
                         android:clickable="true" >
                         <GridLayout android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -399,21 +401,21 @@
                         android:layout_marginTop="15dp"
                         android:layout_marginRight="25dp">
                         <ImageView
-                            android:layout_width="8pt"
-                            android:layout_height="8pt"
+                            android:layout_width="12pt"
+                            android:layout_height="12pt"
                             android:src="@drawable/fb_logo"
                             android:layout_marginRight="20dp"
                             android:layout_gravity="end"
                             />
                         <ImageView
-                            android:layout_width="8pt"
-                            android:layout_height="8pt"
+                            android:layout_width="12pt"
+                            android:layout_height="12pt"
                             android:src="@drawable/tw_logo"
                             android:layout_marginRight="20dp"
                             />
                         <ImageView
-                            android:layout_width="8pt"
-                            android:layout_height="8pt"
+                            android:layout_width="12pt"
+                            android:layout_height="12pt"
                             android:src="@drawable/ig_logo"
                             android:layout_marginRight="15dp"
                             />

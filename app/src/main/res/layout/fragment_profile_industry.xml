@@ -1165,16 +1165,17 @@
 
                     <LinearLayout
                         android:layout_width="fill_parent"
-                        android:layout_height="200dp"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:weightSum="2"
                         android:layout_marginTop="20dp"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp">
+                        android:layout_marginRight="10dp"
+                        android:visibility="visible">
 
                         <LinearLayout
                             android:layout_width="0dp"
-                            android:layout_height="200dp"
+                            android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:layout_weight="1.1"
                             android:weightSum="2"
@@ -1276,19 +1277,60 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="40dp">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:layout_marginTop="10dp">
                             <TextView
                                 android:id="@+id/title_castings_industry"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="22sp"
                                 android:textStyle="bold"
-                                android:text="CASTINGS DE MUSIC RECORDS"/>
+                                android:text="CASTINGS DE MUSIC RECORDS"
+                                android:textColor="@color/white"/>
+                            </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="visible"
+                            android:layout_marginBottom="50dp"
+                            android:weightSum="3">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.2">
+                                <ImageButton
+                                    android:id="@+id/ind_slide_left_arrow"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ind_slide_left_arrow"
+                                    android:background="@color/transparent"
+                                    android:layout_gravity="center"/>
+                            </LinearLayout>
+                            <android.support.v4.view.ViewPager
+                                android:id="@+id/view_pager_profile_industry"
+                                android:layout_width="0dp"
+                                android:layout_height="180dp"
+                                android:visibility="visible"
+                                android:layout_weight="2.6"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.2">
+                                <ImageButton
+                                    android:id="@+id/ind_slide_right_arrow"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ind_slide_right_arrow"
+                                    android:background="@color/transparent"
+                                    android:layout_gravity="center"/>
+                            </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>

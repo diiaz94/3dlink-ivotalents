@@ -2,129 +2,133 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.threedlink.ivotalents.DashboardArtist"
-    android:id="@+id/fragment_dashboard_artist">
-
+    tools:context="com.threedlink.ivotalents.DashboardCasting"
+    android:id="@+id/fragment_dashboard_casting">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="@color/ivo_black">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="visible">
+                android:layout_height="wrap_content">
                 <android.support.v4.view.ViewPager
-                    android:id="@+id/view_pager_artist"
+                    android:id="@+id/view_pager_casting"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:visibility="visible"/>
+                    android:visibility="visible"></android.support.v4.view.ViewPager>
+
             </LinearLayout>
+
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
+                android:weightSum="2"
                 android:layout_marginTop="15dp">
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center">
+                    android:orientation="vertical"
+                    android:layout_weight="1.2"
+                    android:layout_marginLeft="20dp">
                     <TextView
-                        android:layout_width="100dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/ivo_orange"
+                        android:background="@color/ivo_blue"
                         android:textColor="@color/white"
-                        android:text="PRESENTADOR"
+                        android:text="AGENCIAS DE PUBLICIDAD"
                         android:tag="normal"
                         android:textSize="13sp"
                         android:padding="5dp"
-                        android:layout_margin="8dp"
+                        android:layout_margin="5dp"
+                        android:gravity="center"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/ivo_blue"
+                        android:textColor="@color/white"
+                        android:text="AGENCIAS DE CASTING"
+                        android:tag="normal"
+                        android:textSize="13sp"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:gravity="center"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/ivo_blue"
+                        android:textColor="@color/white"
+                        android:text="AGENCIAS DE MODELAJE"
+                        android:tag="normal"
+                        android:textSize="13sp"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:gravity="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/ivo_blue"
+                        android:textColor="@color/white"
+                        android:text="INDEPENDIENTES"
+                        android:tag="normal"
+                        android:textSize="13sp"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
                         android:gravity="center"/>
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center">
+                    android:orientation="vertical"
+                    android:layout_weight="1">
                     <TextView
-                        android:layout_width="100dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/ivo_orange"
+                        android:background="@color/ivo_blue"
                         android:textColor="@color/white"
-                        android:text="MÚSICO"
+                        android:text="PRODUCTORAS"
                         android:tag="normal"
                         android:textSize="13sp"
                         android:padding="5dp"
-                        android:layout_margin="8dp"
+                        android:layout_margin="5dp"
                         android:gravity="center"/>
                     <TextView
-                        android:layout_width="100dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/ivo_orange"
+                        android:background="@color/ivo_blue"
                         android:textColor="@color/white"
-                        android:text="MODELO"
+                        android:text="CLIENTES"
                         android:tag="normal"
                         android:textSize="13sp"
                         android:padding="5dp"
-                        android:layout_margin="8dp"
-                        android:gravity="center"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:background="@color/ivo_orange"
-                        android:textColor="@color/white"
-                        android:text="CANTANTE"
-                        android:tag="normal"
-                        android:textSize="13sp"
-                        android:padding="5dp"
-                        android:layout_margin="8dp"
+                        android:layout_margin="5dp"
                         android:gravity="center"/>
                     <TextView
-                        android:layout_width="100dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/ivo_orange"
+                        android:background="@color/ivo_blue"
                         android:textColor="@color/white"
-                        android:text="ACTOR"
+                        android:text="MANAGER"
                         android:tag="normal"
                         android:textSize="13sp"
                         android:padding="5dp"
-                        android:layout_margin="8dp"
-                        android:gravity="center"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:background="@color/ivo_orange"
-                        android:textColor="@color/white"
-                        android:text="BAILARÍN"
-                        android:tag="normal"
-                        android:textSize="13sp"
-                        android:padding="5dp"
-                        android:layout_margin="8dp"
+                        android:layout_margin="5dp"
                         android:gravity="center"/>
                     <TextView
-                        android:layout_width="100dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/ivo_orange"
+                        android:background="@color/ivo_blue"
                         android:textColor="@color/white"
-                        android:text="FOTÓGRAFO"
+                        android:text="INSTITUCIONES"
                         android:tag="normal"
                         android:textSize="13sp"
                         android:padding="5dp"
-                        android:layout_margin="8dp"
+                        android:layout_margin="5dp"
                         android:gravity="center"/>
                 </LinearLayout>
 
@@ -140,7 +144,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ARTISTAS"
+                    android:text="CASTINGS"
                     android:tag="bold"
                     android:textStyle="bold"
                     android:textSize="20sp"
@@ -149,7 +153,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CONOCE A LOS TALENTOS MÁS RECIENTES"
+                    android:text="LAS OPORTUNIDADES ESTÁN IVOTALENTS"
                     android:tag="normal"
                     android:textStyle="normal"
                     android:textSize="16sp"
@@ -157,6 +161,7 @@
                     android:textColor="@color/white"
                     />
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.text.Layout;
 import android.view.LayoutInflater;
@@ -79,7 +80,11 @@ public class ProfileIndustry extends Fragment implements View.OnClickListener {
     private EditText url_social_fb_industry;
     private EditText url_social_tw_industry;
     private EditText url_social_ig_industry;
+    ViewPager viewPager;
+    CustomSwipeAdapterIndustryCastings adapter;
 
+    ImageButton ind_slide_right_arrow;
+    ImageButton ind_slide_left_arrow;
     public ProfileIndustry() {
         // Required empty public constructor
     }
@@ -211,6 +216,14 @@ public class ProfileIndustry extends Fragment implements View.OnClickListener {
         url_social_tw_industry = (EditText) view.findViewById(R.id.url_social_tw_industry);
         url_social_ig_industry = (EditText) view.findViewById(R.id.url_social_ig_industry);
 
+
+       // viewPager = (ViewPager) view.findViewById(R.id.view_pager_profile_industry);
+       // viewPager.setVisibility(View.VISIBLE);
+
+        //adapter = new CustomSwipeAdapterIndustryCastings(getActivity().getApplicationContext());
+        //viewPager.setAdapter(adapter);
+
+
         return view;
     }
 
@@ -322,6 +335,12 @@ public class ProfileIndustry extends Fragment implements View.OnClickListener {
                 break;
             case R.id.ic_save_bio:
                 saveBio(v);
+                break;
+            case R.id.ind_slide_right_arrow:
+                //viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
+                break;
+            case R.id.ind_slide_left_arrow:
+                //viewPager.setCurrentItem(viewPager.getCurrentItem()-1);
                 break;
         }
     }

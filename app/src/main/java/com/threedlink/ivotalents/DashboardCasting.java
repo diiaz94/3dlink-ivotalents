@@ -14,12 +14,12 @@ import android.widget.RelativeLayout;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link DashboardArtist.OnFragmentInteractionListener} interface
+ * {@link DashboardCasting.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link DashboardArtist#newInstance} factory method to
+ * Use the {@link DashboardCasting#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DashboardArtist extends Fragment {
+public class DashboardCasting extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -31,27 +31,28 @@ public class DashboardArtist extends Fragment {
     private IvoTalentsApp mApp;
     private OnFragmentInteractionListener mListener;
 
-    public DashboardArtist() {
+    public DashboardCasting() {
         // Required empty public constructor
     }
 
     ViewPager viewPager;
-    CustomSwipeAdapterArtist adapter;
+    CustomSwipeAdapterCasting adapter;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment DashboardArtist.
+     * @return A new instance of fragment DashboardCasting.
      */
     // TODO: Rename and change types and number of parameters
-    public static DashboardArtist newInstance(String param1, String param2) {
-        DashboardArtist fragment = new DashboardArtist();
+    public static DashboardCasting newInstance(String param1, String param2) {
+        DashboardCasting fragment = new DashboardCasting();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -63,19 +64,19 @@ public class DashboardArtist extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_dashboard_artist, container, false);
-        viewPager = (ViewPager) view.findViewById(R.id.view_pager_artist);
+        View view =  inflater.inflate(R.layout.fragment_dashboard_casting, container, false);
+        viewPager = (ViewPager) view.findViewById(R.id.view_pager_casting);
         viewPager.setVisibility(View.VISIBLE);
-
-        adapter = new CustomSwipeAdapterArtist(getActivity().getApplicationContext());
+        adapter = new CustomSwipeAdapterCasting(getActivity().getApplicationContext());
         viewPager.setAdapter(adapter);
-        RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_dashboard_artist);
+        RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_dashboard_casting);
         mApp.setFontsOnRelative(myLayout);
 
         return view;
