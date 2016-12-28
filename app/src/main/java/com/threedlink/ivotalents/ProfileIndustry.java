@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -217,12 +218,26 @@ public class ProfileIndustry extends Fragment implements View.OnClickListener {
         url_social_ig_industry = (EditText) view.findViewById(R.id.url_social_ig_industry);
 
 
-       // viewPager = (ViewPager) view.findViewById(R.id.view_pager_profile_industry);
-       // viewPager.setVisibility(View.VISIBLE);
+        viewPager = (ViewPager) view.findViewById(R.id.view_pager_profile_industry);
+        viewPager.setVisibility(View.VISIBLE);
 
-        //adapter = new CustomSwipeAdapterIndustryCastings(getActivity().getApplicationContext());
-        //viewPager.setAdapter(adapter);
+        ind_slide_left_arrow = (ImageButton) view.findViewById(R.id.ind_slide_left_arrow);
+        ind_slide_right_arrow = (ImageButton) view.findViewById(R.id.ind_slide_right_arrow);
+        ind_slide_left_arrow.setOnClickListener(this);
+        ind_slide_right_arrow.setOnClickListener(this);
+        adapter = new CustomSwipeAdapterIndustryCastings(getActivity().getApplicationContext(),ind_slide_left_arrow,ind_slide_right_arrow);
+        viewPager.setAdapter(adapter);
+        viewPager.setOnTouchListener(new View.OnTouchListener() {
 
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Log.v(null, "TOUCH EVENT"); // handle your fragment number here
+                ind_slide_right_arrow.setVisibility(viewPager.getCurrentItem()+1<viewPager.getAdapter().getCount()?View.VISIBLE:View.INVISIBLE);
+                ind_slide_left_arrow.setVisibility(viewPager.getCurrentItem()-1>=0?View.VISIBLE:View.INVISIBLE);
+
+                return false;
+            }
+        });
 
         return view;
     }
@@ -337,11 +352,15 @@ public class ProfileIndustry extends Fragment implements View.OnClickListener {
                 saveBio(v);
                 break;
             case R.id.ind_slide_right_arrow:
-                //viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
+                viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
+                ind_slide_right_arrow.setVisibility(viewPager.getCurrentItem()+1<viewPager.getAdapter().getCount()?View.VISIBLE:View.INVISIBLE);
+                ind_slide_left_arrow.setVisibility(viewPager.getCurrentItem()-1>=0?View.VISIBLE:View.INVISIBLE);
                 break;
             case R.id.ind_slide_left_arrow:
-                //viewPager.setCurrentItem(viewPager.getCurrentItem()-1);
-                break;
+                viewPager.setCurrentItem(viewPager.getCurrentItem()-1);
+                ind_slide_left_arrow.setVisibility(viewPager.getCurrentItem()-1>=0?View.VISIBLE:View.INVISIBLE);
+                ind_slide_right_arrow.setVisibility(viewPager.getCurrentItem()+1<viewPager.getAdapter().getCount()?View.VISIBLE:View.INVISIBLE);
+            break;
         }
     }
 

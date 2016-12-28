@@ -1311,7 +1311,8 @@
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ind_slide_left_arrow"
                                     android:background="@color/transparent"
-                                    android:layout_gravity="center"/>
+                                    android:layout_gravity="center"
+                                    android:visibility="invisible"/>
                             </LinearLayout>
                             <android.support.v4.view.ViewPager
                                 android:id="@+id/view_pager_profile_industry"
@@ -1332,6 +1333,9 @@
                                     android:layout_gravity="center"/>
                             </LinearLayout>
                         </LinearLayout>
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"></FrameLayout>
                     </LinearLayout>
                 </LinearLayout>
 

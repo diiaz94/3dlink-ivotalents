@@ -16,7 +16,7 @@
             android:id="@+id/ind_layout_casting_1"
             android:layout_width="0dp"
             android:layout_height="180dp"
-            android:layout_weight="0.9"
+            android:layout_weight="1"
             android:orientation="vertical"
             android:layout_marginRight="5dp">
             <LinearLayout
@@ -57,7 +57,7 @@
                         android:text="Titulo del casting"
                         android:textStyle="bold"
                         android:tag="bold"
-                        android:textSize="16sp"
+                        android:textSize="12sp"
                         android:layout_marginTop="5dp"/>
                     <TextView
                         android:id="@+id/ind_subtitle_casting_1"
@@ -67,7 +67,7 @@
                         android:text="Subtitulo"
                         android:textStyle="bold"
                         android:tag="normal"
-                        android:textSize="12sp"/>
+                        android:textSize="10sp"/>
                     <TextView
                         android:id="@+id/ind_description_casting_1"
                         android:layout_width="match_parent"
@@ -76,15 +76,15 @@
                         android:text="Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an."
                         android:textStyle="bold"
                         android:tag="normal"
-                        android:textSize="9sp"
+                        android:textSize="8sp"
                         android:layout_marginTop="15dp"/>
                     <Button
-                        android:layout_width="80dp"
-                        android:layout_height="20dp"
+                        android:layout_width="60dp"
+                        android:layout_height="15dp"
                         android:text="VER CASTING"
                         android:textColor="@color/white"
-                        android:textSize="10sp"
-                        android:id="@+id/button"
+                        android:textSize="8sp"
+                        android:id="@+id/button_ver_casting"
                         android:background="@drawable/border_white_shape"
                         android:layout_gravity="center"
                         android:layout_marginTop="15dp"
@@ -98,7 +98,7 @@
             android:id="@+id/ind_layout_casting_2"
             android:layout_width="0dp"
             android:layout_height="180dp"
-            android:layout_weight="0.9"
+            android:layout_weight="1"
             android:orientation="vertical"
             android:layout_marginLeft="5dp" >
             <LinearLayout
@@ -139,7 +139,7 @@
                         android:text="Titulo del casting"
                         android:textStyle="bold"
                         android:tag="bold"
-                        android:textSize="16sp"
+                        android:textSize="12sp"
                         android:layout_marginTop="5dp"/>
                     <TextView
                         android:id="@+id/ind_subtitle_casting_2"
@@ -149,7 +149,7 @@
                         android:text="Subtitulo"
                         android:textStyle="bold"
                         android:tag="normal"
-                        android:textSize="12sp"/>
+                        android:textSize="10sp"/>
                     <TextView
                         android:id="@+id/ind_description_casting_2"
                         android:layout_width="match_parent"
@@ -158,14 +158,14 @@
                         android:text="Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an."
                         android:textStyle="bold"
                         android:tag="normal"
-                        android:textSize="9sp"
+                        android:textSize="8sp"
                         android:layout_marginTop="15dp"/>
                     <Button
-                        android:layout_width="80dp"
-                        android:layout_height="20dp"
+                        android:layout_width="60dp"
+                        android:layout_height="15dp"
                         android:text="VER CASTING"
                         android:textColor="@color/white"
-                        android:textSize="10sp"
+                        android:textSize="8sp"
                         android:id="@+id/button"
                         android:background="@drawable/border_white_shape"
                         android:layout_gravity="center"
