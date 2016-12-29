@@ -37,6 +37,8 @@ public class DashboardArtist extends Fragment {
 
     ViewPager viewPager;
     CustomSwipeAdapterArtist adapter;
+    ViewPager viewPagerArtistRecent;
+    CustomSwipeAdapterArtistRecent adapterArtistRecent;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -72,9 +74,15 @@ public class DashboardArtist extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_dashboard_artist, container, false);
         viewPager = (ViewPager) view.findViewById(R.id.view_pager_artist);
         viewPager.setVisibility(View.VISIBLE);
-
         adapter = new CustomSwipeAdapterArtist(getActivity().getApplicationContext());
         viewPager.setAdapter(adapter);
+
+        viewPagerArtistRecent = (ViewPager) view.findViewById(R.id.view_pager_artist_recent);
+        viewPagerArtistRecent.setVisibility(View.VISIBLE);
+        adapterArtistRecent = new CustomSwipeAdapterArtistRecent(getActivity().getApplicationContext());
+        viewPagerArtistRecent.setAdapter(adapterArtistRecent);
+
+
         RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_dashboard_artist);
         mApp.setFontsOnRelative(myLayout);
 
