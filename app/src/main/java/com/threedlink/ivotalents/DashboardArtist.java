@@ -5,10 +5,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import static android.widget.LinearLayout.*;
 
 
 /**
@@ -30,6 +37,7 @@ public class DashboardArtist extends Fragment {
     private String mParam2;
     private IvoTalentsApp mApp;
     private OnFragmentInteractionListener mListener;
+    private LinearLayout paginator_swipe_artist_recent;
 
     public DashboardArtist() {
         // Required empty public constructor
@@ -71,7 +79,7 @@ public class DashboardArtist extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_dashboard_artist, container, false);
+        final View view =  inflater.inflate(R.layout.fragment_dashboard_artist, container, false);
         viewPager = (ViewPager) view.findViewById(R.id.view_pager_artist);
         viewPager.setVisibility(View.VISIBLE);
         adapter = new CustomSwipeAdapterArtist(getActivity().getApplicationContext());
@@ -81,6 +89,37 @@ public class DashboardArtist extends Fragment {
         viewPagerArtistRecent.setVisibility(View.VISIBLE);
         adapterArtistRecent = new CustomSwipeAdapterArtistRecent(getActivity().getApplicationContext());
         viewPagerArtistRecent.setAdapter(adapterArtistRecent);
+
+        paginator_swipe_artist_recent = (LinearLayout) view.findViewById(R.id.paginator_swipe_artist_recent);
+        ImageButton paginator_swipe_artist_recent_template = (ImageButton) view.findViewById(R.id.paginator_swipe_artist_recent_template);
+        ViewGroup.LayoutParams params = paginator_swipe_artist_recent_template.getLayoutParams();
+        if (adapterArtistRecent.getCount()>1) {
+            for (int i = 0; i < adapterArtistRecent.getCount(); i++) {
+                ImageButton b = new ImageButton(getActivity().getApplicationContext());
+                b.setLayoutParams(params);
+                b.setBackgroundColor(getResources().getColor(R.color.transparent));
+                b.setImageResource(i==0?R.drawable.selected_point_orange:R.drawable.simple_point_white);
+                b.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                //Log.e("AQUI","b.getLayoutParams().width::"+String.valueOf(b.getLayoutParams().width));
+                //Log.e("AQUI","b.getLayoutParams().height::"+String.valueOf(b.getLayoutParams().height));
+                b.setTag(String.valueOf(i));
+                b.setOnClickListener(new View.OnClickListener() {
+
+                    public void onClick(View v) {
+                        int point_selected = Integer.parseInt(v.getTag().toString());
+                        for (int i = 0; i < adapterArtistRecent.getCount(); i++) {
+                            ImageButton b =(ImageButton) paginator_swipe_artist_recent.getChildAt(i);
+                            b.setImageResource(i==point_selected?R.drawable.selected_point_orange:R.drawable.simple_point_white);
+                        }
+                        viewPagerArtistRecent.setCurrentItem(point_selected);
+                    }
+                });
+
+
+
+                paginator_swipe_artist_recent.addView(b);
+            }
+        }
 
 
         RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_dashboard_artist);

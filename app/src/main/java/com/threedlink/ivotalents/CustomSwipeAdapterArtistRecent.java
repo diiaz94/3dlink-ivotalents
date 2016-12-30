@@ -21,9 +21,11 @@ public class CustomSwipeAdapterArtistRecent extends PagerAdapter {
     private Context ctx;
     private LayoutInflater layoutInflater;
     private IvoTalentsApp mApp;
+
     public CustomSwipeAdapterArtistRecent(Context ctx) {
         this.ctx = ctx;
         mApp = ((IvoTalentsApp) ctx);
+
     }
 
     @Override

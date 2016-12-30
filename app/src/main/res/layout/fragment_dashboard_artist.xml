@@ -29,7 +29,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="15dp"
+                android:visibility="gone">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -160,7 +161,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="600dp"
                 android:orientation="vertical"
                 android:visibility="visible"
                 android:paddingLeft="25dp"
@@ -169,9 +170,28 @@
                 <android.support.v4.view.ViewPager
                     android:id="@+id/view_pager_artist_recent"
                     android:layout_width="match_parent"
-                    android:layout_height="600dp"
+                    android:layout_height="wrap_content"
                     android:visibility="visible"/>
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/paginator_swipe_artist_recent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <ImageButton
+                    android:id="@+id/paginator_swipe_artist_recent_template"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@color/transparent"
+                    android:src="@drawable/simple_point_white"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"></FrameLayout>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
