@@ -161,6 +161,40 @@
                     android:textColor="@color/white"
                     />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="440dp"
+                android:orientation="vertical"
+                android:visibility="visible"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:layout_marginTop="30dp">
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/view_pager_casting_recent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible"
+                    android:background="@color/white"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/paginator_swipe_casting_recent"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <ImageButton
+                    android:id="@+id/paginator_swipe_casting_recent_template"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@color/transparent"
+                    android:src="@drawable/simple_point_white"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"></FrameLayout>
 
         </LinearLayout>
     </ScrollView>

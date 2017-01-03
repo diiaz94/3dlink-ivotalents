@@ -12,7 +12,7 @@ import android.widget.TextView;
 /**
  * Created by diiaz94 on 29-12-2016.
  */
-public class CustomSwipeAdapterArtistRecent extends PagerAdapter {
+public class CustomSwipeAdapterCastingRecent extends PagerAdapter {
 
     private  int[] image_resources = {R.drawable.talent_1,R.drawable.talent_2,R.drawable.talent_3,R.drawable.talent_4,R.drawable.talent_4,R.drawable.talent_1,R.drawable.talent_2,R.drawable.talent_3};
     private  String[] category_resources = {"MUSICA","FOTOGRAFIA","MODELAJE","DIESEÑO","MUSICA","FOTOGRAFIA","MODELAJE","DIESEÑO"};
@@ -22,7 +22,7 @@ public class CustomSwipeAdapterArtistRecent extends PagerAdapter {
     private LayoutInflater layoutInflater;
     private IvoTalentsApp mApp;
 
-    public CustomSwipeAdapterArtistRecent(Context ctx) {
+    public CustomSwipeAdapterCastingRecent(Context ctx) {
         this.ctx = ctx;
         mApp = ((IvoTalentsApp) ctx);
 
@@ -44,16 +44,16 @@ public class CustomSwipeAdapterArtistRecent extends PagerAdapter {
         int first = position*4;
 
         layoutInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View item_view = layoutInflater.inflate(R.layout.swipe_layout_dashboard_artist_recent,container,false);
+        View item_view = layoutInflater.inflate(R.layout.swipe_layout_dashboard_casting_recent,container,false);
 
-        LinearLayout[] layouts_talents_dashboard_artist = new LinearLayout[4];
+        LinearLayout[] layouts_talents_dashboard_casting = new LinearLayout[4];
         ImageView[] recent_image_talents = new ImageView[4];
         TextView[] recent_category_talents = new TextView[4];
         TextView[] recent_name_talents = new TextView[4];
         TextView[] recent_talents = new TextView[4];
         for (int i=0;i<4;i++) {
 
-            layouts_talents_dashboard_artist[i] = (LinearLayout) item_view.findViewById(mApp.getResourcebyname("layout_talents_dashboard_artist_"+String.valueOf(i+1)));
+            layouts_talents_dashboard_casting[i] = (LinearLayout) item_view.findViewById(mApp.getResourcebyname("layout_talents_dashboard_casting_"+String.valueOf(i+1)));
             recent_image_talents[i] = (ImageView) item_view.findViewById(mApp.getResourcebyname("recent_image_talent_"+String.valueOf(i+1)));
             recent_category_talents[i] = (TextView) item_view.findViewById(mApp.getResourcebyname("recent_category_talent_"+String.valueOf(i+1)));
             recent_name_talents[i] = (TextView) item_view.findViewById(mApp.getResourcebyname("recent_name_talent_"+String.valueOf(i+1)));

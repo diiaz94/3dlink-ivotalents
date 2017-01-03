@@ -15,51 +15,75 @@
         android:gravity="center"
         android:layout_marginBottom="10dp">
         <LinearLayout
-            android:id="@+id/layout_talents_dashboard_artist_1"
+            android:id="@+id/layout_dashboard_casting_1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginRight="10dp">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <ImageView
-                    android:id="@+id/recent_image_talent_1"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="130dp"
-                    android:src="@drawable/talent_1"
-                    android:scaleType="fitXY"/>
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/recent_image_casting_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp"
+                        android:src="@drawable/talent_1"
+                        android:scaleType="fitXY"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp"
+                        android:background="#8cd8006c"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/recent_category_casting_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="MUSICA"
+                            android:textStyle="normal"
+                            android:tag="normal"
+                            android:textSize="12sp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"/>
+                        <TextView
+                            android:id="@+id/recent_title_casting_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="Catherine Lewis"
+                            android:textStyle="bold"
+                            android:tag="bold"
+                            android:textSize="14sp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"/>
+
+                        <Button
+                            android:layout_width="60dp"
+                            android:layout_height="15dp"
+                            android:text="LEER MÁS"
+                            android:textColor="@color/white"
+                            android:textSize="8sp"
+                            android:id="@+id/button_ver_casting"
+                            android:background="@drawable/border_white_shape"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="15dp"
+                            android:tag="normal"
+
+                            />
+                    </LinearLayout>
+                </RelativeLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/recent_category_talent_1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:text="MUSICA"
-                        android:textStyle="normal"
-                        android:tag="normal"
-                        android:textSize="12sp"
-                        android:layout_marginTop="5dp"/>
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="3dp"
-                        android:background="@color/ivo_orange"/>
-                    <TextView
-                        android:id="@+id/recent_name_talent_1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:text="Catherine Lewis"
-                        android:textStyle="bold"
-                        android:tag="bold"
-                        android:textSize="12sp"
-                        android:layout_marginTop="5dp"/>
+
+
                     <TextView
                         android:id="@+id/recent_talent_1"
                         android:layout_width="match_parent"
@@ -77,12 +101,11 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layout_talents_dashboard_artist_2"
+            android:id="@+id/layout_talents_dashboard_casting_2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginLeft="10dp">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -148,7 +171,7 @@
         android:gravity="center"
         android:layout_marginTop="10dp">
         <LinearLayout
-            android:id="@+id/layout_talents_dashboard_artist_3"
+            android:id="@+id/layout_talents_dashboard_casting_3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -210,7 +233,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layout_talents_dashboard_artist_4"
+            android:id="@+id/layout_talents_dashboard_casting_4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

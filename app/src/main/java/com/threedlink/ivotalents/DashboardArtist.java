@@ -107,12 +107,7 @@ public class DashboardArtist extends Fragment {
 
                     public void onClick(View v) {
                         int point_selected = Integer.parseInt(v.getTag().toString());
-                        for (int i = 0; i < paginator_swipe_artist_recent.getChildCount(); i++) {
-                            ImageButton b =(ImageButton) paginator_swipe_artist_recent.getChildAt(i);
-                            if(b.getVisibility()==VISIBLE)
-                                b.setImageResource(i==point_selected?R.drawable.selected_point_orange:R.drawable.simple_point_white);
-                        }
-                        viewPagerArtistRecent.setCurrentItem(point_selected);
+                        setPointSelected(point_selected);
                     }
                 });
 
@@ -128,7 +123,15 @@ public class DashboardArtist extends Fragment {
 
         return view;
     }
-
+    public void setPointSelected(int point_selected){
+        for (int i = 0; i < paginator_swipe_artist_recent.getChildCount(); i++) {
+            ImageButton b =(ImageButton) paginator_swipe_artist_recent.getChildAt(i);
+            if(b.getVisibility()==VISIBLE) {
+                b.setImageResource(i == point_selected + 1? R.drawable.selected_point_orange : R.drawable.simple_point_white);
+            }
+        }
+        viewPagerArtistRecent.setCurrentItem(point_selected);
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

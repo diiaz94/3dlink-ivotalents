@@ -18,7 +18,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
                 <android.support.v4.view.ViewPager
                     android:id="@+id/view_pager_artist"
                     android:layout_width="match_parent"
@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="15dp"
-                android:visibility="gone">
+                android:visibility="visible">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -161,7 +161,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="440dp"
                 android:orientation="vertical"
                 android:visibility="visible"
                 android:paddingLeft="25dp"
@@ -170,13 +170,14 @@
                 <android.support.v4.view.ViewPager
                     android:id="@+id/view_pager_artist_recent"
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    android:visibility="visible"/>
+                    android:layout_height="match_parent"
+                    android:visibility="visible"
+                    android:background="@color/white"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/paginator_swipe_artist_recent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
                 android:gravity="center">
                 <ImageButton
