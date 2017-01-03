@@ -107,9 +107,10 @@ public class DashboardArtist extends Fragment {
 
                     public void onClick(View v) {
                         int point_selected = Integer.parseInt(v.getTag().toString());
-                        for (int i = 0; i < adapterArtistRecent.getCount(); i++) {
+                        for (int i = 0; i < paginator_swipe_artist_recent.getChildCount(); i++) {
                             ImageButton b =(ImageButton) paginator_swipe_artist_recent.getChildAt(i);
-                            b.setImageResource(i==point_selected?R.drawable.selected_point_orange:R.drawable.simple_point_white);
+                            if(b.getVisibility()==VISIBLE)
+                                b.setImageResource(i==point_selected?R.drawable.selected_point_orange:R.drawable.simple_point_white);
                         }
                         viewPagerArtistRecent.setCurrentItem(point_selected);
                     }
