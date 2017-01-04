@@ -88,7 +88,7 @@ public class DashboardCasting extends Fragment {
 
         viewPagerCastingRecent = (ViewPager) view.findViewById(R.id.view_pager_casting_recent);
         viewPagerCastingRecent.setVisibility(View.VISIBLE);
-        adapterCastingRecent = new CustomSwipeAdapterCastingRecent(getActivity().getApplicationContext(),paginator_swipe_casting_recent);
+        adapterCastingRecent = new CustomSwipeAdapterCastingRecent(getActivity().getApplicationContext());
         viewPagerCastingRecent.setAdapter(adapterCastingRecent);
 
         ImageButton paginator_swipe_casting_recent_template = (ImageButton) view.findViewById(R.id.paginator_swipe_casting_recent_template);
@@ -117,7 +117,12 @@ public class DashboardCasting extends Fragment {
             }
         }
 
-
+        viewPagerCastingRecent.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                setPointSelected(position);
+            }
+        });
 
         RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_dashboard_casting);
         mApp.setFontsOnRelative(myLayout);

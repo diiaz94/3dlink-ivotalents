@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements
             public void onClick(View popupView) {
                 Fragment fragment = null;
                 fragment = AdvancedSearch.newInstance("param1","param2");
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( "search" ).commit();
                 if (drawer.isDrawerOpen(Gravity.RIGHT)) {
                     drawer.closeDrawer(Gravity.RIGHT);
                 } else {
@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements
             public void onClick(View popupView) {
                 Fragment fragment = null;
                 fragment = DashboardArtist.newInstance("param1","param2");
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( "artists" ).commit();
                 if (drawer.isDrawerOpen(Gravity.RIGHT)) {
                     drawer.closeDrawer(Gravity.RIGHT);
                 } else {
@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements
             public void onClick(View popupView) {
                 Fragment fragment = null;
                 fragment = DashboardCasting.newInstance("param1","param2");
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( "castings" ).commit();
                 if (drawer.isDrawerOpen(Gravity.RIGHT)) {
                     drawer.closeDrawer(Gravity.RIGHT);
                 } else {

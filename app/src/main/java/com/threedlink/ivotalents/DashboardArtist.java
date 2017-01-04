@@ -116,7 +116,12 @@ public class DashboardArtist extends Fragment {
                 paginator_swipe_artist_recent.addView(b);
             }
         }
-
+        viewPagerArtistRecent.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                setPointSelected(position);
+            }
+        });
 
         RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_dashboard_artist);
         mApp.setFontsOnRelative(myLayout);
