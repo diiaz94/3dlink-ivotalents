@@ -5,9 +5,12 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import static android.view.View.VISIBLE;
 
 /**
  * Created by diiaz94 on 29-12-2016.
@@ -21,9 +24,10 @@ public class CustomSwipeAdapterCastingRecent extends PagerAdapter {
     private Context ctx;
     private LayoutInflater layoutInflater;
     private IvoTalentsApp mApp;
-
-    public CustomSwipeAdapterCastingRecent(Context ctx) {
+    private LinearLayout paginator_swipe_casting_recent;
+    public CustomSwipeAdapterCastingRecent(Context ctx,LinearLayout paginator_swipe_casting_recent) {
         this.ctx = ctx;
+        this.paginator_swipe_casting_recent = paginator_swipe_casting_recent;
         mApp = ((IvoTalentsApp) ctx);
 
     }
@@ -63,10 +67,14 @@ public class CustomSwipeAdapterCastingRecent extends PagerAdapter {
             recent_category_castings[i].setTypeface(mApp.getFont());
             recent_title_castings[i].setTypeface(mApp.getFontBold());
 
-
         }
 
-
+        for ( int i = 0; i < paginator_swipe_casting_recent.getChildCount(); i++) {
+            ImageButton b =(ImageButton) paginator_swipe_casting_recent.getChildAt(i);
+            if(b.getVisibility()==VISIBLE) {
+                b.setImageResource(i == position + 1? R.drawable.selected_point_green : R.drawable.simple_point_white);
+            }
+        }
         container.addView(item_view);
         return item_view;
     }

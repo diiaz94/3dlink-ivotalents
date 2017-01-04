@@ -15,7 +15,7 @@ import android.widget.TextView;
 public class CustomSwipeAdapterArtistRecent extends PagerAdapter {
 
     private  int[] image_resources = {R.drawable.talent_1,R.drawable.talent_2,R.drawable.talent_3,R.drawable.talent_4,R.drawable.talent_4,R.drawable.talent_1,R.drawable.talent_2,R.drawable.talent_3};
-    private  String[] category_resources = {"MUSICA","FOTOGRAFIA","MODELAJE","DIESEÑO","MUSICA","FOTOGRAFIA","MODELAJE","DIESEÑO"};
+    private  String[] category_resources = {"MUSICA","FOTOGRAFIA","MODELAJE","DISEÑO","MUSICA","FOTOGRAFIA","MODELAJE","DISEÑO"};
     private  String[] name_resources = {"Catherine Lewis","Catherine Lewis","Catherine Lewis","Catherine Lewis","Catherine Lewis2","Catherine Lewis","Catherine Lewis","Catherine Lewis"};
     private  String[] talent_resources = {"Compositora","Fotografo1","Modelo Editorial","Compositora","Compositora","Fotografo","Modelo Editorial","Compositora"};
     private Context ctx;
@@ -63,6 +63,10 @@ public class CustomSwipeAdapterArtistRecent extends PagerAdapter {
             recent_category_talents[i].setText(category_resources[first+i]);
             recent_name_talents[i].setText(name_resources[first+i]);
             recent_talents[i].setText(talent_resources[first+i]);
+
+            recent_category_talents[i].setTypeface(mApp.getFont());
+            recent_name_talents[i].setTypeface(mApp.getFontBold());
+            recent_category_talents[i].setTypeface(mApp.getFont());
         }
 
 

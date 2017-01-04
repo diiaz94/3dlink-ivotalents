@@ -84,14 +84,15 @@ public class DashboardCasting extends Fragment {
         adapter = new CustomSwipeAdapterCasting(getActivity().getApplicationContext());
         viewPager.setAdapter(adapter);
 
+        paginator_swipe_casting_recent = (LinearLayout) view.findViewById(R.id.paginator_swipe_casting_recent);
+
         viewPagerCastingRecent = (ViewPager) view.findViewById(R.id.view_pager_casting_recent);
         viewPagerCastingRecent.setVisibility(View.VISIBLE);
-        adapterCastingRecent = new CustomSwipeAdapterCastingRecent(getActivity().getApplicationContext());
+        adapterCastingRecent = new CustomSwipeAdapterCastingRecent(getActivity().getApplicationContext(),paginator_swipe_casting_recent);
         viewPagerCastingRecent.setAdapter(adapterCastingRecent);
 
-        paginator_swipe_casting_recent = (LinearLayout) view.findViewById(R.id.paginator_swipe_casting_recent);
-        ImageButton paginator_swipe_artist_recent_template = (ImageButton) view.findViewById(R.id.paginator_swipe_artist_recent_template);
-        ViewGroup.LayoutParams params = paginator_swipe_artist_recent_template.getLayoutParams();
+        ImageButton paginator_swipe_casting_recent_template = (ImageButton) view.findViewById(R.id.paginator_swipe_casting_recent_template);
+        ViewGroup.LayoutParams params = paginator_swipe_casting_recent_template.getLayoutParams();
         if (adapterCastingRecent.getCount()>1) {
             for (int i = 0; i < adapterCastingRecent.getCount(); i++) {
                 ImageButton b = new ImageButton(getActivity().getApplicationContext());
