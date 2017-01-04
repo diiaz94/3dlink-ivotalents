@@ -14,9 +14,9 @@ import android.widget.TextView;
  */
 public class CustomSwipeAdapterCastingRecent extends PagerAdapter {
 
-    private  int[] image_resources = {R.drawable.talent_1,R.drawable.talent_2,R.drawable.talent_3,R.drawable.talent_4,R.drawable.talent_4,R.drawable.talent_1,R.drawable.talent_2,R.drawable.talent_3};
-    private  String[] category_resources = {"MUSICA","FOTOGRAFIA","MODELAJE","DIESEÑO","MUSICA","FOTOGRAFIA","MODELAJE","DIESEÑO"};
-    private  String[] name_resources = {"Catherine Lewis","Catherine Lewis","Catherine Lewis","Catherine Lewis","Catherine Lewis2","Catherine Lewis","Catherine Lewis","Catherine Lewis"};
+    private  int[] image_resources = {R.drawable.talent_1,R.drawable.casting_2,R.drawable.casting_3,R.drawable.talent_1,R.drawable.talent_1,R.drawable.talent_1,R.drawable.casting_2,R.drawable.casting_3,R.drawable.talent_1,R.drawable.talent_1};
+    private  String[] category_resources = {"MÚSICA","DISEÑO","MÚSICA","MÚSICA","DISEÑO","MÚSICA","DISEÑO","MÚSICA","MÚSICA","DISEÑO"};
+    private  String[] title_resources = {"Título del Casting","Título del Casting","Título del Casting","Título del Casting","Título del Casting","Título del Casting","Título del Casting","Título del Casting","Título del Casting","Título del Casting"};
     private  String[] talent_resources = {"Compositora","Fotografo1","Modelo Editorial","Compositora","Compositora","Fotografo","Modelo Editorial","Compositora"};
     private Context ctx;
     private LayoutInflater layoutInflater;
@@ -30,7 +30,7 @@ public class CustomSwipeAdapterCastingRecent extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return image_resources.length/4+image_resources.length%4;
+        return image_resources.length/5+image_resources.length%5;
     }
 
     @Override
@@ -41,28 +41,29 @@ public class CustomSwipeAdapterCastingRecent extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
 
-        int first = position*4;
+        int first = position*5;
 
         layoutInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View item_view = layoutInflater.inflate(R.layout.swipe_layout_dashboard_casting_recent,container,false);
 
-        LinearLayout[] layouts_talents_dashboard_casting = new LinearLayout[4];
-        ImageView[] recent_image_talents = new ImageView[4];
-        TextView[] recent_category_talents = new TextView[4];
-        TextView[] recent_name_talents = new TextView[4];
-        TextView[] recent_talents = new TextView[4];
-        for (int i=0;i<4;i++) {
+        LinearLayout[] layouts_castings_dashboard_casting = new LinearLayout[5];
+        ImageView[] recent_image_castings = new ImageView[5];
+        TextView[] recent_category_castings = new TextView[5];
+        TextView[] recent_title_castings = new TextView[5];
+        for (int i=0;i<5;i++) {
+            layouts_castings_dashboard_casting[i] = (LinearLayout) item_view.findViewById(mApp.getResourcebyname("layout_dashboard_casting_"+String.valueOf(i+1)));
+            recent_image_castings[i] = (ImageView) item_view.findViewById(mApp.getResourcebyname("recent_image_casting_"+String.valueOf(i+1)));
+            recent_category_castings[i] = (TextView) item_view.findViewById(mApp.getResourcebyname("recent_category_casting_"+String.valueOf(i+1)));
+            recent_title_castings[i] = (TextView) item_view.findViewById(mApp.getResourcebyname("recent_title_casting_"+String.valueOf(i+1)));
 
-            layouts_talents_dashboard_casting[i] = (LinearLayout) item_view.findViewById(mApp.getResourcebyname("layout_talents_dashboard_casting_"+String.valueOf(i+1)));
-            recent_image_talents[i] = (ImageView) item_view.findViewById(mApp.getResourcebyname("recent_image_talent_"+String.valueOf(i+1)));
-            recent_category_talents[i] = (TextView) item_view.findViewById(mApp.getResourcebyname("recent_category_talent_"+String.valueOf(i+1)));
-            recent_name_talents[i] = (TextView) item_view.findViewById(mApp.getResourcebyname("recent_name_talent_"+String.valueOf(i+1)));
-            recent_talents[i] = (TextView) item_view.findViewById(mApp.getResourcebyname("recent_talent_"+String.valueOf(i+1)));
+            recent_image_castings[i].setImageResource(image_resources[first+i]);
+            recent_category_castings[i].setText(category_resources[first+i]);
+            recent_title_castings[i].setText(title_resources[first+i]);
 
-            recent_image_talents[i].setImageResource(image_resources[first+i]);
-            recent_category_talents[i].setText(category_resources[first+i]);
-            recent_name_talents[i].setText(name_resources[first+i]);
-            recent_talents[i].setText(talent_resources[first+i]);
+            recent_category_castings[i].setTypeface(mApp.getFont());
+            recent_title_castings[i].setTypeface(mApp.getFontBold());
+
+
         }
 
 

@@ -8,7 +8,12 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import static android.view.View.VISIBLE;
 
 
 /**
@@ -30,13 +35,15 @@ public class DashboardCasting extends Fragment {
     private String mParam2;
     private IvoTalentsApp mApp;
     private OnFragmentInteractionListener mListener;
-
+    private LinearLayout paginator_swipe_casting_recent;
     public DashboardCasting() {
         // Required empty public constructor
     }
 
     ViewPager viewPager;
     CustomSwipeAdapterCasting adapter;
+    ViewPager viewPagerCastingRecent;
+    CustomSwipeAdapterCastingRecent adapterCastingRecent;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -76,12 +83,55 @@ public class DashboardCasting extends Fragment {
         viewPager.setVisibility(View.VISIBLE);
         adapter = new CustomSwipeAdapterCasting(getActivity().getApplicationContext());
         viewPager.setAdapter(adapter);
+
+        viewPagerCastingRecent = (ViewPager) view.findViewById(R.id.view_pager_casting_recent);
+        viewPagerCastingRecent.setVisibility(View.VISIBLE);
+        adapterCastingRecent = new CustomSwipeAdapterCastingRecent(getActivity().getApplicationContext());
+        viewPagerCastingRecent.setAdapter(adapterCastingRecent);
+
+        paginator_swipe_casting_recent = (LinearLayout) view.findViewById(R.id.paginator_swipe_casting_recent);
+        ImageButton paginator_swipe_artist_recent_template = (ImageButton) view.findViewById(R.id.paginator_swipe_artist_recent_template);
+        ViewGroup.LayoutParams params = paginator_swipe_artist_recent_template.getLayoutParams();
+        if (adapterCastingRecent.getCount()>1) {
+            for (int i = 0; i < adapterCastingRecent.getCount(); i++) {
+                ImageButton b = new ImageButton(getActivity().getApplicationContext());
+                b.setLayoutParams(params);
+                b.setBackgroundColor(getResources().getColor(R.color.transparent));
+                b.setImageResource(i==0?R.drawable.selected_point_green:R.drawable.simple_point_white);
+                b.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                //Log.e("AQUI","b.getLayoutParams().width::"+String.valueOf(b.getLayoutParams().width));
+                //Log.e("AQUI","b.getLayoutParams().height::"+String.valueOf(b.getLayoutParams().height));
+                b.setTag(String.valueOf(i));
+                b.setOnClickListener(new View.OnClickListener() {
+
+                    public void onClick(View v) {
+                        int point_selected = Integer.parseInt(v.getTag().toString());
+                        setPointSelected(point_selected);
+                    }
+                });
+
+
+
+                paginator_swipe_casting_recent.addView(b);
+            }
+        }
+
+
+
         RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_dashboard_casting);
         mApp.setFontsOnRelative(myLayout);
 
         return view;
     }
-
+    public void setPointSelected(int point_selected){
+        for (int i = 0; i < paginator_swipe_casting_recent.getChildCount(); i++) {
+            ImageButton b =(ImageButton) paginator_swipe_casting_recent.getChildAt(i);
+            if(b.getVisibility()==VISIBLE) {
+                b.setImageResource(i == point_selected + 1? R.drawable.selected_point_green : R.drawable.simple_point_white);
+            }
+        }
+        viewPagerCastingRecent.setCurrentItem(point_selected);
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
