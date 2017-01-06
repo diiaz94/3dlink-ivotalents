@@ -9,13 +9,13 @@
     <ScrollView
         android:id="@+id/parentScrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:fillViewport="true"
         android:layout_marginBottom="50dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <LinearLayout
@@ -54,7 +54,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginLeft="45dp"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -339,110 +339,159 @@
             <LinearLayout
                 android:id="@+id/filter_2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="30dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="center"
                     android:orientation="vertical">
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:layout_gravity="center">
 
-                        <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Requerimientos para modelo"
-                        android:textColor="@color/black"
-                        android:tag="bold"
-                        android:textStyle="bold"/>
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="10dp">
-
-
-
-                        <TextView
+                            android:orientation="vertical"
+                            android:layout_gravity="center">
+                            <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:tag="normal"
-                            android:text="Tatuajes:"
+                            android:layout_height="wrap_content"
+                            android:text="Requerimientos para modelo"
                             android:textColor="@color/black"
-                            android:textSize="15sp"
-                            android:gravity="center"
-                            />
-
-                        <RadioGroup
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-                            <RadioButton
+                            android:tag="bold"
+                            android:textStyle="bold"/>
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Si"
-                                android:id="@+id/tatuajesSi"
+                                android:orientation="horizontal"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:tag="normal"
+                                    android:text="Tatuajes:"
+                                    android:textColor="@color/black"
+                                    android:textSize="15sp"
+                                    android:gravity="center"
+                                    />
+                                <RadioGroup
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal">
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Si"
+                                        android:id="@+id/tatuajesSi"
+                                        android:textColor="@color/black"
+                                        android:theme="@style/AdvancedSearchRadio"/>
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="No"
+                                        android:id="@+id/tatuajesNo"
+                                        android:textColor="@color/black"
+                                        android:theme="@style/AdvancedSearchRadio"/>
+                                </RadioGroup>
+                            </LinearLayout>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:text="Etnia"
+                                android:paddingTop="10dp"
+                                android:paddingLeft="10dp"
                                 android:textColor="@color/black"
-                                android:theme="@style/AdvancedSearchRadio"/>
-                            <RadioButton
+                                android:layout_gravity="center"
+                                android:tag="normal"
+                                android:background="@drawable/select_bg_search"
+                                android:layout_marginTop="10dp">
+
+                            </TextView>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:text="Color de ojos"
+                                android:paddingTop="10dp"
+                                android:paddingLeft="10dp"
+                                android:textColor="@color/black"
+                                android:layout_gravity="center"
+                                android:tag="normal"
+                                android:background="@drawable/select_bg_search"
+                                android:layout_marginTop="10dp">
+
+                            </TextView>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:text="Color de cabello"
+                                android:paddingTop="10dp"
+                                android:paddingLeft="10dp"
+                                android:textColor="@color/black"
+                                android:layout_gravity="center"
+                                android:tag="normal"
+                                android:background="@drawable/select_bg_search"
+                                android:layout_marginTop="10dp">
+
+                            </TextView>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:orientation="vertical"
+                            android:layout_marginTop="110dp"
+                            >
+                            <TextView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="No"
-                                android:id="@+id/tatuajesNo"
-                                android:textColor="@color/black"
-                                android:theme="@style/AdvancedSearchRadio"/>
-                        </RadioGroup>
-                    </LinearLayout>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:text="Etnia"
-                            android:paddingTop="10dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="@color/black"
-                            android:layout_gravity="center"
-                            android:tag="normal"
-                            android:background="@drawable/select_bg_search"
-                            android:layout_marginTop="10dp">
+                                android:layout_height="0dp"
+                                android:text="Requerimientos para modelo"
+                                android:textColor="@color/ivo_blue"
+                                android:tag="bold"
+                                android:textStyle="bold"
+                                android:visibility="invisible"/>
 
-                        </TextView>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:text="Color de ojos"
-                            android:paddingTop="10dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="@color/black"
-                            android:layout_gravity="center"
-                            android:tag="normal"
-                            android:background="@drawable/select_bg_search"
-                            android:layout_marginTop="10dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp"
+                                android:background="@color/black">
+                                <ScrollView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="5dp">
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="match_parent"
+                                                android:text="Requerimientos para modelo"
+                                                android:textColor="@color/white"
+                                                android:tag="bold"
+                                                android:textStyle="bold"
+                                                android:visibility="visible"/>
+                                        </LinearLayout>
+                                    </LinearLayout>
+                                </ScrollView>
 
-                        </TextView>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:text="Color de cabello"
-                            android:paddingTop="10dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="@color/black"
-                            android:layout_gravity="center"
-                            android:tag="normal"
-                            android:background="@drawable/select_bg_search"
-                            android:layout_marginTop="10dp">
-
-                        </TextView>
-                    </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
                 </LinearLayout>
+
 
 
             </LinearLayout>
