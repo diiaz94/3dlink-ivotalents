@@ -405,6 +405,7 @@
                                 </RadioGroup>
                             </LinearLayout>
                             <TextView
+                                android:id="@+id/select_etnia"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:text="Etnia"
@@ -414,7 +415,8 @@
                                 android:layout_gravity="center"
                                 android:tag="normal"
                                 android:background="@drawable/select_bg_search"
-                                android:layout_marginTop="10dp">
+                                android:layout_marginTop="10dp"
+                                android:clickable="true">
 
                             </TextView>
                             <TextView
@@ -445,11 +447,13 @@
                             </TextView>
                         </LinearLayout>
                         <LinearLayout
+                            android:id="@+id/search_list"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:background="@color/white"
                             android:orientation="vertical"
                             android:layout_marginTop="110dp"
+                            android:visibility="gone"
                             >
                             <TextView
                                 android:layout_width="wrap_content"
@@ -468,21 +472,28 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent">
                                     <LinearLayout
+                                        android:id="@+id/search_list_root_1"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content">
                                         <LinearLayout
+                                            android:id="@+id/search_list_row_template"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:paddingTop="5dp"
-                                            android:paddingBottom="5dp">
+                                            android:paddingBottom="5dp"
+                                            android:clickable="true">
                                             <TextView
+                                                android:id="@+id/search_list_row_template_text"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="match_parent"
-                                                android:text="Requerimientos para modelo"
+                                                android:text="Blanco"
                                                 android:textColor="@color/white"
                                                 android:tag="bold"
                                                 android:textStyle="bold"
-                                                android:visibility="visible"/>
+                                                android:visibility="visible"
+                                                android:layout_marginLeft="5dp"
+                                                android:layout_marginRight="5dp"
+                                                />
                                         </LinearLayout>
                                     </LinearLayout>
                                 </ScrollView>

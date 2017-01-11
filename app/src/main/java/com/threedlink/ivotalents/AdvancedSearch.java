@@ -10,6 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 
 /**
@@ -39,6 +44,13 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
     private LinearLayout next;
     private LinearLayout[] filtersLayouts = new LinearLayout[LimitFilters];
     private LinearLayout layoutBuscar;
+
+    private TextView selectEtnia;
+    private String[] selectEtniaArray = {"Blanco","Negro"};
+    private LinearLayout searchList;
+    private LinearLayout searchListRoot1;
+    private TextView searchListRowTemplateText;
+    private LinearLayout searchListRowTemplate;
 
     public AdvancedSearch() {
         // Required empty public constructor
@@ -92,6 +104,13 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
 
         }
 
+        selectEtnia = (TextView) view.findViewById(R.id.select_etnia);
+        selectEtnia.setOnClickListener(this);
+        searchList = (LinearLayout) view.findViewById(R.id.search_list);
+        searchListRoot1 = (LinearLayout) view.findViewById(R.id.search_list_root_1);
+        searchListRowTemplate = (LinearLayout) view.findViewById(R.id.search_list_row_template);
+        searchListRowTemplateText = (TextView) view.findViewById(R.id.search_list_row_template_text);
+
         return view;
     }
 
@@ -130,8 +149,34 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
             case R.id.backFilter:
                 backFilter(v);
                 break;
+            case R.id.select_etnia:
+                showSelect(v,"Etnia");
+                break;
 
         }
+    }
+
+    private void showSelect(View v,String type) {
+
+        String[] array = null;
+        switch (type){
+            case "Etnia":
+                array = this.selectEtniaArray;
+                break;
+        }
+
+        ViewGroup.LayoutParams paramsLayout = searchListRowTemplate.getLayoutParams();
+        ViewGroup.LayoutParams paramsTextView = searchListRowTemplateText.getLayoutParams();
+        for (int i = 0; i<array.length;i++){
+            LinearLayout row = new LinearLayout(getActivity().getApplicationContext());
+            TextView text = new TextView(getActivity().getApplicationContext());
+            text.setText(array[i]);
+            row.addView(text);
+            row.setVisibility(View.VISIBLE);
+            searchListRoot1.addView(row);
+        }
+        searchList.setVisibility(View.VISIBLE);
+
     }
 
     private void nextFilter(View v) {
