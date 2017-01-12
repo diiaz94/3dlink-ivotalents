@@ -420,6 +420,7 @@
 
                             </TextView>
                             <TextView
+                                android:id="@+id/select_eye_color"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:text="Color de ojos"
@@ -433,6 +434,7 @@
 
                             </TextView>
                             <TextView
+                                android:id="@+id/select_hair_color"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:text="Color de cabello"
@@ -466,35 +468,43 @@
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="200dp"
-                                android:background="@color/black">
+                                android:layout_height="wrap_content"
+                                android:background="@color/black"
+                                android:orientation="vertical">
+                                <LinearLayout
+                                    android:id="@+id/search_list_row_template"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:paddingTop="5dp"
+                                    android:paddingBottom="5dp"
+                                    android:clickable="true"
+                                    android:visibility="gone"
+                                    android:orientation="horizontal"
+                                    >
+                                    <TextView
+                                        android:id="@+id/search_list_row_template_text"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Blanco"
+                                        android:textColor="@color/white"
+                                        android:tag="bold"
+                                        android:textStyle="bold"
+                                        android:visibility="visible"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_gravity="center"
+                                        />
+                                </LinearLayout>
                                 <ScrollView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent">
+
                                     <LinearLayout
                                         android:id="@+id/search_list_root_1"
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content">
-                                        <LinearLayout
-                                            android:id="@+id/search_list_row_template"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:paddingTop="5dp"
-                                            android:paddingBottom="5dp"
-                                            android:clickable="true">
-                                            <TextView
-                                                android:id="@+id/search_list_row_template_text"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="match_parent"
-                                                android:text="Blanco"
-                                                android:textColor="@color/white"
-                                                android:tag="bold"
-                                                android:textStyle="bold"
-                                                android:visibility="visible"
-                                                android:layout_marginLeft="5dp"
-                                                android:layout_marginRight="5dp"
-                                                />
-                                        </LinearLayout>
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
                                     </LinearLayout>
                                 </ScrollView>
 
