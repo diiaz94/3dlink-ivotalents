@@ -226,7 +226,7 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
                 searchListRoot1.addView(row);
             }
             RelativeLayout.LayoutParams  params = (RelativeLayout.LayoutParams) searchList.getLayoutParams();
-            RelativeLayout.LayoutParams params2 = (RelativeLayout.LayoutParams) selectEtnia.getLayoutParams()
+            LinearLayout.LayoutParams params2 = (LinearLayout.LayoutParams) selectEtnia.getLayoutParams();
             Log.d("PEDRO",String.valueOf(params.topMargin));
             Log.d("PEDRO2",String.valueOf(params2.height));
             searchList.setLayoutParams(params);
