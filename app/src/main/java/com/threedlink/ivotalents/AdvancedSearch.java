@@ -184,7 +184,7 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
     }
 
     private void showSelect(View v,String type) {
-
+    int offset = 75;
         if(!isSelectOpened){
             isSelectOpened = true;
             String[] array = null;
@@ -195,11 +195,11 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
                     break;
                 case "EyeColor":
                     array = this.selectEyeColorArray;
-                    margin = marginTop*2;
+                    margin = margin + offset;
                     break;
                 case "HairColor":
                     array = this.selectHairColorArray;
-                    margin = marginTop*3;
+                    margin = margin + offset*2;
                     break;
             }
 
@@ -229,6 +229,7 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
             LinearLayout.LayoutParams params2 = (LinearLayout.LayoutParams) selectEtnia.getLayoutParams();
             Log.d("PEDRO",String.valueOf(params.topMargin));
             Log.d("PEDRO2",String.valueOf(params2.height));
+            params.setMargins(0,margin,0,0);
             searchList.setLayoutParams(params);
             searchList.setVisibility(View.VISIBLE);
         }else{
