@@ -4,12 +4,19 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 
 /**
@@ -25,7 +32,7 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    private static int marginTop = 165;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -39,6 +46,19 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
     private LinearLayout next;
     private LinearLayout[] filtersLayouts = new LinearLayout[LimitFilters];
     private LinearLayout layoutBuscar;
+
+    private TextView selectEtnia;
+    private String[] selectEtniaArray = {"Blanco","Negro"};
+    private TextView selectEyeColor;
+    private String[] selectEyeColorArray = {"Verde","Azul"};
+    private TextView selectHairColor;
+    private String[] selectHairColorArray = {"Castaño","Negro"};
+    private LinearLayout searchList;
+    private LinearLayout searchListRoot1;
+    private TextView searchListRowTemplateText;
+    private LinearLayout searchListRowTemplate;
+
+    private boolean isSelectOpened;
 
     public AdvancedSearch() {
         // Required empty public constructor
@@ -59,6 +79,7 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -70,6 +91,7 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         mApp = ((IvoTalentsApp) getActivity().getApplicationContext());
+        isSelectOpened = false;
     }
 
     @Override
@@ -91,6 +113,18 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
             filtersLayouts[i] = (LinearLayout) view.findViewById(mApp.getResourcebyname("filter_"+String.valueOf(i)));
 
         }
+
+        selectEtnia = (TextView) view.findViewById(R.id.select_etnia);
+        selectEtnia.setOnClickListener(this);
+        selectEyeColor = (TextView) view.findViewById(R.id.select_eye_color);
+        selectEyeColor.setOnClickListener(this);
+        selectHairColor = (TextView) view.findViewById(R.id.select_hair_color);
+        selectHairColor.setOnClickListener(this);
+
+        searchList = (LinearLayout) view.findViewById(R.id.search_list);
+        searchListRoot1 = (LinearLayout) view.findViewById(R.id.search_list_root_1);
+        searchListRowTemplate = (LinearLayout) view.findViewById(R.id.search_list_row_template);
+        searchListRowTemplateText = (TextView) view.findViewById(R.id.search_list_row_template_text);
 
         return view;
     }
@@ -130,8 +164,79 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
             case R.id.backFilter:
                 backFilter(v);
                 break;
+            case R.id.select_etnia:
+                showSelect(v,"Etnia");
+                break;
+            case R.id.select_eye_color:
+                showSelect(v,"EyeColor");
+                break;
+            case R.id.select_hair_color:
+                showSelect(v,"HairColor");
+                break;
 
         }
+    }
+
+    private void closeSelect(View v) {
+        searchListRoot1.removeAllViews();
+        searchList.setVisibility(View.GONE);
+        isSelectOpened =false;
+    }
+
+    private void showSelect(View v,String type) {
+
+        if(!isSelectOpened){
+            isSelectOpened = true;
+            String[] array = null;
+            int margin = marginTop;
+            switch (type){
+                case "Etnia":
+                    array = this.selectEtniaArray;
+                    break;
+                case "EyeColor":
+                    array = this.selectEyeColorArray;
+                    margin = marginTop*2;
+                    break;
+                case "HairColor":
+                    array = this.selectHairColorArray;
+                    margin = marginTop*3;
+                    break;
+            }
+
+            ViewGroup.LayoutParams paramsLayout = searchListRowTemplate.getLayoutParams();
+            ViewGroup.LayoutParams paramsTextView = searchListRowTemplateText.getLayoutParams();
+            for (int i = 0; i<array.length;i++){
+                TextView text = new TextView(getActivity().getApplicationContext());
+                text.setLayoutParams(paramsTextView);
+                text.setText(array[i]);
+                text.setTypeface(mApp.getFont());
+                LinearLayout row = new LinearLayout(getActivity().getApplicationContext());
+                row.setLayoutParams(paramsLayout);
+                row.addView(text);
+                row.setVisibility(View.VISIBLE);
+
+                row.setOnClickListener(new View.OnClickListener() {
+
+                    public void onClick(View v) {
+                        LinearLayout l = (LinearLayout) v;
+                        TextView t = (TextView) l.getChildAt(0);
+                        selectEtnia.setText(t.getText());
+                    }
+                });
+                searchListRoot1.addView(row);
+            }
+            RelativeLayout.LayoutParams  params = (RelativeLayout.LayoutParams) searchList.getLayoutParams();
+            LinearLayout.LayoutParams params2 = (LinearLayout.LayoutParams) selectEtnia.getLayoutParams();
+            Log.d("PEDRO",String.valueOf(params.topMargin));
+            Log.d("PEDRO2",String.valueOf(params2.height));
+            searchList.setLayoutParams(params);
+            searchList.setVisibility(View.VISIBLE);
+        }else{
+            closeSelect(v);
+        }
+
+
+
     }
 
     private void nextFilter(View v) {
