@@ -49,9 +49,9 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
         }, SPLASH_DISPLAY_LENGTH);*/
     }
     @Override
-    public void onStart() {
+    public void onResume() {
         Log.e("PEDRO","PASO onStart MainAct");
-        super.onStart();
+        super.onResume();
 
         if(session.checkLogin()){
             goToMainScreen();

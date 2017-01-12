@@ -180,14 +180,14 @@
                 android:layout_height="35dp"
                 android:orientation="horizontal"
                 android:gravity="center">
-                <ImageButton
+                <FrameLayout
                     android:id="@+id/paginator_swipe_artist_recent_template"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:background="@color/transparent"
-                    android:src="@drawable/simple_point_white"
-                    android:scaleType="fitCenter"
-                    android:visibility="gone"/>
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/simple_point_white"
+                    android:visibility="visible"
+                    android:layout_margin="3dp"
+                    android:clickable="true"/>
 
             </LinearLayout>
             <FrameLayout

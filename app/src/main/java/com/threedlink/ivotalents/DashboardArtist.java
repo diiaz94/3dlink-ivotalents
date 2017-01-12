@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -91,15 +92,16 @@ public class DashboardArtist extends Fragment {
         viewPagerArtistRecent.setAdapter(adapterArtistRecent);
 
         paginator_swipe_artist_recent = (LinearLayout) view.findViewById(R.id.paginator_swipe_artist_recent);
-        ImageButton paginator_swipe_artist_recent_template = (ImageButton) view.findViewById(R.id.paginator_swipe_artist_recent_template);
+        FrameLayout paginator_swipe_artist_recent_template = (FrameLayout) view.findViewById(R.id.paginator_swipe_artist_recent_template);
         ViewGroup.LayoutParams params = paginator_swipe_artist_recent_template.getLayoutParams();
         if (adapterArtistRecent.getCount()>1) {
             for (int i = 0; i < adapterArtistRecent.getCount(); i++) {
-                ImageButton b = new ImageButton(getActivity().getApplicationContext());
+                FrameLayout b = new FrameLayout(getActivity().getApplicationContext());
                 b.setLayoutParams(params);
-                b.setBackgroundColor(getResources().getColor(R.color.transparent));
-                b.setImageResource(i==0?R.drawable.selected_point_orange:R.drawable.simple_point_white);
-                b.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                b.setBackgroundDrawable(getResources().getDrawable(i==0?R.drawable.selected_point_orange:R.drawable.simple_point_white));
+               // b.setImageResource();
+                b.setVisibility(VISIBLE);
+                //b.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 //Log.e("AQUI","b.getLayoutParams().width::"+String.valueOf(b.getLayoutParams().width));
                 //Log.e("AQUI","b.getLayoutParams().height::"+String.valueOf(b.getLayoutParams().height));
                 b.setTag(String.valueOf(i));
@@ -130,9 +132,10 @@ public class DashboardArtist extends Fragment {
     }
     public void setPointSelected(int point_selected){
         for (int i = 0; i < paginator_swipe_artist_recent.getChildCount(); i++) {
-            ImageButton b =(ImageButton) paginator_swipe_artist_recent.getChildAt(i);
+            FrameLayout b =(FrameLayout) paginator_swipe_artist_recent.getChildAt(i);
             if(b.getVisibility()==VISIBLE) {
-                b.setImageResource(i == point_selected + 1? R.drawable.selected_point_orange : R.drawable.simple_point_white);
+                b.setBackgroundDrawable(getResources().getDrawable(i==0?R.drawable.selected_point_orange:R.drawable.simple_point_white));
+
             }
         }
         viewPagerArtistRecent.setCurrentItem(point_selected);
