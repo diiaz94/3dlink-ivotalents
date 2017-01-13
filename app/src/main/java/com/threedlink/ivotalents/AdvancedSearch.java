@@ -59,7 +59,7 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
     private LinearLayout searchListRowTemplate;
 
     private boolean isSelectOpened;
-
+    TextView select = null;
     public AdvancedSearch() {
         // Required empty public constructor
     }
@@ -156,7 +156,10 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         int id = v.getId();
-
+        if(isSelectOpened){
+            closeSelect(v);
+           isSelectOpened=false;
+        }
         switch (id) {
             case R.id.nextFilter:
                 nextFilter(v);
@@ -185,6 +188,7 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
 
     private void showSelect(View v,String type) {
     int offset = 75;
+
         if(!isSelectOpened){
             isSelectOpened = true;
             String[] array = null;
@@ -192,14 +196,17 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
             switch (type){
                 case "Etnia":
                     array = this.selectEtniaArray;
+                    select = this.selectEtnia;
                     break;
                 case "EyeColor":
                     array = this.selectEyeColorArray;
                     margin = margin + offset;
+                    select = this.selectEyeColor;
                     break;
                 case "HairColor":
                     array = this.selectHairColorArray;
                     margin = margin + offset*2;
+                    select = this.selectHairColor;
                     break;
             }
 
@@ -220,7 +227,12 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
                     public void onClick(View v) {
                         LinearLayout l = (LinearLayout) v;
                         TextView t = (TextView) l.getChildAt(0);
-                        selectEtnia.setText(t.getText());
+                        select.setText(t.getText());
+                        select.setTypeface(mApp.getFontBold());
+                        closeSelect(v.getRootView())
+
+
+                        ;
                     }
                 });
                 searchListRoot1.addView(row);
