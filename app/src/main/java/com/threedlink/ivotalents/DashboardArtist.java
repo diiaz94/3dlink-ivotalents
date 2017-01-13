@@ -134,7 +134,7 @@ public class DashboardArtist extends Fragment {
         for (int i = 0; i < paginator_swipe_artist_recent.getChildCount(); i++) {
             FrameLayout b =(FrameLayout) paginator_swipe_artist_recent.getChildAt(i);
             if(b.getVisibility()==VISIBLE) {
-                b.setBackgroundDrawable(getResources().getDrawable(i==0?R.drawable.selected_point_orange:R.drawable.simple_point_white));
+                b.setBackgroundDrawable(getResources().getDrawable(i==point_selected + 1?R.drawable.selected_point_orange:R.drawable.simple_point_white));
 
             }
         }
