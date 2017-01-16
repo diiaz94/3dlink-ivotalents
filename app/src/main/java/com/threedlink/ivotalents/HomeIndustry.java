@@ -1,12 +1,17 @@
 package com.threedlink.ivotalents;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -26,6 +31,9 @@ public class HomeIndustry extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private IvoTalentsApp mApp;
+
+    private GridView newArtistsGrid;
 
     private OnFragmentInteractionListener mListener;
 
@@ -54,6 +62,7 @@ public class HomeIndustry extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mApp = ((IvoTalentsApp) getActivity().getApplicationContext());
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -64,7 +73,10 @@ public class HomeIndustry extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_industry, container, false);
+        final View view =  inflater.inflate(R.layout.fragment_dashboard_artist, container, false);
+        newArtistsGrid = (GridView) view.findViewById(R.id.newArtistsGrid);
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -104,5 +116,59 @@ public class HomeIndustry extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+}
+
+
+class Artist{
+    String name;
+    String category;
+    String ability;
+    int imageId;
+    public Artist(String name, String category, String ability,int imageId) {
+        this.name = name;
+        this.category = category;
+        this.ability = ability;
+        this.imageId = imageId;
+    }
+
+
+}
+
+class RecenArtist extends BaseAdapter{
+    private Context ctx;
+    private ArrayList<Artist> list;
+
+    public RecenArtist(Context ctx) {
+        this.ctx = ctx;
+        list = new ArrayList<Artist>();
+        Resources res = ctx.getResources();
+        String[] tempArtistNames = res.getStringArray(R.array.artist_names);
+        int[] image_resources = {R.drawable.juan_esteban,R.drawable.juan_esteban,R.drawable.juan_esteban};
+        for (int i=0; i<3;i++){
+            Artist artist = new Artist(tempArtistNames[i],tempArtistNames[i],tempArtistNames[i],image_resources[i]);
+            list.add(artist);
+        }
+
+    }
+
+    @Override
+    public int getCount() {
+        return 0;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        return null;
     }
 }
