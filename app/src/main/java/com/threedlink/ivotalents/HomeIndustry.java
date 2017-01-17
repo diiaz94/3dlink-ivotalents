@@ -5,11 +5,20 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.threedlink.ivotalents.Adapters.CustomFollowingViewAdapter;
+import com.threedlink.ivotalents.DTO.RolEntity;
+import com.threedlink.ivotalents.Adapters.CustomRecentViewAdapter;
 
 import java.util.ArrayList;
 
@@ -33,7 +42,10 @@ public class HomeIndustry extends Fragment {
     private String mParam2;
     private IvoTalentsApp mApp;
 
-    private GridView newArtistsGrid;
+    private GridView recentArtistsGrid;
+    private GridView recentProvidersGrid;
+    private GridView followersGrid;
+    private GridView followedsGrid;
 
     private OnFragmentInteractionListener mListener;
 
@@ -73,11 +85,101 @@ public class HomeIndustry extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View view =  inflater.inflate(R.layout.fragment_dashboard_artist, container, false);
-        newArtistsGrid = (GridView) view.findViewById(R.id.newArtistsGrid);
+        final View view =  inflater.inflate(R.layout.fragment_home_industry, container, false);
+
+
+
+        initGridViewArtists(view);
+        initGridViewProviders(view);
+        initGridViewFollowers(view);
+        initGridViewFolloweds(view);
+
+
+
+
+        RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_home_industry);
+        mApp.setFontsOnRelative(myLayout);
 
         return view;
     }
+
+    private void initGridViewArtists(View view){
+        Resources res = getActivity().getApplicationContext().getResources();
+        String[] tempArtistCategories = res.getStringArray(R.array.artist_categories);
+        String[] tempArtistNames = res.getStringArray(R.array.artist_names);
+        String[] tempArtistAbilities = res.getStringArray(R.array.artist_abilities);
+        int[] imageArtists = {R.drawable.talent_1,R.drawable.talent_2,R.drawable.juan_esteban,R.drawable.talent_1,R.drawable.talent_2,R.drawable.juan_esteban};
+        ArrayList<RolEntity> listArtists = new ArrayList<RolEntity>();
+        for (int i=0; i<6;i++){
+            RolEntity profile = new RolEntity(tempArtistCategories[i],tempArtistNames[i],tempArtistAbilities[i],imageArtists[i]);
+            listArtists.add(profile);
+        }
+        recentArtistsGrid = (GridView) view.findViewById(R.id.newArtistsGrid);
+        recentArtistsGrid.setAdapter(new CustomRecentViewAdapter(getActivity().getApplicationContext(),listArtists));
+        android.widget.LinearLayout.LayoutParams paramsArtists = (LinearLayout.LayoutParams) recentArtistsGrid.getLayoutParams();
+        paramsArtists.height = 200*(recentArtistsGrid.getAdapter().getCount()/3);
+        recentArtistsGrid.setLayoutParams(paramsArtists);
+
+    }
+
+    private void initGridViewProviders(View view) {
+        Resources res = getActivity().getApplicationContext().getResources();
+
+        String[] tempProviderCategories = res.getStringArray(R.array.provider_categories);
+        String[] tempProviderNames = res.getStringArray(R.array.provider_names);
+        String[] tempProviderAbilities = res.getStringArray(R.array.provider_abilities);
+        int[] imageProviders = {R.drawable.talent_1,R.drawable.talent_2,R.drawable.juan_esteban};
+        ArrayList<RolEntity> listProviders = new ArrayList<RolEntity>();
+        for (int i=0; i<3;i++){
+            RolEntity provider = new RolEntity(tempProviderCategories[i],tempProviderNames[i],tempProviderAbilities[i],imageProviders[i]);
+            listProviders.add(provider);
+        }
+
+
+        recentProvidersGrid = (GridView) view.findViewById(R.id.newProvidersGrid);
+        recentProvidersGrid.setAdapter(new CustomRecentViewAdapter(getActivity().getApplicationContext(),listProviders));
+        android.widget.LinearLayout.LayoutParams paramsProviders = (LinearLayout.LayoutParams) recentProvidersGrid.getLayoutParams();
+        paramsProviders.height = 200*(recentProvidersGrid.getAdapter().getCount()/3);
+        recentProvidersGrid.setLayoutParams(paramsProviders);
+
+    }
+
+    private void initGridViewFollowers(View view) {
+        Resources res = getActivity().getApplicationContext().getResources();
+        String[] tempFollowerCategories = res.getStringArray(R.array.follower_categories);
+        String[] tempFollowerNames = res.getStringArray(R.array.follower_names);
+        String[] tempFollowerAbilities = res.getStringArray(R.array.follower_abilities);
+        int[] imageFollowers = {R.drawable.bg_gray_following,R.drawable.bg_gray_following};
+        ArrayList<RolEntity> listFollowers = new ArrayList<RolEntity>();
+        for (int i=0; i<2;i++){
+            RolEntity follower = new RolEntity(tempFollowerCategories[i],tempFollowerNames[i],tempFollowerAbilities[i],imageFollowers[i]);
+            listFollowers.add(follower);
+        }
+        followersGrid = (GridView) view.findViewById(R.id.followersGrid);
+        followersGrid.setAdapter(new CustomFollowingViewAdapter(getActivity().getApplicationContext(),listFollowers));
+        android.widget.LinearLayout.LayoutParams paramsFollowers = (LinearLayout.LayoutParams) followersGrid.getLayoutParams();
+        paramsFollowers.height = 250*(followersGrid.getAdapter().getCount()/2);
+        followersGrid.setLayoutParams(paramsFollowers);
+    }
+
+    private void initGridViewFolloweds(View view) {
+        Resources res = getActivity().getApplicationContext().getResources();
+        String[] tempFollowedCategories = res.getStringArray(R.array.followed_categories);
+        String[] tempFollowedNames = res.getStringArray(R.array.followed_names);
+        String[] tempFollowedAbilities = res.getStringArray(R.array.followed_abilities);
+        int[] imageFolloweds = {R.drawable.bg_gray_following,R.drawable.bg_gray_following};
+        ArrayList<RolEntity> listFolloweds = new ArrayList<RolEntity>();
+        for (int i=0; i<2;i++){
+            RolEntity followed = new RolEntity(tempFollowedCategories[i],tempFollowedNames[i],tempFollowedAbilities[i],imageFolloweds[i]);
+            listFolloweds.add(followed);
+        }
+        followedsGrid = (GridView) view.findViewById(R.id.followedsGrid);
+        followedsGrid.setAdapter(new CustomFollowingViewAdapter(getActivity().getApplicationContext(),listFolloweds));
+        android.widget.LinearLayout.LayoutParams paramsFolloweds = (LinearLayout.LayoutParams) followedsGrid.getLayoutParams();
+        paramsFolloweds.height = 250*(followedsGrid.getAdapter().getCount()/2);
+        followedsGrid.setLayoutParams(paramsFolloweds);
+    }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -95,6 +197,7 @@ public class HomeIndustry extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+
     }
 
     @Override
@@ -120,55 +223,6 @@ public class HomeIndustry extends Fragment {
 }
 
 
-class Artist{
-    String name;
-    String category;
-    String ability;
-    int imageId;
-    public Artist(String name, String category, String ability,int imageId) {
-        this.name = name;
-        this.category = category;
-        this.ability = ability;
-        this.imageId = imageId;
-    }
 
 
-}
 
-class RecenArtist extends BaseAdapter{
-    private Context ctx;
-    private ArrayList<Artist> list;
-
-    public RecenArtist(Context ctx) {
-        this.ctx = ctx;
-        list = new ArrayList<Artist>();
-        Resources res = ctx.getResources();
-        String[] tempArtistNames = res.getStringArray(R.array.artist_names);
-        int[] image_resources = {R.drawable.juan_esteban,R.drawable.juan_esteban,R.drawable.juan_esteban};
-        for (int i=0; i<3;i++){
-            Artist artist = new Artist(tempArtistNames[i],tempArtistNames[i],tempArtistNames[i],image_resources[i]);
-            list.add(artist);
-        }
-
-    }
-
-    @Override
-    public int getCount() {
-        return 0;
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return null;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return 0;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
-    }
-}

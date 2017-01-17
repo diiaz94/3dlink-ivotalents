@@ -22,4 +22,5 @@
     <color name="ivo_green_transparent">#af61a60e</color>
     <color name="ivo_aquamarine_transparent">#af00c4b4</color>
     <color name="ivo_blue_transparent">#af0032a0</color>
+    <color name="ivo_white_light">#efefef</color>
 </resources>

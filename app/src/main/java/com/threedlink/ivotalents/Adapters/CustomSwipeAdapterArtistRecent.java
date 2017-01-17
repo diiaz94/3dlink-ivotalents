@@ -1,4 +1,4 @@
-package com.threedlink.ivotalents;
+package com.threedlink.ivotalents.Adapters;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.threedlink.ivotalents.IvoTalentsApp;
+import com.threedlink.ivotalents.R;
 
 /**
  * Created by diiaz94 on 29-12-2016.

@@ -13,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.threedlink.ivotalents.Adapters.CustomSwipeAdapterCasting;
+import com.threedlink.ivotalents.Adapters.CustomSwipeAdapterCastingRecent;
+
 import static android.view.View.VISIBLE;
 
 

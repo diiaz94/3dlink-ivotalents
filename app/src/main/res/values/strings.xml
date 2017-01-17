@@ -46,12 +46,82 @@
     <string name="cita_dummie">LO QUE CON MUCHO TRABAJO SE ADQUIERE, MÁS SE AMA.</string>
     <string name="industry_address_dummie">Av. Este, entre esquinas Jesuita y Maturín, Altagracia, Caracas.</string>
     <string name="casting_dummie_description">Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi</string>
+    <string name="lbl_artist">Artista</string>
+    <string name="subtitle_recent_artists">NUEVOS TALENTOS EN IVO TALENTS</string>
+    <string name="lbl_artists">Artistas</string>
+    <string name="lbl_providers">Proveedores</string>
+    <string name="subtitle_recent_providers">ENCUENTRA LOS MEJORES SERVICIOS</string>
+    <string name="lbl_followers">SEGUIDORES</string>
+    <string name="txt_see_all">Ver todos</string>
+    <string name="lbl_followed">SEGUIDOS</string>
 
-
-
+    <string-array name="artist_categories">
+        <item>MÚSICO</item>
+        <item>MODELO</item>
+        <item>ARTISTA</item>
+        <item>CANTANTE</item>
+        <item>BAILARÍN</item>
+        <item>MODELO</item>
+    </string-array>
     <string-array name="artist_names">
         <item>Catherine Lewis</item>
         <item>Catherine Lewis</item>
         <item>Catherine Lewis</item>
+        <item>Catherine Lewis</item>
+        <item>Catherine Lewis</item>
+        <item>Catherine Lewis</item>
     </string-array>
+    <string-array name="artist_abilities">
+        <item>Compositor</item>
+        <item>Fashion</item>
+        <item>Pintor</item>
+        <item>Cantautor</item>
+        <item>Danza</item>
+        <item>Catálogo</item>
+    </string-array>
+
+    <string-array name="provider_categories">
+        <item>MAQUILLAJE</item>
+        <item>FOTOGRAFÍA</item>
+        <item>DISEÑO</item>
+    </string-array>
+    <string-array name="provider_names">
+        <item>Catherine Lewis</item>
+        <item>Catherine Lewis</item>
+        <item>Catherine Lewis</item>
+    </string-array>
+    <string-array name="provider_abilities">
+        <item>Makeup Artist</item>
+        <item>Fotógrafo</item>
+        <item>Pintor</item>
+    </string-array>
+
+
+    <string-array name="follower_categories">
+        <item>MÚSICA</item>
+        <item>MÚSICA</item>
+    </string-array>
+    <string-array name="follower_names">
+        <item>Music Records</item>
+        <item>Music Records</item>
+    </string-array>
+    <string-array name="follower_abilities">
+        <item>Producción de Eventos</item>
+        <item>Producción de Eventos</item>
+    </string-array>
+
+    <string-array name="followed_categories">
+        <item>MÚSICA</item>
+        <item>MÚUSICA</item>
+    </string-array>
+    <string-array name="followed_names">
+        <item>Music Records</item>
+        <item>Music Records</item>
+    </string-array>
+    <string-array name="followed_abilities">
+        <item>Producción de Eventos</item>
+        <item>Producción de Eventos</item>
+    </string-array>
+
+
 </resources>

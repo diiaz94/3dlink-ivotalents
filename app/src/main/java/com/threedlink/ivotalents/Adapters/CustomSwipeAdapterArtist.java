@@ -1,4 +1,4 @@
-package com.threedlink.ivotalents;
+package com.threedlink.ivotalents.Adapters;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -9,17 +9,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.threedlink.ivotalents.IvoTalentsApp;
+import com.threedlink.ivotalents.R;
+
 /**
  * Created by VP50343 on 26/12/2016.
  */
-public class CustomSwipeAdapterCasting extends PagerAdapter {
-    private  int[] image_resources = {R.drawable.casting_slide,R.drawable.casting_slide,R.drawable.casting_slide};
-    private  String[] name_resources = {"Haz tu audición","Haz tu audición2","Haz tu audición3"};
-    private  String[] talent_resources = {"Desmuestra tu talento","Desmuestra tu talento2","Desmuestra tu talento3"};
+public class CustomSwipeAdapterArtist extends PagerAdapter {
+    private  int[] image_resources = {R.drawable.juan_esteban,R.drawable.juan_esteban,R.drawable.juan_esteban};
+    private  String[] name_resources = {"Juan Esteban","Juan Esteban2","Juan Esteban3",};
+    private  String[] talent_resources = {"Cantante","Cantante2","Cantante3",};
     private Context ctx;
     private LayoutInflater layoutInflater;
     private IvoTalentsApp mApp;
-    public CustomSwipeAdapterCasting(Context ctx) {
+    public CustomSwipeAdapterArtist(Context ctx) {
         this.ctx = ctx;
         mApp = ((IvoTalentsApp) ctx);
     }

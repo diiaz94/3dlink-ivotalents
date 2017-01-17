@@ -1,6 +1,5 @@
 package com.threedlink.ivotalents;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
@@ -8,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -22,8 +20,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
-import android.widget.TabHost;
 import android.widget.TextView;
+
+import com.threedlink.ivotalents.Adapters.CustomSwipeAdapterIndustryCastings;
 
 import java.lang.reflect.Field;
 
