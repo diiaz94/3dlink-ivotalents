@@ -49,11 +49,15 @@
     <string name="lbl_artist">Artista</string>
     <string name="subtitle_recent_artists">NUEVOS TALENTOS EN IVO TALENTS</string>
     <string name="lbl_artists">Artistas</string>
-    <string name="lbl_providers">Proveedores</string>
+    <string name="lbl_providers">PROVEEDORES</string>
     <string name="subtitle_recent_providers">ENCUENTRA LOS MEJORES SERVICIOS</string>
     <string name="lbl_followers">SEGUIDORES</string>
     <string name="txt_see_all">Ver todos</string>
     <string name="lbl_followed">SEGUIDOS</string>
+    <string name="lbl_industries">INDUSTRIAS</string>
+    <string name="subtitle_recent_industries">LAS EMPRESAS DETRÁS DE LOS CASTINGS</string>
+    <string name="lbl_castings">CASTINGS</string>
+    <string name="subtitle_recent_castings">NUEVAS OPORTUNIDADES EN IVO TALENTS</string>
 
     <string-array name="artist_categories">
         <item>MÚSICO</item>
@@ -94,6 +98,22 @@
         <item>Makeup Artist</item>
         <item>Fotógrafo</item>
         <item>Pintor</item>
+    </string-array>
+
+    <string-array name="industry_categories">
+        <item>AGENCIAS</item>
+        <item>DIRECTORES</item>
+        <item>PRODUCTORES</item>
+    </string-array>
+    <string-array name="industry_names">
+        <item>Catherine Lewis</item>
+        <item>Catherine Lewis</item>
+        <item>Catherine Lewis</item>
+    </string-array>
+    <string-array name="industry_abilities">
+        <item>Publicidad</item>
+        <item>Cine documental</item>
+        <item>Producción de Eventos</item>
     </string-array>
 
 

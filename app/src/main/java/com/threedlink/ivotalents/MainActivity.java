@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity implements
         ProfileProvider.OnFragmentInteractionListener,
         DashboardArtist.OnFragmentInteractionListener,
         DashboardCasting.OnFragmentInteractionListener,
-        HomeIndustry.OnFragmentInteractionListener{
+        HomeIndustry.OnFragmentInteractionListener,
+        HomeProvider.OnFragmentInteractionListener{
     DrawerLayout drawer;
     private static final String TAG = MainActivity.class.getSimpleName();
     // Session Manager Class
@@ -313,7 +314,7 @@ public class MainActivity extends AppCompatActivity implements
         else if(name.equalsIgnoreCase("artist"))
             fragment = ProfileArtist.newInstance(name,email);
         else if(name.equalsIgnoreCase("provider"))
-        fragment = ProfileProvider.newInstance(name,email);
+        fragment = HomeProvider.newInstance(name,email);
         else
             fragment = DashboardArtist.newInstance(name,email);
 

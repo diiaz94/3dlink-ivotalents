@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.threedlink.ivotalents.DTO.RolEntity;
 import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
+import com.threedlink.ivotalents.ViewHolders.RolEntityViewHolder;
 
 import java.util.ArrayList;
 
@@ -44,41 +45,28 @@ public class CustomRecentViewAdapter extends BaseAdapter {
         return position;
     }
 
-    class ViewHolder {
-        ImageView imRolEntity;
-        TextView txtCategory;
-        TextView txtName;
-        TextView txtAbilitie;
-
-        public ViewHolder(View v) {
-            this.imRolEntity = (ImageView) v.findViewById(R.id.rol_entity_image);
-            this.txtCategory = (TextView) v.findViewById(R.id.rol_entity_category);
-            this.txtName = (TextView) v.findViewById(R.id.rol_entity_name);
-            this.txtAbilitie = (TextView) v.findViewById(R.id.rol_entity_abilitie);
-        }
-    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         View row = convertView;
-        ViewHolder holder = null;
+        RolEntityViewHolder holder = null;
         if (row == null) {
             LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(R.layout.item_rol_entity_recent, parent, false);
-            holder = new ViewHolder(row);
+            holder = new RolEntityViewHolder(row);
             row.setTag(holder);
         } else {
-            holder = (ViewHolder) row.getTag();
+            holder = (RolEntityViewHolder) row.getTag();
         }
-        holder.imRolEntity.setImageResource(list.get(position).getImageId());
-        holder.txtCategory.setText(list.get(position).getCategory());
-        holder.txtName.setText(list.get(position).getName());
-        holder.txtAbilitie.setText(list.get(position).getAbility());
-        //Log.e("GETVIEW HEIGHT::", String.valueOf(row.getLayoutParams().height));
-        holder.txtCategory.setTypeface(mApp.getFont());
-        holder.txtName.setTypeface(mApp.getFontBold());
-        holder.txtAbilitie.setTypeface(mApp.getFont());
+        holder.getImRolEntity().setImageResource(list.get(position).getImageId());
+        holder.getTxtCategory().setText(list.get(position).getCategory());
+        holder.getTxtName().setText(list.get(position).getName());
+        holder.getTxtAbilitie().setText(list.get(position).getAbility());
+
+        holder.getTxtCategory().setTypeface(mApp.getFont());
+        holder.getTxtName().setTypeface(mApp.getFontBold());
+        holder.getTxtAbilitie().setTypeface(mApp.getFont());
         return row;
     }
 }
