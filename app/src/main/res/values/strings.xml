@@ -58,6 +58,10 @@
     <string name="subtitle_recent_industries">LAS EMPRESAS DETRÁS DE LOS CASTINGS</string>
     <string name="lbl_castings">CASTINGS</string>
     <string name="subtitle_recent_castings">NUEVAS OPORTUNIDADES EN IVO TALENTS</string>
+    <string name="casting_dummie_description2">Productora de eventos busca telonero para abrir show de Incubus</string>
+    <string name="casting_dummie_expiration">Hasta Julio 16, 2016</string>
+    <string name="txt_read_more">LEER MÁS</string>
+    <string name="txt_see_all_oportunities">Ver todas las oportunidades</string>
 
     <string-array name="artist_categories">
         <item>MÚSICO</item>
@@ -143,5 +147,21 @@
         <item>Producción de Eventos</item>
     </string-array>
 
+
+    <string-array name="casting_categories">
+        <item>MÚSICA</item>
+        <item>MÚSICA</item>
+        <item>MÚSICA</item>
+    </string-array>
+    <string-array name="casting_descriptions">
+        <item>Productora de eventos busca telonero para abrir show de Incubus</item>
+        <item>Productora de eventos busca telonero para abrir show de Incubus</item>
+        <item>Productora de eventos busca telonero para abrir show de Incubus</item>
+    </string-array>
+    <string-array name="casting_expirations">
+        <item>Hasta Julio 16, 2016</item>
+        <item>Hasta Julio 16, 2016</item>
+        <item>Hasta Julio 16, 2016</item>
+    </string-array>
 
 </resources>

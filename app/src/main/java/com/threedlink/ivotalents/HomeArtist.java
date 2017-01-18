@@ -19,6 +19,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.threedlink.ivotalents.Adapters.CustomFollowingViewAdapter;
+import com.threedlink.ivotalents.Adapters.CustomRecentCastingsListAdapter;
+import com.threedlink.ivotalents.DTO.Casting;
 import com.threedlink.ivotalents.DTO.RolEntity;
 import com.threedlink.ivotalents.Adapters.CustomRecentViewAdapter;
 
@@ -107,20 +109,25 @@ public class HomeArtist extends Fragment {
 
     private void initListViewCastings(View view){
         Resources res = getActivity().getApplicationContext().getResources();
-        String[] tempArtistCategories = res.getStringArray(R.array.artist_categories);
-        String[] tempArtistNames = res.getStringArray(R.array.artist_names);
-        String[] tempArtistAbilities = res.getStringArray(R.array.artist_abilities);
-        int[] imageArtists = {R.drawable.talent_1,R.drawable.talent_2,R.drawable.juan_esteban,R.drawable.talent_1,R.drawable.talent_2,R.drawable.juan_esteban};
-        ArrayList<RolEntity> listArtists = new ArrayList<RolEntity>();
-        for (int i=0; i<6;i++){
-            RolEntity profile = new RolEntity(tempArtistCategories[i],tempArtistNames[i],tempArtistAbilities[i],imageArtists[i]);
-            listArtists.add(profile);
+        String[] tempCastingCategories = res.getStringArray(R.array.casting_categories);
+        String[] tempCastingDescriptions = res.getStringArray(R.array.casting_descriptions);
+        String[] tempCastingExpirations = res.getStringArray(R.array.casting_expirations);
+        int[] imageCastings = {R.drawable.talent_1,R.drawable.talent_2,R.drawable.juan_esteban,R.drawable.talent_1,R.drawable.talent_2,R.drawable.juan_esteban};
+        ArrayList<Casting> listCastings = new ArrayList<Casting>();
+        for (int i=0; i<3;i++){
+            Casting casting = new Casting(tempCastingCategories[i],tempCastingDescriptions[i],tempCastingExpirations[i],imageCastings[i]);
+            listCastings.add(casting);
         }
         recentCastingList = (ListView) view.findViewById(R.id.newCastingsList);
-        recentCastingList.setAdapter(new CustomRecentViewAdapter(getActivity().getApplicationContext(),listArtists));
-        android.widget.LinearLayout.LayoutParams paramsArtists = (LinearLayout.LayoutParams) recentCastingList.getLayoutParams();
-        paramsArtists.height = 200*(recentCastingList.getAdapter().getCount()/3);
-        recentCastingList.setLayoutParams(paramsArtists);
+        recentCastingList.setAdapter(new CustomRecentCastingsListAdapter(getActivity().getApplicationContext(),listCastings));
+
+            View item = recentCastingList.getAdapter().getView(0, null, recentCastingList);
+            item.measure(0, 0);
+            android.widget.LinearLayout.LayoutParams params = new android.widget.LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (2.5 * item.getMeasuredHeight()));
+            recentCastingList.setLayoutParams(params);
+        //android.widget.LinearLayout.LayoutParams paramsArtists = (LinearLayout.LayoutParams) recentCastingList.getLayoutParams();
+        //paramsArtists.height = 200*(recentCastingList.getAdapter().getCount()/3);
+        //recentCastingList.setLayoutParams(paramsArtists);
 
     }
 
