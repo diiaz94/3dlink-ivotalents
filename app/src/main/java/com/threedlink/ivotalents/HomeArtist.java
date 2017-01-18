@@ -123,7 +123,7 @@ public class HomeArtist extends Fragment {
 
             View item = recentCastingList.getAdapter().getView(0, null, recentCastingList);
             item.measure(0, 0);
-            android.widget.LinearLayout.LayoutParams params = new android.widget.LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (2.5 * item.getMeasuredHeight()));
+            android.widget.LinearLayout.LayoutParams params = new android.widget.LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (3.5 * item.getMeasuredHeight()));
             recentCastingList.setLayoutParams(params);
         //android.widget.LinearLayout.LayoutParams paramsArtists = (LinearLayout.LayoutParams) recentCastingList.getLayoutParams();
         //paramsArtists.height = 200*(recentCastingList.getAdapter().getCount()/3);
