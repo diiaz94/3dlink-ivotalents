@@ -47,7 +47,7 @@ public class HomeArtist extends Fragment {
     private IvoTalentsApp mApp;
 
     private ListView recentCastingList;
-    private GridView recentIndustriesGrid;
+    private GridView recentProvidersGrid;
     private GridView followersGrid;
     private GridView followedsGrid;
 
@@ -94,7 +94,7 @@ public class HomeArtist extends Fragment {
 
 
         initListViewCastings(view);
-        initGridViewIndustries(view);
+        initGridViewProviders(view);
         initGridViewFollowers(view);
         initGridViewFolloweds(view);
 
@@ -131,25 +131,25 @@ public class HomeArtist extends Fragment {
 
     }
 
-    private void initGridViewIndustries(View view) {
+    private void initGridViewProviders(View view) {
         Resources res = getActivity().getApplicationContext().getResources();
 
-        String[] tempArtistCategories = res.getStringArray(R.array.industry_categories);
-        String[] tempArtistNames = res.getStringArray(R.array.industry_names);
-        String[] tempArtistAbilities = res.getStringArray(R.array.industry_abilities);
-        int[] imageIndustries = {R.drawable.talent_1,R.drawable.talent_2,R.drawable.juan_esteban};
-        ArrayList<RolEntity> listIndustries = new ArrayList<RolEntity>();
+        String[] tempProviderCategories = res.getStringArray(R.array.provider_categories);
+        String[] tempProviderNames = res.getStringArray(R.array.provider_names);
+        String[] tempProviderAbilities = res.getStringArray(R.array.provider_abilities);
+        int[] imageProviders = {R.drawable.talent_1,R.drawable.talent_2,R.drawable.juan_esteban};
+        ArrayList<RolEntity> listProviders = new ArrayList<RolEntity>();
         for (int i=0; i<3;i++){
-            RolEntity industry = new RolEntity(tempArtistCategories[i],tempArtistNames[i],tempArtistAbilities[i],imageIndustries[i]);
-            listIndustries.add(industry);
+            RolEntity provider = new RolEntity(tempProviderCategories[i],tempProviderNames[i],tempProviderAbilities[i],imageProviders[i]);
+            listProviders.add(provider);
         }
 
 
-        recentIndustriesGrid = (GridView) view.findViewById(R.id.newIndustriesGrid);
-        recentIndustriesGrid.setAdapter(new CustomRecentViewAdapter(getActivity().getApplicationContext(),listIndustries));
-        android.widget.LinearLayout.LayoutParams paramsIndustries = (LinearLayout.LayoutParams) recentIndustriesGrid.getLayoutParams();
-        paramsIndustries.height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        recentIndustriesGrid.setLayoutParams(paramsIndustries);
+        recentProvidersGrid = (GridView) view.findViewById(R.id.newProvidersGrid);
+        recentProvidersGrid.setAdapter(new CustomRecentViewAdapter(getActivity().getApplicationContext(),listProviders));
+        android.widget.LinearLayout.LayoutParams paramsProviders = (LinearLayout.LayoutParams) recentProvidersGrid.getLayoutParams();
+        paramsProviders.height = 200*(recentProvidersGrid.getAdapter().getCount()/3);
+        recentProvidersGrid.setLayoutParams(paramsProviders);
 
     }
 

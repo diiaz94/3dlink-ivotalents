@@ -53,10 +53,20 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
     private String[] selectEyeColorArray = {"Verde","Azul"};
     private TextView selectHairColor;
     private String[] selectHairColorArray = {"Castaño","Negro"};
+    private TextView selectCountry;
+    private String[] selectCountryArray = {"Venezuela","Panama","Colombia"};
+    private TextView selectCity;
+    private String[] selecCityArray = {"Caracas","Bogota","Panama"};
+
     private LinearLayout searchList;
-    private LinearLayout searchListRoot1;
+    private LinearLayout searchListRoot;
     private TextView searchListRowTemplateText;
     private LinearLayout searchListRowTemplate;
+
+    private LinearLayout searchList2;
+    private LinearLayout searchListRoot2;
+    private TextView searchListRowTemplateText2;
+    private LinearLayout searchListRowTemplate2;
 
     private boolean isSelectOpened;
     TextView select = null;
@@ -121,10 +131,20 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
         selectHairColor = (TextView) view.findViewById(R.id.select_hair_color);
         selectHairColor.setOnClickListener(this);
 
+        selectCountry= (TextView) view.findViewById(R.id.select_pais);
+        selectCountry.setOnClickListener(this);
+        selectCity = (TextView) view.findViewById(R.id.select_ciudad);
+        selectCity.setOnClickListener(this);
+
         searchList = (LinearLayout) view.findViewById(R.id.search_list);
-        searchListRoot1 = (LinearLayout) view.findViewById(R.id.search_list_root_1);
+        searchListRoot = (LinearLayout) view.findViewById(R.id.search_list_root);
         searchListRowTemplate = (LinearLayout) view.findViewById(R.id.search_list_row_template);
         searchListRowTemplateText = (TextView) view.findViewById(R.id.search_list_row_template_text);
+
+        searchList2 = (LinearLayout) view.findViewById(R.id.search_list_2);
+        searchListRoot2 = (LinearLayout) view.findViewById(R.id.search_list_root_2);
+        searchListRowTemplate2 = (LinearLayout) view.findViewById(R.id.search_list_row_template_2);
+        searchListRowTemplateText2 = (TextView) view.findViewById(R.id.search_list_row_template_text_2);
 
         return view;
     }
@@ -181,7 +201,7 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
     }
 
     private void closeSelect(View v) {
-        searchListRoot1.removeAllViews();
+        searchListRoot.removeAllViews();
         searchList.setVisibility(View.GONE);
         isSelectOpened =false;
     }
@@ -235,7 +255,7 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
                         ;
                     }
                 });
-                searchListRoot1.addView(row);
+                searchListRoot.addView(row);
             }
             RelativeLayout.LayoutParams  params = (RelativeLayout.LayoutParams) searchList.getLayoutParams();
             LinearLayout.LayoutParams params2 = (LinearLayout.LayoutParams) selectEtnia.getLayoutParams();
