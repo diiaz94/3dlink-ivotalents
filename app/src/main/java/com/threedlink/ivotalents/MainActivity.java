@@ -56,7 +56,10 @@ public class MainActivity extends AppCompatActivity implements
         DashboardCasting.OnFragmentInteractionListener,
         HomeIndustry.OnFragmentInteractionListener,
         HomeProvider.OnFragmentInteractionListener,
-        HomeArtist.OnFragmentInteractionListener{
+        HomeArtist.OnFragmentInteractionListener,
+        Messages.OnFragmentInteractionListener,
+        ReceivedMessages.OnFragmentInteractionListener,
+        SentMessages.OnFragmentInteractionListener{
     DrawerLayout drawer;
     private static final String TAG = MainActivity.class.getSimpleName();
     // Session Manager Class
@@ -157,6 +160,59 @@ public class MainActivity extends AppCompatActivity implements
         text_providers.setTypeface(mApp.getFontLight());
         text_search.setTypeface(mApp.getFontLight());
 
+        text_view_my_profile.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View popupView) {
+                Fragment fragment = getFragmentProfile();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( fragment.getClass().getSimpleName() ).commit();
+                if (drawer.isDrawerOpen(Gravity.RIGHT)) {
+                    drawer.closeDrawer(Gravity.RIGHT);
+                } else {
+                    drawer.openDrawer(Gravity.RIGHT);
+                }
+            }
+        });
+        FrameLayout opcion_my_dashboard = (FrameLayout) findViewById(R.id.opcion_my_dashboard);
+        opcion_my_dashboard.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View popupView) {
+                Fragment fragment = getFragmentDashboard();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( fragment.getClass().getSimpleName() ).commit();
+                if (drawer.isDrawerOpen(Gravity.RIGHT)) {
+                    drawer.closeDrawer(Gravity.RIGHT);
+                } else {
+                    drawer.openDrawer(Gravity.RIGHT);
+                }
+            }
+        });
+        FrameLayout opcion_mensajes_recibidos = (FrameLayout) findViewById(R.id.opcion_mensajes_recibidos);
+        opcion_mensajes_recibidos.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View popupView) {
+                Fragment fragment = null;
+                fragment = Messages.newInstance("param1","param2");
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( fragment.getClass().getSimpleName() ).commit();
+                if (drawer.isDrawerOpen(Gravity.RIGHT)) {
+                    drawer.closeDrawer(Gravity.RIGHT);
+                } else {
+                    drawer.openDrawer(Gravity.RIGHT);
+                }
+            }
+        });
+        FrameLayout opcion_mensajes_enviados = (FrameLayout) findViewById(R.id.opcion_mensajes_enviados);
+        opcion_mensajes_enviados.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View popupView) {
+                Fragment fragment = null;
+                fragment = Messages.newInstance("param1","param2");
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( "search" ).commit();
+                if (drawer.isDrawerOpen(Gravity.RIGHT)) {
+                    drawer.closeDrawer(Gravity.RIGHT);
+                } else {
+                    drawer.openDrawer(Gravity.RIGHT);
+                }
+            }
+        });
 
         FrameLayout opcion_search = (FrameLayout) findViewById(R.id.opcion_search);
         opcion_search.setOnClickListener(new View.OnClickListener() {
@@ -292,7 +348,40 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 
+    public Fragment getFragmentProfile(){
+        HashMap<String, String> user = session.getUserDetails();
+        String name = user.get(SessionManager.KEY_NAME);
+        String email = user.get(SessionManager.KEY_EMAIL);
+        Fragment fragment = null;
 
+        if(name.equalsIgnoreCase("industry"))
+            fragment = ProfileIndustry.newInstance(name,email);
+        else if(name.equalsIgnoreCase("artist"))
+            fragment = ProfileArtist.newInstance(name,email);
+        else if(name.equalsIgnoreCase("provider"))
+            fragment = ProfileProvider.newInstance(name,email);
+        else
+            fragment = DashboardArtist.newInstance(name,email);
+
+        return fragment;
+    }
+    public Fragment getFragmentDashboard(){
+        HashMap<String, String> user = session.getUserDetails();
+        String name = user.get(SessionManager.KEY_NAME);
+        String email = user.get(SessionManager.KEY_EMAIL);
+        Fragment fragment = null;
+
+        if(name.equalsIgnoreCase("industry"))
+            fragment = HomeIndustry.newInstance(name,email);
+        else if(name.equalsIgnoreCase("artist"))
+            fragment = HomeArtist.newInstance(name,email);
+        else if(name.equalsIgnoreCase("provider"))
+            fragment = HomeProvider.newInstance(name,email);
+        else
+            fragment = DashboardArtist.newInstance(name,email);
+
+        return fragment;
+    }
 
     public void setScreenUserSesion(){
 

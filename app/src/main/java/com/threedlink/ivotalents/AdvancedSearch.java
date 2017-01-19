@@ -196,8 +196,78 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
             case R.id.select_hair_color:
                 showSelect(v,"HairColor");
                 break;
+            case R.id.select_pais:
+                showSelect2(v,"Pais");
+                break;
+            case R.id.select_ciudad:
+                showSelect2(v,"Ciudad");
+                break;
 
         }
+    }
+
+    private void showSelect2(View v, String type) {
+        int offset = 75;
+
+        if(!isSelectOpened){
+            isSelectOpened = true;
+            String[] array = null;
+            int margin = marginTop;
+            switch (type){
+                case "Etnia":
+                    array = this.selectEtniaArray;
+                    select = this.selectEtnia;
+                    break;
+                case "EyeColor":
+                    array = this.selectEyeColorArray;
+                    margin = margin + offset;
+                    select = this.selectEyeColor;
+                    break;
+                case "HairColor":
+                    array = this.selectHairColorArray;
+                    margin = margin + offset*2;
+                    select = this.selectHairColor;
+                    break;
+            }
+
+            ViewGroup.LayoutParams paramsLayout = searchListRowTemplate.getLayoutParams();
+            ViewGroup.LayoutParams paramsTextView = searchListRowTemplateText.getLayoutParams();
+            for (int i = 0; i<array.length;i++){
+                TextView text = new TextView(getActivity().getApplicationContext());
+                text.setLayoutParams(paramsTextView);
+                text.setText(array[i]);
+                text.setTypeface(mApp.getFont());
+                LinearLayout row = new LinearLayout(getActivity().getApplicationContext());
+                row.setLayoutParams(paramsLayout);
+                row.addView(text);
+                row.setVisibility(View.VISIBLE);
+
+                row.setOnClickListener(new View.OnClickListener() {
+
+                    public void onClick(View v) {
+                        LinearLayout l = (LinearLayout) v;
+                        TextView t = (TextView) l.getChildAt(0);
+                        select.setText(t.getText());
+                        select.setTypeface(mApp.getFontBold());
+                        closeSelect(v.getRootView())
+
+
+                        ;
+                    }
+                });
+                searchListRoot.addView(row);
+            }
+            RelativeLayout.LayoutParams  params = (RelativeLayout.LayoutParams) searchList.getLayoutParams();
+            LinearLayout.LayoutParams params2 = (LinearLayout.LayoutParams) selectEtnia.getLayoutParams();
+            Log.d("PEDRO",String.valueOf(params.topMargin));
+            Log.d("PEDRO2",String.valueOf(params2.height));
+            params.setMargins(0,margin,0,0);
+            searchList.setLayoutParams(params);
+            searchList.setVisibility(View.VISIBLE);
+        }else{
+            closeSelect(v);
+        }
+
     }
 
     private void closeSelect(View v) {

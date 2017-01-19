@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
@@ -54,7 +55,14 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
         super.onResume();
 
         if(session.checkLogin()){
-            goToMainScreen();
+            new android.os.Handler().postDelayed(
+                    new Runnable() {
+                        public void run() {
+                            goToMainScreen();
+                        }
+                    },
+                    3000);
+
         }else{
             OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mApp.getGoogleApiClient());
             if (opr.isDone()) {
