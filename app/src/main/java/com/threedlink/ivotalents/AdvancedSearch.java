@@ -70,6 +70,8 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
 
     private boolean isSelectOpened;
     TextView select = null;
+    private boolean isSelectOpened2;
+
     public AdvancedSearch() {
         // Required empty public constructor
     }
@@ -102,6 +104,8 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
         }
         mApp = ((IvoTalentsApp) getActivity().getApplicationContext());
         isSelectOpened = false;
+        isSelectOpened2 = false;
+
     }
 
     @Override
@@ -180,6 +184,10 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
             closeSelect(v);
            isSelectOpened=false;
         }
+        if(isSelectOpened2){
+            closeSelect2(v);
+            isSelectOpened2=false;
+        }
         switch (id) {
             case R.id.nextFilter:
                 nextFilter(v);
@@ -209,29 +217,25 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
     private void showSelect2(View v, String type) {
         int offset = 75;
 
-        if(!isSelectOpened){
-            isSelectOpened = true;
+        if(!isSelectOpened2){
+            isSelectOpened2 = true;
             String[] array = null;
             int margin = marginTop;
             switch (type){
-                case "Etnia":
-                    array = this.selectEtniaArray;
-                    select = this.selectEtnia;
+                case "Pais":
+                    array = this.selectCountryArray;
+                    select = this.selectCountry;
                     break;
-                case "EyeColor":
-                    array = this.selectEyeColorArray;
+                case "Ciudad":
+                    array = this.selecCityArray;
                     margin = margin + offset;
-                    select = this.selectEyeColor;
+                    select = this.selectCity;
                     break;
-                case "HairColor":
-                    array = this.selectHairColorArray;
-                    margin = margin + offset*2;
-                    select = this.selectHairColor;
-                    break;
+
             }
 
-            ViewGroup.LayoutParams paramsLayout = searchListRowTemplate.getLayoutParams();
-            ViewGroup.LayoutParams paramsTextView = searchListRowTemplateText.getLayoutParams();
+            ViewGroup.LayoutParams paramsLayout = searchListRowTemplate2.getLayoutParams();
+            ViewGroup.LayoutParams paramsTextView = searchListRowTemplateText2.getLayoutParams();
             for (int i = 0; i<array.length;i++){
                 TextView text = new TextView(getActivity().getApplicationContext());
                 text.setLayoutParams(paramsTextView);
@@ -249,25 +253,25 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
                         TextView t = (TextView) l.getChildAt(0);
                         select.setText(t.getText());
                         select.setTypeface(mApp.getFontBold());
-                        closeSelect(v.getRootView())
-
-
-                        ;
+                        closeSelect(v.getRootView());
                     }
                 });
                 searchListRoot.addView(row);
             }
-            RelativeLayout.LayoutParams  params = (RelativeLayout.LayoutParams) searchList.getLayoutParams();
-            LinearLayout.LayoutParams params2 = (LinearLayout.LayoutParams) selectEtnia.getLayoutParams();
-            Log.d("PEDRO",String.valueOf(params.topMargin));
-            Log.d("PEDRO2",String.valueOf(params2.height));
+            RelativeLayout.LayoutParams  params = (RelativeLayout.LayoutParams) searchList2.getLayoutParams();
             params.setMargins(0,margin,0,0);
-            searchList.setLayoutParams(params);
-            searchList.setVisibility(View.VISIBLE);
+            searchList2.setLayoutParams(params);
+            searchList2.setVisibility(View.VISIBLE);
         }else{
-            closeSelect(v);
+            closeSelect2(v);
         }
 
+    }
+
+    private void closeSelect2(View v) {
+        searchListRoot2.removeAllViews();
+        searchList2.setVisibility(View.GONE);
+        isSelectOpened2 =false;
     }
 
     private void closeSelect(View v) {
@@ -319,18 +323,12 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
                         TextView t = (TextView) l.getChildAt(0);
                         select.setText(t.getText());
                         select.setTypeface(mApp.getFontBold());
-                        closeSelect(v.getRootView())
-
-
-                        ;
+                        closeSelect(v.getRootView());
                     }
                 });
                 searchListRoot.addView(row);
             }
             RelativeLayout.LayoutParams  params = (RelativeLayout.LayoutParams) searchList.getLayoutParams();
-            LinearLayout.LayoutParams params2 = (LinearLayout.LayoutParams) selectEtnia.getLayoutParams();
-            Log.d("PEDRO",String.valueOf(params.topMargin));
-            Log.d("PEDRO2",String.valueOf(params2.height));
             params.setMargins(0,margin,0,0);
             searchList.setLayoutParams(params);
             searchList.setVisibility(View.VISIBLE);
