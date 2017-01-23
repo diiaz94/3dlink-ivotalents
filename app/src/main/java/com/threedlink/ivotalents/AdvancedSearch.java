@@ -33,6 +33,7 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static int marginTop = 165;
+    private static int marginTop2 = 100;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -56,7 +57,7 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
     private TextView selectCountry;
     private String[] selectCountryArray = {"Venezuela","Panama","Colombia"};
     private TextView selectCity;
-    private String[] selecCityArray = {"Caracas","Bogota","Panama"};
+    private String[] selectCityArray = {"Caracas","Bogota","Panama"};
 
     private LinearLayout searchList;
     private LinearLayout searchListRoot;
@@ -70,6 +71,7 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
 
     private boolean isSelectOpened;
     TextView select = null;
+    TextView select2 = null;
     private boolean isSelectOpened2;
 
     public AdvancedSearch() {
@@ -215,21 +217,21 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
     }
 
     private void showSelect2(View v, String type) {
-        int offset = 75;
+        int offset = 100;
 
         if(!isSelectOpened2){
             isSelectOpened2 = true;
             String[] array = null;
-            int margin = marginTop;
+            int margin = marginTop2;
             switch (type){
                 case "Pais":
                     array = this.selectCountryArray;
-                    select = this.selectCountry;
+                    select2 = this.selectCountry;
                     break;
                 case "Ciudad":
-                    array = this.selecCityArray;
+                    array = this.selectCityArray;
                     margin = margin + offset;
-                    select = this.selectCity;
+                    select2 = this.selectCity;
                     break;
 
             }

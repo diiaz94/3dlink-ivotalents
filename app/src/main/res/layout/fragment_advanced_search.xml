@@ -47,8 +47,7 @@
                 android:layout_marginTop="5dp"
                 android:background="@color/ivo_gray_grid"></FrameLayout>
 
-            <LinearLayout
-                android:id="@+id/filter_0"
+            <LinearLayout android:id="@+id/filter_0"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -177,8 +176,7 @@
                         android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:id="@+id/filter_1"
+            <LinearLayout android:id="@+id/filter_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -336,8 +334,7 @@
                         android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:id="@+id/filter_2"
+            <LinearLayout android:id="@+id/filter_2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="30dp"
@@ -363,12 +360,12 @@
                             android:orientation="vertical"
                             android:layout_gravity="center">
                             <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Requerimientos para modelo"
-                            android:textColor="@color/black"
-                            android:tag="bold"
-                            android:textStyle="bold"/>
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Requerimientos para modelo"
+                                android:textColor="@color/black"
+                                android:tag="bold"
+                                android:textStyle="bold"/>
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -512,12 +509,8 @@
                         </LinearLayout>
                     </RelativeLayout>
                 </LinearLayout>
-
-
-
             </LinearLayout>
-            <LinearLayout
-                android:id="@+id/filter_3"
+            <LinearLayout android:id="@+id/filter_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -621,8 +614,7 @@
                         android:theme="@style/AdvancedSearchCheckbox"/>
                 </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:id="@+id/filter_4"
+            <LinearLayout android:id="@+id/filter_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -701,12 +693,12 @@
                             android:layout_height="wrap_content"
                             android:background="@color/white"
                             android:orientation="vertical"
-                            android:layout_marginTop="110dp"
-                            android:visibility="gone"
+                            android:layout_marginTop="70dp"
+                            android:visibility="visible"
                             >
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="200dp"
+                                android:layout_width="200dp"
+                                android:layout_height="0dp"
                                 android:textColor="@color/ivo_blue"
                                 android:tag="bold"
                                 android:textStyle="bold"
