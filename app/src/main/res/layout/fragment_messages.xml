@@ -6,29 +6,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.threedlink.ivotalents.Messages"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/ivo_white_light">
 
     <ImageButton android:background="@drawable/redactar_btn"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"
-        android:layout_width="55pt"
-        android:layout_height="15pt"></ImageButton>
+        android:layout_width="110dp"
+        android:layout_height="30dp"></ImageButton>
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tab_layout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
-        android:background="?attr/colorPrimary"
-        android:elevation="6dp"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@id/tab_layout"/>
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/toolbar"
+            android:elevation="6dp"
+            android:minHeight="5dp"
+            app:tabIndicatorColor="@color/ivo_green"
+            app:tabSelectedTextColor="@color/white"
+            app:tabBackground="@drawable/tab_color_messages"
+            app:tabTextColor="@color/ivo_green"
+            />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@color/ivo_gray_audio_dark"/>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/tab_layout"/>
+    </LinearLayout>
 
 </LinearLayout>

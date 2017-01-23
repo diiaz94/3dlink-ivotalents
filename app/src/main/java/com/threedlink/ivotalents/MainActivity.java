@@ -378,7 +378,7 @@ public class MainActivity extends AppCompatActivity implements
         else if(name.equalsIgnoreCase("provider"))
             fragment = HomeProvider.newInstance(name,email);
         else
-            fragment = DashboardArtist.newInstance(name,email);
+            fragment = HomeArtist.newInstance(name,email);
 
         return fragment;
     }
@@ -406,7 +406,7 @@ public class MainActivity extends AppCompatActivity implements
         else if(name.equalsIgnoreCase("provider"))
         fragment = HomeProvider.newInstance(name,email);
         else
-            fragment = DashboardArtist.newInstance(name,email);
+            fragment = HomeArtist.newInstance(name,email);
 
 
         getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
