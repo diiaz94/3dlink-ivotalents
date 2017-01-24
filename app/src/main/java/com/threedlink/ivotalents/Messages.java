@@ -1,6 +1,7 @@
 package com.threedlink.ivotalents;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -9,8 +10,15 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
+import com.threedlink.ivotalents.Adapters.CustomMessageListAdapter;
+import com.threedlink.ivotalents.Adapters.CustomRecentCastingsListAdapter;
 import com.threedlink.ivotalents.Adapters.MessagesSwipeAdapter;
+import com.threedlink.ivotalents.DTO.Casting;
+import com.threedlink.ivotalents.DTO.Message;
+
+import java.util.ArrayList;
 
 
 /**
@@ -31,6 +39,7 @@ public class Messages extends Fragment {
     private String mParam1;
     private String mParam2;
     private IvoTalentsApp mApp;
+    private ListView receivedMessagesList;
 
     private OnFragmentInteractionListener mListener;
 
@@ -99,7 +108,31 @@ public class Messages extends Fragment {
 
             }
         });
+
+        initListViewReceiveMessages(viewPager);
+
         return view;
+    }
+
+    private void initListViewReceiveMessages(View view) {
+        Resources res = getActivity().getApplicationContext().getResources();
+
+        String[] tempNameMessage = res.getStringArray(R.array.received_message_names);
+        String[] tempResumeMessage = res.getStringArray(R.array.received_message_resumes);
+        int[] imageAuthors = {R.drawable.circle_gray,R.drawable.circle_gray,R.drawable.circle_gray};
+        ArrayList<Message> listMessages = new ArrayList<Message>();
+        for (int i=0; i<3;i++){
+            Message message = new Message(tempNameMessage[i],tempResumeMessage[i],imageAuthors[i]);
+            listMessages.add(message);
+        }
+        receivedMessagesList = (ListView) view.findViewById(R.id.listViewReceivedMessages);
+        receivedMessagesList.setAdapter(new CustomMessageListAdapter(getActivity().getApplicationContext(),listMessages));
+
+        //View item = receivedMessagesList.getAdapter().getView(0, null, receivedMessagesList);
+       // item.measure(0, 0);
+        //android.widget.LinearLayout.LayoutParams params = new android.widget.LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (3.5 * item.getMeasuredHeight()));
+        //receivedMessagesList.setLayoutParams(params);
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

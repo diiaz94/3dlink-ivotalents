@@ -164,4 +164,26 @@
         <item>Hasta Julio 16, 2016</item>
     </string-array>
 
+    <string-array name="received_message_names">
+        <item>Nombre</item>
+        <item>Nombre</item>
+        <item>Nombre</item>
+    </string-array>
+    <string-array name="received_message_resumes">
+        <item>Resumen del mensaje</item>
+        <item>Resumen del mensaje</item>
+        <item>Resumen del mensaje</item>
+    </string-array>
+
+    <string-array name="sent_message_names">
+        <item>Nombre</item>
+        <item>Nombre</item>
+        <item>Nombre</item>
+    </string-array>
+    <string-array name="sent_message_resumes">
+        <item>Resumen del mensaje</item>
+        <item>Resumen del mensaje</item>
+        <item>Resumen del mensaje</item>
+    </string-array>
+
 </resources>
