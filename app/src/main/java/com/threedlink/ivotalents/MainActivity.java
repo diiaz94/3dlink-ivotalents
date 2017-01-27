@@ -7,11 +7,11 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -20,26 +20,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.facebook.AccessToken;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.security.ProviderInstaller;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.threedlink.ivotalents.DTO.Message;
 
 import java.util.HashMap;
 
@@ -59,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements
         HomeArtist.OnFragmentInteractionListener,
         Messages.OnFragmentInteractionListener,
         ReceivedMessages.OnFragmentInteractionListener,
-        SentMessages.OnFragmentInteractionListener{
+        SendMessages.OnFragmentInteractionListener{
     DrawerLayout drawer;
     private static final String TAG = MainActivity.class.getSimpleName();
     // Session Manager Class
@@ -189,9 +178,16 @@ public class MainActivity extends AppCompatActivity implements
         opcion_mensajes_recibidos.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View popupView) {
-                Fragment fragment = null;
-                fragment = Messages.newInstance("param1","param2");
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( fragment.getClass().getSimpleName() ).commit();
+                android.app.Fragment myFragment = (android.app.Fragment)getFragmentManager().findFragmentByTag(Messages.class.getSimpleName());
+                if (myFragment != null && myFragment.isVisible()) {
+                    ViewPager viewPager = (ViewPager)myFragment.getView().findViewById(R.id.pager);
+                    if(viewPager!=null)
+                        viewPager.setCurrentItem(0);
+                }else {
+                    Fragment fragment = null;
+                    fragment = Messages.newInstance("0", "param2");
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_main, fragment).addToBackStack(fragment.getClass().getSimpleName()).commit();
+                }
                 if (drawer.isDrawerOpen(Gravity.RIGHT)) {
                     drawer.closeDrawer(Gravity.RIGHT);
                 } else {
@@ -203,9 +199,17 @@ public class MainActivity extends AppCompatActivity implements
         opcion_mensajes_enviados.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View popupView) {
-                Fragment fragment = null;
-                fragment = Messages.newInstance("param1","param2");
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( "search" ).commit();
+                android.app.Fragment myFragment = (android.app.Fragment)getFragmentManager().findFragmentByTag(Messages.class.getSimpleName());
+                if (myFragment != null && myFragment.isVisible()) {
+                    ViewPager viewPager = (ViewPager)myFragment.getView().findViewById(R.id.pager);
+                    if(viewPager!=null)
+                        viewPager.setCurrentItem(1);
+                }else {
+                    Fragment fragment = null;
+                    fragment = Messages.newInstance("1", "param2");
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_main, fragment).addToBackStack(fragment.getClass().getSimpleName()).commit();
+                }
+
                 if (drawer.isDrawerOpen(Gravity.RIGHT)) {
                     drawer.closeDrawer(Gravity.RIGHT);
                 } else {
@@ -220,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements
             public void onClick(View popupView) {
                 Fragment fragment = null;
                 fragment = AdvancedSearch.newInstance("param1","param2");
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( "search" ).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( fragment.getClass().getSimpleName() ).commit();
                 if (drawer.isDrawerOpen(Gravity.RIGHT)) {
                     drawer.closeDrawer(Gravity.RIGHT);
                 } else {

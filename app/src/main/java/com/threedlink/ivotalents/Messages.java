@@ -39,7 +39,6 @@ public class Messages extends Fragment {
     private String mParam1;
     private String mParam2;
     private IvoTalentsApp mApp;
-    private ListView receivedMessagesList;
 
     private OnFragmentInteractionListener mListener;
 
@@ -108,32 +107,10 @@ public class Messages extends Fragment {
 
             }
         });
-
-        initListViewReceiveMessages(viewPager);
-
+        viewPager.setCurrentItem(Integer.parseInt(mParam1));
         return view;
     }
 
-    private void initListViewReceiveMessages(View view) {
-        Resources res = getActivity().getApplicationContext().getResources();
-
-        String[] tempNameMessage = res.getStringArray(R.array.received_message_names);
-        String[] tempResumeMessage = res.getStringArray(R.array.received_message_resumes);
-        int[] imageAuthors = {R.drawable.circle_gray,R.drawable.circle_gray,R.drawable.circle_gray};
-        ArrayList<Message> listMessages = new ArrayList<Message>();
-        for (int i=0; i<3;i++){
-            Message message = new Message(tempNameMessage[i],tempResumeMessage[i],imageAuthors[i]);
-            listMessages.add(message);
-        }
-        receivedMessagesList = (ListView) view.findViewById(R.id.listViewReceivedMessages);
-        receivedMessagesList.setAdapter(new CustomMessageListAdapter(getActivity().getApplicationContext(),listMessages));
-
-        //View item = receivedMessagesList.getAdapter().getView(0, null, receivedMessagesList);
-       // item.measure(0, 0);
-        //android.widget.LinearLayout.LayoutParams params = new android.widget.LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (3.5 * item.getMeasuredHeight()));
-        //receivedMessagesList.setLayoutParams(params);
-
-    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

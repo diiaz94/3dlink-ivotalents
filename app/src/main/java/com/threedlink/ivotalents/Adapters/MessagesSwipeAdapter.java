@@ -10,7 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.threedlink.ivotalents.ReceivedMessages;
-import com.threedlink.ivotalents.SentMessages;
+import com.threedlink.ivotalents.SendMessages;
 
 
 public class MessagesSwipeAdapter extends FragmentStatePagerAdapter {
@@ -29,7 +29,7 @@ public class MessagesSwipeAdapter extends FragmentStatePagerAdapter {
                 ReceivedMessages tab1 = new ReceivedMessages();
                 return tab1;
             case 1:
-                SentMessages tab2 = new SentMessages();
+                SendMessages tab2 = new SendMessages();
                 return tab2;
 
             default:

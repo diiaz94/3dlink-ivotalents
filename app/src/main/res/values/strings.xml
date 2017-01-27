@@ -168,19 +168,31 @@
         <item>Nombre</item>
         <item>Nombre</item>
         <item>Nombre</item>
+        <item>Nombre</item>
+        <item>Nombre</item>
+        <item>Nombre</item>
     </string-array>
     <string-array name="received_message_resumes">
         <item>Resumen del mensaje</item>
         <item>Resumen del mensaje</item>
         <item>Resumen del mensaje</item>
+        <item>Resumen del mensaje</item>
+        <item>Resumen del mensaje</item>
+        <item>Resumen del mensaje</item>
     </string-array>
 
-    <string-array name="sent_message_names">
+    <string-array name="send_message_names">
+        <item>Nombre</item>
+        <item>Nombre</item>
+        <item>Nombre</item>
         <item>Nombre</item>
         <item>Nombre</item>
         <item>Nombre</item>
     </string-array>
-    <string-array name="sent_message_resumes">
+    <string-array name="send_message_resumes">
+        <item>Resumen del mensaje</item>
+        <item>Resumen del mensaje</item>
+        <item>Resumen del mensaje</item>
         <item>Resumen del mensaje</item>
         <item>Resumen del mensaje</item>
         <item>Resumen del mensaje</item>

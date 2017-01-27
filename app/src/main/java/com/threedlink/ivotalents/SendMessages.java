@@ -1,27 +1,36 @@
 package com.threedlink.ivotalents;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import com.threedlink.ivotalents.Adapters.CustomMessageListAdapter;
+import com.threedlink.ivotalents.DTO.Message;
+
+import java.util.ArrayList;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link SentMessages.OnFragmentInteractionListener} interface
+ * {@link SendMessages.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link SentMessages#newInstance} factory method to
+ * Use the {@link SendMessages#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SentMessages extends Fragment {
+public class SendMessages extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private ListView sendMessagesList;
+    private IvoTalentsApp mApp;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -29,7 +38,7 @@ public class SentMessages extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public SentMessages() {
+    public SendMessages() {
         // Required empty public constructor
     }
 
@@ -39,11 +48,11 @@ public class SentMessages extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment SentMessages.
+     * @return A new instance of fragment SendMessages.
      */
     // TODO: Rename and change types and number of parameters
-    public static SentMessages newInstance(String param1, String param2) {
-        SentMessages fragment = new SentMessages();
+    public static SendMessages newInstance(String param1, String param2) {
+        SendMessages fragment = new SendMessages();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -58,13 +67,40 @@ public class SentMessages extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        mApp = ((IvoTalentsApp) getActivity().getApplicationContext());
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view =  inflater.inflate(R.layout.fragment_send_messages, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sent_messages, container, false);
+
+
+        initListViewReceiveMessages(view);
+
+        return view;
+    }
+    private void initListViewReceiveMessages(View view) {
+        Resources res = getActivity().getApplicationContext().getResources();
+
+        String[] tempNameMessage = res.getStringArray(R.array.send_message_names);
+        String[] tempResumeMessage = res.getStringArray(R.array.send_message_resumes);
+        int[] imageAuthors = {R.drawable.circle_gray,R.drawable.circle_gray,R.drawable.circle_gray,R.drawable.circle_gray,R.drawable.circle_gray,R.drawable.circle_gray};
+        ArrayList<Message> listMessages = new ArrayList<Message>();
+        for (int i=0; i<6;i++){
+            Message message = new Message(tempNameMessage[i],tempResumeMessage[i],imageAuthors[i]);
+            listMessages.add(message);
+        }
+        sendMessagesList = (ListView) view.findViewById(R.id.listViewSendMessages);
+        sendMessagesList.setAdapter(new CustomMessageListAdapter(getActivity().getApplicationContext(),listMessages));
+
+        //View item = sendMessagesList.getAdapter().getView(0, null, sendMessagesList);
+        // item.measure(0, 0);
+        //android.widget.LinearLayout.LayoutParams params = new android.widget.LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (3.5 * item.getMeasuredHeight()));
+        //sendMessagesList.setLayoutParams(params);
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -96,7 +132,7 @@ public class SentMessages extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p>
+     * <p/>
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.

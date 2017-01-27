@@ -1,12 +1,19 @@
 package com.threedlink.ivotalents;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import com.threedlink.ivotalents.Adapters.CustomMessageListAdapter;
+import com.threedlink.ivotalents.DTO.Message;
+
+import java.util.ArrayList;
 
 
 /**
@@ -22,6 +29,8 @@ public class ReceivedMessages extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private ListView receivedMessagesList;
+    private IvoTalentsApp mApp;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -58,13 +67,40 @@ public class ReceivedMessages extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        mApp = ((IvoTalentsApp) getActivity().getApplicationContext());
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view =  inflater.inflate(R.layout.fragment_received_messages, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_received_messages, container, false);
+
+
+        initListViewReceiveMessages(view);
+
+        return view;
+    }
+    private void initListViewReceiveMessages(View view) {
+        Resources res = getActivity().getApplicationContext().getResources();
+
+        String[] tempNameMessage = res.getStringArray(R.array.received_message_names);
+        String[] tempResumeMessage = res.getStringArray(R.array.received_message_resumes);
+        int[] imageAuthors = {R.drawable.circle_gray,R.drawable.circle_gray,R.drawable.circle_gray,R.drawable.circle_gray,R.drawable.circle_gray,R.drawable.circle_gray};
+        ArrayList<Message> listMessages = new ArrayList<Message>();
+        for (int i=0; i<6;i++){
+            Message message = new Message(tempNameMessage[i],tempResumeMessage[i],imageAuthors[i]);
+            listMessages.add(message);
+        }
+        receivedMessagesList = (ListView) view.findViewById(R.id.listViewReceivedMessages);
+        receivedMessagesList.setAdapter(new CustomMessageListAdapter(getActivity().getApplicationContext(),listMessages));
+
+        //View item = receivedMessagesList.getAdapter().getView(0, null, receivedMessagesList);
+        // item.measure(0, 0);
+        //android.widget.LinearLayout.LayoutParams params = new android.widget.LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (3.5 * item.getMeasuredHeight()));
+        //receivedMessagesList.setLayoutParams(params);
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
