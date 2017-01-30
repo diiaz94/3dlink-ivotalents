@@ -4,20 +4,23 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.view.Gravity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.view.WindowManager;
+import android.widget.AbsListView;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import com.threedlink.ivotalents.Adapters.CustomContactMessageListAdapter;
 import com.threedlink.ivotalents.Adapters.CustomMessageListAdapter;
-import com.threedlink.ivotalents.Adapters.CustomRecentCastingsListAdapter;
-import com.threedlink.ivotalents.Adapters.MessagesSwipeAdapter;
-import com.threedlink.ivotalents.DTO.Casting;
+import com.threedlink.ivotalents.DTO.Contact;
 import com.threedlink.ivotalents.DTO.Message;
 
 import java.util.ArrayList;
@@ -26,12 +29,12 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Messages.OnFragmentInteractionListener} interface
+ * {@link CreateMessage.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Messages#newInstance} factory method to
+ * Use the {@link CreateMessage#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Messages extends Fragment {
+public class CreateMessage extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -41,10 +44,13 @@ public class Messages extends Fragment {
     private String mParam1;
     private String mParam2;
     private IvoTalentsApp mApp;
-
+    private EditText nameToMessage;
     private OnFragmentInteractionListener mListener;
+    private LinearLayout autocompleteContact;
+    private ListView autocompleteContactList;
 
-    public Messages() {
+
+    public CreateMessage() {
         // Required empty public constructor
     }
 
@@ -54,11 +60,11 @@ public class Messages extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Messages.
+     * @return A new instance of fragment CreateMessage.
      */
     // TODO: Rename and change types and number of parameters
-    public static Messages newInstance(String param1, String param2) {
-        Messages fragment = new Messages();
+    public static CreateMessage newInstance(String param1, String param2) {
+        CreateMessage fragment = new CreateMessage();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -69,60 +75,73 @@ public class Messages extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mApp = ((IvoTalentsApp) getActivity().getApplicationContext());
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        mApp = ((IvoTalentsApp) getActivity().getApplicationContext());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        final View view =  inflater.inflate(R.layout.fragment_create_message, container, false);
 
-        View view =  inflater.inflate(R.layout.fragment_messages, container, false);
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Mensajes Recibidos"));
-        tabLayout.addTab(tabLayout.newTab().setText("Mensajes Enviados"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
-        final ViewPager viewPager = (ViewPager) view.findViewById(R.id.pager);
-        final MessagesSwipeAdapter adapter = new MessagesSwipeAdapter
-                (getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(adapter);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        nameToMessage = (EditText) view.findViewById(R.id.nameToMessage);
+        autocompleteContact = (LinearLayout) view.findViewById(R.id.autocompleteContact);
+        nameToMessage.measure(0, 0);
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)autocompleteContact.getLayoutParams();
+        params.setMargins(params.leftMargin,params.topMargin+nameToMessage.getMeasuredHeight(),params.rightMargin,0);
+        autocompleteContact.setLayoutParams(params);
+        TextWatcher fieldValidatorTextWatcher = new TextWatcher() {
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
+            public void afterTextChanged(Editable s) {
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (filterLongEnough()) {
+                   populateList(s.toString());
+                    autocompleteContact.setVisibility(View.VISIBLE);
+                }else{
+                    autocompleteContact.setVisibility(View.GONE);
+                }
             }
-        });
-        viewPager.setCurrentItem(Integer.parseInt(mParam1));
 
-        ImageButton redactar_btn = (ImageButton) view.findViewById(R.id.redactar_btn);
-        redactar_btn.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View popupView) {
-                Fragment fragment = null;
-                fragment = CreateMessage.newInstance("param1","param2");
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( fragment.getClass().getSimpleName() ).commit();
+            private boolean filterLongEnough() {
+                return nameToMessage.getText().toString().trim().length() > 2;
             }
-        });
+        };
+        nameToMessage.addTextChangedListener(fieldValidatorTextWatcher);
+
+        autocompleteContactList = (ListView) view.findViewById(R.id.autocompleteContactList);
+
+
+        LinearLayout myLayout = (LinearLayout) view.findViewById(R.id.fragment_create_message);
+        mApp.setFontsOnLinear(myLayout);
+
         return view;
     }
 
+    private void populateList(String text) {
+        Resources res = getActivity().getApplicationContext().getResources();
+        String[] tempNameMessage = res.getStringArray(R.array.contact_names);
+        String[] tempResumeMessage = res.getStringArray(R.array.contact_sectors);
+        int[] imageAuthors = {R.drawable.circle_gray,R.drawable.circle_gray,R.drawable.circle_gray,R.drawable.circle_gray,R.drawable.circle_gray,R.drawable.circle_gray};
+
+        ArrayList<Contact> listMessages = new ArrayList<Contact>();
+
+        for (int i=0; i<6;i++){
+            Contact contact = new Contact(tempNameMessage[i],tempResumeMessage[i],imageAuthors[i]);
+            listMessages.add(contact);
+        }
+        autocompleteContactList.setAdapter(new CustomContactMessageListAdapter(getActivity().getApplicationContext(),listMessages));
+
+    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

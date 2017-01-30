@@ -62,6 +62,8 @@
     <string name="casting_dummie_expiration">Hasta Julio 16, 2016</string>
     <string name="txt_read_more">LEER MÁS</string>
     <string name="txt_see_all_oportunities">Ver todas las oportunidades</string>
+    <string name="txt_message_to">Escribe un nombre</string>
+    <string name="txt_message_body">Escribe un mensaje...</string>
 
     <string-array name="artist_categories">
         <item>MÚSICO</item>
@@ -196,6 +198,22 @@
         <item>Resumen del mensaje</item>
         <item>Resumen del mensaje</item>
         <item>Resumen del mensaje</item>
+    </string-array>
+    <string-array name="contact_names">
+        <item>Nombre</item>
+        <item>Nombre</item>
+        <item>Nombre</item>
+        <item>Nombre</item>
+        <item>Nombre</item>
+        <item>Nombre</item>
+    </string-array>
+    <string-array name="contact_sectors">
+        <item>Sector</item>
+        <item>Sector</item>
+        <item>Sector</item>
+        <item>Sector</item>
+        <item>Sector</item>
+        <item>Sector</item>
     </string-array>
 
 </resources>

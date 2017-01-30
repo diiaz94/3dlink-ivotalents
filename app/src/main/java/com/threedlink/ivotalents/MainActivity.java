@@ -48,7 +48,8 @@ public class MainActivity extends AppCompatActivity implements
         HomeArtist.OnFragmentInteractionListener,
         Messages.OnFragmentInteractionListener,
         ReceivedMessages.OnFragmentInteractionListener,
-        SendMessages.OnFragmentInteractionListener{
+        SendMessages.OnFragmentInteractionListener,
+        CreateMessage.OnFragmentInteractionListener{
     DrawerLayout drawer;
     private static final String TAG = MainActivity.class.getSimpleName();
     // Session Manager Class
@@ -217,6 +218,20 @@ public class MainActivity extends AppCompatActivity implements
                 }
             }
         });
+        ImageButton redactar_btn = (ImageButton)  findViewById(R.id.redactar_btn);
+        redactar_btn.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View popupView) {
+                Fragment fragment = null;
+                fragment = CreateMessage.newInstance("param1","param2");
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( fragment.getClass().getSimpleName() ).commit();
+                if (drawer.isDrawerOpen(Gravity.RIGHT)) {
+                    drawer.closeDrawer(Gravity.RIGHT);
+                } else {
+                    drawer.openDrawer(Gravity.RIGHT);
+                }
+            }
+        });
 
         FrameLayout opcion_search = (FrameLayout) findViewById(R.id.opcion_search);
         opcion_search.setOnClickListener(new View.OnClickListener() {
@@ -365,7 +380,7 @@ public class MainActivity extends AppCompatActivity implements
         else if(name.equalsIgnoreCase("provider"))
             fragment = ProfileProvider.newInstance(name,email);
         else
-            fragment = DashboardArtist.newInstance(name,email);
+            fragment = ProfileArtist.newInstance(name,email);
 
         return fragment;
     }
