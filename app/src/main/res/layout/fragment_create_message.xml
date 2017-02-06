@@ -112,6 +112,8 @@
                        android:background="@color/ivo_green"
                        android:layout_marginTop="10dp">
                         <LinearLayout
+                            android:id="@+id/linear_sent_message"
+                            android:clickable="true"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_margin="4dp"

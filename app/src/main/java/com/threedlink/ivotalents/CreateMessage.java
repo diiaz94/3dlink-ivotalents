@@ -34,7 +34,7 @@ import java.util.ArrayList;
  * Use the {@link CreateMessage#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CreateMessage extends Fragment {
+public class CreateMessage extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -48,6 +48,7 @@ public class CreateMessage extends Fragment {
     private OnFragmentInteractionListener mListener;
     private LinearLayout autocompleteContact;
     private ListView autocompleteContactList;
+    private LinearLayout sentMessage;
 
 
     public CreateMessage() {
@@ -87,6 +88,8 @@ public class CreateMessage extends Fragment {
                              Bundle savedInstanceState) {
         final View view =  inflater.inflate(R.layout.fragment_create_message, container, false);
 
+        sentMessage = (LinearLayout) view.findViewById(R.id.linear_sent_message);
+        sentMessage.setOnClickListener(this);
         nameToMessage = (EditText) view.findViewById(R.id.nameToMessage);
         autocompleteContact = (LinearLayout) view.findViewById(R.id.autocompleteContact);
         nameToMessage.measure(0, 0);
@@ -165,6 +168,20 @@ public class CreateMessage extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+
+        switch (id){
+            case R.id.linear_sent_message:
+                Fragment fragment = null;
+                fragment = Chat.newInstance("param1","param2");
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( fragment.getClass().getSimpleName() ).commit();
+
+                break;
+        }
     }
 
     /**

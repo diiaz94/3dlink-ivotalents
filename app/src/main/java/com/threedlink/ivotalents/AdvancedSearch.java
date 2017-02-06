@@ -182,14 +182,14 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if(isSelectOpened){
+        /*if(isSelectOpened){
             closeSelect(v);
            isSelectOpened=false;
         }
         if(isSelectOpened2){
             closeSelect2(v);
             isSelectOpened2=false;
-        }
+        }*/
         switch (id) {
             case R.id.nextFilter:
                 nextFilter(v);
@@ -217,7 +217,7 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
     }
 
     private void showSelect2(View v, String type) {
-        int offset = 100;
+        int offset = 145;
 
         if(!isSelectOpened2){
             isSelectOpened2 = true;
@@ -247,18 +247,16 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
                 row.setLayoutParams(paramsLayout);
                 row.addView(text);
                 row.setVisibility(View.VISIBLE);
-
                 row.setOnClickListener(new View.OnClickListener() {
-
                     public void onClick(View v) {
                         LinearLayout l = (LinearLayout) v;
                         TextView t = (TextView) l.getChildAt(0);
-                        select.setText(t.getText());
-                        select.setTypeface(mApp.getFontBold());
-                        closeSelect(v.getRootView());
+                        select2.setText(t.getText());
+                        select2.setTypeface(mApp.getFontBold());
+                        closeSelect2(v.getRootView());
                     }
                 });
-                searchListRoot.addView(row);
+                searchListRoot2.addView(row);
             }
             RelativeLayout.LayoutParams  params = (RelativeLayout.LayoutParams) searchList2.getLayoutParams();
             params.setMargins(0,margin,0,0);
