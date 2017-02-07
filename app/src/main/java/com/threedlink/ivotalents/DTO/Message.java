@@ -7,6 +7,8 @@ public class Message {
     private int imAuthor;
 
     private String resume;
+    private String msg;
+    private String date;
 
     public Message(String name, String resume, int imAuthor) {
         this.name = name;
