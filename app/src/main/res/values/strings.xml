@@ -216,4 +216,17 @@
         <item>Sector</item>
     </string-array>
 
+    <string-array name="dummie_chat_messages">
+        <item>Este es un mensajesEste es un mensajesEste es un mensajesEste es un mensajes</item>
+        <item>Este es un mensajesEste es un mensajesEste es un mensajesEste es un mensajes</item>
+    </string-array>
+    <string-array name="dummie_chat_dates">
+        <item>25 de noviembre</item>
+        <item>30 de noviembre</item>
+    </string-array>
+    <string-array name="dummie_chat_types">
+        <item>enviado</item>
+        <item>recibido</item>
+    </string-array>
+
 </resources>

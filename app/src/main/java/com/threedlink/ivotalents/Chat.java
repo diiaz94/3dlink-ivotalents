@@ -1,12 +1,20 @@
 package com.threedlink.ivotalents;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import com.threedlink.ivotalents.Adapters.CustomMessageChatListAdapter;
+import com.threedlink.ivotalents.Adapters.CustomMessageListAdapter;
+import com.threedlink.ivotalents.DTO.Message;
+
+import java.util.ArrayList;
 
 
 /**
@@ -27,7 +35,7 @@ public class Chat extends Fragment {
     private String mParam1;
     private String mParam2;
     private IvoTalentsApp mApp;
-
+    private ListView chatMessagesList;
     private OnFragmentInteractionListener mListener;
 
     public Chat() {
@@ -59,13 +67,36 @@ public class Chat extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        mApp = ((IvoTalentsApp) getActivity().getApplicationContext());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chat, container, false);
+        View view =  inflater.inflate(R.layout.fragment_chat, container, false);
+        // Inflate the layout for this fragment
+
+
+        initListChat(view);
+
+        return view;
+    }
+
+    private void initListChat(View view) {
+        Resources res = getActivity().getApplicationContext().getResources();
+
+        String[] messages = res.getStringArray(R.array.dummie_chat_messages);
+        String[] dates = res.getStringArray(R.array.dummie_chat_dates);
+        String[] types = res.getStringArray(R.array.dummie_chat_types);
+        ArrayList<Message> listMessages = new ArrayList<Message>();
+        for (int i=0; i<2;i++){
+            Message message = new Message(messages[i],dates[i],types[i]);
+            listMessages.add(message);
+        }
+        chatMessagesList = (ListView) view.findViewById(R.id.listViewChat);
+        chatMessagesList.setAdapter(new CustomMessageChatListAdapter(getActivity().getApplicationContext(),listMessages));
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
