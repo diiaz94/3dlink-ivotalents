@@ -50,18 +50,18 @@ public class CustomMessageChatListAdapter extends BaseAdapter {
         MessageViewChatHolder holder = null;
         if (row == null) {
             LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            //row = inflater.inflate(list.get(position).getType().equalsIgnoreCase("enviado")layout.ite, parent, false);
+            row = inflater.inflate(list.get(position).getType().equalsIgnoreCase("enviado")? R.layout.item_chat_send_message : R.layout.item_chat_received_message, parent, false);
             holder = new MessageViewChatHolder(row);
             row.setTag(holder);
         } else {
-            holder = (MessageViewHolder) row.getTag();
+            holder = (MessageViewChatHolder) row.getTag();
         }
         // holder.imRolEntity.setImageResource(list.get(position).getImageId());
-        holder.getTxtName().setText(list.get(position).getName());
-        holder.getTxtResume().setText(list.get(position).getResume());
+        holder.getTxtMessage().setText(list.get(position).getMsg());
+        holder.getTxtDate().setText(list.get(position).getDate());
 
-        holder.getTxtName().setTypeface(mApp.getFontBold());
-        holder.getTxtResume().setTypeface(mApp.getFont());
+        holder.getTxtMessage().setTypeface(mApp.getFont());
+        holder.getTxtDate().setTypeface(mApp.getFont());
 
         //Log.e("GETVIEW HEIGHT::", String.valueOf(row.getLayoutParams().height));
 

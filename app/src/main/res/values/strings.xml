@@ -217,12 +217,12 @@
     </string-array>
 
     <string-array name="dummie_chat_messages">
-        <item>Este es un mensajesEste es un mensajesEste es un mensajesEste es un mensajes</item>
-        <item>Este es un mensajesEste es un mensajesEste es un mensajesEste es un mensajes</item>
+        <item>Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi</item>
+        <item>Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi</item>
     </string-array>
     <string-array name="dummie_chat_dates">
-        <item>25 de noviembre</item>
-        <item>30 de noviembre</item>
+        <item>Noviembre 18, 2016</item>
+        <item>Diciembre 20, 2016</item>
     </string-array>
     <string-array name="dummie_chat_types">
         <item>enviado</item>

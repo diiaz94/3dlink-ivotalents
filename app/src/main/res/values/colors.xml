@@ -24,4 +24,5 @@
     <color name="ivo_aquamarine_transparent">#af00c4b4</color>
     <color name="ivo_blue_transparent">#af0032a0</color>
     <color name="ivo_white_light">#efefef</color>
+    <color name="ivo_chat_received_message_cloud_bg">#f0f0f0</color>
 </resources>
