@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -120,11 +121,20 @@ public class HomeArtist extends Fragment {
         }
         recentCastingList = (ListView) view.findViewById(R.id.newCastingsList);
         recentCastingList.setAdapter(new CustomRecentCastingsListAdapter(getActivity().getApplicationContext(),listCastings));
+        recentCastingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            View item = recentCastingList.getAdapter().getView(0, null, recentCastingList);
-            item.measure(0, 0);
-            android.widget.LinearLayout.LayoutParams params = new android.widget.LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (3.5 * item.getMeasuredHeight()));
-            recentCastingList.setLayoutParams(params);
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Fragment fragment = null;
+                fragment = com.threedlink.ivotalents.Casting.newInstance("param1","param2");
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( fragment.getClass().getSimpleName() ).commit();
+
+            }
+        });
+        View item = recentCastingList.getAdapter().getView(0, null, recentCastingList);
+        item.measure(0, 0);
+        android.widget.LinearLayout.LayoutParams params = new android.widget.LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (3.5 * item.getMeasuredHeight()));
+        recentCastingList.setLayoutParams(params);
         //android.widget.LinearLayout.LayoutParams paramsArtists = (LinearLayout.LayoutParams) recentCastingList.getLayoutParams();
         //paramsArtists.height = 200*(recentCastingList.getAdapter().getCount()/3);
         //recentCastingList.setLayoutParams(paramsArtists);

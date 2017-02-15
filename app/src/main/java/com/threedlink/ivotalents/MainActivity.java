@@ -28,7 +28,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.threedlink.ivotalents.DTO.Message;
+import com.threedlink.ivotalents.DTO.*;
 
 import java.util.HashMap;
 
@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity implements
         ReceivedMessages.OnFragmentInteractionListener,
         SendMessages.OnFragmentInteractionListener,
         CreateMessage.OnFragmentInteractionListener,
-        Chat.OnFragmentInteractionListener{
+        Chat.OnFragmentInteractionListener,
+        Casting.OnFragmentInteractionListener{
     DrawerLayout drawer;
     private static final String TAG = MainActivity.class.getSimpleName();
     // Session Manager Class
