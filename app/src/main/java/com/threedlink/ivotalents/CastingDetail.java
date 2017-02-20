@@ -7,32 +7,37 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Casting.OnFragmentInteractionListener} interface
+ * {@link CastingDetail.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Casting#newInstance} factory method to
+ * Use the {@link CastingDetail#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Casting extends Fragment implements View.OnClickListener {
+public class CastingDetail extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
     // TODO: Rename and change types of parameters
+    private int step;
     private String mParam1;
     private String mParam2;
     private IvoTalentsApp mApp;
 
+    private ImageButton backStep;
+    private ImageButton nextStep;
     private OnFragmentInteractionListener mListener;
-    private Button btn_do_casting;
+    private LinearLayout castingDetailStep2;
+    private LinearLayout castingDetailStep3;
 
-    public Casting() {
+    public CastingDetail() {
         // Required empty public constructor
     }
 
@@ -42,12 +47,13 @@ public class Casting extends Fragment implements View.OnClickListener {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Casting.
+     * @return A new instance of fragment CastingDetail.
      */
     // TODO: Rename and change types and number of parameters
-    public static Casting newInstance(String param1, String param2) {
-        Casting fragment = new Casting();
+    public static CastingDetail newInstance(int step, String param1, String param2) {
+        CastingDetail fragment = new CastingDetail();
         Bundle args = new Bundle();
+        args.putInt("StepInit",step);
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
@@ -61,21 +67,28 @@ public class Casting extends Fragment implements View.OnClickListener {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            step = getArguments().getInt("StepInit");
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View view =  inflater.inflate(R.layout.fragment_casting, container, false);
-        btn_do_casting = (Button) view.findViewById(R.id.btn_do_casting);
+        final View view =  inflater.inflate(R.layout.fragment_detail_casting, container, false);
 
-        btn_do_casting.setOnClickListener(this);
-        LinearLayout myLayout = (LinearLayout) view.findViewById(R.id.fragment_casting);
+        backStep = (ImageButton) view.findViewById(R.id.backStepCasting);
+        nextStep = (ImageButton) view.findViewById(R.id.nextStepCasting);
+        backStep.setOnClickListener(this);
+        nextStep.setOnClickListener(this);
+        castingDetailStep2 = (LinearLayout) view.findViewById(R.id.casting_detail_step_2);
+        castingDetailStep3 = (LinearLayout) view.findViewById(R.id.casting_detail_step_3);
+        if (step==2)  castingDetailStep2.setVisibility(View.VISIBLE);
+        if (step==3)  castingDetailStep3.setVisibility(View.VISIBLE);
+
+        LinearLayout myLayout = (LinearLayout) view.findViewById(R.id.fragment_detail_casting);
         mApp.setFontsOnLinear(myLayout);
         // Inflate the layout for this fragment
-        return view;
-    }
+        return view;    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -103,14 +116,29 @@ public class Casting extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        int id=v.getId();
-        switch (id){
-            case R.id.btn_do_casting:
-                Fragment fragment = null;
-                fragment = CastingDetail.newInstance(2,"param1","param2");
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( fragment.getClass().getSimpleName()).commit();
-                break;
+        int id = v.getId();
 
+        switch (id){
+            case R.id.backStepCasting:
+                if(step==2) {
+                    Fragment fragment = null;
+                    fragment = Casting.newInstance("param1", "param2");
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_main, fragment).addToBackStack(fragment.getClass().getSimpleName()).commit();
+                }else if(step==3){
+                    castingDetailStep3.setVisibility(View.GONE);
+                    castingDetailStep2.setVisibility(View.VISIBLE);
+                    step--;
+                }
+                    break;
+            case R.id.nextStepCasting:
+                if(step==2) {
+                    castingDetailStep2.setVisibility(View.GONE);
+                    castingDetailStep3.setVisibility(View.VISIBLE);
+                    step++;
+                }else if(step==3){
+
+                }
+                break;
         }
     }
 

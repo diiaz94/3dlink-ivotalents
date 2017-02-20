@@ -1,6 +1,9 @@
 package com.threedlink.ivotalents.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +21,16 @@ import java.util.ArrayList;
  * Created by diiaz94 on 17-01-2017.
  */
 public class CustomRecentCastingsListAdapter extends BaseAdapter {
+    private FragmentActivity activity;
     private Context ctx;
     private ArrayList<Casting> list;
     private IvoTalentsApp mApp;
 
-    public CustomRecentCastingsListAdapter(Context ctx, ArrayList<Casting> list) {
-        this.ctx = ctx;
+    public CustomRecentCastingsListAdapter(FragmentActivity activity, ArrayList<Casting> list) {
+        this.ctx = activity.getApplicationContext();
         this.list = list;
         mApp = ((IvoTalentsApp) ctx);
+        this.activity = activity;
     }
 
     @Override
@@ -64,6 +69,13 @@ public class CustomRecentCastingsListAdapter extends BaseAdapter {
         holder.getTxtDescription().setTypeface(mApp.getFont());
         holder.getTxtExpiration().setTypeface(mApp.getFont());
 
+        holder.getBtnSeeMore().setOnClickListener(new View.OnClickListener() {
+            public void onClick(View popupView) {
+                Fragment fragment = null;
+                fragment = com.threedlink.ivotalents.Casting.newInstance("param1","param2");
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( fragment.getClass().getSimpleName() ).commit();
+            }
+        });;
         //Log.e("GETVIEW HEIGHT::", String.valueOf(row.getLayoutParams().height));
 
         return row;

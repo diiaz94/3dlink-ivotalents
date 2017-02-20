@@ -64,6 +64,12 @@
     <string name="txt_see_all_oportunities">Ver todas las oportunidades</string>
     <string name="txt_message_to">Escribe un nombre</string>
     <string name="txt_message_body">Escribe un mensaje...</string>
+    <string name="dummie_casting_info">Productora de eventos busca telonero para abrir show en Incubus</string>
+    <string name="dummie_casting_detail1">Music Records invita a todas las agrupaciones de rock de Panamá a participar del casting para encontrar a la banda telonera de Incubus en su próximo concierto en la capital.</string>
+    <string name="dummie_casting_detail2">Una banda será seleccionada y contactada oficialmente con la productora para culminar el contrato y convertirse en telonera de Incubus en Panamá</string>
+    <string name="dummie_casting_detail3">UNA BANDA SERÁ SELECCIONADA PARA CONVERTIRSE EN TELONERA DE INCUBUS EN PANAMÁ</string>
+    <string name="dummie_casting_detail4">Si estás en el mundo de la industria artística encuentra la persona ideal para tu proyecto realizando un casting con ivo Talents. Tambien puedes simplemente unirte a nuestra base registrándote como talento y participar en los castings que tenemos para ti</string>
+    <string name="dummie_congraulations">LA PRODUCTORA DE LOS GRANDES EVENTOS DE PANAMÁ TE FELICITA POR AUDICIONAR EN SU CASTING</string>
 
     <string-array name="artist_categories">
         <item>MÚSICO</item>

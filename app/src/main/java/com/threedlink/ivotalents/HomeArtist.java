@@ -120,7 +120,7 @@ public class HomeArtist extends Fragment {
             listCastings.add(casting);
         }
         recentCastingList = (ListView) view.findViewById(R.id.newCastingsList);
-        recentCastingList.setAdapter(new CustomRecentCastingsListAdapter(getActivity().getApplicationContext(),listCastings));
+        recentCastingList.setAdapter(new CustomRecentCastingsListAdapter(getActivity(),listCastings));
         recentCastingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override

@@ -2,23 +2,176 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.threedlink.ivotalents.Casting">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    tools:context="com.threedlink.ivotalents.Casting"
+    android:id="@+id/fragment_casting">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:background="@drawable/bg_casting">
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/bg_castings"
+                        android:scaleType="centerCrop"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:weightSum="1"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.2"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:paddingLeft="25dp"
+                            android:paddingRight="25dp"
+                            android:layout_weight="0.6"
+                            android:orientation="vertical"
+                            android:weightSum="1">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.4"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/rol_entity_category"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/ivo_green_dark"
+                                    android:text="MUSICA"
+                                    android:textStyle="normal"
+                                    android:tag="normal"
+                                    android:textSize="18sp"
+                                    android:padding="3dp"
+                                    android:background="@color/black"/>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/dummie_casting_info"
+                                    android:textSize="25sp"
+                                    android:textColor="@color/white"
+                                    android:tag="bold"
+                                    android:textStyle="bold"/>
+                                <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@color/ivo_green_dark"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:paddingTop="15dp"
+                                android:orientation="horizontal"
+                                android:layout_weight="0.3">
+                                    <LinearLayout
+                                        android:layout_width="75dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/border_white_shape_strong"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
+                                        android:layout_marginRight="15dp">
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textColor="@color/white"
+                                            android:text="22"
+                                            android:textSize="35sp"
+                                            android:textStyle="bold"
+                                            android:tag="bold"/>
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textColor="@color/white"
+                                            android:text="DIAS"
+                                            android:textSize="14sp"
+                                            android:textStyle="normal"
+                                            android:tag="normal"/>
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="75dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/border_white_shape_strong"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
+                                        android:layout_marginRight="15dp">
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textColor="@color/white"
+                                            android:text="11"
+                                            android:textSize="35sp"
+                                            android:textStyle="bold"
+                                            android:tag="bold"/>
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textColor="@color/white"
+                                            android:text="HORS"
+                                            android:textSize="14sp"
+                                            android:textStyle="normal"
+                                            android:tag="normal"/>
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="75dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/border_white_shape_strong"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textColor="@color/white"
+                                            android:text="35"
+                                            android:textSize="35sp"
+                                            android:textStyle="bold"
+                                            android:tag="bold"/>
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textColor="@color/white"
+                                            android:text="MIN"
+                                            android:textSize="14sp"
+                                            android:textStyle="normal"
+                                            android:tag="normal"/>
+                                    </LinearLayout>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.3"
+                                android:paddingTop="25dp"
+                                >
+                                <Button
+                                    android:id="@+id/btn_do_casting"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/button_do_casting"
+                                    android:text="HACER CASTING/AUDICIÓN"
+                                    android:tag="bold"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"
+                                    android:textSize="16sp"></Button>
+                            </LinearLayout>
+                        </LinearLayout>
 
+
+
+
+                    </LinearLayout>
+                </RelativeLayout>
 
             </LinearLayout>
+
         </LinearLayout>
-    </ScrollView>
 
 </LinearLayout>

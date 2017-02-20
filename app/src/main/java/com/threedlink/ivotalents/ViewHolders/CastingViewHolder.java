@@ -1,6 +1,7 @@
 package com.threedlink.ivotalents.ViewHolders;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,14 +15,23 @@ public class CastingViewHolder {
     TextView txtCategory;
     TextView txtExpiration;
     TextView txtDescription;
+    TextView btnSeeMore;
+
+    public TextView getBtnSeeMore() {
+        return btnSeeMore;
+    }
+
+    public void setBtnSeeMore(TextView btnSeeMore) {
+        this.btnSeeMore = btnSeeMore;
+    }
 
     public CastingViewHolder(View v) {
         this.imCasting = (ImageView) v.findViewById(R.id.casting_image);
         this.txtCategory = (TextView) v.findViewById(R.id.casting_category);
         this.txtDescription = (TextView) v.findViewById(R.id.casting_description);
         this.txtExpiration = (TextView) v.findViewById(R.id.casting_expiration);
+        this.btnSeeMore = (Button) v.findViewById(R.id.casting_btn_detail);
     }
-
     public ImageView getImCasting() {
         return imCasting;
     }
