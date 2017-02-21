@@ -4,35 +4,44 @@
     android:layout_height="match_parent"
     tools:context="com.threedlink.ivotalents.SubmitAudition"
     android:id="@+id/fragment_submit_audition"
-    android:background="@color/ivo_white_light">
+    android:background="@color/ivo_white_light"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/submit_audition_1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone">
-        <ScrollView
+        android:visibility="visible">
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fillViewport="false">
-            <LinearLayout
+            android:orientation="vertical">
+            <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:orientation="vertical"
-                android:paddingRight="60dp"
-                android:paddingLeft="60dp">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginTop="80dp">
+                    android:paddingRight="60dp"
+                    android:paddingLeft="60dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="40dp">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="POR QUÉ PARTICIPAS EN ESTE CASTING"
                         android:textColor="@color/black"
-                        android:textSize="22sp"
+                        android:textSize="18sp"
                         android:textStyle="normal"
                         android:tag="normal"/>
                     <LinearLayout
@@ -46,6 +55,7 @@
                             android:textColor="@color/ivo_green"
                             android:textSize="12sp"
                             android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
                             android:tag="normal"
                             android:textStyle="normal"
                             android:paddingTop="20dp"
@@ -65,7 +75,7 @@
                         android:layout_height="wrap_content"
                         android:text="CUÉNTANOS UN POCO MÁS DE TÍ"
                         android:textColor="@color/black"
-                        android:textSize="22sp"
+                        android:textSize="18sp"
                         android:textStyle="normal"
                         android:tag="normal"/>
                     <LinearLayout
@@ -79,6 +89,7 @@
                             android:textColor="@color/ivo_green"
                             android:textSize="12sp"
                             android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
                             android:tag="normal"
                             android:textStyle="normal"
                             android:paddingTop="20dp"
@@ -93,7 +104,8 @@
                     android:layout_height="40dp"
                     android:orientation="horizontal"
                     android:gravity="end"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp">
                     <LinearLayout
                         android:layout_width="120dp"
                         android:layout_height="match_parent">
@@ -120,41 +132,41 @@
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-
-            </LinearLayout>
-        </ScrollView>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
-                android:weightSum="1"
-                android:background="@color/ivo_line_gray">
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.85"
-                    android:background="@color/ivo_green"
-                    android:gravity="end|center">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="85%"
-                        android:textColor="@color/white"
-                        android:textSize="25sp"
-                        android:tag="normal"/>
                 </LinearLayout>
-            </LinearLayout>
+                    <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:weightSum="1"
+                    android:background="@color/ivo_line_gray">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.85"
+                        android:background="@color/ivo_green"
+                        android:gravity="end|center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="85%"
+                            android:textColor="@color/white"
+                            android:textSize="22sp"
+                            android:tag="normal"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+        </ScrollView>
+
+
         </RelativeLayout>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/submit_audition_2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -172,7 +184,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                   android:layout_marginTop="100dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -180,8 +193,7 @@
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:tag="bold"
-                        android:textSize="25sp"
-                        android:layout_marginTop="140dp"/>
+                        android:textSize="25sp"/>
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
@@ -195,7 +207,33 @@
                     android:background="@color/ivo_white_light"
                     android:textStyle="normal"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    android:layout_marginTop="20dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="¡MUCHA SUERTE!"
+                    android:textStyle="bold"
+                    android:tag="bold"
+                    android:textSize="20sp"
+                    android:layout_marginTop="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="130dp"
+                android:layout_height="45dp"
+                android:background="@drawable/btn_background_transparant_border_blue"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:padding="10dp"
+                android:layout_marginBottom="30dp"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="VER PERFIL"
+                    android:textSize="15sp"/>
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>

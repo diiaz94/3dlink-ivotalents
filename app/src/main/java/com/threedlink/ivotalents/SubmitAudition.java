@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 
 /**
@@ -17,7 +18,7 @@ import android.view.ViewGroup;
  * Use the {@link SubmitAudition#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SubmitAudition extends Fragment {
+public class SubmitAudition extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -26,7 +27,10 @@ public class SubmitAudition extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private IvoTalentsApp mApp;
+    private LinearLayout linear_sent_audition;
+    private LinearLayout submit_audition_1;
+    private LinearLayout submit_audition_2;
     private OnFragmentInteractionListener mListener;
 
     public SubmitAudition() {
@@ -54,6 +58,7 @@ public class SubmitAudition extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mApp = ((IvoTalentsApp) getActivity().getApplicationContext());
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -63,8 +68,17 @@ public class SubmitAudition extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_submit_audition, container, false);
+
+        final View view =  inflater.inflate(R.layout.fragment_submit_audition, container, false);
+
+        linear_sent_audition = (LinearLayout) view.findViewById(R.id.linear_sent_audition);
+        linear_sent_audition.setOnClickListener(this);
+        submit_audition_1 = (LinearLayout) view.findViewById(R.id.submit_audition_1);
+        submit_audition_2 = (LinearLayout) view.findViewById(R.id.submit_audition_2);
+
+        LinearLayout myLayout = (LinearLayout) view.findViewById(R.id.fragment_submit_audition);
+        mApp.setFontsOnLinear(myLayout);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -89,6 +103,17 @@ public class SubmitAudition extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id){
+            case R.id.linear_sent_audition:
+                submit_audition_1.setVisibility(View.GONE);
+                submit_audition_2.setVisibility(View.VISIBLE);
+                break;
+        }
     }
 
     /**

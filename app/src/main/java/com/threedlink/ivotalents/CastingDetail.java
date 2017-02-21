@@ -88,7 +88,8 @@ public class CastingDetail extends Fragment implements View.OnClickListener {
         LinearLayout myLayout = (LinearLayout) view.findViewById(R.id.fragment_detail_casting);
         mApp.setFontsOnLinear(myLayout);
         // Inflate the layout for this fragment
-        return view;    }
+        return view;
+    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -136,7 +137,9 @@ public class CastingDetail extends Fragment implements View.OnClickListener {
                     castingDetailStep3.setVisibility(View.VISIBLE);
                     step++;
                 }else if(step==3){
-
+                    Fragment fragment = null;
+                    fragment = SubmitAudition.newInstance("param1", "param2");
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_main, fragment).addToBackStack(fragment.getClass().getSimpleName()).commit();
                 }
                 break;
         }

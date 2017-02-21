@@ -52,7 +52,8 @@ public class MainActivity extends AppCompatActivity implements
         CreateMessage.OnFragmentInteractionListener,
         Chat.OnFragmentInteractionListener,
         Casting.OnFragmentInteractionListener,
-        CastingDetail.OnFragmentInteractionListener{
+        CastingDetail.OnFragmentInteractionListener,
+        SubmitAudition.OnFragmentInteractionListener{
     DrawerLayout drawer;
     private static final String TAG = MainActivity.class.getSimpleName();
     // Session Manager Class
