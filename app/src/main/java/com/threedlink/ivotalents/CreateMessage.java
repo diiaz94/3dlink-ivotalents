@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -49,6 +50,7 @@ public class CreateMessage extends Fragment implements View.OnClickListener {
     private LinearLayout autocompleteContact;
     private ListView autocompleteContactList;
     private LinearLayout sentMessage;
+    private String[] tempNameMessage;
 
 
     public CreateMessage() {
@@ -122,7 +124,14 @@ public class CreateMessage extends Fragment implements View.OnClickListener {
         nameToMessage.addTextChangedListener(fieldValidatorTextWatcher);
 
         autocompleteContactList = (ListView) view.findViewById(R.id.autocompleteContactList);
+        autocompleteContactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+                nameToMessage.setText(tempNameMessage[position]);
+                autocompleteContact.setVisibility(View.GONE);
 
+            }
+        });
 
         LinearLayout myLayout = (LinearLayout) view.findViewById(R.id.fragment_create_message);
         mApp.setFontsOnLinear(myLayout);
@@ -132,7 +141,7 @@ public class CreateMessage extends Fragment implements View.OnClickListener {
 
     private void populateList(String text) {
         Resources res = getActivity().getApplicationContext().getResources();
-        String[] tempNameMessage = res.getStringArray(R.array.contact_names);
+        tempNameMessage = res.getStringArray(R.array.contact_names);
         String[] tempResumeMessage = res.getStringArray(R.array.contact_sectors);
         int[] imageAuthors = {R.drawable.circle_gray,R.drawable.circle_gray,R.drawable.circle_gray,R.drawable.circle_gray,R.drawable.circle_gray,R.drawable.circle_gray};
 

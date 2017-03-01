@@ -18,11 +18,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@color/black">
-                <FrameLayout
+                <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
-                    android:background="@drawable/concert">
-                </FrameLayout>
+                    android:src="@drawable/concert"
+                    android:scaleType="centerCrop">
+                </ImageView>
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="6dp"
@@ -344,9 +345,8 @@
                                 android:orientation="horizontal"
                                 android:weightSum="1">
                                 <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="20dp"
-                                    android:layout_weight="0.20"
+                                    android:layout_width="50dp"
+                                    android:layout_height="25dp"
                                     android:background="@drawable/bg_bio_pink">
                                     <TextView
                                         android:layout_width="match_parent"

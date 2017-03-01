@@ -116,15 +116,18 @@
         <item>AGENCIAS</item>
         <item>DIRECTORES</item>
         <item>PRODUCTORES</item>
+        <item>PRODUCTORES</item>
     </string-array>
     <string-array name="industry_names">
         <item>Catherine Lewis</item>
         <item>Catherine Lewis</item>
         <item>Catherine Lewis</item>
+        <item>Catherine Lewis3</item>
     </string-array>
     <string-array name="industry_abilities">
         <item>Publicidad</item>
         <item>Cine documental</item>
+        <item>Producción de Evento</item>
         <item>Producción de Eventos</item>
     </string-array>
 

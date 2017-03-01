@@ -10,6 +10,7 @@
 
 
     <ScrollView
+        android:id="@+id/scroll_fragment_home_provider"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/ivo_white_light">
@@ -31,7 +32,7 @@
                     android:textStyle="bold"
                     android:textSize="15sp"
                     android:padding="3dp"
-                    android:layout_width="80dp"
+                    android:layout_width="100dp"
                     android:layout_height="25dp"
                     android:text="@string/lbl_artists"
                     android:background="@drawable/bg_lbl_green"
@@ -75,7 +76,7 @@
                     android:textStyle="bold"
                     android:textSize="15sp"
                     android:padding="3dp"
-                    android:layout_width="100dp"
+                    android:layout_width="120dp"
                     android:layout_height="25dp"
                     android:text="@string/lbl_industries"
                     android:background="@drawable/bg_lbl_blue"

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -14,6 +15,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.threedlink.ivotalents.Adapters.CustomFollowingViewAdapter;
@@ -116,32 +118,40 @@ public class HomeProvider extends Fragment {
         }
         recentArtistsGrid = (GridView) view.findViewById(R.id.newArtistsGrid);
         recentArtistsGrid.setAdapter(new CustomRecentViewAdapter(getActivity().getApplicationContext(),listArtists));
-        android.widget.LinearLayout.LayoutParams paramsArtists = (LinearLayout.LayoutParams) recentArtistsGrid.getLayoutParams();
-        paramsArtists.height = 200*(recentArtistsGrid.getAdapter().getCount()/3);
-        recentArtistsGrid.setLayoutParams(paramsArtists);
+        View item = recentArtistsGrid.getAdapter().getView(0, null, recentArtistsGrid);
+        item.measure(0, 0);
+        android.widget.LinearLayout.LayoutParams params = new android.widget.LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (2.2 * item.getMeasuredHeight()));
+        recentArtistsGrid.setLayoutParams(params);
 
     }
 
     private void initGridViewIndustries(View view) {
         Resources res = getActivity().getApplicationContext().getResources();
 
-        String[] tempProviderCategories = res.getStringArray(R.array.industry_categories);
-        String[] tempProviderNames = res.getStringArray(R.array.industry_names);
-        String[] tempProviderAbilities = res.getStringArray(R.array.industry_abilities);
-        int[] imageIndustries = {R.drawable.talent_1,R.drawable.talent_2,R.drawable.juan_esteban};
+        String[] tempIndustryCategories = res.getStringArray(R.array.industry_categories);
+        String[] tempIndustryNames = res.getStringArray(R.array.industry_names);
+        String[] tempIndustryAbilities = res.getStringArray(R.array.industry_abilities);
+        int[] imageIndustries = {R.drawable.talent_1,R.drawable.talent_2,R.drawable.juan_esteban,R.drawable.juan_esteban};
         ArrayList<RolEntity> listIndustries = new ArrayList<RolEntity>();
-        for (int i=0; i<3;i++){
-            RolEntity industry = new RolEntity(tempProviderCategories[i],tempProviderNames[i],tempProviderAbilities[i],imageIndustries[i]);
+        for (int i=0; i<4;i++){
+            RolEntity industry = new RolEntity(tempIndustryCategories[i],tempIndustryNames[i],tempIndustryAbilities[i],imageIndustries[i]);
             listIndustries.add(industry);
         }
 
 
         recentIndustriesGrid = (GridView) view.findViewById(R.id.newIndustriesGrid);
         recentIndustriesGrid.setAdapter(new CustomRecentViewAdapter(getActivity().getApplicationContext(),listIndustries));
-        android.widget.LinearLayout.LayoutParams paramsIndustries = (LinearLayout.LayoutParams) recentIndustriesGrid.getLayoutParams();
-        paramsIndustries.height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        recentIndustriesGrid.setLayoutParams(paramsIndustries);
-
+         View itemInit = recentIndustriesGrid.getAdapter().getView(0, null, recentIndustriesGrid);
+        itemInit.measure(0, 0);
+        int h = itemInit.getMeasuredHeight();
+        for (int i = 0; i < recentIndustriesGrid.getAdapter().getCount(); i++) {
+            View item = recentIndustriesGrid.getAdapter().getView(i, null, recentIndustriesGrid);
+            item.measure(0, 0);
+            h = h>item.getMeasuredHeight()?h:item.getMeasuredHeight();
+        }
+        recentIndustriesGrid.setLayoutParams(new LinearLayout.LayoutParams(GridView.AUTO_FIT, h+20));
+        /*ScrollView scroll_fragment_home_provider = (ScrollView) view.findViewById(R.id.scroll_fragment_home_provider);
+*/
     }
 
     private void initGridViewFollowers(View view) {

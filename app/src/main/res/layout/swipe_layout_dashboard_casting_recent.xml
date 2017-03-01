@@ -178,7 +178,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/ivo_green_transparent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingBottom="30dp">
                     <TextView
                         android:id="@+id/recent_category_casting_3"
                         android:layout_width="match_parent"
@@ -213,27 +214,24 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"/>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_gravity="right"
-                        android:layout_marginRight="20dp">
-                        <Button
-                            android:layout_width="60dp"
-                            android:layout_height="15dp"
-                            android:text="LEER MÁS"
-                            android:textColor="@color/white"
-                            android:textSize="8sp"
-                            android:id="@+id/button_ver_casting_3"
-                            android:background="@drawable/border_white_shape"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:layout_marginTop="15dp"
-                            android:tag="normal"
-                            />
-                    </LinearLayout>
-
                 </LinearLayout>
+
+                <Button
+                    android:layout_width="70dp"
+                    android:layout_height="20dp"
+                    android:orientation="horizontal"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="LEER MÁS"
+                    android:textColor="@color/white"
+                    android:textSize="8sp"
+                    android:id="@+id/button_ver_casting_3"
+                    android:background="@drawable/border_white_shape"
+                    android:tag="normal"
+                    />
+
             </RelativeLayout>
 
         </LinearLayout>

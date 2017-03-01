@@ -18,11 +18,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@color/black">
-                <FrameLayout
+                <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
-                    android:background="@drawable/concert">
-                </FrameLayout>
+                    android:src="@drawable/concert"
+                    android:scaleType="centerCrop">
+                </ImageView>
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="6dp"
@@ -40,7 +41,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:weightSum="2"
-                        android:visibility="gone">
+                        android:visibility="visible">
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -344,9 +345,8 @@
                                 android:orientation="horizontal"
                                 android:weightSum="1">
                                 <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="20dp"
-                                    android:layout_weight="0.20"
+                                    android:layout_width="50dp"
+                                    android:layout_height="25dp"
                                     android:background="@drawable/bg_bio_blue">
                                     <TextView
                                         android:layout_width="match_parent"
@@ -412,7 +412,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="20dp"
-                        android:visibility="gone">
+                        android:visibility="visible">
 
 
                         <LinearLayout
@@ -432,40 +432,42 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="10dp">
+                            android:layout_marginTop="10dp"
+                            android:weightSum="3">
 
                             <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical">
+                                android:orientation="vertical"
+                                android:layout_weight="1"
+                                android:gravity="center">
                                 <ImageView
                                     android:layout_width="35dp"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_music"
-
-                                    />
+                                    android:layout_height="45dp"
+                                    android:src="@drawable/ic_music"/>
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Música"
                                     android:textSize="11sp"
                                     android:textColor="@color/white"
-                                    android:layout_marginTop="3dp"/>
+                                    android:layout_marginTop="3dp"
+                                    android:gravity="center"
+                                    android:paddingRight="2dp"
+                                    android:paddingLeft="2dp"/>
                             </LinearLayout>
                             <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginRight="20dp">
+                                android:layout_weight="1"
+                                android:gravity="center">
                                 <ImageView
                                     android:layout_width="35dp"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="45dp"
                                     android:src="@drawable/ic_conciertos"
                                     android:layout_gravity="center"
                                     />
@@ -475,16 +477,19 @@
                                     android:text="Conciertos y Eventos"
                                     android:textSize="11sp"
                                     android:textColor="@color/white"
-                                    android:layout_marginTop="3dp"/>
-                            </LinearLayout>
+                                    android:layout_marginTop="3dp"
+                                    android:gravity="center"
+                                    android:paddingRight="2dp"
+                                    android:paddingLeft="2dp"/>                            </LinearLayout>
                             <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
-                                android:layout_gravity="center">
+                                android:layout_weight="1"
+                                android:gravity="center">
                                 <ImageView
                                     android:layout_width="35dp"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="45dp"
                                     android:src="@drawable/ic_industrias"
                                     android:layout_gravity="center"
                                     />
@@ -494,7 +499,10 @@
                                     android:text="Industria Musical"
                                     android:textSize="11sp"
                                     android:textColor="@color/white"
-                                    android:layout_marginTop="3dp"/>
+                                    android:layout_marginTop="3dp"
+                                    android:gravity="center"
+                                    android:paddingRight="2dp"
+                                    android:paddingLeft="2dp"/>
                             </LinearLayout>
 
 

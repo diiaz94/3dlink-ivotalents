@@ -157,9 +157,10 @@ public class HomeArtist extends Fragment {
 
         recentProvidersGrid = (GridView) view.findViewById(R.id.newProvidersGrid);
         recentProvidersGrid.setAdapter(new CustomRecentViewAdapter(getActivity().getApplicationContext(),listProviders));
-        android.widget.LinearLayout.LayoutParams paramsProviders = (LinearLayout.LayoutParams) recentProvidersGrid.getLayoutParams();
-        paramsProviders.height = 200*(recentProvidersGrid.getAdapter().getCount()/3);
-        recentProvidersGrid.setLayoutParams(paramsProviders);
+        View item = recentProvidersGrid.getAdapter().getView(0, null, recentProvidersGrid);
+        item.measure(0, 0);
+        android.widget.LinearLayout.LayoutParams params = new android.widget.LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (1.2 * item.getMeasuredHeight()));
+        recentProvidersGrid.setLayoutParams(params);
 
     }
 

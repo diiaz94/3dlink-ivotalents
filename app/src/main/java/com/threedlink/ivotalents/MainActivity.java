@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.login.LoginManager;
@@ -53,7 +54,10 @@ public class MainActivity extends AppCompatActivity implements
         Chat.OnFragmentInteractionListener,
         Casting.OnFragmentInteractionListener,
         CastingDetail.OnFragmentInteractionListener,
-        SubmitAudition.OnFragmentInteractionListener{
+        SubmitAudition.OnFragmentInteractionListener,
+        Participations.OnFragmentInteractionListener,
+        Castings.OnFragmentInteractionListener,
+        Auditions.OnFragmentInteractionListener{
     DrawerLayout drawer;
     private static final String TAG = MainActivity.class.getSimpleName();
     // Session Manager Class
@@ -68,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements
     private IvoTalentsApp mApp;
     private ImageButton menu_icon;
     private ImageButton alert_icon;
+    private ImageView profile_photo;
     @Override
     protected void onCreate(Bundle saveInstanceState){
         Log.e("PEDRO","PASO onCreate MainAct");
@@ -77,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements
         setSupportActionBar(toolbar);
         toolbar.setLogo(R.drawable.logo_header);
         toolbar.setTitle("");
+        profile_photo = (ImageView)  findViewById(R.id.profile_photo);
 
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -272,7 +278,8 @@ public class MainActivity extends AppCompatActivity implements
 
             public void onClick(View popupView) {
                 Fragment fragment = null;
-                fragment = DashboardCasting.newInstance("param1","param2");
+                //fragment = DashboardCasting.newInstance("param1","param2");
+                fragment = Participations.newInstance("0","param2");
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( "castings" ).commit();
                 if (drawer.isDrawerOpen(Gravity.RIGHT)) {
                     drawer.closeDrawer(Gravity.RIGHT);
@@ -422,15 +429,18 @@ public class MainActivity extends AppCompatActivity implements
 
         Fragment fragment = null;
 
-        if(name.equalsIgnoreCase("industry"))
+        if(name.equalsIgnoreCase("industry")){
             fragment = HomeIndustry.newInstance(name,email);
-        else if(name.equalsIgnoreCase("artist"))
-            fragment = HomeArtist.newInstance(name,email);
-        else if(name.equalsIgnoreCase("provider"))
-        fragment = HomeProvider.newInstance(name,email);
-        else
-            fragment = HomeArtist.newInstance(name,email);
-
+            profile_photo.setImageResource(R.drawable.industry_photo);
+        }else if(name.equalsIgnoreCase("artist")){
+            fragment = HomeArtist.newInstance(name, email);
+            profile_photo.setImageResource(R.drawable.profile_photo);
+        }else if(name.equalsIgnoreCase("provider")) {
+            fragment = HomeProvider.newInstance(name, email);
+            profile_photo.setImageResource(R.drawable.profile_photo_provider);
+        }else {
+            fragment = HomeArtist.newInstance(name, email);
+        }
 
         getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
     }

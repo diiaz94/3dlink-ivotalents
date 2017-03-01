@@ -157,7 +157,7 @@
                     android:tag="normal"
                     android:textStyle="normal"
                     android:textSize="16sp"
-                    android:layout_marginTop="12dp"
+                    android:layout_margin="20dp"
                     android:textColor="@color/white"
                     />
             </LinearLayout>
@@ -167,8 +167,7 @@
                 android:orientation="vertical"
                 android:visibility="visible"
                 android:paddingLeft="25dp"
-                android:paddingRight="25dp"
-                android:layout_marginTop="30dp">
+                android:paddingRight="25dp">
                 <android.support.v4.view.ViewPager
                     android:id="@+id/view_pager_casting_recent"
                     android:layout_width="match_parent"
