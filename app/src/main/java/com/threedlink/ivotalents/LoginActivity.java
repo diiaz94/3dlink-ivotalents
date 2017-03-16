@@ -55,6 +55,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.gson.Gson;
+import com.threedlink.ivotalents.Services.LoginService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,6 +65,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import retrofit2.Retrofit;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -574,6 +578,10 @@ public class LoginActivity extends AppCompatActivity implements
             try {
                 // Simulate network access.
                 Thread.sleep(2000);
+/*                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(LoginService.BASE_URL)
+                        .addConverterFactory(F).build()*/
+
             } catch (InterruptedException e) {
                 return false;
             }
