@@ -593,6 +593,19 @@ public class LoginActivity extends AppCompatActivity implements
                 user.setEmail("arte@arte.com");
                 user.setPassword("p4ssw0rd");
                 Call<Ticket> call = mApp.getApiServiceIntance().login(user);
+
+                try {
+                    Response<Ticket> response = call.execute();
+                    Ticket ticket = response.body();
+                    Call<List<User>> callTalents = mApp.getApiServiceIntance().talents(ticket.getToken());
+                    Response<List<User>> responseList = callTalents.execute();
+                    List<User> talents = responseList.body();
+                    Toast.makeText(getApplicationContext(),talents.get(0).getEmail()+talents.get(1).getEmail(),Toast.LENGTH_SHORT).show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
                 call.enqueue(new Callback<Ticket>() {
                     @Override
                     public void onResponse(Call<Ticket> call, Response<Ticket> response) {
@@ -602,13 +615,7 @@ public class LoginActivity extends AppCompatActivity implements
                         Call<List<User>> callTalents = mApp.getApiServiceIntance().talents(ticket.getToken());
 
                         Response<List<User>> responseList = null;
-                        try {
-                            responseList = callTalents.execute();
-                            List<User> talents = responseList.body();
-                            Toast.makeText(getApplicationContext(),talents.get(0).getEmail()+talents.get(1).getEmail(),Toast.LENGTH_SHORT).show();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+
 
                     }
 
