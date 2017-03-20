@@ -11,7 +11,6 @@ import retrofit2.http.POST;
  */
 public interface LoginService {
 
-    public static final String BASE_URL = "http://201.210.145.206:8000/api/v1/";
 
     @POST("login")
     Call<Ticket> token();

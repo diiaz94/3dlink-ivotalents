@@ -56,17 +56,25 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.gson.Gson;
+import com.threedlink.ivotalents.DTO.Ticket;
+import com.threedlink.ivotalents.DTO.User;
+import com.threedlink.ivotalents.Services.ApiService;
 import com.threedlink.ivotalents.Services.LoginService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -578,22 +586,50 @@ public class LoginActivity extends AppCompatActivity implements
             try {
                 // Simulate network access.
                 Thread.sleep(2000);
-/*                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(LoginService.BASE_URL)
-                        .addConverterFactory(F).build()*/
 
+
+
+                User user = new User();
+                user.setEmail("arte@arte.com");
+                user.setPassword("p4ssw0rd");
+                Call<Ticket> call = mApp.getApiServiceIntance().login(user);
+                call.enqueue(new Callback<Ticket>() {
+                    @Override
+                    public void onResponse(Call<Ticket> call, Response<Ticket> response) {
+                        int statusCode = response.code();
+                        Toast.makeText(getApplicationContext(),String.valueOf(statusCode),Toast.LENGTH_SHORT).show();
+                        Ticket ticket = response.body();
+                        Call<List<User>> callTalents = mApp.getApiServiceIntance().talents(ticket.getToken());
+
+                        Response<List<User>> responseList = null;
+                        try {
+                            responseList = callTalents.execute();
+                            List<User> talents = responseList.body();
+                            Toast.makeText(getApplicationContext(),talents.get(0).getEmail()+talents.get(1).getEmail(),Toast.LENGTH_SHORT).show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Ticket> call, Throwable t) {
+
+                    }
+                });
             } catch (InterruptedException e) {
                 return false;
             }
 
-            for (String credential : DUMMY_CREDENTIALS) {
+
+           /* for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
                 if (pieces[0].equals(mEmail)) {
                     // Account exists, return true if the password matches.
                     return pieces[1].equals(mPassword);
                 }
             }
-
+                */
             // TODO: register the new account here.
             return false;
         }

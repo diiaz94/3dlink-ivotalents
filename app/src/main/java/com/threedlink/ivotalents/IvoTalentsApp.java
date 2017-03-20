@@ -22,8 +22,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.threedlink.ivotalents.Services.ApiService;
 
 import java.util.ArrayList;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by diiaz94 on 04-10-2016.
@@ -38,6 +42,9 @@ public class IvoTalentsApp extends Application {
     private Typeface faceLight;
     private GoogleSignInOptions googleSignInOptions;
     private GoogleApiClient googleApiClient;
+    private ApiService apiService;
+
+
     @Override
     public void onCreate(){
         Log.e("PEDRO","PASO onStart IVOTALENTS");
@@ -53,6 +60,12 @@ public class IvoTalentsApp extends Application {
         faceSemiBold=Typeface.createFromAsset(getAssets(),"fonts/Exo2-SemiBold.otf");
         faceSemiBoldItalic=Typeface.createFromAsset(getAssets(),"fonts/Exo2-SemiBoldItalic.otf");
         faceLight=Typeface.createFromAsset(getAssets(),"fonts/Exo2-Light.otf");
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ApiService.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        apiService =   retrofit.create(ApiService.class);
+
     }
 
 
@@ -237,4 +250,7 @@ public class IvoTalentsApp extends Application {
 
     }
 
+    public ApiService getApiServiceIntance() {
+        return apiService;
+    }
 }

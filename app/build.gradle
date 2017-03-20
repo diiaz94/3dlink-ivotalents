@@ -27,6 +27,6 @@ dependencies {
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     compile 'com.google.android.gms:play-services-auth:9.2.1'
     compile 'com.android.support:support-v4:23.4.0'
-    compile files('libs/gson-2.8.0.jar')
-    compile files('libs/retrofit-2.2.0.jar')
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
 }
