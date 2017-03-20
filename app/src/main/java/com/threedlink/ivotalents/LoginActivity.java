@@ -27,13 +27,10 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -44,8 +41,6 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.Profile;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
@@ -55,11 +50,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.gson.Gson;
 import com.threedlink.ivotalents.DTO.Ticket;
 import com.threedlink.ivotalents.DTO.User;
-import com.threedlink.ivotalents.Services.ApiService;
-import com.threedlink.ivotalents.Services.LoginService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -73,8 +65,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -179,16 +169,18 @@ public class LoginActivity extends AppCompatActivity implements
                                 // Application code
                                 try {
                                     Log.e("FACEBOOK","Try access fb data::+"+object.toString());
-                                    session.createLoginSession(object.getString("name"),  object.getString("email"),"FACEBOOK");
+
+                                    mAuthTask = new UserLoginTask(object.getString("email"), "","FACEBOOK");
+                                    mAuthTask.execute((Void) null);
                                     String email = object.getString("email");
                                     String birthday = object.getString("birthday"); // 01/31/1980 format
-                                    goMainScreen();
-                                    finish();
+                                    //goMainScreen();
+                                    //finish();
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
 
-                                finish();
+                                //finish();
                             }
                         });
                 Bundle parameters = new Bundle();
@@ -286,10 +278,11 @@ public class LoginActivity extends AppCompatActivity implements
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
                 GoogleSignInAccount account = result.getSignInAccount();
-                session.createLoginSession(account.getDisplayName(), account.getEmail(),"GOOGLE");
+                mAuthTask = new UserLoginTask(account.getDisplayName(), "","GOOGLE");
+                mAuthTask.execute((Void) null);
                 // Staring MainActivity
-                goMainScreen();
-                finish();
+               // goMainScreen();
+                //finish();
                 Log.e("NAME::", account.getDisplayName());
             }
         }
@@ -437,7 +430,7 @@ public class LoginActivity extends AppCompatActivity implements
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
+            mAuthTask = new UserLoginTask(email, password,"NORMAL");
             mAuthTask.execute((Void) null);
         }
     }
@@ -573,60 +566,38 @@ public class LoginActivity extends AppCompatActivity implements
 
         private final String mEmail;
         private final String mPassword;
+        private final String mType;
+        private String mToken;
+        private int mResponseCode;
 
-        UserLoginTask(String email, String password) {
+        UserLoginTask(String email, String password, String type) {
             mEmail = email;
             mPassword = password;
+            mType = type;
         }
 
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-
-
-
-                User user = new User();
-                user.setEmail("arte@arte.com");
-                user.setPassword("p4ssw0rd");
-                Call<Ticket> call = mApp.getApiServiceIntance().login(user);
-
-                try {
-                    Response<Ticket> response = call.execute();
-                    Ticket ticket = response.body();
-                    Call<List<User>> callTalents = mApp.getApiServiceIntance().talents(ticket.getToken());
-                    Response<List<User>> responseList = callTalents.execute();
-                    List<User> talents = responseList.body();
-                    Toast.makeText(getApplicationContext(),talents.get(0).getEmail()+talents.get(1).getEmail(),Toast.LENGTH_SHORT).show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-
-                call.enqueue(new Callback<Ticket>() {
-                    @Override
-                    public void onResponse(Call<Ticket> call, Response<Ticket> response) {
-                        int statusCode = response.code();
-                        Toast.makeText(getApplicationContext(),String.valueOf(statusCode),Toast.LENGTH_SHORT).show();
-                        Ticket ticket = response.body();
-                        Call<List<User>> callTalents = mApp.getApiServiceIntance().talents(ticket.getToken());
-
-                        Response<List<User>> responseList = null;
-
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<Ticket> call, Throwable t) {
-
-                    }
-                });
-            } catch (InterruptedException e) {
-                return false;
+        User user = new User();
+        user.setEmail(mEmail);
+        user.setPassword(mPassword);
+        Call<Ticket> call = mApp.getApiServiceIntance().login(user);
+        System.out.println("mEmail::"+mEmail+" "+"mPassword::"+mPassword);
+        try {
+            Response<Ticket> response = call.execute();
+            mResponseCode = response.code();
+            if(mResponseCode==200){
+                Ticket ticket = response.body();
+                mToken = ticket.getToken();
+                return true;
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
 
 
            /* for (String credential : DUMMY_CREDENTIALS) {
@@ -647,15 +618,16 @@ public class LoginActivity extends AppCompatActivity implements
             showProgress(false);
             ArrayList<String> errors= new ArrayList<String>();
             if (success) {
-                session.createLoginSession(mEmail.split("@")[0], mEmail,"NORMAL");
+                session.createLoginSession(mEmail.split("@")[0], mEmail,mType,mToken);
                 // Staring MainActivity
                 goMainScreen();
                 finish();
             } else {
-                //Poner en popup
-                //mPasswordView.setError(getString(R.string.error_incorrect_password));
-                //mPasswordView.requestFocus();
-                errors.add(getString(R.string.error_incorrect_password));
+                if(mResponseCode==401){
+                    errors.add(getString(R.string.error_incorrect_password));
+                }else{
+                    errors.add(getString(R.string.error_global));
+                }
                 mApp.showError(LoginActivity.this,errors);
             }
         }

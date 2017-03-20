@@ -1,7 +1,11 @@
 package com.threedlink.ivotalents;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,7 +14,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -67,6 +70,9 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
     public static final int RC_GOOGLE_LOGIN_OK = 100;
     private ImageButton facebook_login;
     private ImageButton google_login;
+
+    private View mProgressView;
+    private View mLoginFormView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +85,8 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
         industry_button = (ImageButton) findViewById(R.id.industry_btn);
         provider_button = (ImageButton) findViewById(R.id.provider_btn);
         //fan_button = (ImageButton) findViewById(R.id.fan_btn);
-
+        mLoginFormView = findViewById(R.id.register_form);
+        mProgressView = findViewById(R.id.register_progress);
 
         user = (EditText) findViewById(R.id.user);
         email = (EditText) findViewById(R.id.email);
@@ -97,19 +104,19 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
         artist_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goMainScreen();
+                doRegister("A");
             }
         });
         industry_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goMainScreen();
+                doRegister("I");
             }
         });
         provider_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goMainScreen();
+                doRegister("P");
             }
         });
         /*fan_button.setOnClickListener(new View.OnClickListener() {
@@ -158,7 +165,7 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
                                 // Application code
                                 try {
                                     Log.e("FACEBOOK","Try access fb data::+"+object.toString());
-                                    session.createLoginSession(object.getString("name"),  object.getString("email"),"FACEBOOK");
+                                    session.createLoginSession(object.getString("name"),  object.getString("email"),"FACEBOOK", "");
                                     String email = object.getString("email");
                                     String birthday = object.getString("birthday"); // 01/31/1980 format
                                     register_step_1.setVisibility(View.INVISIBLE);
@@ -209,6 +216,11 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
         this.pass_confirm.setTypeface(mApp.getFont());
         this.read_terms.setTypeface(mApp.getFont());
     }
+
+    private void doRegister(String type) {
+
+    }
+
     @Override
     public void onBackPressed (){
         if (!attempregister) {
@@ -223,7 +235,7 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
                 GoogleSignInAccount account = result.getSignInAccount();
-                session.createLoginSession(account.getDisplayName(), account.getEmail(),"GOOGLE");
+                session.createLoginSession(account.getDisplayName(), account.getEmail(),"GOOGLE", "");
                 // Staring MainActivity
                 register_step_1.setVisibility(View.INVISIBLE);
                 register_step_2.setVisibility(View.VISIBLE);
@@ -310,5 +322,42 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Toast.makeText(getApplicationContext(),R.string.error_register,Toast.LENGTH_SHORT).show();
+    }
+
+
+    /**
+     * Shows the progress UI and hides the login form.
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+    private void showProgress(final boolean show) {
+        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
+        // for very easy animations. If available, use these APIs to fade-in
+        // the progress spinner.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+
+            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+            mLoginFormView.animate().setDuration(shortAnimTime).alpha(
+                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+                }
+            });
+
+            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+            mProgressView.animate().setDuration(shortAnimTime).alpha(
+                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+                }
+            });
+        } else {
+            // The ViewPropertyAnimator APIs are not available, so simply show
+            // and hide the relevant UI components.
+            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+        }
     }
 }

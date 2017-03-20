@@ -1,12 +1,10 @@
 package com.threedlink.ivotalents;
 
 import android.content.Intent;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
@@ -70,7 +68,7 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
                 // and the GoogleSignInResult will be available instantly.
                 Log.d(TAG, "Got cached sign-in");
                 GoogleSignInAccount acct = opr.get().getSignInAccount();
-                session.createLoginSession(acct.getDisplayName(),acct.getEmail(),"GOOGLE");
+                session.createLoginSession(acct.getDisplayName(),acct.getEmail(),"GOOGLE", "");
 
             }else
             if(AccessToken.getCurrentAccessToken() != null) {
@@ -83,7 +81,7 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
                                 // Application code
                                 try {
                                     Log.e("FACEBOOK","Try access fb data::+"+object.toString());
-                                    session.createLoginSession(object.getString("name"),  object.getString("email"),"FACEBOOK");
+                                    session.createLoginSession(object.getString("name"),  object.getString("email"),"FACEBOOK", "");
                                     String email = object.getString("email");
                                     String birthday = object.getString("birthday"); // 01/31/1980 format
 

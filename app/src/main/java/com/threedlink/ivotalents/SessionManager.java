@@ -37,6 +37,9 @@ public class SessionManager {
     public static final String KEY_EMAIL = "email";
 
     private static final String KEY_TYPE = "type";
+
+    private static final String KEY_TOKEN = "token";
+
     // Constructor
     public SessionManager(Context context){
         this._context = context;
@@ -47,7 +50,7 @@ public class SessionManager {
     /**
      * Create login session
      * */
-    public void createLoginSession(String name, String email,String type){
+    public void createLoginSession(String name, String email, String type, String token){
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
 
@@ -59,6 +62,9 @@ public class SessionManager {
 
         // Storing type of login in pref
         editor.putString(KEY_TYPE, type);
+
+        // Storing type of login in pref
+        editor.putString(KEY_TOKEN, token);
 
         // commit changes
         editor.commit();
