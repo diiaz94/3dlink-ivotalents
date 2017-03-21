@@ -90,7 +90,12 @@ public class User {
 
     @Override
     public String toString() {
-        return this.toString();
+        return "User{" +
+                "tipoUsuario='" + tipoUsuario + '\'' +
+                ", usuario='" + usuario + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", token='" + token + '\'' +
+                '}';
     }
-
 }

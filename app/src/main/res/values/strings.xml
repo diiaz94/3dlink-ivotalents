@@ -28,7 +28,7 @@
     <string name="hint_pass">Clave</string>
     <string name="hint_pass_confirmation">Confirmar Clave</string>
     <string name="logout">Cerrar Sesión</string>
-    <string name="error_register">Error en el registro</string>
+    <string name="error_register">Ha ocurrido un error realizando el registro</string>
     <string name="error_password_required">El campo Clave no puede estar vacío</string>
     <string name="error_email_required">El campo E-mail no puede estar vacío</string>
     <string name="error_user_required">El campo Usuario no puede estar vacío</string>

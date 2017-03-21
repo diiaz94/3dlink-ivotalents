@@ -23,9 +23,12 @@
         android:id="@+id/register_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="false"
-        android:visibility="visible">
+        android:fillViewport="true">
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -168,54 +171,56 @@
                         android:layout_gravity="center_horizontal" />
                 </LinearLayout>
             </FrameLayout>
+            <FrameLayout
+                    android:layout_width="280dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal|top"
+                    android:fitsSystemWindows="true"
+                    android:layout_marginTop="40dp"
+                    android:visibility="gone"
+                    android:id="@+id/register_step_2">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:weightSum="1">
+                        <ImageView
+                            android:background="@drawable/register_question"
+                            android:layout_width="250dp"
+                            android:layout_height="35dp"
+                            android:layout_marginTop="10dp"
+                            android:id="@+id/register_question"
+                            android:layout_gravity="center_horizontal" />
+
+                        <ImageButton
+                            android:background="@drawable/artist_btn"
+                            android:layout_width="60pt"
+                            android:layout_height="20pt"
+                            android:layout_marginTop="40dp"
+                            android:id="@+id/artist_btn"
+                            android:layout_gravity="center_horizontal|top" />
+
+                        <ImageButton
+                            android:background="@drawable/industry_btn"
+                            android:layout_width="60pt"
+                            android:layout_height="20pt"
+                            android:layout_marginTop="30dp"
+                            android:id="@+id/industry_btn"
+                            android:layout_gravity="center_horizontal|top" />
+
+                        <ImageButton
+                            android:background="@drawable/provider_btn"
+                            android:layout_width="60pt"
+                            android:layout_height="20pt"
+                            android:layout_marginTop="30dp"
+                            android:id="@+id/provider_btn"
+                            android:layout_gravity="center_horizontal|top" />
+                    </LinearLayout>
+                </FrameLayout>
+        </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
-    <FrameLayout
-        android:layout_width="280dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal|top"
-        android:fitsSystemWindows="true"
-        android:layout_marginTop="140dp"
-        android:visibility="invisible"
-        android:id="@+id/register_step_2">
-       <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:weightSum="1">
-            <ImageView
-                android:background="@drawable/register_question"
-                android:layout_width="250dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="10dp"
-                android:id="@+id/register_question"
-                android:layout_gravity="center_horizontal" />
 
-            <ImageButton
-                android:background="@drawable/artist_btn"
-                android:layout_width="60pt"
-                android:layout_height="20pt"
-                android:layout_marginTop="40dp"
-                android:id="@+id/artist_btn"
-                android:layout_gravity="center_horizontal|top" />
-
-            <ImageButton
-                android:background="@drawable/industry_btn"
-                android:layout_width="60pt"
-                android:layout_height="20pt"
-                android:layout_marginTop="30dp"
-                android:id="@+id/industry_btn"
-                android:layout_gravity="center_horizontal|top" />
-
-            <ImageButton
-                android:background="@drawable/provider_btn"
-                android:layout_width="60pt"
-                android:layout_height="20pt"
-                android:layout_marginTop="30dp"
-                android:id="@+id/provider_btn"
-                android:layout_gravity="center_horizontal|top" />
-        </LinearLayout>
-    </FrameLayout>
 
 </FrameLayout>

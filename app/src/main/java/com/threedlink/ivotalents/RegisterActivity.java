@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -34,15 +35,24 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.threedlink.ivotalents.DTO.Ticket;
+import com.threedlink.ivotalents.DTO.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import retrofit2.Call;
+import retrofit2.Response;
+
 public class RegisterActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
+
+    private UserRegisterTask mRegisterTask = null;
+    private String registerType;
     private boolean attempregister;
     private ImageButton register_button;
     private FrameLayout register_step_1;
@@ -72,7 +82,7 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
     private ImageButton google_login;
 
     private View mProgressView;
-    private View mLoginFormView;
+    private View mRegisterFormView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +95,7 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
         industry_button = (ImageButton) findViewById(R.id.industry_btn);
         provider_button = (ImageButton) findViewById(R.id.provider_btn);
         //fan_button = (ImageButton) findViewById(R.id.fan_btn);
-        mLoginFormView = findViewById(R.id.register_form);
+        mRegisterFormView = findViewById(R.id.register_form);
         mProgressView = findViewById(R.id.register_progress);
 
         user = (EditText) findViewById(R.id.user);
@@ -165,12 +175,13 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
                                 // Application code
                                 try {
                                     Log.e("FACEBOOK","Try access fb data::+"+object.toString());
-                                    session.createLoginSession(object.getString("name"),  object.getString("email"),"FACEBOOK", "");
+                                    //session.createLoginSession(object.getString("name"),  object.getString("email"),"FACEBOOK", "");
                                     String email = object.getString("email");
                                     String birthday = object.getString("birthday"); // 01/31/1980 format
-                                    register_step_1.setVisibility(View.INVISIBLE);
+                                    register_step_1.setVisibility(View.GONE);
                                     register_step_2.setVisibility(View.VISIBLE);
                                     attempregister=true;
+                                    registerType ="FACEBOOK";
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -217,14 +228,20 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
         this.read_terms.setTypeface(mApp.getFont());
     }
 
-    private void doRegister(String type) {
-
+    private void doRegister(String role) {
+        showProgress(true);
+        mRegisterTask = new UserRegisterTask(user.getText().toString(),email.getText().toString(),pass.getText().toString(),role);
+        mRegisterTask.execute((Void) null);
     }
 
     @Override
     public void onBackPressed (){
         if (!attempregister) {
             super.onBackPressed();
+        }else{
+            register_step_1.setVisibility(View.VISIBLE);
+            register_step_2.setVisibility(View.GONE);
+            attempregister=false;
         }
     }
     @Override
@@ -237,9 +254,10 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
                 GoogleSignInAccount account = result.getSignInAccount();
                 session.createLoginSession(account.getDisplayName(), account.getEmail(),"GOOGLE", "");
                 // Staring MainActivity
-                register_step_1.setVisibility(View.INVISIBLE);
+                register_step_1.setVisibility(View.GONE);
                 register_step_2.setVisibility(View.VISIBLE);
                 attempregister =true;
+                registerType = "GOOGLE";
                 Log.e("NAME::", account.getDisplayName());
             }
         }
@@ -248,6 +266,11 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
         }
     }
     private void attemptRegister() {
+
+        if (mRegisterTask != null) {
+            return;
+        }
+
         String user_text = user.getText().toString();
         String email_text = email.getText().toString();
         String pass_text = pass.getText().toString();
@@ -301,9 +324,10 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
                 InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
-            register_step_1.setVisibility(View.INVISIBLE);
+            register_step_1.setVisibility(View.GONE);
             register_step_2.setVisibility(View.VISIBLE);
             attempregister=true;
+            registerType = "NORMAL";
         }
     }
 
@@ -336,12 +360,12 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            mLoginFormView.animate().setDuration(shortAnimTime).alpha(
+            mRegisterFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+            mRegisterFormView.animate().setDuration(shortAnimTime).alpha(
                     show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+                    mRegisterFormView.setVisibility(show ? View.GONE : View.VISIBLE);
                 }
             });
 
@@ -357,7 +381,88 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
             // The ViewPropertyAnimator APIs are not available, so simply show
             // and hide the relevant UI components.
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+            mRegisterFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+        }
+    }
+
+    /**
+     * Represents an asynchronous login/registration task used to authenticate
+     * the user.
+     */
+    public class UserRegisterTask extends AsyncTask<Void, Void, Boolean> {
+
+        private final String mUser;
+        private final String mEmail;
+        private final String mPassword;
+        private final String mRole;
+        private String mToken;
+        private int mResponseCode;
+
+        UserRegisterTask(String user,String email, String password, String role) {
+            mUser = user;
+            mEmail = email;
+            mPassword = password;
+            mRole = role;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            // TODO: attempt authentication against a network service.
+
+            User user = new User();
+            user.setUsuario(mUser);
+            user.setEmail(mEmail);
+            user.setPassword(mPassword);
+            user.setTipoUsuario(mRole);
+
+            Call<Ticket> call = mApp.getApiServiceIntance().register(user);
+
+            System.out.println("USER::"+user.toString());
+
+            System.out.println("mUser::"+mUser+" "+"mEmail::"+mEmail+" "+"mPassword::"+mPassword+" "+"mRole::"+mRole);
+            System.out.println("call.request().toString()::"+call.request().toString());
+            try {
+                Response<Ticket> response = call.execute();
+                mResponseCode = response.code();
+                Log.d("mResponseCode::",String.valueOf(mResponseCode));
+                //Log.d(" response.body()::", response.errorBody()   );
+                if(mResponseCode==200){
+                    Ticket ticket = response.body();
+                    mToken = ticket.getToken();
+                    Log.d("Register","mToken::"+mToken);
+                    return true;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            mRegisterTask = null;
+            showProgress(false);
+            ArrayList<String> errors= new ArrayList<String>();
+            if (success) {
+                session.createLoginSession(mEmail.split("@")[0], mEmail,registerType,mToken);
+                // Staring MainActivity
+                goMainScreen();
+                finish();
+            } else {
+                if(mResponseCode==400){
+                    errors.add(getString(R.string.error_register));
+                }else{
+                    errors.add(getString(R.string.error_global));
+                }
+                mApp.showError(RegisterActivity.this,errors);
+            }
+        }
+
+        @Override
+        protected void onCancelled() {
+            mRegisterTask = null;
+            showProgress(false);
         }
     }
 }
+

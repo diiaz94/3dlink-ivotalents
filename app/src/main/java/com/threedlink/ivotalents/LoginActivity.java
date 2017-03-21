@@ -591,6 +591,7 @@ public class LoginActivity extends AppCompatActivity implements
             if(mResponseCode==200){
                 Ticket ticket = response.body();
                 mToken = ticket.getToken();
+                Log.d("Login","mToken::"+mToken);
                 return true;
             }
         } catch (IOException e) {
@@ -623,7 +624,7 @@ public class LoginActivity extends AppCompatActivity implements
                 goMainScreen();
                 finish();
             } else {
-                if(mResponseCode==401){
+                if(mResponseCode==400){
                     errors.add(getString(R.string.error_incorrect_password));
                 }else{
                     errors.add(getString(R.string.error_global));

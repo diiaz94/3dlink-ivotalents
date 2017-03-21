@@ -25,8 +25,8 @@ public interface ApiService {
     Call<Ticket> login(@Body User user);
 
     @Headers({"Content-Type: application/json"})
-    @POST("registro")
-    Call<User> register(@Body User user);
+    @POST("registro/")
+    Call<Ticket> register(@Body User user);
 
     @Headers({"Content-Type: application/json"})
     @GET("talentos")
