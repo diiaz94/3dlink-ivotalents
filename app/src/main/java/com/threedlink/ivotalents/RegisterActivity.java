@@ -52,6 +52,7 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
 
 
     private UserRegisterTask mRegisterTask = null;
+    private User mUser;
     private String registerType;
     private boolean attempregister;
     private ImageButton register_button;
@@ -87,6 +88,7 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        mUser = new User();
         attempregister = false;
         register_button = (ImageButton) findViewById(R.id.register_btn);
         register_step_1 = (FrameLayout) findViewById(R.id.register_step_1);
@@ -178,6 +180,9 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
                                     //session.createLoginSession(object.getString("name"),  object.getString("email"),"FACEBOOK", "");
                                     String email = object.getString("email");
                                     String birthday = object.getString("birthday"); // 01/31/1980 format
+                                    mUser.setUsuario("");
+                                    mUser.setEmail(email);
+
                                     register_step_1.setVisibility(View.GONE);
                                     register_step_2.setVisibility(View.VISIBLE);
                                     attempregister=true;
@@ -229,9 +234,11 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
     }
 
     private void doRegister(String role) {
-        showProgress(true);
-        mRegisterTask = new UserRegisterTask(user.getText().toString(),email.getText().toString(),pass.getText().toString(),role);
-        mRegisterTask.execute((Void) null);
+        if (registerType.equalsIgnoreCase("NORMAL")){
+            showProgress(true);
+            mRegisterTask = new UserRegisterTask(mUser.getUsuario(),mUser.getEmail(),mUser.getPassword(),role);
+            mRegisterTask.execute((Void) null);
+        }
     }
 
     @Override
@@ -252,12 +259,14 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
                 GoogleSignInAccount account = result.getSignInAccount();
-                session.createLoginSession(account.getDisplayName(), account.getEmail(),"GOOGLE", "");
+                //session.createLoginSession(account.getDisplayName(), account.getEmail(),"GOOGLE", "");
                 // Staring MainActivity
                 register_step_1.setVisibility(View.GONE);
                 register_step_2.setVisibility(View.VISIBLE);
                 attempregister =true;
                 registerType = "GOOGLE";
+                mUser.setUsuario(account.getDisplayName());
+                mUser.setEmail(account.getEmail());
                 Log.e("NAME::", account.getDisplayName());
             }
         }
@@ -283,7 +292,6 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
         View focusView = null;
         boolean cancel = false;
         ArrayList<String> errors= new ArrayList<String>();
-
 
         if (TextUtils.isEmpty(user_text)){
             errors.add(getString(R.string.error_user_required));
@@ -328,6 +336,9 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
             register_step_2.setVisibility(View.VISIBLE);
             attempregister=true;
             registerType = "NORMAL";
+            mUser.setUsuario(user_text);
+            mUser.setEmail(email_text);
+            mUser.setPassword(pass_text);
         }
     }
 
@@ -408,6 +419,8 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
+            if (registerType.equalsIgnoreCase("GOOGLE") || registerType.equalsIgnoreCase("FACEBOOK"))
+                return true;
 
             User user = new User();
             user.setUsuario(mUser);
