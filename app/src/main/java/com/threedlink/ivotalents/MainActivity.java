@@ -29,7 +29,10 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.threedlink.ivotalents.DTO.*;
+import com.threedlink.ivotalents.UploadResources.UploadPhoto;
+import com.threedlink.ivotalents.UploadResources.UploadVideo;
+import com.threedlink.ivotalents.UploadResources.UploadGalleryFile;
+import com.threedlink.ivotalents.UploadResources.UploadVoice;
 
 import java.util.HashMap;
 
@@ -57,7 +60,12 @@ public class MainActivity extends AppCompatActivity implements
         SubmitAudition.OnFragmentInteractionListener,
         Participations.OnFragmentInteractionListener,
         Castings.OnFragmentInteractionListener,
-        Auditions.OnFragmentInteractionListener{
+        Auditions.OnFragmentInteractionListener,
+        UploadResource.OnFragmentInteractionListener,
+        UploadGalleryFile.OnFragmentInteractionListener,
+        UploadPhoto.OnFragmentInteractionListener,
+        UploadVideo.OnFragmentInteractionListener,
+        UploadVoice.OnFragmentInteractionListener{
     DrawerLayout drawer;
     private static final String TAG = MainActivity.class.getSimpleName();
     // Session Manager Class

@@ -45,6 +45,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -408,6 +409,7 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
         private final String mRole;
         private String mToken;
         private int mResponseCode;
+        private ResponseBody responseError;
 
         UserRegisterTask(String user,String email, String password, String role) {
             mUser = user;
@@ -439,11 +441,14 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
                 mResponseCode = response.code();
                 Log.d("mResponseCode::",String.valueOf(mResponseCode));
                 //Log.d(" response.body()::", response.errorBody()   );
-                if(mResponseCode==200){
+                if(response.isSuccessful()){//Created
                     Ticket ticket = response.body();
                     mToken = ticket.getToken();
                     Log.d("Register","mToken::"+mToken);
                     return true;
+                }else{
+                    responseError = response.errorBody();
+                    Log.d("Register","responseError.::"+responseError.string());
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -463,7 +468,7 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
                 finish();
             } else {
                 if(mResponseCode==400){
-                    errors.add(getString(R.string.error_register));
+                    errors.add(getString(R.string.user_existent));
                 }else{
                     errors.add(getString(R.string.error_global));
                 }

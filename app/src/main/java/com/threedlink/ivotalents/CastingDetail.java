@@ -133,9 +133,10 @@ public class CastingDetail extends Fragment implements View.OnClickListener {
                     break;
             case R.id.nextStepCasting:
                 if(step==2) {
-                    castingDetailStep2.setVisibility(View.GONE);
-                    castingDetailStep3.setVisibility(View.VISIBLE);
-                    step++;
+                    Fragment fragment = null;
+                    fragment = UploadResource.newInstance("param1", "param2");
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_main, fragment).addToBackStack(fragment.getClass().getSimpleName()).commit();
+
                 }else if(step==3){
                     Fragment fragment = null;
                     fragment = SubmitAudition.newInstance("param1", "param2");

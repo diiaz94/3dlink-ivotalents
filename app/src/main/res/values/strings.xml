@@ -70,6 +70,7 @@
     <string name="dummie_casting_detail3">UNA BANDA SERÁ SELECCIONADA PARA CONVERTIRSE EN TELONERA DE INCUBUS EN PANAMÁ</string>
     <string name="dummie_casting_detail4">Si estás en el mundo de la industria artística encuentra la persona ideal para tu proyecto realizando un casting con ivo Talents. Tambien puedes simplemente unirte a nuestra base registrándote como talento y participar en los castings que tenemos para ti</string>
     <string name="dummie_congraulations">LA PRODUCTORA DE LOS GRANDES EVENTOS DE PANAMÁ TE FELICITA POR AUDICIONAR EN SU CASTING</string>
+    <string name="user_existent">Ya se encuentra registrado</string>
 
     <string-array name="artist_categories">
         <item>MÚSICO</item>

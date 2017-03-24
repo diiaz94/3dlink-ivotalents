@@ -1,38 +1,24 @@
 package com.threedlink.ivotalents;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ListView;
-
-import com.threedlink.ivotalents.Adapters.CustomMessageListAdapter;
-import com.threedlink.ivotalents.Adapters.CustomRecentCastingsListAdapter;
-import com.threedlink.ivotalents.Adapters.MessagesSwipeAdapter;
-import com.threedlink.ivotalents.DTO.Casting;
-import com.threedlink.ivotalents.DTO.Message;
-
-import java.util.ArrayList;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Messages.OnFragmentInteractionListener} interface
+ * {@link UploadResource.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Messages#newInstance} factory method to
+ * Use the {@link UploadResource#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Messages extends Fragment {
+public class UploadResource extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -42,10 +28,9 @@ public class Messages extends Fragment {
     private String mParam1;
     private String mParam2;
     private IvoTalentsApp mApp;
-
     private OnFragmentInteractionListener mListener;
 
-    public Messages() {
+    public UploadResource() {
         // Required empty public constructor
     }
 
@@ -55,11 +40,11 @@ public class Messages extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Messages.
+     * @return A new instance of fragment UploadResource.
      */
     // TODO: Rename and change types and number of parameters
-    public static Messages newInstance(String param1, String param2) {
-        Messages fragment = new Messages();
+    public static UploadResource newInstance(String param1, String param2) {
+        UploadResource fragment = new UploadResource();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -70,7 +55,6 @@ public class Messages extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -81,50 +65,17 @@ public class Messages extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        View view =  inflater.inflate(R.layout.fragment_upload_resource, container, false);
 
-        View view =  inflater.inflate(R.layout.fragment_messages, container, false);
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Mensajes Recibidos"));
-        tabLayout.addTab(tabLayout.newTab().setText("Mensajes Enviados"));
+        tabLayout.addTab(tabLayout.newTab().setText("GALERIA"));
+        tabLayout.addTab(tabLayout.newTab().setText("FOTO"));
+        tabLayout.addTab(tabLayout.newTab().setText("VIDEO"));
+        tabLayout.addTab(tabLayout.newTab().setText("AUDIO"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final ViewPager viewPager = (ViewPager) view.findViewById(R.id.pager);
-
-        final MessagesSwipeAdapter adapter = new MessagesSwipeAdapter
-                (getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(adapter);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-        viewPager.setCurrentItem(Integer.parseInt(mParam1));
-
-        Button redactar_btn = (Button) view.findViewById(R.id.redactar_btn);
-        redactar_btn.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View popupView) {
-                Fragment fragment = null;
-                fragment = CreateMessage.newInstance("param1","param2");
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( fragment.getClass().getSimpleName() ).commit();
-            }
-        });
         return view;
     }
-
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -155,7 +106,7 @@ public class Messages extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p>
+     * <p/>
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
