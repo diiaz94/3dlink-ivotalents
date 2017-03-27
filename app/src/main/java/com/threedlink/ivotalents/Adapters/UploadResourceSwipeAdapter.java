@@ -3,10 +3,10 @@ package com.threedlink.ivotalents.Adapters;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-
 import com.threedlink.ivotalents.UploadResources.UploadGalleryFile;
 import com.threedlink.ivotalents.UploadResources.UploadPhoto;
 import com.threedlink.ivotalents.UploadResources.UploadVideo;
+import com.threedlink.ivotalents.UploadResources.UploadVoice;
 
 /**
  * Created by vp50343 on 24/03/2017.
@@ -35,7 +35,7 @@ public class UploadResourceSwipeAdapter extends FragmentStatePagerAdapter {
                 UploadVideo tab3 = new UploadVideo();
                 return tab3;
             case 3:
-                UploadVideo tab4 = new UploadVideo();
+                UploadVoice tab4 = new UploadVoice();
                 return tab4;
 
             default:

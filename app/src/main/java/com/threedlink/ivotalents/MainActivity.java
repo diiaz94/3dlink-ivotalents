@@ -1,7 +1,12 @@
 package com.threedlink.ivotalents;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -34,7 +39,13 @@ import com.threedlink.ivotalents.UploadResources.UploadVideo;
 import com.threedlink.ivotalents.UploadResources.UploadGalleryFile;
 import com.threedlink.ivotalents.UploadResources.UploadVoice;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Response;
 
 /**
  * Created by diiaz94 on 26-08-2016.
@@ -70,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements
     private static final String TAG = MainActivity.class.getSimpleName();
     // Session Manager Class
     SessionManager session;
-
     // Button Logout
     Button btnLogout;
 
@@ -81,16 +91,19 @@ public class MainActivity extends AppCompatActivity implements
     private ImageButton menu_icon;
     private ImageButton alert_icon;
     private ImageView profile_photo;
+    private View mMainContainerView;
+    private View mProgressView;
+
     @Override
-    protected void onCreate(Bundle saveInstanceState){
-        Log.e("PEDRO","PASO onCreate MainAct");
+    protected void onCreate(Bundle saveInstanceState) {
+        Log.e("PEDRO", "PASO onCreate MainAct");
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setLogo(R.drawable.logo_header);
         toolbar.setTitle("");
-        profile_photo = (ImageView)  findViewById(R.id.profile_photo);
+        profile_photo = (ImageView) findViewById(R.id.profile_photo);
 
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -107,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements
         logout_text.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View popupView) {
-              logout(popupView);
+                logout(popupView);
             }
         });
 
@@ -122,16 +135,16 @@ public class MainActivity extends AppCompatActivity implements
 
         //btnLogout.setOnClickListener(this);
 
-        ImageButton close_menu = (ImageButton)  findViewById(R.id.close_icon_menu);
+        ImageButton close_menu = (ImageButton) findViewById(R.id.close_icon_menu);
         close_menu.setOnClickListener(new View.OnClickListener() {
 
-          public void onClick(View popupView) {
-              if (drawer.isDrawerOpen(Gravity.RIGHT)) {
-                  drawer.closeDrawer(Gravity.RIGHT);
-              } else {
-                  drawer.openDrawer(Gravity.RIGHT);
-              }
-          }
+            public void onClick(View popupView) {
+                if (drawer.isDrawerOpen(Gravity.RIGHT)) {
+                    drawer.closeDrawer(Gravity.RIGHT);
+                } else {
+                    drawer.openDrawer(Gravity.RIGHT);
+                }
+            }
         });
 
 
@@ -168,136 +181,32 @@ public class MainActivity extends AppCompatActivity implements
         text_providers.setTypeface(mApp.getFontLight());
         text_search.setTypeface(mApp.getFontLight());
 
-        text_view_my_profile.setOnClickListener(new View.OnClickListener() {
+        text_view_my_profile.setOnClickListener(this);
 
-            public void onClick(View popupView) {
-                Fragment fragment = getFragmentProfile();
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( fragment.getClass().getSimpleName() ).commit();
-                if (drawer.isDrawerOpen(Gravity.RIGHT)) {
-                    drawer.closeDrawer(Gravity.RIGHT);
-                } else {
-                    drawer.openDrawer(Gravity.RIGHT);
-                }
-            }
-        });
         FrameLayout opcion_my_dashboard = (FrameLayout) findViewById(R.id.opcion_my_dashboard);
-        opcion_my_dashboard.setOnClickListener(new View.OnClickListener() {
+        opcion_my_dashboard.setOnClickListener(this);
 
-            public void onClick(View popupView) {
-                Fragment fragment = getFragmentDashboard();
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( fragment.getClass().getSimpleName() ).commit();
-                if (drawer.isDrawerOpen(Gravity.RIGHT)) {
-                    drawer.closeDrawer(Gravity.RIGHT);
-                } else {
-                    drawer.openDrawer(Gravity.RIGHT);
-                }
-            }
-        });
         FrameLayout opcion_mensajes_recibidos = (FrameLayout) findViewById(R.id.opcion_mensajes_recibidos);
-        opcion_mensajes_recibidos.setOnClickListener(new View.OnClickListener() {
+        opcion_mensajes_recibidos.setOnClickListener(this);
 
-            public void onClick(View popupView) {
-                android.app.Fragment myFragment = (android.app.Fragment)getFragmentManager().findFragmentByTag(Messages.class.getSimpleName());
-                if (myFragment != null && myFragment.isVisible()) {
-                    ViewPager viewPager = (ViewPager)myFragment.getView().findViewById(R.id.pager);
-                    if(viewPager!=null)
-                        viewPager.setCurrentItem(0);
-                }else {
-                    Fragment fragment = null;
-                    fragment = Messages.newInstance("0", "param2");
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content_main, fragment).addToBackStack(fragment.getClass().getSimpleName()).commit();
-                }
-                if (drawer.isDrawerOpen(Gravity.RIGHT)) {
-                    drawer.closeDrawer(Gravity.RIGHT);
-                } else {
-                    drawer.openDrawer(Gravity.RIGHT);
-                }
-            }
-        });
         FrameLayout opcion_mensajes_enviados = (FrameLayout) findViewById(R.id.opcion_mensajes_enviados);
-        opcion_mensajes_enviados.setOnClickListener(new View.OnClickListener() {
+        opcion_mensajes_enviados.setOnClickListener(this);
 
-            public void onClick(View popupView) {
-                android.app.Fragment myFragment = (android.app.Fragment)getFragmentManager().findFragmentByTag(Messages.class.getSimpleName());
-                if (myFragment != null && myFragment.isVisible()) {
-                    ViewPager viewPager = (ViewPager)myFragment.getView().findViewById(R.id.pager);
-                    if(viewPager!=null)
-                        viewPager.setCurrentItem(1);
-                }else {
-                    Fragment fragment = null;
-                    fragment = Messages.newInstance("1", "param2");
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content_main, fragment).addToBackStack(fragment.getClass().getSimpleName()).commit();
-                }
-
-                if (drawer.isDrawerOpen(Gravity.RIGHT)) {
-                    drawer.closeDrawer(Gravity.RIGHT);
-                } else {
-                    drawer.openDrawer(Gravity.RIGHT);
-                }
-            }
-        });
-        ImageButton redactar_btn = (ImageButton)  findViewById(R.id.redactar_btn);
-        redactar_btn.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View popupView) {
-                Fragment fragment = null;
-                fragment = CreateMessage.newInstance("param1","param2");
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( fragment.getClass().getSimpleName() ).commit();
-                if (drawer.isDrawerOpen(Gravity.RIGHT)) {
-                    drawer.closeDrawer(Gravity.RIGHT);
-                } else {
-                    drawer.openDrawer(Gravity.RIGHT);
-                }
-            }
-        });
+        ImageButton redactar_btn = (ImageButton) findViewById(R.id.redactar_btn);
+        redactar_btn.setOnClickListener(this);
 
         FrameLayout opcion_search = (FrameLayout) findViewById(R.id.opcion_search);
-        opcion_search.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View popupView) {
-                Fragment fragment = null;
-                fragment = AdvancedSearch.newInstance("param1","param2");
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( fragment.getClass().getSimpleName() ).commit();
-                if (drawer.isDrawerOpen(Gravity.RIGHT)) {
-                    drawer.closeDrawer(Gravity.RIGHT);
-                } else {
-                    drawer.openDrawer(Gravity.RIGHT);
-                }
-            }
-        });
+        opcion_search.setOnClickListener(this);
 
         FrameLayout opcion_talents = (FrameLayout) findViewById(R.id.opcion_talents);
-        opcion_talents.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View popupView) {
-                Fragment fragment = null;
-                fragment = DashboardArtist.newInstance("param1","param2");
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( "artists" ).commit();
-                if (drawer.isDrawerOpen(Gravity.RIGHT)) {
-                    drawer.closeDrawer(Gravity.RIGHT);
-                } else {
-                    drawer.openDrawer(Gravity.RIGHT);
-                }
-            }
-        });
+        opcion_talents.setOnClickListener(this);
 
         FrameLayout opcion_castings = (FrameLayout) findViewById(R.id.opcion_castings);
-        opcion_castings.setOnClickListener(new View.OnClickListener() {
+        opcion_castings.setOnClickListener(this);
 
-            public void onClick(View popupView) {
-                Fragment fragment = null;
-                //fragment = DashboardCasting.newInstance("param1","param2");
-                fragment = Participations.newInstance("0","param2");
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( "castings" ).commit();
-                if (drawer.isDrawerOpen(Gravity.RIGHT)) {
-                    drawer.closeDrawer(Gravity.RIGHT);
-                } else {
-                    drawer.openDrawer(Gravity.RIGHT);
-                }
-            }
-        });
-
-
+        mMainContainerView = findViewById(R.id.content_main);
+        mProgressView = findViewById(R.id.progress);
+        mApp.setAsyncElementsUI(this,getSupportFragmentManager(),mProgressView,mProgressView,drawer);
     }
     @Override
     public void onBackPressed() {
@@ -347,7 +256,55 @@ public class MainActivity extends AppCompatActivity implements
     }
     @Override
     public void onClick(View v) {
-
+        int id = v.getId();
+        switch (id){
+            case R.id.close_icon_menu:
+                if (drawer.isDrawerOpen(Gravity.RIGHT)) {
+                    drawer.closeDrawer(Gravity.RIGHT);
+                } else {
+                    drawer.openDrawer(Gravity.RIGHT);
+                }
+                break;
+            case R.id.text_view_my_profile:
+                mApp.loadFragment(getFragmentProfile());
+                break;
+            case R.id.opcion_my_dashboard:
+                mApp.loadFragment(getFragmentDashboard());
+                break;
+            case R.id.opcion_mensajes_recibidos:
+                android.app.Fragment fragmentMR = (android.app.Fragment) getFragmentManager().findFragmentByTag(Messages.class.getSimpleName());
+                if (fragmentMR != null && fragmentMR.isVisible()) {
+                    ViewPager viewPager = (ViewPager) fragmentMR.getView().findViewById(R.id.pager);
+                    if (viewPager != null)
+                        viewPager.setCurrentItem(0);
+                } else {
+                    mApp.loadFragment(Messages.newInstance("0", "param2"));
+                }
+                break;
+            case R.id.opcion_mensajes_enviados:
+                android.app.Fragment fragmentME = (android.app.Fragment) getFragmentManager().findFragmentByTag(Messages.class.getSimpleName());
+                if (fragmentME != null && fragmentME.isVisible()) {
+                    ViewPager viewPager = (ViewPager) fragmentME.getView().findViewById(R.id.pager);
+                    if (viewPager != null)
+                        viewPager.setCurrentItem(1);
+                } else {
+                    mApp.loadFragment(Messages.newInstance("1", "param2"));
+                }
+                break;
+            case R.id.redactar_btn:
+                mApp.loadFragment(CreateMessage.newInstance("param1", "param2"));
+                break;
+            case R.id.opcion_search:
+                mApp.loadFragment(AdvancedSearch.newInstance("param1", "param2"));
+                break;
+            case R.id.opcion_talents:
+                mApp.loadFragment(DashboardArtist.newInstance("param1", "param2"));
+                break;
+            case R.id.opcion_castings:
+                //DashboardCasting.newInstance("param1","param2");
+                mApp.loadFragment(Participations.newInstance("param1", "param2"));
+                break;
+         }
     }
     private void goLoginScreen() {
         Intent intent = new Intent(this,LoginActivity.class);
@@ -422,9 +379,6 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void setScreenUserSesion(){
-
-
-
         // get user data from session
         HashMap<String, String> user = session.getUserDetails();
         // name
@@ -487,4 +441,6 @@ public class MainActivity extends AppCompatActivity implements
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+
 }

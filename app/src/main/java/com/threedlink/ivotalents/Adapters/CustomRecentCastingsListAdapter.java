@@ -73,7 +73,7 @@ public class CustomRecentCastingsListAdapter extends BaseAdapter {
             public void onClick(View popupView) {
                 Fragment fragment = null;
                 fragment = com.threedlink.ivotalents.Casting.newInstance("param1","param2");
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( fragment.getClass().getSimpleName() ).commit();
+                mApp.loadFragment(com.threedlink.ivotalents.Casting.newInstance("param1","param2"));
             }
         });;
         //Log.e("GETVIEW HEIGHT::", String.valueOf(row.getLayoutParams().height));
