@@ -17,11 +17,11 @@ import retrofit2.http.POST;
  */
 public interface ApiService {
 
-    public static final String BASE_URL = "http://201.210.145.206:8000/api/v1/";
-    //public static final String BASE_URL = "http://demo4427111.mockable.io/";
+   //public static final String BASE_URL = "http://201.210.145.206:8000/api/v1/";
+   public static final String BASE_URL = "http://demo4427111.mockable.io/";
 
     @Headers({"Content-Type: application/json"})
-    @POST("login/")
+    @POST("login")
     Call<Ticket> login(@Body User user);
 
     @Headers({"Content-Type: application/json"})

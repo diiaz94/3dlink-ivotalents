@@ -79,7 +79,7 @@ public class UploadResource extends Fragment {
         final ViewPager viewPager = (ViewPager) view.findViewById(R.id.pager);
 
         final UploadResourceSwipeAdapter adapter = new UploadResourceSwipeAdapter
-                (getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
+                (getActivity().getFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
