@@ -1,26 +1,18 @@
 <LinearLayout
-android:id="@+id/main_layout"
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context="com.threedlink.ivotalents.UploadResource"
-android:orientation="vertical"
-android:background="@color/ivo_gray_light">
-
-<RelativeLayout
+    android:id="@+id/main_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    tools:context="com.threedlink.ivotalents.UploadResource"
     android:orientation="vertical"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp">
-
-
+    android:background="@color/ivo_black">
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_below="@id/tab_layout"/>
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"
@@ -31,10 +23,7 @@ android:background="@color/ivo_gray_light">
         android:minHeight="5dp"
         app:tabIndicatorColor="@color/ivo_green"
         app:tabSelectedTextColor="@color/white"
-        app:tabBackground="@drawable/tab_color_messages"
-        app:tabTextColor="@color/ivo_green"
-        android:layout_alignParentBottom="true"
+        app:tabTextColor="@color/white"
         />
-</RelativeLayout>
 
 </LinearLayout>

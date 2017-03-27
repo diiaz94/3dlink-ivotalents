@@ -588,6 +588,7 @@ public class LoginActivity extends AppCompatActivity implements
         try {
             Response<Ticket> response = call.execute();
             mResponseCode = response.code();
+            Log.d("mResponseCode::",String.valueOf(mResponseCode));
             if(mResponseCode==200){
                 Ticket ticket = response.body();
                 mToken = ticket.getToken();

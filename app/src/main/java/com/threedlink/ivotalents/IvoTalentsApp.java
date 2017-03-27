@@ -1,11 +1,20 @@
 package com.threedlink.ivotalents;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
+import android.os.Build;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
 import android.text.Layout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -43,6 +52,13 @@ public class IvoTalentsApp extends Application {
     private GoogleSignInOptions googleSignInOptions;
     private GoogleApiClient googleApiClient;
     private ApiService apiService;
+    private FragmentTask mFragmentTask;
+
+    private View mMainContainerView;
+    private View mProgressView;
+    private DrawerLayout mDrawer;
+    public Activity mMainActivity;
+    public FragmentManager mFragmenManager;
 
 
     @Override
@@ -252,5 +268,112 @@ public class IvoTalentsApp extends Application {
 
     public ApiService getApiServiceIntance() {
         return apiService;
+    }
+
+    public void setAsyncElementsUI(Activity mMainActivity,FragmentManager mFragmenManager,View mProgressView,View mMainContainerView,DrawerLayout mDrawer){
+        this.mMainActivity = mMainActivity;
+        this.mFragmenManager = mFragmenManager;
+        this.mProgressView = mProgressView;
+        this.mMainContainerView = mMainContainerView;
+        this.mDrawer = mDrawer;
+    }
+
+    public void loadFragment(Fragment fragment){
+        mFragmentTask = new FragmentTask(fragment);
+        mFragmentTask.execute((Void) null);
+    }
+
+    /**
+     * Shows the progress UI and hides the container main.
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+    public void showProgress(final boolean show) {
+        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
+        // for very easy animations. If available, use these APIs to fade-in
+        // the progress spinner.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+
+            mMainContainerView.setVisibility(show ? View.GONE : View.VISIBLE);
+            mMainContainerView.animate().setDuration(shortAnimTime).alpha(
+                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    mMainContainerView.setVisibility(show ? View.GONE : View.VISIBLE);
+                }
+            });
+
+            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+            mProgressView.animate().setDuration(shortAnimTime).alpha(
+                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+                }
+            });
+        } else {
+            // The ViewPropertyAnimator APIs are not available, so simply show
+            // and hide the relevant UI components.
+            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+            mMainContainerView.setVisibility(show ? View.GONE : View.VISIBLE);
+        }
+    }
+
+    public class FragmentTask extends AsyncTask<Void, Void, Boolean> {
+
+        private Fragment mFragment;
+
+
+        FragmentTask(Fragment fragment) {
+            mFragment = fragment;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            try {
+                if(mFragment!=null){
+                    mMainActivity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            // This code will always run on the UI thread, therefore is safe to modify UI elements.
+                            showProgress(true);
+                        }
+                    });
+
+                    mFragmenManager
+                            .beginTransaction()
+                            .replace(R.id.content_main, mFragment)
+                            .addToBackStack(mFragment.getClass()
+                            .getSimpleName())
+                            .commit();
+                    return true;
+                }
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            mFragmentTask = null;
+            showProgress(false);
+            if (success) {
+
+            } else {
+
+            }
+
+            if (mDrawer.isDrawerOpen(Gravity.RIGHT)) {
+                mDrawer.closeDrawer(Gravity.RIGHT);
+            }
+        }
+
+        @Override
+        protected void onCancelled() {
+            mFragmentTask = null;
+            showProgress(false);
+        }
     }
 }
