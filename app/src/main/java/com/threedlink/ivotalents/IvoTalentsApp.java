@@ -343,8 +343,7 @@ public class IvoTalentsApp extends Application {
                     mFragmenManager
                             .beginTransaction()
                             .replace(R.id.content_main, mFragment)
-                            .addToBackStack(mFragment.getClass()
-                            .getSimpleName())
+                            .addToBackStack(mFragment.getClass().getSimpleName())
                             .commit();
                     return true;
                 }

@@ -122,9 +122,7 @@ public class CastingDetail extends Fragment implements View.OnClickListener {
         switch (id){
             case R.id.backStepCasting:
                 if(step==2) {
-                    Fragment fragment = null;
-                    fragment = Casting.newInstance("param1", "param2");
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_main, fragment).addToBackStack(fragment.getClass().getSimpleName()).commit();
+                    mApp.loadFragment(Casting.newInstance("param1", "param2"));
                 }else if(step==3){
                     castingDetailStep3.setVisibility(View.GONE);
                     castingDetailStep2.setVisibility(View.VISIBLE);
@@ -133,14 +131,12 @@ public class CastingDetail extends Fragment implements View.OnClickListener {
                     break;
             case R.id.nextStepCasting:
                 if(step==2) {
-                    Fragment fragment = null;
-                    fragment = UploadResource.newInstance("param1", "param2");
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_main, fragment).addToBackStack(fragment.getClass().getSimpleName()).commit();
+                    castingDetailStep2.setVisibility(View.GONE);
+                    castingDetailStep3.setVisibility(View.VISIBLE);
+                    step++;
 
                 }else if(step==3){
-                    Fragment fragment = null;
-                    fragment = SubmitAudition.newInstance("param1", "param2");
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_main, fragment).addToBackStack(fragment.getClass().getSimpleName()).commit();
+                    mApp.loadFragment(UploadResource.newInstance("param1", "param2"));
                 }
                 break;
         }

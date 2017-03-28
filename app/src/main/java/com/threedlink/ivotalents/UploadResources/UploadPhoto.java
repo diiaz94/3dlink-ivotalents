@@ -105,8 +105,8 @@ public class UploadPhoto extends Fragment {
         // Create our Preview view and set it as the content of our activity.
         boolean opened = safeCameraOpenInView(view);
 
-        if(opened == false){
-            Log.d("CameraGuide","Error, Camera failed to open");
+        if (opened == false) {
+            Log.d("CameraGuide", "Error, Camera failed to open");
             return view;
         }
 
@@ -123,6 +123,7 @@ public class UploadPhoto extends Fragment {
         );
 
         return view;
+
     }
 
     /**
@@ -229,7 +230,7 @@ public class UploadPhoto extends Fragment {
             // underlying surface is created and destroyed.
             mHolder = getHolder();
             mHolder.addCallback(this);
-            mHolder.setKeepScreenOn(true);
+            mHolder.setKeepScreenOn(false);
             // deprecated setting, but required on Android versions prior to 3.0
             mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         }

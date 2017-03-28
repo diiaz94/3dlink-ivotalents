@@ -32,6 +32,8 @@ public class UploadResource extends Fragment {
     private String mParam2;
     private IvoTalentsApp mApp;
     private OnFragmentInteractionListener mListener;
+    private UploadResourceSwipeAdapter adapter;
+    private TabLayout tabLayout;
 
     public UploadResource() {
         // Required empty public constructor
@@ -58,6 +60,8 @@ public class UploadResource extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+        adapter = new UploadResourceSwipeAdapter(getActivity().getSupportFragmentManager(), 4);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -70,16 +74,15 @@ public class UploadResource extends Fragment {
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_upload_resource, container, false);
 
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
+        tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("GALERIA"));
         tabLayout.addTab(tabLayout.newTab().setText("FOTO"));
         tabLayout.addTab(tabLayout.newTab().setText("VIDEO"));
         tabLayout.addTab(tabLayout.newTab().setText("AUDIO"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         final ViewPager viewPager = (ViewPager) view.findViewById(R.id.pager);
+        viewPager.setOffscreenPageLimit(1);
 
-        final UploadResourceSwipeAdapter adapter = new UploadResourceSwipeAdapter
-                (getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
