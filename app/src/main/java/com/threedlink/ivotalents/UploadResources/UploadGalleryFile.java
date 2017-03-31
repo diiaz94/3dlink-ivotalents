@@ -1,10 +1,13 @@
 package com.threedlink.ivotalents.UploadResources;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
@@ -40,6 +43,9 @@ public class UploadGalleryFile extends Fragment {
     private String mParam2;
     ImageAdapter myImageAdapter;
     private OnFragmentInteractionListener mListener;
+    private GridView mGridView;
+    private View mProgressView;
+    private String targetPath;
 
     public UploadGalleryFile() {
         // Required empty public constructor
@@ -75,26 +81,31 @@ public class UploadGalleryFile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_upload_gallery_file, container, false);
-        GridView gridview = (GridView) view.findViewById(R.id.gridview);
-        myImageAdapter = new ImageAdapter(getActivity().getApplicationContext());
-        gridview.setAdapter(myImageAdapter);
-
-        String ExternalStorageDirectoryPath = Environment
-                .getExternalStorageDirectory()
-                .getAbsolutePath();
-
-        String targetPath = ExternalStorageDirectoryPath + "/Pictures/Screenshots";
-
-        Toast.makeText(getActivity().getApplicationContext(), targetPath, Toast.LENGTH_LONG).show();
-        File targetDirector = new File(targetPath);
-
-
-        methodThatStartsTheAsyncTask(targetPath);
-
+        mGridView = (GridView) view.findViewById(R.id.gridview);
+        mProgressView = view.findViewById(R.id.progress_view);
+        initView();
         return view;
     }
+
+    private void initView() {
+        if(getActivity()!=null) {
+            mGridView.setVisibility(View.VISIBLE);
+            myImageAdapter = new ImageAdapter(getActivity().getApplicationContext());
+            mGridView.setAdapter(myImageAdapter);
+            methodThatStartsTheAsyncTask();
+
+        }
+    }
+    private void clearView() {
+        if(getActivity()!=null) {
+            myImageAdapter = null;
+            mGridView.setVisibility(View.GONE);
+        }
+    }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -137,54 +148,93 @@ public class UploadGalleryFile extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-   private void methodThatStartsTheAsyncTask(String targetPath) {
-        TestAsyncTask testAsyncTask = new TestAsyncTask(new FragmentCallback() {
-
-            @Override
-            public void onTaskDone() {
-                methodThatDoesSomethingWhenTaskIsDone();
-            }
-        },targetPath);
-
-        testAsyncTask.execute();
-    }
-
-    private void methodThatDoesSomethingWhenTaskIsDone() {
-        /* Magic! */
-    }
-    public interface FragmentCallback {
-        public void onTaskDone();
-    }
-    public class TestAsyncTask extends AsyncTask<Void, Void, Void> {
-        private FragmentCallback mFragmentCallback;
-        private File  targetDirector;
-        public TestAsyncTask(FragmentCallback fragmentCallback,String targetPath) {
-            mFragmentCallback = fragmentCallback;
-            targetDirector = new File(targetPath);
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            //you are visible to user now - so set whatever you need
+           initView();
         }
+        else {
+            //you are no longer visible to the user so cleanup whatever you need
+           clearView();
+        }
+    }
 
-        @Override
-        protected Void doInBackground(Void... params) {
-            File[] files = targetDirector.listFiles();
-            int MAX_SHOW = 15,count = 0;
-            for (File file : files){
-                if(count<MAX_SHOW){
-                    myImageAdapter.add(file.getAbsolutePath());
-                    count++;
-                }else{
-                    break;
+
+   private void methodThatStartsTheAsyncTask() {
+       showProgress(true);
+       new Thread(new Runnable() {
+           public void run() {
+               String ExternalStorageDirectoryPath = Environment
+                       .getExternalStorageDirectory()
+                       .getAbsolutePath();
+               targetPath = ExternalStorageDirectoryPath + "/Pictures/Screenshots";
+
+               getActivity().runOnUiThread(new Runnable() {
+                   public void run() {
+                       Toast.makeText(getActivity(),targetPath, Toast.LENGTH_LONG).show();
+                   }
+               });
+
+               File targetDirector = new File(targetPath);
+               File[] files = targetDirector.listFiles();
+               int MAX_SHOW = 15,count = 0;
+               for (File file : files){
+                   if(count<MAX_SHOW){
+                       myImageAdapter.add(file.getAbsolutePath());
+                       count++;
+                   }else{
+                       break;
+                   }
+               }
+               getActivity().runOnUiThread(new Runnable() {
+                   public void run() {
+                       showProgress(false);
+                   }
+               });
+
+           }
+       }).start();
+
+   }
+
+    /**
+     * Shows the progress UI and hides the login form.
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+    private void showProgress(final boolean show) {
+        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
+        // for very easy animations. If available, use these APIs to fade-in
+        // the progress spinner.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+
+            mGridView.setVisibility(show ? View.GONE : View.VISIBLE);
+            mGridView.animate().setDuration(shortAnimTime).alpha(
+                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    mGridView.setVisibility(show ? View.GONE : View.VISIBLE);
                 }
-            }
-            return null;
-        }
+            });
 
-        @Override
-        protected void onPostExecute(Void result) {
-            mFragmentCallback.onTaskDone();
+            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+            mProgressView.animate().setDuration(shortAnimTime).alpha(
+                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+                }
+            });
+        } else {
+            // The ViewPropertyAnimator APIs are not available, so simply show
+            // and hide the relevant UI components.
+            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+            mGridView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
-
-    public class ImageAdapter extends BaseAdapter {
+   public class ImageAdapter extends BaseAdapter {
 
         private Context mContext;
         ArrayList<String> itemList = new ArrayList<String>();

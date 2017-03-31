@@ -122,7 +122,7 @@ public class CastingDetail extends Fragment implements View.OnClickListener {
         switch (id){
             case R.id.backStepCasting:
                 if(step==2) {
-                    mApp.loadFragment(Casting.newInstance("param1", "param2"));
+                    getActivity().getSupportFragmentManager().popBackStack();
                 }else if(step==3){
                     castingDetailStep3.setVisibility(View.GONE);
                     castingDetailStep2.setVisibility(View.VISIBLE);

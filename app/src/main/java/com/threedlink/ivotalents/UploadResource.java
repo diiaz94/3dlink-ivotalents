@@ -81,7 +81,7 @@ public class UploadResource extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("AUDIO"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         final ViewPager viewPager = (ViewPager) view.findViewById(R.id.pager);
-        viewPager.setOffscreenPageLimit(1);
+        viewPager.setOffscreenPageLimit(4);
 
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));

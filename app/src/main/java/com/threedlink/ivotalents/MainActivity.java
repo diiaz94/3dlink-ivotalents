@@ -98,6 +98,11 @@ public class MainActivity extends AppCompatActivity implements
     protected void onCreate(Bundle saveInstanceState) {
         Log.e("PEDRO", "PASO onCreate MainAct");
         super.onCreate(saveInstanceState);
+        // Create global configuration and initialize ImageLoader with this config
+        /*ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
+        ...
+        .build();
+        ImageLoader.getInstance().init(config);*/
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

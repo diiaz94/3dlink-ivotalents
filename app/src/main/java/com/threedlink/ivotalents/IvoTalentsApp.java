@@ -327,18 +327,17 @@ public class IvoTalentsApp extends Application {
         FragmentTask(Fragment fragment) {
             mFragment = fragment;
         }
-
+        @Override
+        protected void onPreExecute() {
+            if (mDrawer.isDrawerOpen(Gravity.RIGHT)) {
+                mDrawer.closeDrawer(Gravity.RIGHT);
+            }
+            showProgress(true);
+        }
         @Override
         protected Boolean doInBackground(Void... params) {
             try {
                 if(mFragment!=null){
-                    mMainActivity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            // This code will always run on the UI thread, therefore is safe to modify UI elements.
-                            showProgress(true);
-                        }
-                    });
 
                     mFragmenManager
                             .beginTransaction()
@@ -364,9 +363,7 @@ public class IvoTalentsApp extends Application {
 
             }
 
-            if (mDrawer.isDrawerOpen(Gravity.RIGHT)) {
-                mDrawer.closeDrawer(Gravity.RIGHT);
-            }
+
         }
 
         @Override

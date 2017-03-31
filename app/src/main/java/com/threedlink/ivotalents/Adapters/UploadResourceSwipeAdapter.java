@@ -30,7 +30,7 @@ public class UploadResourceSwipeAdapter extends FragmentStatePagerAdapter {
                 UploadGalleryFile tab1 = new UploadGalleryFile();
                 return tab1;
             case 1:
-                UploadPhoto tab2 = new UploadPhoto();
+                UploadVideo tab2 = new UploadVideo();
                 return tab2;
             case 2:
                 UploadVideo tab3 = new UploadVideo();
