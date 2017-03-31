@@ -253,4 +253,6 @@
 
         ]]>
     </string>
+
+    <string name="descr_image">Image</string>
 </resources>

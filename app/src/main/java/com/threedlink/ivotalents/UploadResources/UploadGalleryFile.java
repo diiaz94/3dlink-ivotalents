@@ -14,11 +14,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 import com.threedlink.ivotalents.R;
 
 import java.io.File;
@@ -77,33 +85,28 @@ public class UploadGalleryFile extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+    protected AbsListView listView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_upload_gallery_file, container, false);
-        mGridView = (GridView) view.findViewById(R.id.gridview);
-        mProgressView = view.findViewById(R.id.progress_view);
-        initView();
-        return view;
-    }
+        View rootView = inflater.inflate(R.layout.fr_image_grid, container, false);
+        listView = (GridView) rootView.findViewById(R.id.grid);
+        ((GridView) listView).setAdapter(new ImageAdapter(getActivity()));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-    private void initView() {
-        if(getActivity()!=null) {
-            mGridView.setVisibility(View.VISIBLE);
-            myImageAdapter = new ImageAdapter(getActivity().getApplicationContext());
-            mGridView.setAdapter(myImageAdapter);
-            methodThatStartsTheAsyncTask();
+            }
+        });
 
-        }
-    }
-    private void clearView() {
-        if(getActivity()!=null) {
-            myImageAdapter = null;
-            mGridView.setVisibility(View.GONE);
-        }
+        String ExternalStorageDirectoryPath = Environment
+                .getExternalStorageDirectory()
+                .getAbsolutePath();
+        targetPath = ExternalStorageDirectoryPath + "/Pictures/Screenshots";
+        Toast.makeText(getActivity(),targetPath, Toast.LENGTH_LONG).show();
+
+        return rootView;
     }
 
     @Override
@@ -148,56 +151,8 @@ public class UploadGalleryFile extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-            //you are visible to user now - so set whatever you need
-           initView();
-        }
-        else {
-            //you are no longer visible to the user so cleanup whatever you need
-           clearView();
-        }
-    }
 
 
-   private void methodThatStartsTheAsyncTask() {
-       showProgress(true);
-       new Thread(new Runnable() {
-           public void run() {
-               String ExternalStorageDirectoryPath = Environment
-                       .getExternalStorageDirectory()
-                       .getAbsolutePath();
-               targetPath = ExternalStorageDirectoryPath + "/Pictures/Screenshots";
-
-               getActivity().runOnUiThread(new Runnable() {
-                   public void run() {
-                       Toast.makeText(getActivity(),targetPath, Toast.LENGTH_LONG).show();
-                   }
-               });
-
-               File targetDirector = new File(targetPath);
-               File[] files = targetDirector.listFiles();
-               int MAX_SHOW = 15,count = 0;
-               for (File file : files){
-                   if(count<MAX_SHOW){
-                       myImageAdapter.add(file.getAbsolutePath());
-                       count++;
-                   }else{
-                       break;
-                   }
-               }
-               getActivity().runOnUiThread(new Runnable() {
-                   public void run() {
-                       showProgress(false);
-                   }
-               });
-
-           }
-       }).start();
-
-   }
 
     /**
      * Shows the progress UI and hides the login form.
@@ -234,112 +189,92 @@ public class UploadGalleryFile extends Fragment {
             mGridView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
-   public class ImageAdapter extends BaseAdapter {
+    private static class ImageAdapter extends BaseAdapter {
 
-        private Context mContext;
-        ArrayList<String> itemList = new ArrayList<String>();
+        private static final String[] IMAGE_URLS = {
+                "http://simpozia.com/pages/images/stories/windows-icon.png",
+                "https://lh4.googleusercontent.com/--dq8niRp7W4/URquVgmXvgI/AAAAAAAAAbs/-gnuLQfNnBA/s1024/A%252520Song%252520of%252520Ice%252520and%252520Fire.jpg",
+                "file:///storage/emulated/0/Pictures/Screenshots/Prueba.PNG",
+        };
 
-        public ImageAdapter(Context c) {
-            mContext = c;
-        }
+        private LayoutInflater inflater;
 
-        void add(String path){
-            itemList.add(path);
+        private DisplayImageOptions options;
+
+        ImageAdapter(Context context) {
+            inflater = LayoutInflater.from(context);
+
+            options = new DisplayImageOptions.Builder()
+                    .showImageOnLoading(R.drawable.ic_stub)
+                    .showImageForEmptyUri(R.drawable.ic_empty)
+                    .showImageOnFail(R.drawable.ic_error)
+                    .cacheInMemory(true)
+                    .cacheOnDisk(true)
+                    .considerExifParams(true)
+                    .bitmapConfig(Bitmap.Config.RGB_565)
+                    .build();
         }
 
         @Override
         public int getCount() {
-            return itemList.size();
+            return IMAGE_URLS.length;
         }
 
         @Override
-        public Object getItem(int arg0) {
-            // TODO Auto-generated method stub
+        public Object getItem(int position) {
             return null;
         }
 
         @Override
         public long getItemId(int position) {
-            // TODO Auto-generated method stub
-            return 0;
+            return position;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ImageView imageView;
-            if (convertView == null) {  // if it's not recycled, initialize some attributes
-                imageView = new ImageView(mContext);
-                imageView.setLayoutParams(new GridView.LayoutParams(220, 220));
-                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                imageView.setPadding(8, 8, 8, 8);
+            final ViewHolder holder;
+            View view = convertView;
+            if (view == null) {
+                view = inflater.inflate(R.layout.item_grid_image, parent, false);
+                holder = new ViewHolder();
+                assert view != null;
+                holder.imageView = (ImageView) view.findViewById(R.id.image);
+                holder.progressBar = (ProgressBar) view.findViewById(R.id.progress);
+                view.setTag(holder);
             } else {
-                imageView = (ImageView) convertView;
+                holder = (ViewHolder) view.getTag();
             }
 
-            Bitmap bm = getThumbnailBitmap(itemList.get(position),220);
+            ImageLoader.getInstance()
+                    .displayImage(IMAGE_URLS[position], holder.imageView, options, new SimpleImageLoadingListener() {
+                        @Override
+                        public void onLoadingStarted(String imageUri, View view) {
+                            holder.progressBar.setProgress(0);
+                            holder.progressBar.setVisibility(View.VISIBLE);
+                        }
 
-            imageView.setImageBitmap(bm);
-            return imageView;
+                        @Override
+                        public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+                            holder.progressBar.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                            holder.progressBar.setVisibility(View.GONE);
+                        }
+                    }, new ImageLoadingProgressListener() {
+                        @Override
+                        public void onProgressUpdate(String imageUri, View view, int current, int total) {
+                            holder.progressBar.setProgress(Math.round(100.0f * current / total));
+                        }
+                    });
+
+            return view;
         }
-        /**
-         * returns the thumbnail image bitmap from the given url
-         *
-         * @param path
-         * @param thumbnailSize
-         * @return
-         */
-        private Bitmap getThumbnailBitmap(final String path, final int thumbnailSize) {
-            Bitmap bitmap;
-            BitmapFactory.Options bounds = new BitmapFactory.Options();
-            bounds.inJustDecodeBounds = true;
-            BitmapFactory.decodeFile(path, bounds);
-            if ((bounds.outWidth == -1) || (bounds.outHeight == -1)) {
-                bitmap = null;
-            }
-            int originalSize = (bounds.outHeight > bounds.outWidth) ? bounds.outHeight
-                    : bounds.outWidth;
-            BitmapFactory.Options opts = new BitmapFactory.Options();
-            opts.inSampleSize = originalSize / thumbnailSize;
-            bitmap = BitmapFactory.decodeFile(path, opts);
-            return bitmap;
-        }
-        public Bitmap decodeSampledBitmapFromUri(String path, int reqWidth, int reqHeight) {
-
-            Bitmap bm = null;
-            // First decode with inJustDecodeBounds=true to check dimensions
-            final BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inJustDecodeBounds = true;
-            BitmapFactory.decodeFile(path, options);
-
-            // Calculate inSampleSize
-            options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
-
-            // Decode bitmap with inSampleSize set
-            options.inJustDecodeBounds = false;
-            bm = BitmapFactory.decodeFile(path, options);
-
-            return bm;
-        }
-
-        public int calculateInSampleSize(
-
-                BitmapFactory.Options options, int reqWidth, int reqHeight) {
-            // Raw height and width of image
-            final int height = options.outHeight;
-            final int width = options.outWidth;
-            int inSampleSize = 1;
-
-            if (height > reqHeight || width > reqWidth) {
-                if (width > height) {
-                    inSampleSize = Math.round((float)height / (float)reqHeight);
-                } else {
-                    inSampleSize = Math.round((float)width / (float)reqWidth);
-                }
-            }
-
-            return inSampleSize;
-        }
-
     }
 
+    static class ViewHolder {
+        ImageView imageView;
+        ProgressBar progressBar;
+    }
 }
