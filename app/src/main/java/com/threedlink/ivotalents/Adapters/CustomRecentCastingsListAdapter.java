@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import com.threedlink.ivotalents.DTO.Casting;
 import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
+import com.threedlink.ivotalents.UploadResource;
 import com.threedlink.ivotalents.ViewHolders.CastingViewHolder;
 import com.threedlink.ivotalents.ViewHolders.RolEntityViewHolder;
 
@@ -73,7 +74,7 @@ public class CustomRecentCastingsListAdapter extends BaseAdapter {
             public void onClick(View popupView) {
                 Fragment fragment = null;
                 fragment = com.threedlink.ivotalents.Casting.newInstance("param1","param2");
-                mApp.loadFragment(com.threedlink.ivotalents.Casting.newInstance("param1","param2"));
+                mApp.loadFragment(UploadResource.newInstance("param1", "param2"));
             }
         });;
         //Log.e("GETVIEW HEIGHT::", String.valueOf(row.getLayoutParams().height));

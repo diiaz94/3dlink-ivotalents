@@ -1,8 +1,10 @@
 package com.threedlink.ivotalents.Services;
 
+import com.threedlink.ivotalents.DTO.Casting;
 import com.threedlink.ivotalents.DTO.Ticket;
 import com.threedlink.ivotalents.DTO.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -31,6 +33,10 @@ public interface ApiService {
     @Headers({"Content-Type: application/json"})
     @GET("talentos")
     Call<List<User>> talents(@Header("Authorizacion") String JWT);
+
+    @Headers({"Content-Type: application/json"})
+    @GET("castings")
+    Call<ArrayList<Casting>> castings(@Header("Authorizacion") String JWT);
 
 }
 

@@ -27,16 +27,16 @@ public class UploadResourceSwipeAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                UploadGalleryFile tab1 = new UploadGalleryFile();
+                UploadGalleryFile tab1 = UploadGalleryFile.newInstance("","");
                 return tab1;
             case 1:
-                UploadVideo tab2 = new UploadVideo();
+                UploadVideo tab2 = UploadVideo.newInstance("","");
                 return tab2;
             case 2:
-                UploadVideo tab3 = new UploadVideo();
+                UploadVideo tab3 = UploadVideo.newInstance("","");
                 return tab3;
             case 3:
-                UploadVoice tab4 = new UploadVoice();
+                UploadVoice tab4 = UploadVoice.newInstance("","");
                 return tab4;
 
             default:

@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/grid"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/fragment_upload_gallery_file"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:gravity="center"
-	android:horizontalSpacing="4dip"
-	android:numColumns="3"
-	android:stretchMode="columnWidth"
-	android:verticalSpacing="4dip"
-	android:padding="4dip" />
+	tools:context="com.threedlink.ivotalents.MainActivity">
+	<GridView
+		android:id="@+id/grid"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:gravity="center"
+		android:horizontalSpacing="4dip"
+		android:numColumns="3"
+		android:stretchMode="columnWidth"
+		android:verticalSpacing="4dip"
+		android:padding="4dip" />
+	<ProgressBar
+		android:id="@+id/spinner"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
+		android:layout_gravity="center"
+		android:progressDrawable="@drawable/circular_progress_bar"/>
+
+</RelativeLayout>
+
+

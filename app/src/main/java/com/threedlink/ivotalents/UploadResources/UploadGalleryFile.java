@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -57,7 +58,9 @@ public class UploadGalleryFile extends Fragment {
     private GridView mGridView;
     private View mProgressView;
     private String targetPath;
-
+    private View mView;
+    private ProgressBar spinner;
+    private UploadGalleryFileTask mUploadGalleryFileTask;
     public UploadGalleryFile() {
         // Required empty public constructor
     }
@@ -93,32 +96,44 @@ public class UploadGalleryFile extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fr_image_grid, container, false);
-        listView = (GridView) rootView.findViewById(R.id.grid);
+        if(mView==null) {
+            mView = inflater.inflate(R.layout.fr_image_grid, container, false);
+            listView = (GridView) mView.findViewById(R.id.grid);
+
+            spinner = (ProgressBar) mView.findViewById(R.id.spinner);
+            listView.setVisibility(View.GONE);
+            spinner.setVisibility(View.GONE);
+            mUploadGalleryFileTask= new UploadGalleryFileTask();
+            mUploadGalleryFileTask.execute((Void) null);
 
 
-        ((GridView) listView).setAdapter(new ImageAdapter(getActivity(),getCameraImages(getContext())));
 
-
+/*
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
             }
         });
-
-        String ExternalStorageDirectoryPath = Environment
-                .getExternalStorageDirectory()
-                .getAbsolutePath();
-        targetPath = ExternalStorageDirectoryPath + "/Pictures/Screenshots";
-        Toast.makeText(getActivity(),targetPath, Toast.LENGTH_LONG).show();
+*/
 
 
-
-        return rootView;
+        }
+        return mView;
     }
 
-
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            //you are visible to user now - so set whatever you need
+            //initView();
+        }
+        else {
+            //you are no longer visible to the user so cleanup whatever you need
+            //clearView();
+        }
+    }
     public static final String CAMERA_IMAGE_BUCKET_NAME =
             Environment.getExternalStorageDirectory().toString()
                     + "/DCIM/Camera";
@@ -316,5 +331,40 @@ public class UploadGalleryFile extends Fragment {
     static class ViewHolder {
         ImageView imageView;
         ProgressBar progressBar;
+    }
+    private void showSpinner(boolean show){
+        spinner.setVisibility(show?View.VISIBLE:View.GONE);
+        listView.setVisibility(!show?View.VISIBLE:View.GONE);
+    }
+
+    public class UploadGalleryFileTask extends AsyncTask<Void, Void, List<String>> {
+
+
+        UploadGalleryFileTask() {
+
+        }
+        @Override
+        protected void onPreExecute() {
+            showSpinner(true);
+        }
+        @Override
+        protected List<String> doInBackground(Void... params) {
+            // TODO: attempt authentication against a network service.
+            List<String> list = getCameraImages(getContext());
+            return list;
+        }
+
+        @Override
+        protected void onPostExecute(List<String> list) {
+            mUploadGalleryFileTask = null;
+            showSpinner(false);
+            ((GridView) listView).setAdapter(new ImageAdapter(getActivity(), list));
+        }
+
+        @Override
+        protected void onCancelled() {
+            mUploadGalleryFileTask  = null;
+            showSpinner(false);
+        }
     }
 }

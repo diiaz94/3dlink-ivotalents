@@ -3,6 +3,7 @@ package com.threedlink.ivotalents;
 import android.content.Context;
 import android.content.res.Resources;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
@@ -16,6 +17,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -25,7 +27,13 @@ import com.threedlink.ivotalents.DTO.Casting;
 import com.threedlink.ivotalents.DTO.RolEntity;
 import com.threedlink.ivotalents.Adapters.CustomRecentViewAdapter;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Response;
 
 
 /**
@@ -53,6 +61,9 @@ public class HomeArtist extends Fragment {
     private GridView followedsGrid;
 
     private OnFragmentInteractionListener mListener;
+    private ProgressBar spinner1;
+    private LinearLayout recentCastingsContainer;
+    private View mView;
 
     public HomeArtist() {
         // Required empty public constructor
@@ -87,50 +98,35 @@ public class HomeArtist extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View view =  inflater.inflate(R.layout.fragment_home_artist, container, false);
+        if(mView==null) {
+            mView = inflater.inflate(R.layout.fragment_home_artist, container, false);
+
+            recentCastingList = (ListView) mView.findViewById(R.id.newCastingsList);
+            recentCastingsContainer = (LinearLayout) mView.findViewById(R.id.recent_castings_container);
+            spinner1 = (ProgressBar) mView.findViewById(R.id.spinner1);
+            recentCastingsContainer.setVisibility(View.GONE);
+            spinner1.setVisibility(View.GONE);
+            mCastingTask = new CastingsTask();
+            mCastingTask.execute((Void) null);
+
+            initGridViewProviders(mView);
+            initGridViewFollowers(mView);
+            initGridViewFolloweds(mView);
 
 
-
-        initListViewCastings(view);
-        initGridViewProviders(view);
-        initGridViewFollowers(view);
-        initGridViewFolloweds(view);
-
-
-
-
-        RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_home_artist);
-        mApp.setFontsOnRelative(myLayout);
-
-        return view;
+            RelativeLayout myLayout = (RelativeLayout) mView.findViewById(R.id.fragment_home_artist);
+            mApp.setFontsOnRelative(myLayout);
+        }
+        return mView;
     }
 
-    private void initListViewCastings(View view){
-        Resources res = getActivity().getApplicationContext().getResources();
-        String[] tempCastingCategories = res.getStringArray(R.array.casting_categories);
-        String[] tempCastingDescriptions = res.getStringArray(R.array.casting_descriptions);
-        String[] tempCastingExpirations = res.getStringArray(R.array.casting_expirations);
-        int[] imageCastings = {R.drawable.talent_1,R.drawable.talent_2,R.drawable.juan_esteban,R.drawable.talent_1,R.drawable.talent_2,R.drawable.juan_esteban};
-        ArrayList<Casting> listCastings = new ArrayList<Casting>();
-        for (int i=0; i<3;i++){
-            Casting casting = new Casting(tempCastingCategories[i],tempCastingDescriptions[i],tempCastingExpirations[i],imageCastings[i]);
-            listCastings.add(casting);
-        }
-        recentCastingList = (ListView) view.findViewById(R.id.newCastingsList);
-        recentCastingList.setAdapter(new CustomRecentCastingsListAdapter(getActivity(),listCastings));
-        recentCastingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Fragment fragment = null;
-                fragment = com.threedlink.ivotalents.Casting.newInstance("param1","param2");
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).addToBackStack( fragment.getClass().getSimpleName() ).commit();
+    private void initListViewCastings(ArrayList<Casting> list){
 
-            }
-        });
+        recentCastingList.setAdapter(new CustomRecentCastingsListAdapter(getActivity(),list));
+
         View item = recentCastingList.getAdapter().getView(0, null, recentCastingList);
         item.measure(0, 0);
         android.widget.LinearLayout.LayoutParams params = new android.widget.LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (3.5 * item.getMeasuredHeight()));
@@ -201,6 +197,28 @@ public class HomeArtist extends Fragment {
     }
 
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            //you are visible to user now - so set whatever you need
+            initView();
+        }
+        else {
+            //you are no longer visible to the user so cleanup whatever you need
+            clearView();
+        }
+    }
+
+    private void initView() {
+    }
+    private void clearView() {
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -239,6 +257,72 @@ public class HomeArtist extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+
+    private void showSpinner1(boolean show){
+        spinner1.setVisibility(show?View.VISIBLE:View.GONE);
+        recentCastingsContainer.setVisibility(!show?View.VISIBLE:View.GONE);
+    }
+    private CastingsTask mCastingTask;
+    public class CastingsTask extends AsyncTask<Void, Void, ArrayList<Casting>> {
+
+        private String mToken;
+        private int mResponseCode;
+        private ResponseBody responseError;
+
+        CastingsTask() {
+
+        }
+        @Override
+        protected void onPreExecute() {
+            showSpinner1(true);
+        }
+        @Override
+        protected ArrayList<Casting> doInBackground(Void... params) {
+            // TODO: attempt authentication against a network service.
+
+            Call<ArrayList<Casting>> call = mApp.getApiServiceIntance().castings(mToken);
+
+            try {
+                Response<ArrayList<Casting>> response = call.execute();
+                mResponseCode = response.code();
+                Log.d("mResponseCode::",String.valueOf(mResponseCode));
+                //Log.d(" response.body()::", response.errorBody()   );
+                if(response.isSuccessful()){//Created
+                    ArrayList<Casting> list = response.body();
+                    return list;
+                }else{
+                    responseError = response.errorBody();
+                    Log.d("Register","responseError.::"+responseError.string());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(final ArrayList<Casting> list) {
+            mCastingTask = null;
+            showSpinner1(false);
+            if (list!=null) {
+                initListViewCastings(list);
+            } else {
+                if(mResponseCode==400){
+
+                }else{
+
+                }
+
+            }
+        }
+
+        @Override
+        protected void onCancelled() {
+            mCastingTask  = null;
+            showSpinner1(false);
+        }
     }
 }
 
