@@ -4,12 +4,14 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +33,7 @@ import com.threedlink.ivotalents.R;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -92,7 +95,11 @@ public class UploadGalleryFile extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fr_image_grid, container, false);
         listView = (GridView) rootView.findViewById(R.id.grid);
-        ((GridView) listView).setAdapter(new ImageAdapter(getActivity()));
+
+
+        ((GridView) listView).setAdapter(new ImageAdapter(getActivity(),getCameraImages(getContext())));
+
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -106,9 +113,46 @@ public class UploadGalleryFile extends Fragment {
         targetPath = ExternalStorageDirectoryPath + "/Pictures/Screenshots";
         Toast.makeText(getActivity(),targetPath, Toast.LENGTH_LONG).show();
 
+
+
         return rootView;
     }
 
+
+    public static final String CAMERA_IMAGE_BUCKET_NAME =
+            Environment.getExternalStorageDirectory().toString()
+                    + "/DCIM/Camera";
+    public static final String CAMERA_IMAGE_BUCKET_ID =
+            getBucketId(CAMERA_IMAGE_BUCKET_NAME);
+
+    /**
+     * Matches code in MediaProvider.computeBucketValues. Should be a common
+     * function.
+     */
+    public static String getBucketId(String path) {
+        return String.valueOf(path.toLowerCase().hashCode());
+    }
+
+    public static List<String> getCameraImages(Context context) {
+        final String[] projection = { MediaStore.Images.Media.DATA };
+        final String selection = MediaStore.Images.Media.BUCKET_ID + " = ?";
+        final String[] selectionArgs = { CAMERA_IMAGE_BUCKET_ID };
+        final Cursor cursor = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                projection,
+                selection,
+                selectionArgs,
+                null);
+        ArrayList<String> result = new ArrayList<String>(cursor.getCount());
+        if (cursor.moveToFirst()) {
+            final int dataColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            do {
+                final String data = cursor.getString(dataColumn);
+                result.add("file:///"+data);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return result;
+    }
     @Override
     public void onPause() {
         super.onPause();
@@ -191,19 +235,15 @@ public class UploadGalleryFile extends Fragment {
     }
     private static class ImageAdapter extends BaseAdapter {
 
-        private static final String[] IMAGE_URLS = {
-                "http://simpozia.com/pages/images/stories/windows-icon.png",
-                "https://lh4.googleusercontent.com/--dq8niRp7W4/URquVgmXvgI/AAAAAAAAAbs/-gnuLQfNnBA/s1024/A%252520Song%252520of%252520Ice%252520and%252520Fire.jpg",
-                "file:///storage/emulated/0/Pictures/Screenshots/Prueba.PNG",
-        };
+        private List<String>  IMAGE_URLS;
 
         private LayoutInflater inflater;
 
         private DisplayImageOptions options;
 
-        ImageAdapter(Context context) {
+        ImageAdapter(Context context, List<String> cameraImages) {
             inflater = LayoutInflater.from(context);
-
+            IMAGE_URLS = cameraImages;
             options = new DisplayImageOptions.Builder()
                     .showImageOnLoading(R.drawable.ic_stub)
                     .showImageForEmptyUri(R.drawable.ic_empty)
@@ -217,7 +257,7 @@ public class UploadGalleryFile extends Fragment {
 
         @Override
         public int getCount() {
-            return IMAGE_URLS.length;
+            return IMAGE_URLS.size();
         }
 
         @Override
@@ -246,7 +286,7 @@ public class UploadGalleryFile extends Fragment {
             }
 
             ImageLoader.getInstance()
-                    .displayImage(IMAGE_URLS[position], holder.imageView, options, new SimpleImageLoadingListener() {
+                    .displayImage(IMAGE_URLS.get(position), holder.imageView, options, new SimpleImageLoadingListener() {
                         @Override
                         public void onLoadingStarted(String imageUri, View view) {
                             holder.progressBar.setProgress(0);
