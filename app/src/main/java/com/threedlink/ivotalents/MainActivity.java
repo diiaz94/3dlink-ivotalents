@@ -307,7 +307,7 @@ public class MainActivity extends AppCompatActivity implements
                 break;
             case R.id.opcion_castings:
                 //DashboardCasting.newInstance("param1","param2");
-                mApp.loadFragment(Participations.newInstance("param1", "param2"));
+                mApp.loadFragment(Participations.newInstance("1", "param2"));
                 break;
          }
     }

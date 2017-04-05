@@ -217,7 +217,14 @@ public class HomeArtist extends Fragment {
 
     @Override
     public void onPause() {
+
         super.onPause();
+    }
+    @Override
+    public void onStop() {
+
+        super.onStop();
+        mView = null;
     }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
