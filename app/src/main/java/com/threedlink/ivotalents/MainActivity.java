@@ -71,12 +71,8 @@ public class MainActivity extends AppCompatActivity implements
         SubmitAudition.OnFragmentInteractionListener,
         Participations.OnFragmentInteractionListener,
         Castings.OnFragmentInteractionListener,
-        Auditions.OnFragmentInteractionListener,
-        UploadResource.OnFragmentInteractionListener,
-        UploadGalleryFile.OnFragmentInteractionListener,
-        UploadPhoto.OnFragmentInteractionListener,
-        UploadVideo.OnFragmentInteractionListener,
-        UploadVoice.OnFragmentInteractionListener{
+        Auditions.OnFragmentInteractionListener
+        {
     DrawerLayout drawer;
     private static final String TAG = MainActivity.class.getSimpleName();
     // Session Manager Class

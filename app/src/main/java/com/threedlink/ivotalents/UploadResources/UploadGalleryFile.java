@@ -270,6 +270,6 @@ public class UploadGalleryFile extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        clearView();
+        //clearView();
     }
 }

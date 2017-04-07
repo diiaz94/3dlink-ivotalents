@@ -2,6 +2,7 @@ package com.threedlink.ivotalents.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import com.threedlink.ivotalents.DTO.Casting;
 import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
+import com.threedlink.ivotalents.UploadActivity;
 import com.threedlink.ivotalents.UploadResource;
 import com.threedlink.ivotalents.ViewHolders.CastingViewHolder;
 import com.threedlink.ivotalents.ViewHolders.RolEntityViewHolder;
@@ -52,7 +54,9 @@ public class CustomRecentCastingsListAdapter extends RecyclerView.Adapter<Custom
         itemsViewHolder.btnSeeMore.setOnClickListener(new View.OnClickListener() {
             public void onClick(View popupView) {
                 Log.d("onBindViewHolder", "onClick ");
-                mApp.loadFragment(UploadResource.newInstance("param1", "param2"));
+                Intent intent = new Intent(context,UploadActivity.class);
+                intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
             }
         });
     }
