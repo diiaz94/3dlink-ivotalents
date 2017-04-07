@@ -9,22 +9,28 @@ import com.threedlink.ivotalents.UploadResources.UploadPhoto;
 import com.threedlink.ivotalents.UploadResources.UploadVideo;
 import com.threedlink.ivotalents.UploadResources.UploadVoice;
 
+import java.util.List;
+
 /**
  * Created by vp50343 on 24/03/2017.
  */
 
 
 public class UploadResourceSwipeAdapter extends FragmentStatePagerAdapter {
-    int mNumOfTabs;
+    private List<Fragment> fragmentList;
 
-    public UploadResourceSwipeAdapter(FragmentManager fm, int NumOfTabs) {
+    public UploadResourceSwipeAdapter(FragmentManager fm,List<Fragment> fragmentList) {
         super(fm);
-        this.mNumOfTabs = NumOfTabs;
+        this.fragmentList = fragmentList;
     }
 
     @Override
     public Fragment getItem(int position) {
-
+        if (position >= fragmentList.size()) {
+            return null;
+        }
+        return fragmentList.get(position);
+        /*
         switch (position) {
             case 0:
                 UploadGalleryFile tab1 = UploadGalleryFile.newInstance("","");
@@ -41,11 +47,11 @@ public class UploadResourceSwipeAdapter extends FragmentStatePagerAdapter {
 
             default:
                 return null;
-        }
+        }*/
     }
 
     @Override
     public int getCount() {
-        return mNumOfTabs;
+        return fragmentList.size();
     }
 }

@@ -1,6 +1,7 @@
 package com.threedlink.ivotalents.Adapters;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,59 +15,56 @@ import com.threedlink.ivotalents.R;
 import com.threedlink.ivotalents.ViewHolders.RolEntityViewHolder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by diiaz94 on 17-01-2017.
  */
 
-public class CustomRecentViewAdapter extends BaseAdapter {
-    private Context ctx;
-    private ArrayList<RolEntity> list;
-    private IvoTalentsApp mApp;
+public class CustomRecentViewAdapter extends RecyclerView.Adapter<CustomRecentViewAdapter.EntityViewHolder> {
+    private List<RolEntity> items;
+    private Context context;
 
-    public CustomRecentViewAdapter(Context ctx, ArrayList<RolEntity> list) {
-        this.ctx = ctx;
-        this.list = list;
-        mApp = ((IvoTalentsApp) ctx);
+    public CustomRecentViewAdapter(Context context, List<RolEntity> items) {
+        this.context = context;
+        this.items= items;
     }
 
     @Override
-    public int getCount() {
-        return list.size();
+    public int getItemCount() {
+        return items.size();
     }
 
     @Override
-    public Object getItem(int position) {
-        return list.get(position);
+    public void onBindViewHolder(EntityViewHolder itemsViewHolder, int i) {
+        itemsViewHolder.imRolEntity.setImageResource(items.get(i).getImageId());
+        itemsViewHolder.txtAbilitie.setText(items.get(i).getAbility());
+        itemsViewHolder.txtCategory.setText(items.get(i).getCategory());
+        itemsViewHolder.txtName.setText(items.get(i).getName());
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
+    public EntityViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View itemView = LayoutInflater.
+                from(viewGroup.getContext()).
+                inflate(R.layout.item_rol_entity_recent, viewGroup, false);
+
+        return new EntityViewHolder(itemView);
     }
 
+    public static class EntityViewHolder extends RecyclerView.ViewHolder {
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+        protected ImageView imRolEntity;
+        protected TextView txtCategory;
+        protected TextView txtName;
+        protected TextView txtAbilitie;
 
-        View row = convertView;
-        RolEntityViewHolder holder = null;
-        if (row == null) {
-            LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            row = inflater.inflate(R.layout.item_rol_entity_recent, parent, false);
-            holder = new RolEntityViewHolder(row);
-            row.setTag(holder);
-        } else {
-            holder = (RolEntityViewHolder) row.getTag();
+        public EntityViewHolder(View v) {
+            super(v);
+            this.imRolEntity = (ImageView) v.findViewById(R.id.rol_entity_image);
+            this.txtCategory = (TextView) v.findViewById(R.id.rol_entity_category);
+            this.txtName = (TextView) v.findViewById(R.id.rol_entity_name);
+            this.txtAbilitie = (TextView) v.findViewById(R.id.rol_entity_abilitie);
         }
-        holder.getImRolEntity().setImageResource(list.get(position).getImageId());
-        holder.getTxtCategory().setText(list.get(position).getCategory());
-        holder.getTxtName().setText(list.get(position).getName());
-        holder.getTxtAbilitie().setText(list.get(position).getAbility());
-
-        holder.getTxtCategory().setTypeface(mApp.getFont());
-        holder.getTxtName().setTypeface(mApp.getFontBold());
-        holder.getTxtAbilitie().setTypeface(mApp.getFont());
-        return row;
     }
 }

@@ -11,6 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.threedlink.ivotalents.Adapters.UploadResourceSwipeAdapter;
+import com.threedlink.ivotalents.UploadResources.UploadGalleryFile;
+import com.threedlink.ivotalents.UploadResources.UploadPhoto;
+import com.threedlink.ivotalents.UploadResources.UploadVideo;
+import com.threedlink.ivotalents.UploadResources.UploadVoice;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -61,7 +68,7 @@ public class UploadResource extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        adapter = new UploadResourceSwipeAdapter(getActivity().getSupportFragmentManager(), 4);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -73,6 +80,12 @@ public class UploadResource extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_upload_resource, container, false);
+        List<Fragment> pageFragments = new ArrayList<>();
+        pageFragments.add(UploadGalleryFile.newInstance("",""));
+        pageFragments.add(UploadPhoto.newInstance(1));
+        pageFragments.add(UploadVideo.newInstance("",""));
+        pageFragments.add(UploadVoice.newInstance("",""));
+        adapter = new UploadResourceSwipeAdapter(getActivity().getSupportFragmentManager(),pageFragments);
 
         tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("GALERIA"));
@@ -126,6 +139,18 @@ public class UploadResource extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        clearView();
+    }
+
+    private void clearView() {
+        this.adapter = null;
+        this.tabLayout = null;
+        System.gc();
     }
 
     /**

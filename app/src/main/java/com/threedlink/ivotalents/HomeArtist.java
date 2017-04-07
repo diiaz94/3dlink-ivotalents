@@ -7,6 +7,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,15 +58,15 @@ public class HomeArtist extends Fragment {
     private String mParam2;
     private IvoTalentsApp mApp;
 
-    private ListView recentCastingList;
-    private GridView recentProvidersGrid;
+    private RecyclerView recentCastingList;
+    private RecyclerView recentProvidersGrid;
     private GridView followersGrid;
     private GridView followedsGrid;
 
     private OnFragmentInteractionListener mListener;
     private ProgressBar spinner1;
     private LinearLayout recentCastingsContainer;
-    private View mView;
+
 
     public HomeArtist() {
         // Required empty public constructor
@@ -100,10 +103,10 @@ public class HomeArtist extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        if(mView==null) {
-            mView = inflater.inflate(R.layout.fragment_home_artist, container, false);
 
-            recentCastingList = (ListView) mView.findViewById(R.id.newCastingsList);
+          View  mView = inflater.inflate(R.layout.fragment_home_artist, container, false);
+
+            recentCastingList = (RecyclerView) mView.findViewById(R.id.newCastingsList);
             recentCastingsContainer = (LinearLayout) mView.findViewById(R.id.recent_castings_container);
             spinner1 = (ProgressBar) mView.findViewById(R.id.spinner1);
             recentCastingsContainer.setVisibility(View.GONE);
@@ -117,16 +120,19 @@ public class HomeArtist extends Fragment {
 
 
             RelativeLayout myLayout = (RelativeLayout) mView.findViewById(R.id.fragment_home_artist);
-            mApp.setFontsOnRelative(myLayout);
-        }
+            //mApp.setFontsOnRelative(myLayout);
+
         return mView;
     }
 
 
     private void initListViewCastings(ArrayList<Casting> list){
+        LinearLayoutManager llmanager = new LinearLayoutManager(getActivity());
+        llmanager.setOrientation(LinearLayoutManager.VERTICAL);
+        recentCastingList.setLayoutManager(llmanager);
+        recentCastingList.setAdapter(new CustomRecentCastingsListAdapter(getActivity().getApplicationContext(),list));
 
-        recentCastingList.setAdapter(new CustomRecentCastingsListAdapter(getActivity(),list));
-
+        /*
         View item = recentCastingList.getAdapter().getView(0, null, recentCastingList);
         item.measure(0, 0);
         android.widget.LinearLayout.LayoutParams params = new android.widget.LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (3.5 * item.getMeasuredHeight()));
@@ -134,7 +140,7 @@ public class HomeArtist extends Fragment {
         //android.widget.LinearLayout.LayoutParams paramsArtists = (LinearLayout.LayoutParams) recentCastingList.getLayoutParams();
         //paramsArtists.height = 200*(recentCastingList.getAdapter().getCount()/3);
         //recentCastingList.setLayoutParams(paramsArtists);
-
+*/
     }
 
     private void initGridViewProviders(View view) {
@@ -151,12 +157,11 @@ public class HomeArtist extends Fragment {
         }
 
 
-        recentProvidersGrid = (GridView) view.findViewById(R.id.newProvidersGrid);
+        recentProvidersGrid = (RecyclerView) view.findViewById(R.id.newProvidersGrid);
+        //recentProvidersGrid.setHasFixedSize(true);
+        LinearLayoutManager llmanager = new GridLayoutManager(getActivity(),3);
+        recentProvidersGrid.setLayoutManager(llmanager);
         recentProvidersGrid.setAdapter(new CustomRecentViewAdapter(getActivity().getApplicationContext(),listProviders));
-        View item = recentProvidersGrid.getAdapter().getView(0, null, recentProvidersGrid);
-        item.measure(0, 0);
-        android.widget.LinearLayout.LayoutParams params = new android.widget.LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (1.2 * item.getMeasuredHeight()));
-        recentProvidersGrid.setLayoutParams(params);
 
     }
 
@@ -195,7 +200,11 @@ public class HomeArtist extends Fragment {
         paramsFolloweds.height = 250*(followedsGrid.getAdapter().getCount()/2);
         followedsGrid.setLayoutParams(paramsFolloweds);
     }
-
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        clearView();
+    }
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
@@ -213,18 +222,21 @@ public class HomeArtist extends Fragment {
     private void initView() {
     }
     private void clearView() {
+        this.recentCastingList = null;
+        this.recentProvidersGrid = null;
+        this.followedsGrid = null;
+        this.followersGrid = null;
+        this.recentCastingsContainer = null;
+        System.gc();
     }
 
     @Override
     public void onPause() {
-
         super.onPause();
     }
     @Override
     public void onStop() {
-
         super.onStop();
-        mView = null;
     }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

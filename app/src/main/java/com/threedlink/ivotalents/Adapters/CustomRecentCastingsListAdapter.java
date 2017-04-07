@@ -4,10 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.threedlink.ivotalents.DTO.Casting;
 import com.threedlink.ivotalents.IvoTalentsApp;
@@ -17,69 +22,66 @@ import com.threedlink.ivotalents.ViewHolders.CastingViewHolder;
 import com.threedlink.ivotalents.ViewHolders.RolEntityViewHolder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by diiaz94 on 17-01-2017.
  */
-public class CustomRecentCastingsListAdapter extends BaseAdapter {
-    private FragmentActivity activity;
-    private Context ctx;
-    private ArrayList<Casting> list;
+public class CustomRecentCastingsListAdapter extends RecyclerView.Adapter<CustomRecentCastingsListAdapter.CastingViewHolder> {
+    private Context context;
+    private List<Casting> items;
     private IvoTalentsApp mApp;
 
-    public CustomRecentCastingsListAdapter(FragmentActivity activity, ArrayList<Casting> list) {
-        this.ctx = activity.getApplicationContext();
-        this.list = list;
-        mApp = ((IvoTalentsApp) ctx);
-        this.activity = activity;
+    public CustomRecentCastingsListAdapter(Context context, List<Casting> items) {
+        this.context = context;
+        this.items = items;
+        mApp = ((IvoTalentsApp) context);
     }
 
     @Override
-    public int getCount() {
-        return this.list.size();
+    public int getItemCount() {
+        return items.size();
     }
 
     @Override
-    public Object getItem(int position) {
-         return list.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View row = convertView;
-        CastingViewHolder holder = null;
-        if (row == null) {
-            LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            row = inflater.inflate(R.layout.item_casting_list, parent, false);
-            holder = new CastingViewHolder(row);
-            row.setTag(holder);
-        } else {
-            holder = (CastingViewHolder) row.getTag();
-        }
-        // holder.imRolEntity.setImageResource(list.get(position).getImageId());
-        holder.getTxtCategory().setText(list.get(position).getCategory());
-        holder.getTxtDescription().setText(list.get(position).getDescription());
-        holder.getTxtExpiration().setText(list.get(position).getExpiration());
-
-        holder.getTxtCategory().setTypeface(mApp.getFont());
-        holder.getTxtDescription().setTypeface(mApp.getFont());
-        holder.getTxtExpiration().setTypeface(mApp.getFont());
-
-        holder.getBtnSeeMore().setOnClickListener(new View.OnClickListener() {
+    public void onBindViewHolder(CustomRecentCastingsListAdapter.CastingViewHolder itemsViewHolder, int i) {
+        itemsViewHolder.imCasting.setImageResource(items.get(i).getImageId());
+        itemsViewHolder.txtExpiration.setText(items.get(i).getExpiration());
+        itemsViewHolder.txtCategory.setText(items.get(i).getCategory());
+        itemsViewHolder.txtDescription.setText(items.get(i).getDescription());
+        itemsViewHolder.btnSeeMore.setOnClickListener(new View.OnClickListener() {
             public void onClick(View popupView) {
-                Fragment fragment = null;
-                fragment = com.threedlink.ivotalents.Casting.newInstance("param1","param2");
+                Log.d("onBindViewHolder", "onClick ");
                 mApp.loadFragment(UploadResource.newInstance("param1", "param2"));
             }
-        });;
-        //Log.e("GETVIEW HEIGHT::", String.valueOf(row.getLayoutParams().height));
+        });
+    }
 
-        return row;
 
+    @Override
+    public CastingViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        View itemView = LayoutInflater.
+                from(viewGroup.getContext()).
+                inflate(R.layout.item_casting_list, viewGroup, false);
+
+        return new CastingViewHolder(itemView);
+    }
+
+    public static class CastingViewHolder  extends RecyclerView.ViewHolder {
+
+        ImageView imCasting;
+        TextView txtCategory;
+        TextView txtExpiration;
+        TextView txtDescription;
+        TextView btnSeeMore;
+
+        public CastingViewHolder(View v) {
+            super(v);
+            this.imCasting = (ImageView) v.findViewById(R.id.casting_image);
+            this.txtCategory = (TextView) v.findViewById(R.id.casting_category);
+            this.txtDescription = (TextView) v.findViewById(R.id.casting_description);
+            this.txtExpiration = (TextView) v.findViewById(R.id.casting_expiration);
+            this.btnSeeMore = (Button) v.findViewById(R.id.casting_btn_detail);
+        }
     }
 }

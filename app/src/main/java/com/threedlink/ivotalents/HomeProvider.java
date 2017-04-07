@@ -106,7 +106,7 @@ public class HomeProvider extends Fragment {
     }
 
     private void initGridViewArtists(View view){
-        Resources res = getActivity().getApplicationContext().getResources();
+        /*Resources res = getActivity().getApplicationContext().getResources();
         String[] tempArtistCategories = res.getStringArray(R.array.artist_categories);
         String[] tempArtistNames = res.getStringArray(R.array.artist_names);
         String[] tempArtistAbilities = res.getStringArray(R.array.artist_abilities);
@@ -122,11 +122,11 @@ public class HomeProvider extends Fragment {
         item.measure(0, 0);
         android.widget.LinearLayout.LayoutParams params = new android.widget.LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (2.2 * item.getMeasuredHeight()));
         recentArtistsGrid.setLayoutParams(params);
-
+    */
     }
 
     private void initGridViewIndustries(View view) {
-        Resources res = getActivity().getApplicationContext().getResources();
+       /* Resources res = getActivity().getApplicationContext().getResources();
 
         String[] tempIndustryCategories = res.getStringArray(R.array.industry_categories);
         String[] tempIndustryNames = res.getStringArray(R.array.industry_names);

@@ -14,6 +14,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +33,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+import com.threedlink.ivotalents.Adapters.CustomGalleryAdapter;
 import com.threedlink.ivotalents.R;
 
 import java.io.File;
@@ -53,14 +57,14 @@ public class UploadGalleryFile extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    ImageAdapter myImageAdapter;
     private OnFragmentInteractionListener mListener;
     private GridView mGridView;
     private View mProgressView;
     private String targetPath;
-    private View mView;
     private ProgressBar spinner;
     private UploadGalleryFileTask mUploadGalleryFileTask;
+    private View mView;
+
     public UploadGalleryFile() {
         // Required empty public constructor
     }
@@ -91,20 +95,12 @@ public class UploadGalleryFile extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    protected AbsListView listView;
+    protected RecyclerView gridView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        if(mView==null) {
-            mView = inflater.inflate(R.layout.fr_image_grid, container, false);
-            listView = (GridView) mView.findViewById(R.id.grid);
-
-            spinner = (ProgressBar) mView.findViewById(R.id.spinner);
-            listView.setVisibility(View.GONE);
-            spinner.setVisibility(View.GONE);
-            mUploadGalleryFileTask= new UploadGalleryFileTask();
-            mUploadGalleryFileTask.execute((Void) null);
+        mView = inflater.inflate(R.layout.fr_image_grid, container, false);
+        initView();
 
 
 
@@ -117,8 +113,6 @@ public class UploadGalleryFile extends Fragment {
         });
 */
 
-
-        }
         return mView;
     }
 
@@ -127,13 +121,34 @@ public class UploadGalleryFile extends Fragment {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
             //you are visible to user now - so set whatever you need
-            //initView();
+           // initView();
         }
         else {
             //you are no longer visible to the user so cleanup whatever you need
             //clearView();
         }
     }
+
+    private void clearView() {
+        gridView = null;
+        spinner = null;
+        gridView = null;
+        spinner = null;
+        mUploadGalleryFileTask= null;
+        System.gc();
+    }
+
+    private void initView() {
+        if(mView!=null){
+            gridView = (RecyclerView) mView.findViewById(R.id.grid);
+            spinner = (ProgressBar) mView.findViewById(R.id.spinner);
+            gridView.setVisibility(View.GONE);
+            spinner.setVisibility(View.GONE);
+            mUploadGalleryFileTask= new UploadGalleryFileTask();
+            mUploadGalleryFileTask.execute((Void) null);
+        }
+    }
+
     public static final String CAMERA_IMAGE_BUCKET_NAME =
             Environment.getExternalStorageDirectory().toString()
                     + "/DCIM/Camera";
@@ -212,93 +227,11 @@ public class UploadGalleryFile extends Fragment {
     }
 
 
-    private static class ImageAdapter extends BaseAdapter {
 
-        private List<String>  IMAGE_URLS;
 
-        private LayoutInflater inflater;
-
-        private DisplayImageOptions options;
-
-        ImageAdapter(Context context, List<String> cameraImages) {
-            inflater = LayoutInflater.from(context);
-            IMAGE_URLS = cameraImages;
-            options = new DisplayImageOptions.Builder()
-                    .showImageOnLoading(R.drawable.ic_stub)
-                    .showImageForEmptyUri(R.drawable.ic_empty)
-                    .showImageOnFail(R.drawable.ic_error)
-                    .cacheInMemory(false)
-                    .cacheOnDisk(false)
-                    .considerExifParams(true)
-                    .bitmapConfig(Bitmap.Config.RGB_565)
-                    .build();
-        }
-
-        @Override
-        public int getCount() {
-            return IMAGE_URLS.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            final ViewHolder holder;
-            View view = convertView;
-            if (view == null) {
-                view = inflater.inflate(R.layout.item_grid_image, parent, false);
-                holder = new ViewHolder();
-                assert view != null;
-                holder.imageView = (ImageView) view.findViewById(R.id.image);
-                holder.progressBar = (ProgressBar) view.findViewById(R.id.progress);
-                view.setTag(holder);
-            } else {
-                holder = (ViewHolder) view.getTag();
-            }
-
-            ImageLoader.getInstance()
-                    .displayImage(IMAGE_URLS.get(position), holder.imageView, options, new SimpleImageLoadingListener() {
-                        @Override
-                        public void onLoadingStarted(String imageUri, View view) {
-                            holder.progressBar.setProgress(0);
-                            holder.progressBar.setVisibility(View.VISIBLE);
-                        }
-
-                        @Override
-                        public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                            holder.progressBar.setVisibility(View.GONE);
-                        }
-
-                        @Override
-                        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                            holder.progressBar.setVisibility(View.GONE);
-                        }
-                    }, new ImageLoadingProgressListener() {
-                        @Override
-                        public void onProgressUpdate(String imageUri, View view, int current, int total) {
-                            holder.progressBar.setProgress(Math.round(100.0f * current / total));
-                        }
-                    });
-
-            return view;
-        }
-    }
-
-    static class ViewHolder {
-        ImageView imageView;
-        ProgressBar progressBar;
-    }
     private void showSpinner(boolean show){
         spinner.setVisibility(show?View.VISIBLE:View.GONE);
-        listView.setVisibility(!show?View.VISIBLE:View.GONE);
+        gridView.setVisibility(!show?View.VISIBLE:View.GONE);
     }
 
     public class UploadGalleryFileTask extends AsyncTask<Void, Void, List<String>> {
@@ -322,7 +255,9 @@ public class UploadGalleryFile extends Fragment {
         protected void onPostExecute(List<String> list) {
             mUploadGalleryFileTask = null;
             showSpinner(false);
-            ((GridView) listView).setAdapter(new ImageAdapter(getActivity(), list));
+            LinearLayoutManager llmanager = new GridLayoutManager(getActivity(),3);
+            gridView.setLayoutManager(llmanager);
+            gridView.setAdapter(new CustomGalleryAdapter(getActivity().getApplicationContext(),list));
         }
 
         @Override
@@ -330,5 +265,11 @@ public class UploadGalleryFile extends Fragment {
             mUploadGalleryFileTask  = null;
             showSpinner(false);
         }
+
+    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        clearView();
     }
 }
