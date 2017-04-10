@@ -26,4 +26,5 @@
     <color name="ivo_white_light">#efefef</color>
     <color name="ivo_chat_received_message_cloud_bg">#f0f0f0</color>
     <color name="control_background">#cc4285f4</color>
+    <color name="ivo_gray_transparent">#ccb7b7b7</color>
 </resources>

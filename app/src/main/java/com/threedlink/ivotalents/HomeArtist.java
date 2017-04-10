@@ -211,11 +211,11 @@ public class HomeArtist extends Fragment {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
             //you are visible to user now - so set whatever you need
-            initView();
+            //initView();
         }
         else {
             //you are no longer visible to the user so cleanup whatever you need
-            clearView();
+            //clearView();
         }
     }
 

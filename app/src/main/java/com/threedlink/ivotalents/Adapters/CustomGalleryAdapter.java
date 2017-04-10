@@ -2,12 +2,15 @@ package com.threedlink.ivotalents.Adapters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -24,6 +27,7 @@ import java.util.List;
  */
 public class CustomGalleryAdapter extends RecyclerView.Adapter<CustomGalleryAdapter.ViewHolder> {
 
+    private static final String TAG = "CustomGalleryAdapter" ;
     private List<String> items;
 
     private Context context;
@@ -41,7 +45,9 @@ public class CustomGalleryAdapter extends RecyclerView.Adapter<CustomGalleryAdap
                 .cacheOnDisk(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .considerExifParams(true)
-                .imageScaleType(ImageScaleType.EXACTLY).build();
+                .imageScaleType(ImageScaleType.EXACTLY)
+                .resetViewBeforeLoading(true)
+                .build();
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -54,8 +60,29 @@ public class CustomGalleryAdapter extends RecyclerView.Adapter<CustomGalleryAdap
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+        String name = "Nombre no disponible";
+        String ext = null;
+        try {
+            String[] parentArr = items.get(position).split("/");
+            name = parentArr[parentArr.length-1];
+            String[] arr = name.split("\\.");
+            ext = arr[arr.length-1];
+        }catch (Exception e){
+            Log.e(TAG,"Error");
+        }
+        holder.txtName.setText(name);
 
-        ImageLoader.getInstance()
+        if(ext!=null && ext.equalsIgnoreCase("mp4")){
+            holder.playBtnVideo.setVisibility(View.VISIBLE);
+        }else if (ext!=null && ext.equalsIgnoreCase("mp3")||ext.equalsIgnoreCase("m4a")){
+            String uri = "@drawable/ic_audio";  // where myresource (without the extension) is the file
+            int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
+            Drawable res = context.getResources().getDrawable(imageResource);
+            holder.imageView.setImageDrawable(res);
+            holder.playBtnVideo.setVisibility(View.GONE);
+        }else {
+            holder.playBtnVideo.setVisibility(View.GONE);
+            ImageLoader.getInstance()
                 .displayImage(items.get(position), holder.imageView, options, new SimpleImageLoadingListener() {
                     @Override
                     public void onLoadingStarted(String imageUri, View view) {
@@ -78,6 +105,7 @@ public class CustomGalleryAdapter extends RecyclerView.Adapter<CustomGalleryAdap
                         holder.progressBar.setProgress(Math.round(100.0f * current / total));
                     }
                 });
+        }
     }
 
     @Override
@@ -92,12 +120,16 @@ public class CustomGalleryAdapter extends RecyclerView.Adapter<CustomGalleryAdap
 
     public static class ViewHolder  extends RecyclerView.ViewHolder{
         ImageView imageView;
+        ImageView playBtnVideo;
         ProgressBar progressBar;
+        TextView txtName;
 
         public ViewHolder(View itemView) {
             super(itemView);
             this.imageView = (ImageView) itemView.findViewById(R.id.image);
             this.progressBar = (ProgressBar) itemView.findViewById(R.id.progress);
+            this.txtName = (TextView) itemView.findViewById(R.id.name);
+            this.playBtnVideo = (ImageView) itemView.findViewById(R.id.btn_play_video);
         }
     }
 }

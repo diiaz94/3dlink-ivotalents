@@ -12,6 +12,27 @@
 		android:contentDescription="@string/descr_image"
 		android:scaleType="centerCrop"
 		/>
+    <ImageView
+        android:id="@+id/btn_play_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/btn_play_video"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        />
+	<TextView
+        android:id="@+id/name"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+        android:background="@color/ivo_gray_transparent"
+		android:text="name"
+        android:padding="5dp"
+        android:textColor="@color/ivo_white_light"
+        android:textSize="10dp"
+        android:layout_gravity="bottom"
+        />
 
 	<ProgressBar
 		android:id="@+id/progress"
@@ -20,5 +41,6 @@
 		android:indeterminate="false"
 		android:max="100"
 		android:layout_gravity="bottom"
+        android:visibility="gone"
 		style="@style/ProgressBarStyle" />
 </FrameLayout>

@@ -88,7 +88,7 @@ public class IvoTalentsApp extends Application {
 
         ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(getApplicationContext());
 
-        config.threadPoolSize(2);
+        config.threadPoolSize(5);
         config.threadPriority(Thread.NORM_PRIORITY - 2);
         config.denyCacheImageMultipleSizesInMemory();
         config.diskCacheFileNameGenerator(new Md5FileNameGenerator());

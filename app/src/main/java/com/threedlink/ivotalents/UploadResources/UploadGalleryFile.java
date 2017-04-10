@@ -3,6 +3,7 @@ package com.threedlink.ivotalents.UploadResources;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -20,6 +21,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -183,6 +185,52 @@ public class UploadGalleryFile extends Fragment {
         cursor.close();
         return result;
     }
+
+    public static List<String> getFiles(Context context){
+        ContentResolver cr = context.getContentResolver();
+        Uri uri = MediaStore.Files.getContentUri("external");
+
+        // every column, although that is huge waste, you probably need
+        // BaseColumns.DATA (the path) only.
+        String[] projection = null;
+
+        // exclude media files, they would be here also.
+        String selection = MediaStore.Files.FileColumns.MEDIA_TYPE + "=?";
+        String[] selectionArgs = {
+                MimeTypeMap.getSingleton().getMimeTypeFromExtension("jpeg")
+        };
+
+        String sortOrder = null; // unordered
+        Cursor cursor = cr.query(uri, projection, selection, selectionArgs, sortOrder);
+        ArrayList<String> result = new ArrayList<String>(cursor.getCount());
+        if (cursor.moveToFirst()) {
+            final int dataColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            do {
+                final String data = cursor.getString(dataColumn);
+                result.add("file:///"+data);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return result;
+    }
+
+    private List<String> getListFiles(File parentDir) {
+        ArrayList<String> inFiles = new ArrayList<String>();
+        File[] files = parentDir.listFiles();
+        for (File file : files) {
+            if (file.isDirectory()) {
+                inFiles.addAll(getListFiles(file));
+            } else {
+                if(file.getName().endsWith("jpg") ||
+                   file.getName().endsWith("mp4") ||
+                   file.getName().endsWith("mp3") ||
+                   file.getName().endsWith("m4a")){
+                    inFiles.add("file:///"+file.getPath());
+                }
+            }
+        }
+        return inFiles;
+    }
     @Override
     public void onPause() {
         super.onPause();
@@ -247,7 +295,8 @@ public class UploadGalleryFile extends Fragment {
         @Override
         protected List<String> doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-            List<String> list = getCameraImages(getContext());
+            List<String> list =  getListFiles(new File(Environment.getExternalStorageDirectory().toString()));
+            //List<String> list = getCameraImages(getContext());
             return list;
         }
 
