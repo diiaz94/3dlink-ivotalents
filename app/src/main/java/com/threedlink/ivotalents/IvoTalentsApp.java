@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -32,8 +33,10 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.threedlink.ivotalents.Services.ApiService;
 
@@ -63,8 +66,11 @@ public class IvoTalentsApp extends Application {
     private DrawerLayout mDrawer;
     public Activity mMainActivity;
     public FragmentManager mFragmenManager;
+    public ImageLoader imageLoader;
 
-
+    public ImageLoader getImageLoader() {
+        return imageLoader;
+    }
     @Override
     public void onCreate(){
         Log.e("PEDRO","PASO onStart IVOTALENTS");
@@ -86,8 +92,20 @@ public class IvoTalentsApp extends Application {
                 .build();
         apiService =   retrofit.create(ApiService.class);
 
-        ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(getApplicationContext());
+        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.drawable.ic_stub)
+                .showImageForEmptyUri(R.drawable.ic_empty)
+                .showImageOnFail(R.drawable.ic_error)
+                .cacheInMemory(false)
+                .cacheOnDisk(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .considerExifParams(true)
+                .imageScaleType(ImageScaleType.EXACTLY)
+                .resetViewBeforeLoading(true)
+                .build();
 
+        ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(getApplicationContext());
+        config.defaultDisplayImageOptions(defaultOptions);
         config.threadPoolSize(5);
         config.threadPriority(Thread.NORM_PRIORITY - 2);
         config.denyCacheImageMultipleSizesInMemory();
@@ -98,7 +116,8 @@ public class IvoTalentsApp extends Application {
         config.diskCacheExtraOptions(480, 320, null);
 
         // Initialize ImageLoader with configuration.
-        ImageLoader.getInstance().init(config.build());
+        this.imageLoader = ImageLoader.getInstance();
+        imageLoader.init(config.build());
     }
 
 

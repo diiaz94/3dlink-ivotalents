@@ -3,6 +3,8 @@ package com.threedlink.ivotalents.Adapters;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +20,7 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
 
 import java.util.List;
@@ -28,26 +31,16 @@ import java.util.List;
 public class CustomGalleryAdapter extends RecyclerView.Adapter<CustomGalleryAdapter.ViewHolder> {
 
     private static final String TAG = "CustomGalleryAdapter" ;
+    private final ImageLoader imageLoader;
     private List<String> items;
 
     private Context context;
 
-    private DisplayImageOptions options;
 
     public CustomGalleryAdapter(Context context, List<String> cameraImages) {
         this.context = context;
         items = cameraImages;
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.ic_stub)
-                .showImageForEmptyUri(R.drawable.ic_empty)
-                .showImageOnFail(R.drawable.ic_error)
-                .cacheInMemory(false)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .considerExifParams(true)
-                .imageScaleType(ImageScaleType.EXACTLY)
-                .resetViewBeforeLoading(true)
-                .build();
+        imageLoader = ((IvoTalentsApp)context.getApplicationContext()).getImageLoader();
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -62,50 +55,61 @@ public class CustomGalleryAdapter extends RecyclerView.Adapter<CustomGalleryAdap
     public void onBindViewHolder(final ViewHolder holder, int position) {
         String name = "Nombre no disponible";
         String ext = null;
+
         try {
-            String[] parentArr = items.get(position).split("/");
-            name = parentArr[parentArr.length-1];
-            String[] arr = name.split("\\.");
-            ext = arr[arr.length-1];
+            try {
+                String[] parentArr = items.get(position).split("/");
+                name = parentArr[parentArr.length-1];
+                String[] arr = name.split("\\.");
+                ext = arr[arr.length-1];
+            }catch (Exception e){
+                Log.e(TAG,"Error");
+            }
+            holder.txtName.setText(name);
+
+            if(ext!=null && ext.equalsIgnoreCase("mp4")){
+                holder.playBtnVideo.setVisibility(View.VISIBLE);
+            }else if (ext!=null && ext.equalsIgnoreCase("mp3")||ext.equalsIgnoreCase("m4a")){
+                String uri = "@drawable/ic_audio";  // where myresource (without the extension) is the file
+                int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
+                Drawable res = context.getResources().getDrawable(imageResource);
+                holder.imageView.setImageDrawable(res);
+                holder.playBtnVideo.setVisibility(View.GONE);
+            }else {
+                holder.playBtnVideo.setVisibility(View.GONE);
+
+                //holder.imageView.setImageBitmap(imageLoader.loadImageSync(items.get(position)));
+                // (new ThumbnailImage(items.get(position),holder.imageView)).execute();
+
+                //imageLoader.displayImage(items.get(position), holder.imageView);
+                imageLoader
+                    .displayImage(items.get(position), holder.imageView, null, new SimpleImageLoadingListener() {
+                        @Override
+                        public void onLoadingStarted(String imageUri, View view) {
+                            holder.progressBar.setProgress(0);
+                            holder.progressBar.setVisibility(View.VISIBLE);
+                        }
+
+                        @Override
+                        public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+                            holder.progressBar.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                            holder.progressBar.setVisibility(View.GONE);
+                        }
+                    },  new ImageLoadingProgressListener() {
+                        @Override
+                        public void onProgressUpdate(String imageUri, View view, int current, int total) {
+                            holder.progressBar.setProgress(Math.round(100.0f * current / total));
+                        }
+                    });
+            }
         }catch (Exception e){
-            Log.e(TAG,"Error");
+            Log.e("ERROR BINDVIEW",e.getMessage());
         }
-        holder.txtName.setText(name);
 
-        if(ext!=null && ext.equalsIgnoreCase("mp4")){
-            holder.playBtnVideo.setVisibility(View.VISIBLE);
-        }else if (ext!=null && ext.equalsIgnoreCase("mp3")||ext.equalsIgnoreCase("m4a")){
-            String uri = "@drawable/ic_audio";  // where myresource (without the extension) is the file
-            int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
-            Drawable res = context.getResources().getDrawable(imageResource);
-            holder.imageView.setImageDrawable(res);
-            holder.playBtnVideo.setVisibility(View.GONE);
-        }else {
-            holder.playBtnVideo.setVisibility(View.GONE);
-            ImageLoader.getInstance()
-                .displayImage(items.get(position), holder.imageView, options, new SimpleImageLoadingListener() {
-                    @Override
-                    public void onLoadingStarted(String imageUri, View view) {
-                        holder.progressBar.setProgress(0);
-                        holder.progressBar.setVisibility(View.VISIBLE);
-                    }
-
-                    @Override
-                    public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                        holder.progressBar.setVisibility(View.GONE);
-                    }
-
-                    @Override
-                    public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                        holder.progressBar.setVisibility(View.GONE);
-                    }
-                },  new ImageLoadingProgressListener() {
-                    @Override
-                    public void onProgressUpdate(String imageUri, View view, int current, int total) {
-                        holder.progressBar.setProgress(Math.round(100.0f * current / total));
-                    }
-                });
-        }
     }
 
     @Override
@@ -132,4 +136,31 @@ public class CustomGalleryAdapter extends RecyclerView.Adapter<CustomGalleryAdap
             this.playBtnVideo = (ImageView) itemView.findViewById(R.id.btn_play_video);
         }
     }
+
+    public class ThumbnailImage   extends AsyncTask<Void, Void, Bitmap> {
+
+        String uri;
+        ImageView imageView;
+
+        ThumbnailImage(String uri, ImageView imageView){
+            this.uri = uri;
+            this.imageView = imageView;
+        }
+        @Override
+        protected Bitmap doInBackground(Void... params) {
+            return imageLoader.loadImageSync(uri);
+        }
+        @Override
+        protected void onPostExecute(final Bitmap bm) {
+            imageView.setImageBitmap(bm);
+            try {
+                this.finalize();
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+            }
+        }
+
+
+    }
 }
+
