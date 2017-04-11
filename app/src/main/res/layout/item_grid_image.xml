@@ -25,7 +25,7 @@
 	<TextView
         android:id="@+id/name"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="30dp"
         android:background="@color/ivo_gray_transparent"
 		android:text="name"
         android:padding="5dp"
