@@ -4,7 +4,8 @@
 	android:id="@+id/fragment_upload_gallery_file"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context="com.threedlink.ivotalents.MainActivity">
+	tools:context="com.threedlink.ivotalents.MainActivity"
+	android:background="@color/black">
 	<android.support.v7.widget.RecyclerView
 		android:id="@+id/grid"
 		android:layout_width="match_parent"

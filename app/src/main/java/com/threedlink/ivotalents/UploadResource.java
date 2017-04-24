@@ -82,7 +82,7 @@ public class UploadResource extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_upload_resource, container, false);
         List<Fragment> pageFragments = new ArrayList<>();
         pageFragments.add(UploadGalleryFile.newInstance("",""));
-        pageFragments.add(UploadPhoto.newInstance(1));
+        pageFragments.add(UploadPhoto.newInstance("",""));
         pageFragments.add(UploadVideo.newInstance("",""));
         pageFragments.add(UploadVoice.newInstance("",""));
         adapter = new UploadResourceSwipeAdapter(getActivity().getSupportFragmentManager(),pageFragments);

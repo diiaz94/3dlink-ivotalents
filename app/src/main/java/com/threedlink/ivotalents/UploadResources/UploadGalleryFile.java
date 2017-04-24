@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,6 +19,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +38,8 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 import com.threedlink.ivotalents.Adapters.CustomGalleryAdapter;
+import com.threedlink.ivotalents.DTO.MediaResource;
+import com.threedlink.ivotalents.Previews.PhotoPreview;
 import com.threedlink.ivotalents.R;
 
 import java.io.File;
@@ -66,6 +70,8 @@ public class UploadGalleryFile extends Fragment {
     private ProgressBar spinner;
     private UploadGalleryFileTask mUploadGalleryFileTask;
     private View mView;
+    private ArrayList<MediaResource> mData;
+    private CustomGalleryAdapter mAdapter;
 
     public UploadGalleryFile() {
         // Required empty public constructor
@@ -143,12 +149,37 @@ public class UploadGalleryFile extends Fragment {
     private void initView() {
         if(mView!=null){
             gridView = (RecyclerView) mView.findViewById(R.id.grid);
+            LinearLayoutManager llmanager = new GridLayoutManager(getActivity(),3);
+            gridView.setLayoutManager(llmanager);
             spinner = (ProgressBar) mView.findViewById(R.id.spinner);
             gridView.setVisibility(View.GONE);
             spinner.setVisibility(View.GONE);
             mUploadGalleryFileTask= new UploadGalleryFileTask();
             mUploadGalleryFileTask.execute((Void) null);
+            mData = new ArrayList<MediaResource>();
+            mAdapter = new CustomGalleryAdapter(getActivity().getApplicationContext(),mData);
+            gridView.setAdapter(mAdapter);
+            mAdapter.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("DemoRecView", "Pulsado el elemento " + gridView.getChildPosition(v));
+                    displayPreview( gridView.getChildPosition(v));
+
+                }
+            });
+
         }
+    }
+
+    private void displayPreview(int position) {
+        MediaResource mr = mData.get(position);
+        switch (mr.getType()){
+            case PHOTO:
+                Intent intent = PhotoPreview.newIntentPhoto(getActivity(), mr.getPath());
+                startActivity(intent);
+                break;
+        }
+
     }
 
     public static final String CAMERA_IMAGE_BUCKET_NAME =
@@ -186,50 +217,73 @@ public class UploadGalleryFile extends Fragment {
         return result;
     }
 
-    public static List<String> getFiles(Context context){
+    public  ArrayList<MediaResource> getFiles(Context context){
         ContentResolver cr = context.getContentResolver();
         Uri uri = MediaStore.Files.getContentUri("external");
+        String[] projection =  {
+                                MediaStore.Files.FileColumns.DATA,
+                                MediaStore.Files.FileColumns._ID,
+                                MediaStore.Files.FileColumns.DATE_MODIFIED
+                                };
+        String selection =  MediaStore.Files.FileColumns.MIME_TYPE + "=? or "+
+                            MediaStore.Files.FileColumns.MIME_TYPE + "=? or "+
+                            MediaStore.Files.FileColumns.MIME_TYPE + "=? or "+
+                            MediaStore.Files.FileColumns.MIME_TYPE + "=? or "+
+                            MediaStore.Files.FileColumns.MIME_TYPE + "=? ";
 
-        // every column, although that is huge waste, you probably need
-        // BaseColumns.DATA (the path) only.
-        String[] projection = null;
-
-        // exclude media files, they would be here also.
-        String selection = MediaStore.Files.FileColumns.MEDIA_TYPE + "=?";
         String[] selectionArgs = {
-                MimeTypeMap.getSingleton().getMimeTypeFromExtension("jpeg")
-        };
-
-        String sortOrder = null; // unordered
+                                    MimeTypeMap.getSingleton().getMimeTypeFromExtension("jpeg"),
+                                    MimeTypeMap.getSingleton().getMimeTypeFromExtension("png"),
+                                    MimeTypeMap.getSingleton().getMimeTypeFromExtension("mp3"),
+                                    MimeTypeMap.getSingleton().getMimeTypeFromExtension("m4a"),
+                                    MimeTypeMap.getSingleton().getMimeTypeFromExtension("mp4")
+                                };
+        //String[] selectionArgs = {MediaStore.Files.FileColumns.MEDIA_TYPE_NONE};
+        String sortOrder = MediaStore.Images.Media.DATE_MODIFIED+ " DESC";
         Cursor cursor = cr.query(uri, projection, selection, selectionArgs, sortOrder);
-        ArrayList<String> result = new ArrayList<String>(cursor.getCount());
+        ArrayList<MediaResource> result = new ArrayList<MediaResource>(cursor.getCount());
         if (cursor.moveToFirst()) {
-            final int dataColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            final int dataColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA);
+            final int dateColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATE_MODIFIED);
             do {
                 final String data = cursor.getString(dataColumn);
-                result.add("file:///"+data);
+                final String date = cursor.getString(dateColumn);
+                result.add(new MediaResource("file:///"+data,date));
+
             } while (cursor.moveToNext());
         }
         cursor.close();
         return result;
     }
 
-    private List<String> getListFiles(File parentDir) {
-        ArrayList<String> inFiles = new ArrayList<String>();
+    private ArrayList<MediaResource> getListFiles(File parentDir) {
         File[] files = parentDir.listFiles();
         for (File file : files) {
             if (file.isDirectory()) {
-                inFiles.addAll(getListFiles(file));
+                mData.addAll(getListFiles(file));
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mAdapter.swap(mData);
+                    }
+                });
+
             } else {
                 if(file.getName().endsWith("jpg") ||
                    file.getName().endsWith("mp4") ||
                    file.getName().endsWith("mp3") ||
                    file.getName().endsWith("m4a")){
-                    inFiles.add("file:///"+file.getPath());
+                    //mData.add(new MediaResource("file:///"+file.getPath()));
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mAdapter.swap(mData);
+                        }
+                    });
                 }
             }
         }
-        return inFiles;
+        return mData;
     }
     @Override
     public void onPause() {
@@ -282,7 +336,7 @@ public class UploadGalleryFile extends Fragment {
         gridView.setVisibility(!show?View.VISIBLE:View.GONE);
     }
 
-    public class UploadGalleryFileTask extends AsyncTask<Void, Void, List<String>> {
+    public class UploadGalleryFileTask extends AsyncTask<Void, Void, ArrayList<MediaResource>> {
 
 
         UploadGalleryFileTask() {
@@ -293,20 +347,20 @@ public class UploadGalleryFile extends Fragment {
             showSpinner(true);
         }
         @Override
-        protected List<String> doInBackground(Void... params) {
+        protected ArrayList<MediaResource> doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-            List<String> list =  getListFiles(new File(Environment.getExternalStorageDirectory().toString()));
-            //List<String> list = getCameraImages(getContext());
-            return list;
+            mData = new ArrayList<MediaResource>();
+            //return getListFiles(new File(Environment.getExternalStorageDirectory().toString()));
+            return getFiles(getContext());
+
         }
 
         @Override
-        protected void onPostExecute(List<String> list) {
+        protected void onPostExecute(ArrayList<MediaResource> list) {
             mUploadGalleryFileTask = null;
             showSpinner(false);
-            LinearLayoutManager llmanager = new GridLayoutManager(getActivity(),3);
-            gridView.setLayoutManager(llmanager);
-            gridView.setAdapter(new CustomGalleryAdapter(getActivity().getApplicationContext(),list));
+            mData = list;
+            mAdapter.swap(list);
         }
 
         @Override

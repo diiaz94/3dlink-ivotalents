@@ -1,5 +1,6 @@
 package com.threedlink.ivotalents.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -20,26 +21,33 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+import com.threedlink.ivotalents.DTO.MediaResource;
 import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by diiaz94 on 06-04-2017.
  */
-public class CustomGalleryAdapter extends RecyclerView.Adapter<CustomGalleryAdapter.ViewHolder> {
+public class CustomGalleryAdapter extends RecyclerView.Adapter<CustomGalleryAdapter.ViewHolder> implements View.OnClickListener{
 
     private static final String TAG = "CustomGalleryAdapter" ;
     private final ImageLoader imageLoader;
-    private List<String> items;
+    private List<MediaResource> items;
 
     private Context context;
+    private View.OnClickListener listener;
+    public void swap(ArrayList<MediaResource> items){
 
-
-    public CustomGalleryAdapter(Context context, List<String> cameraImages) {
+        this.items.clear();
+        this.items.addAll(items);
+        notifyDataSetChanged();
+    }
+    public CustomGalleryAdapter(Context context, List<MediaResource> items) {
         this.context = context;
-        items = cameraImages;
+        this.items = items;
         imageLoader = ((IvoTalentsApp)context.getApplicationContext()).getImageLoader();
     }
     @Override
@@ -47,65 +55,60 @@ public class CustomGalleryAdapter extends RecyclerView.Adapter<CustomGalleryAdap
         View itemView = LayoutInflater.
                 from(parent.getContext()).
                 inflate(R.layout.item_grid_image, parent, false);
-
+        itemView.setOnClickListener(this);
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        String name = "Nombre no disponible";
-        String ext = null;
-
+        //holder.setIsRecyclable(false);
         try {
-            try {
-                String[] parentArr = items.get(position).split("/");
-                name = parentArr[parentArr.length-1];
-                String[] arr = name.split("\\.");
-                ext = arr[arr.length-1];
-            }catch (Exception e){
-                Log.e(TAG,"Error");
+            switch (items.get(position).getType()){
+
+                case VIDEO:
+                    holder.playBtnVideo.setVisibility(View.VISIBLE);
+                    imageLoader.displayImage(items.get(position).getPath(), holder.imageView);
+                    break;
+                case PHOTO:
+                    holder.playBtnVideo.setVisibility(View.GONE);
+                    imageLoader.displayImage(items.get(position).getPath(), holder.imageView);
+                    //holder.imageView.setImageBitmap(imageLoader.loadImageSync(items.get(position)));
+                    // (new ThumbnailImage(items.get(position),holder.imageView)).execute();
+
+                    //imageLoader.displayImage(items.get(position).getPath(),, holder.imageView);
+                   /* imageLoader
+                            .displayImage(items.get(position).getPath(), holder.imageView,null, new SimpleImageLoadingListener() {
+                                @Override
+                                public void onLoadingStarted(String imageUri, View view) {
+                                    holder.progressBar.setProgress(0);
+                                    holder.progressBar.setVisibility(View.VISIBLE);
+                                }
+
+                                @Override
+                                public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+                                    holder.progressBar.setVisibility(View.GONE);
+                                }
+
+                                @Override
+                                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                                    holder.progressBar.setVisibility(View.GONE);
+                                }
+                            },  new ImageLoadingProgressListener() {
+                                @Override
+                                public void onProgressUpdate(String imageUri, View view, int current, int total) {
+                                    holder.progressBar.setProgress(Math.round(100.0f * current / total));
+                                }
+                            });*/
+                    break;
+                case AUDIO:
+                    String uri = "@drawable/ic_audio";  // where myresource (without the extension) is the file
+                    int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
+                    Drawable res = context.getResources().getDrawable(imageResource);
+                    holder.imageView.setImageDrawable(res);
+                    holder.playBtnVideo.setVisibility(View.GONE);
+                    break;
             }
-            holder.txtName.setText(name);
-
-            if(ext!=null && ext.equalsIgnoreCase("mp4")){
-                holder.playBtnVideo.setVisibility(View.VISIBLE);
-            }else if (ext!=null && ext.equalsIgnoreCase("mp3")||ext.equalsIgnoreCase("m4a")){
-                String uri = "@drawable/ic_audio";  // where myresource (without the extension) is the file
-                int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
-                Drawable res = context.getResources().getDrawable(imageResource);
-                holder.imageView.setImageDrawable(res);
-                holder.playBtnVideo.setVisibility(View.GONE);
-            }else {
-                holder.playBtnVideo.setVisibility(View.GONE);
-
-                //holder.imageView.setImageBitmap(imageLoader.loadImageSync(items.get(position)));
-                // (new ThumbnailImage(items.get(position),holder.imageView)).execute();
-
-                //imageLoader.displayImage(items.get(position), holder.imageView);
-                imageLoader
-                    .displayImage(items.get(position), holder.imageView, null, new SimpleImageLoadingListener() {
-                        @Override
-                        public void onLoadingStarted(String imageUri, View view) {
-                            holder.progressBar.setProgress(0);
-                            holder.progressBar.setVisibility(View.VISIBLE);
-                        }
-
-                        @Override
-                        public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                            holder.progressBar.setVisibility(View.GONE);
-                        }
-
-                        @Override
-                        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                            holder.progressBar.setVisibility(View.GONE);
-                        }
-                    },  new ImageLoadingProgressListener() {
-                        @Override
-                        public void onProgressUpdate(String imageUri, View view, int current, int total) {
-                            holder.progressBar.setProgress(Math.round(100.0f * current / total));
-                        }
-                    });
-            }
+            holder.txtName.setText(items.get(position).getDate());
         }catch (Exception e){
             Log.e("ERROR BINDVIEW",e.getMessage());
         }
@@ -120,6 +123,14 @@ public class CustomGalleryAdapter extends RecyclerView.Adapter<CustomGalleryAdap
     @Override
     public int getItemCount() {
         return items.size();
+    }
+    public void setOnClickListener(View.OnClickListener listener) {
+        this.listener = listener;
+    }
+    @Override
+    public void onClick(View view) {
+        if(listener != null)
+            listener.onClick(view);
     }
 
     public static class ViewHolder  extends RecyclerView.ViewHolder{

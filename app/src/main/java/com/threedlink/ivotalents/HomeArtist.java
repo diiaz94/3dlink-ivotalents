@@ -203,7 +203,7 @@ public class HomeArtist extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        clearView();
+        //clearView();
     }
 
     @Override

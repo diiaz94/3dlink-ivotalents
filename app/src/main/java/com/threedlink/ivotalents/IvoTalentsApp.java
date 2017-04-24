@@ -93,9 +93,7 @@ public class IvoTalentsApp extends Application {
         apiService =   retrofit.create(ApiService.class);
 
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.ic_stub)
                 .showImageForEmptyUri(R.drawable.ic_empty)
-                .showImageOnFail(R.drawable.ic_error)
                 .cacheInMemory(false)
                 .cacheOnDisk(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)

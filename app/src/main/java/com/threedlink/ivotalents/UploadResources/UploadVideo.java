@@ -1,14 +1,23 @@
 package com.threedlink.ivotalents.UploadResources;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.RequiresPermission;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.florent37.camerafragment.CameraFragment;
+import com.github.florent37.camerafragment.CameraFragmentApi;
+import com.github.florent37.camerafragment.configuration.Configuration;
 import com.threedlink.ivotalents.R;
+
+import butterknife.Bind;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,9 +38,9 @@ public class UploadVideo extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-
+    private View mView;
     public UploadVideo() {
-        // Required empty public constructor
+        // Required empty public consViewtructor
     }
 
     /**
@@ -65,8 +74,52 @@ public class UploadVideo extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_upload_video, container, false);
+        mView = inflater.inflate(R.layout.fragment_upload_video, container, false);
+
+
+
+        return mView;
     }
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            //you are visible to user now - so set whatever you need
+            if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                initView();
+            }
+        }
+        else {
+            //you are no longer visible to the user so cleanup whatever you need
+            clearView();
+        }
+    }
+
+
+    @RequiresPermission(Manifest.permission.CAMERA)
+    private void initView() {
+        if(getActivity()!=null) {
+            if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                final CameraFragment cameraFragment = CameraFragment.newInstance(new Configuration.Builder()
+                        .setCamera(Configuration.CAMERA_FACE_REAR).build());
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(mView.findViewById(R.id.container_video).getId(), cameraFragment, this.getClass().getSimpleName())
+                        .commitAllowingStateLoss();
+
+
+            }
+        }
+    }
+    private void clearView() {
+        if(getActivity()!=null) {
+            Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag(this.getClass().getSimpleName());
+            if(fragment!=null)
+                getActivity().getSupportFragmentManager().beginTransaction().remove(fragment);
+        }
+    }
+
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -105,5 +158,9 @@ public class UploadVideo extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private CameraFragmentApi getCameraFragment() {
+        return (CameraFragmentApi) getActivity().getSupportFragmentManager().findFragmentByTag(this.getClass().getSimpleName());
     }
 }
