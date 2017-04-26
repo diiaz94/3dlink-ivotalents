@@ -1,14 +1,30 @@
 package com.threedlink.ivotalents.UploadResources;
 
 import android.content.Context;
+import android.media.MediaPlayer;
+import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.threedlink.ivotalents.R;
+
+import java.io.File;
+import java.io.IOException;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnLongClick;
+import butterknife.OnTouch;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,16 +34,27 @@ import com.threedlink.ivotalents.R;
  * Use the {@link UploadVoice#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class UploadVoice extends Fragment {
+public class UploadVoice extends Fragment implements MediaPlayer.OnCompletionListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String TAG = "UploadVoice";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    MediaRecorder recorder;
+    MediaPlayer player;
+    File file;
+    @Bind(R.id.status_text)
+    TextView statusText;
+    @Bind(R.id.init_recording_audio_btn)
+    Button initRecordingAudioBtn;
+    @Bind(R.id.stop_recording_audio_btn)
+    Button stopRecordingAudioBtn;
+    @Bind(R.id.play_record_btn)
+    Button playRecordBtn;
     private OnFragmentInteractionListener mListener;
 
     public UploadVoice() {
@@ -65,7 +92,11 @@ public class UploadVoice extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_upload_voice, container, false);
+        View v = inflater.inflate(R.layout.fragment_upload_voice, container, false);
+        ButterKnife.bind(this, v);
+
+
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -92,6 +123,11 @@ public class UploadVoice extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onCompletion(MediaPlayer mediaPlayer) {
+
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -106,4 +142,75 @@ public class UploadVoice extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
+    @OnTouch(R.id.init_recording_audio_btn)
+    public boolean releaseRecording(View v, MotionEvent ev) {
+        switch(ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                initRecording(v);
+            case MotionEvent.ACTION_UP:
+                stopRecording(v);
+                return true;
+
+        }
+        return false;
+    }
+
+
+    public boolean initRecording(View v) {
+        Log.i(TAG,"PRESSED");
+        recorder = new MediaRecorder();
+        recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        File path = new File(Environment.getExternalStorageDirectory()
+                .getPath());
+        try {
+            file = File.createTempFile("temporal", ".3gp", path);
+        } catch (IOException e) {
+        }
+        recorder.setOutputFile(file.getAbsolutePath());
+        try {
+            recorder.prepare();
+        } catch (IOException e) {
+        }
+        recorder.start();
+        statusText.setText("Grabando");
+        initRecordingAudioBtn.setEnabled(false);
+        //stopRecordingAudioBtn.setEnabled(true);
+        playRecordBtn.setEnabled(false);
+        return true;
+    }
+
+    @OnClick(R.id.stop_recording_audio_btn)
+    public void stopRecording(View v) {
+        Log.i(TAG,"RELEASED");
+        if (recorder==null)
+            return;
+        recorder.stop();
+        recorder.release();
+        player = new MediaPlayer();
+        player.setOnCompletionListener(this);
+        try {
+            player.setDataSource(file.getAbsolutePath());
+        } catch (IOException e) {
+            Log.e(TAG,e.getMessage());
+        }
+        try {
+            player.prepare();
+        } catch (IOException e) {
+            Log.e(TAG,e.getMessage());
+        }
+        statusText.setText("Listo para reproducir");
+        initRecordingAudioBtn.setEnabled(true);
+        stopRecordingAudioBtn.setEnabled(false);
+        playRecordBtn.setEnabled(true);
+    }
+    @OnClick(R.id.play_record_btn)
+    public void play(View v) {
+        player.start();
+
+    }
+
 }
