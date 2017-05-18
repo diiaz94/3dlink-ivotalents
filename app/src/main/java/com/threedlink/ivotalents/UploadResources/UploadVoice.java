@@ -1,4 +1,4 @@
-package com.threedlink.ivotalents.UploadResources;
+package com.threedlink.ivotalents.uploadresources;
 
 import android.content.Context;
 import android.media.MediaPlayer;
@@ -9,7 +9,6 @@ import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -23,8 +22,6 @@ import java.io.IOException;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnLongClick;
-import butterknife.OnTouch;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -143,23 +140,22 @@ public class UploadVoice extends Fragment implements MediaPlayer.OnCompletionLis
         void onFragmentInteraction(Uri uri);
     }
 
-
+/*
     @OnTouch(R.id.init_recording_audio_btn)
-    public boolean releaseRecording(View v, MotionEvent ev) {
+    public void releaseRecording(View v, MotionEvent ev) {
         switch(ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                initRecording(v);
+                // PRESSED
+
             case MotionEvent.ACTION_UP:
-                stopRecording(v);
-                return true;
+                // RELEASED
 
         }
-        return false;
-    }
 
+    }*/
 
-    public boolean initRecording(View v) {
-        Log.i(TAG,"PRESSED");
+    @OnClick(R.id.init_recording_audio_btn)
+    public void initRecording(View v) {
         recorder = new MediaRecorder();
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
@@ -178,16 +174,12 @@ public class UploadVoice extends Fragment implements MediaPlayer.OnCompletionLis
         recorder.start();
         statusText.setText("Grabando");
         initRecordingAudioBtn.setEnabled(false);
-        //stopRecordingAudioBtn.setEnabled(true);
+        stopRecordingAudioBtn.setEnabled(true);
         playRecordBtn.setEnabled(false);
-        return true;
     }
 
     @OnClick(R.id.stop_recording_audio_btn)
     public void stopRecording(View v) {
-        Log.i(TAG,"RELEASED");
-        if (recorder==null)
-            return;
         recorder.stop();
         recorder.release();
         player = new MediaPlayer();

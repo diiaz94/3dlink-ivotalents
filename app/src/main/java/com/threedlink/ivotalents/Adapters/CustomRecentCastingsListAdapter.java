@@ -1,29 +1,21 @@
-package com.threedlink.ivotalents.Adapters;
+package com.threedlink.ivotalents.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.threedlink.ivotalents.DTO.Casting;
+import com.threedlink.ivotalents.dtos.Casting;
 import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
-import com.threedlink.ivotalents.UploadActivity;
-import com.threedlink.ivotalents.UploadResource;
-import com.threedlink.ivotalents.ViewHolders.CastingViewHolder;
-import com.threedlink.ivotalents.ViewHolders.RolEntityViewHolder;
+import com.threedlink.ivotalents.activities.UploadActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,18 +32,23 @@ public class CustomRecentCastingsListAdapter extends RecyclerView.Adapter<Custom
         mApp = ((IvoTalentsApp) context);
     }
 
+
     @Override
-    public int getItemCount() {
-        return items.size();
+    public CastingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.
+                from(parent.getContext()).
+                inflate(R.layout.item_casting_list, parent, false);
+
+        return new CastingViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(CustomRecentCastingsListAdapter.CastingViewHolder itemsViewHolder, int i) {
-        itemsViewHolder.imCasting.setImageResource(items.get(i).getImageId());
-        itemsViewHolder.txtExpiration.setText(items.get(i).getExpiration());
-        itemsViewHolder.txtCategory.setText(items.get(i).getCategory());
-        itemsViewHolder.txtDescription.setText(items.get(i).getDescription());
-        itemsViewHolder.btnSeeMore.setOnClickListener(new View.OnClickListener() {
+    public void onBindViewHolder(CustomRecentCastingsListAdapter.CastingViewHolder holder, int position) {
+        holder.imCasting.setImageResource(items.get(position).getImageId());
+        holder.txtExpiration.setText(items.get(position).getExpiration());
+        holder.txtCategory.setText(items.get(position).getCategory());
+        holder.txtDescription.setText(items.get(position).getDescription());
+        holder.btnSeeMore.setOnClickListener(new View.OnClickListener() {
             public void onClick(View popupView) {
                 Log.d("onBindViewHolder", "onClick ");
                 Intent intent = new Intent(context,UploadActivity.class);
@@ -61,15 +58,11 @@ public class CustomRecentCastingsListAdapter extends RecyclerView.Adapter<Custom
         });
     }
 
-
     @Override
-    public CastingViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View itemView = LayoutInflater.
-                from(viewGroup.getContext()).
-                inflate(R.layout.item_casting_list, viewGroup, false);
-
-        return new CastingViewHolder(itemView);
+    public int getItemCount() {
+        return items.size();
     }
+
 
     public static class CastingViewHolder  extends RecyclerView.ViewHolder {
 

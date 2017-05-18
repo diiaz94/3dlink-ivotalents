@@ -1,4 +1,4 @@
-package com.threedlink.ivotalents.Adapters;
+package com.threedlink.ivotalents.adapters;
 
 /**
  * Created by diiaz94 on 19-01-2017.
@@ -9,8 +9,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
-import com.threedlink.ivotalents.ReceivedMessages;
-import com.threedlink.ivotalents.SendMessages;
+import com.threedlink.ivotalents.fragments.ReceivedMessages;
+import com.threedlink.ivotalents.fragments.SendMessages;
 
 
 public class MessagesSwipeAdapter extends FragmentStatePagerAdapter {

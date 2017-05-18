@@ -1,13 +1,8 @@
-package com.threedlink.ivotalents.Adapters;
+package com.threedlink.ivotalents.adapters;
 
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-
-import com.threedlink.ivotalents.UploadResources.UploadGalleryFile;
-import com.threedlink.ivotalents.UploadResources.UploadPhoto;
-import com.threedlink.ivotalents.UploadResources.UploadVideo;
-import com.threedlink.ivotalents.UploadResources.UploadVoice;
 
 import java.util.List;
 

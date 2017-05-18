@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UploadResources.UploadPhoto"
+    tools:context=".uploadresources.UploadPhoto"
     android:id="@+id/container_photo">
 
 </FrameLayout>

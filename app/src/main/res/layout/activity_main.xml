@@ -105,7 +105,7 @@
                                     android:id="@+id/artist_count_fans"/>
                                 <TextView android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="fans"
+                                    android:text=" fans"
                                     android:textStyle="italic|bold"
                                     android:textSize="12sp"
                                     android:textColor="#ffffff"
@@ -114,36 +114,14 @@
                             <LinearLayout android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
-                                android:layout_marginTop="5dp">
-                                <ImageView
-                                    android:layout_width="8pt"
-                                    android:layout_height="8pt"
-                                    android:src="@drawable/fill_star"
-                                    android:layout_gravity="top|left"
-                                    android:layout_marginRight="1dp"/>
-                                <ImageView
-                                    android:layout_width="8pt"
-                                    android:layout_height="8pt"
-                                    android:src="@drawable/fill_star"
-                                    android:layout_gravity="top|left"
-                                    android:layout_marginRight="1dp"/>
-                                <ImageView
-                                    android:layout_width="8pt"
-                                    android:layout_height="8pt"
-                                    android:src="@drawable/fill_star"
-                                    android:layout_gravity="top|left"
-                                    android:layout_marginRight="1dp"/>
-                                <ImageView
-                                    android:layout_width="8pt"
-                                    android:layout_height="8pt"
-                                    android:src="@drawable/fill_star"
-                                    android:layout_gravity="top|left"
-                                    android:layout_marginRight="1dp"/>
-                                <ImageView
+                                android:layout_marginTop="5dp"
+                                android:id="@+id/stars_puntuation">
+                                <ImageView android:id="@+id/template_star"
                                     android:layout_width="8pt"
                                     android:layout_height="8pt"
                                     android:src="@drawable/empty_star"
-                                    android:layout_gravity="top|left" />
+                                    android:layout_gravity="top|left"
+                                    android:visibility="gone"/>
 
                             </LinearLayout>
                             <TextView android:layout_width="wrap_content"
@@ -282,11 +260,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:src="@drawable/separador"
+                        android:visibility="gone"
                         />
-                    <FrameLayout
+                    <FrameLayout android:id="@+id/opcion_my_competitions"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:paddingLeft="20dp">
+                        android:paddingLeft="20dp"
+                        android:clickable="true">
 
                         <TextView android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -306,7 +286,7 @@
                     android:src="#05897e"
                     />
                 <LinearLayout android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="fill_parent"
                     android:background="#00c4b4"
                     android:orientation="vertical"
                     android:paddingTop="15dp">
@@ -329,7 +309,8 @@
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
-                        android:paddingLeft="20dp">
+                        android:paddingLeft="20dp"
+                        android:visibility="gone">
                         <TextView android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Industria"
@@ -358,7 +339,8 @@
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
-                        android:paddingLeft="20dp">
+                        android:paddingLeft="20dp"
+                        android:visibility="gone">
                         <TextView android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Proveedores"

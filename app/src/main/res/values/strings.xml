@@ -255,4 +255,16 @@
     </string>
 
     <string name="descr_image">Image</string>
+    <string name="load_recents_castings_text">Cargando castings recientes...</string>
+    <string name="error_load_recents_castings_text">Ha ocurrido un error cargando los castings recientes</string>
+    <string name="load_recents_providers_text">Cargando proveedores...</string>
+    <string name="error_load_recents_providers_text">Ha ocurrido un error cargando los proveedores</string>
+    <string name="load_participations_finished_text">Cargando castings/audiciones terminados</string>
+    <string name="load_participations_started_text">Cargando castings/audiciones...</string>
+    <string name="label_default_participations_option_text">Mis castings/audiciones</string>
+    <string name="label_castings_participations_option_text">Mis castings</string>
+    <string name="label_auditions_participations_option_text">Mis audiciones</string>
+    <string name="label_auditions_participations_text">AUDICIONES</string>
+    <string name="label_castings_participations_text">CASTINGS</string>
+    <string name="label_both_participations_text">CASTINGS/AUDICIONES</string>
 </resources>

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.threedlink.ivotalents.HomeArtist"
+    tools:context=".fragments.HomeArtist"
     android:orientation="vertical"
     android:id="@+id/fragment_home_artist"
     >
@@ -19,86 +19,171 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="40dp">
-            <LinearLayout
+            <LinearLayout android:id="@+id/castings_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
-                <TextView
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="15sp"
-                    android:padding="3dp"
-                    android:layout_width="100dp"
-                    android:layout_height="25dp"
-                    android:text="@string/lbl_castings"
-                    android:background="@drawable/bg_lbl_green"
-                    android:tag="bold"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/subtitle_recent_castings"
-                    android:layout_marginTop="10dp"
-                    android:textColor="@color/black"
-                    android:tag="normal"
-                    android:textSize="16sp"
-
-                    />
-                <LinearLayout
+                android:visibility="visible">
+                <LinearLayout android:id="@+id/castings_data_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+                    <TextView
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:padding="3dp"
+                        android:layout_width="100dp"
+                        android:layout_height="25dp"
+                        android:text="@string/lbl_castings"
+                        android:background="@drawable/bg_lbl_green"
+                        android:tag="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/subtitle_recent_castings"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/black"
+                        android:tag="normal"
+                        android:textSize="16sp"
+
+                        />
                     <LinearLayout
-                        android:id="@+id/recent_castings_container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:orientation="vertical">
-                        <android.support.v7.widget.RecyclerView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/newCastingsList"
-                            android:horizontalSpacing="5dp"
-                            android:verticalSpacing="5dp"/>
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/ivo_gray_audio_dark"/>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp">
-                            <TextView
-                                android:layout_width="wrap_content"
+                            android:orientation="vertical">
+                            <android.support.v7.widget.RecyclerView
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textStyle="italic"
-                                android:text="@string/txt_see_all_oportunities"
-                                android:textColor="@color/ivo_green_dark"
-                                android:textSize="14sp"
-                                android:tag="semibolditalic"
-                                android:clickable="true"/>
+                                android:id="@+id/castings_recycler"
+                                android:horizontalSpacing="5dp"
+                                android:verticalSpacing="5dp"/>
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/ivo_gray_audio_dark"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="italic"
+                                    android:text="@string/txt_see_all_oportunities"
+                                    android:textColor="@color/ivo_green_dark"
+                                    android:textSize="14sp"
+                                    android:tag="semibolditalic"
+                                    android:clickable="true"/>
+                            </LinearLayout>
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/ivo_gray_dark"/>
                         </LinearLayout>
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/ivo_gray_dark"/>
+
                     </LinearLayout>
-                    <ProgressBar
-                        android:id="@+id/spinner1"
+                </LinearLayout>
+                <LinearLayout android:id="@+id/castings_progress_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/castings_text_info"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+                    <ProgressBar android:id="@+id/castings_spinner"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_gravity="center"
                         android:progressDrawable="@drawable/circular_progress_bar"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout android:id="@+id/providers_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <LinearLayout android:id="@+id/providers_data_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+                    <TextView
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:padding="3dp"
+                        android:layout_width="140dp"
+                        android:layout_height="25dp"
+                        android:text="@string/lbl_providers"
+                        android:background="@drawable/bg_lbl_pink"
+                        android:tag="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/subtitle_recent_providers"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/black"
+                        android:tag="normal"
+                        android:textSize="16sp"
 
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <android.support.v7.widget.RecyclerView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/providers_recycler"
+                                android:horizontalSpacing="5dp"
+                                android:verticalSpacing="5dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:id="@+id/providers_progress_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/providers_text_info"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+                    <ProgressBar android:id="@+id/providers_spinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:progressDrawable="@drawable/circular_progress_bar"/>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -141,6 +226,7 @@
                         android:verticalSpacing="5dp"/>
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

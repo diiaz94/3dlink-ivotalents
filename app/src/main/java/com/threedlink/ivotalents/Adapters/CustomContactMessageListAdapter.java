@@ -1,18 +1,15 @@
-package com.threedlink.ivotalents.Adapters;
+package com.threedlink.ivotalents.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ListAdapter;
 
-import com.threedlink.ivotalents.DTO.Contact;
-import com.threedlink.ivotalents.DTO.Message;
+import com.threedlink.ivotalents.dtos.Contact;
 import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
-import com.threedlink.ivotalents.ViewHolders.ContactViewHolder;
-import com.threedlink.ivotalents.ViewHolders.MessageViewHolder;
+import com.threedlink.ivotalents.viewholders.ContactViewHolder;
 
 import java.util.ArrayList;
 

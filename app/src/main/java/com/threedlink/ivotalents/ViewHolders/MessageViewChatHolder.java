@@ -1,7 +1,6 @@
-package com.threedlink.ivotalents.ViewHolders;
+package com.threedlink.ivotalents.viewholders;
 
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.threedlink.ivotalents.R;

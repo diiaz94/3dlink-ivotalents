@@ -13,7 +13,6 @@ import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
-import android.text.Layout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -38,7 +37,10 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-import com.threedlink.ivotalents.Services.ApiService;
+import com.threedlink.ivotalents.dtos.RolEntity;
+import com.threedlink.ivotalents.fragments.PopupInfo;
+import com.threedlink.ivotalents.fragments.SessionManager;
+import com.threedlink.ivotalents.services.ApiService;
 
 import java.util.ArrayList;
 
@@ -67,6 +69,7 @@ public class IvoTalentsApp extends Application {
     public Activity mMainActivity;
     public FragmentManager mFragmenManager;
     public ImageLoader imageLoader;
+    private RolEntity entitySession;
 
     public ImageLoader getImageLoader() {
         return imageLoader;
@@ -352,6 +355,14 @@ public class IvoTalentsApp extends Application {
             mMainContainerView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
+
+    public void setEntitySession(RolEntity entitySession) {
+        this.entitySession = entitySession;
+    }
+    public RolEntity getEntitySession() {
+        return this.entitySession;
+    }
+
 
     public class FragmentTask extends AsyncTask<Void, Void, Boolean> {
 

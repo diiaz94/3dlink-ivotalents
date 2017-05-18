@@ -1,4 +1,4 @@
-package com.threedlink.ivotalents.UploadResources;
+package com.threedlink.ivotalents.uploadresources;
 /*
  * Copyright 2014 The Android Open Source Project
  *

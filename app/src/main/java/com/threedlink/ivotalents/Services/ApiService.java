@@ -1,18 +1,22 @@
-package com.threedlink.ivotalents.Services;
+package com.threedlink.ivotalents.services;
 
-import com.threedlink.ivotalents.DTO.Casting;
-import com.threedlink.ivotalents.DTO.Ticket;
-import com.threedlink.ivotalents.DTO.User;
+import com.threedlink.ivotalents.dtos.Artist;
+import com.threedlink.ivotalents.dtos.Casting;
+import com.threedlink.ivotalents.dtos.RolEntity;
+import com.threedlink.ivotalents.dtos.Ticket;
+import com.threedlink.ivotalents.dtos.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Created by diiaz94 on 19-03-2017.
@@ -37,6 +41,23 @@ public interface ApiService {
     @Headers({"Content-Type: application/json"})
     @GET("castings")
     Call<ArrayList<Casting>> castings(@Header("Authorizacion") String JWT);
+
+    @Headers({"Content-Type: application/json"})
+    @GET("providers")
+    Call<ArrayList<RolEntity>> providers(@Header("Authorizacion") String JWT);
+
+    @Headers({"Content-Type: application/json"})
+    @GET("participations-finished")
+    Call<ArrayList<Casting>> participationsFinished(@Header("Authorizacion") String JWT);
+
+    @Headers({"Content-Type: application/json"})
+    @GET("participations-started")
+    Call<ArrayList<Casting>> participationsStarted(@Header("Authorizacion") String JWT);
+
+    @Headers({"Content-Type: application/json"})
+    @GET("user")
+    Call<RolEntity> general_information(@Header("Authorizacion") String JWT,@Query("email") String email);
+
 
 }
 

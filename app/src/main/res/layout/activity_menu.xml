@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.threedlink.ivotalents.MenuActivity"
+    tools:context=".activities.MenuActivity"
     android:background="#dc000000">
     <FrameLayout
         android:layout_width="match_parent"

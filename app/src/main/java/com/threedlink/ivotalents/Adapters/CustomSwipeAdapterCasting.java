@@ -1,4 +1,4 @@
-package com.threedlink.ivotalents.Adapters;
+package com.threedlink.ivotalents.adapters;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;

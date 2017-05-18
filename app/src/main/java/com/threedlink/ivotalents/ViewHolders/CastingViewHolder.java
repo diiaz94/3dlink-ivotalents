@@ -1,4 +1,4 @@
-package com.threedlink.ivotalents.ViewHolders;
+package com.threedlink.ivotalents.viewholders;
 
 import android.view.View;
 import android.widget.Button;

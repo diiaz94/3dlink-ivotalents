@@ -1,17 +1,11 @@
-package com.threedlink.ivotalents.UploadResources;
+package com.threedlink.ivotalents.uploadresources;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -24,22 +18,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
-import com.threedlink.ivotalents.Adapters.CustomGalleryAdapter;
-import com.threedlink.ivotalents.DTO.MediaResource;
-import com.threedlink.ivotalents.Previews.PhotoPreview;
+import com.threedlink.ivotalents.adapters.CustomGalleryAdapter;
+import com.threedlink.ivotalents.dtos.MediaResource;
+import com.threedlink.ivotalents.previews.PhotoPreview;
 import com.threedlink.ivotalents.R;
 
 import java.io.File;

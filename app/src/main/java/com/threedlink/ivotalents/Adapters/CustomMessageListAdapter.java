@@ -1,4 +1,4 @@
-package com.threedlink.ivotalents.Adapters;
+package com.threedlink.ivotalents.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,12 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.threedlink.ivotalents.DTO.Casting;
-import com.threedlink.ivotalents.DTO.Message;
+import com.threedlink.ivotalents.dtos.Message;
 import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
-import com.threedlink.ivotalents.ViewHolders.CastingViewHolder;
-import com.threedlink.ivotalents.ViewHolders.MessageViewHolder;
+import com.threedlink.ivotalents.viewholders.MessageViewHolder;
 
 import java.util.ArrayList;
 

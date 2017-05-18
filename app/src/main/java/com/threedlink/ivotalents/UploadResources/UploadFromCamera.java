@@ -1,4 +1,4 @@
-package com.threedlink.ivotalents.UploadResources;
+package com.threedlink.ivotalents.uploadresources;
 
 import android.Manifest;
 import android.content.Context;

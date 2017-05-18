@@ -1,4 +1,4 @@
-package com.threedlink.ivotalents.UploadResources;
+package com.threedlink.ivotalents.uploadresources;
 
 import android.Manifest;
 import android.content.Context;
@@ -16,8 +16,6 @@ import com.github.florent37.camerafragment.CameraFragment;
 import com.github.florent37.camerafragment.CameraFragmentApi;
 import com.github.florent37.camerafragment.configuration.Configuration;
 import com.threedlink.ivotalents.R;
-
-import butterknife.Bind;
 
 /**
  * A simple {@link Fragment} subclass.

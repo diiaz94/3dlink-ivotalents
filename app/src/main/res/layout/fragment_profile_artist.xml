@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.threedlink.ivotalents.ProfileArtist"
+    tools:context=".fragments.ProfileArtist"
     android:id="@+id/fragment_profile_artist">
 
     <ScrollView
@@ -36,8 +36,7 @@
                 android:orientation="vertical"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp">
-                <LinearLayout
-                    android:id="@+id/datosPrincipales"
+                <LinearLayout android:id="@+id/datosPrincipales"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -407,8 +406,7 @@
                     </LinearLayout>
 
                 </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/intereses"
+                <LinearLayout android:id="@+id/intereses"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -530,118 +528,115 @@
                     android:background="@color/ivo_line_gray">
                 </FrameLayout>
 
-                <LinearLayout
-                    android:id="@+id/tabsSection"
+                <LinearLayout android:id="@+id/tabsSection"
                     android:layout_width="match_parent"
                     android:layout_height="340dp"
                     android:orientation="vertical"
                     android:layout_marginTop="20dp"
-                    android:visibility="gone">
+                    android:visibility="visible">
                     <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="35dp"
-                    android:background="@drawable/border_orange_shape"
-                    android:orientation="horizontal"
-                    android:weightSum="4">
-                    <LinearLayout
-                        android:id="@+id/tabFotos"
-                        android:clickable="true"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/border_orange_shape_solid"
-                        android:orientation="horizontal"
-                        android:layout_weight="0.9"
-                        android:gravity="center"
-                        android:layout_marginLeft="-2.5px"
-                        >
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_gravity="center|center">
-                            <TextView
-                                android:id="@+id/tabTextFotos"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="FOTOS"
-                                android:textColor="@color/white"
-                                android:textSize="12sp"/>
-                        </LinearLayout>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/tabAudios"
-                        android:clickable="true"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="fill_parent"
+                        android:layout_height="35dp"
                         android:background="@drawable/border_orange_shape"
                         android:orientation="horizontal"
-                        android:layout_weight="0.9"
-                        android:layout_marginLeft="-2.5px"
-                        android:gravity="center">
+                        android:weightSum="4">
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/tabFotos"
+                            android:clickable="true"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/border_orange_shape_solid"
                             android:orientation="horizontal"
-                            android:layout_gravity="center|center">
-                            <TextView
-                                android:id="@+id/tabTextAudios"
+                            android:layout_weight="0.9"
+                            android:gravity="center"
+                            android:layout_marginLeft="-2.5px">
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="AUDIOS"
-                                android:textColor="@color/ivo_orange"
-                                android:textSize="12sp"/>
-                        </LinearLayout>
+                                android:orientation="horizontal"
+                                android:layout_gravity="center|center">
+                                <TextView
+                                    android:id="@+id/tabTextFotos"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="FOTOS"
+                                    android:textColor="@color/white"
+                                    android:textSize="12sp"/>
+                            </LinearLayout>
                     </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/tabVideos"
-                        android:clickable="true"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/border_orange_shape"
-                        android:orientation="horizontal"
-                        android:layout_weight="0.9"
-                        android:gravity="center"
-                        android:layout_marginLeft="-2.5px">
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/tabAudios"
+                            android:clickable="true"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/border_orange_shape"
                             android:orientation="horizontal"
-                            android:layout_gravity="center|center">
-                            <TextView
-                                android:id="@+id/tabTextVideos"
+                            android:layout_weight="0.9"
+                            android:layout_marginLeft="-2.5px"
+                            android:gravity="center">
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="VIDEOS"
-                                android:textColor="@color/ivo_orange"
-                                android:textSize="12sp"/>
+                                android:orientation="horizontal"
+                                android:layout_gravity="center|center">
+                                <TextView
+                                    android:id="@+id/tabTextAudios"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="AUDIOS"
+                                    android:textColor="@color/ivo_orange"
+                                    android:textSize="12sp"/>
+                            </LinearLayout>
                         </LinearLayout>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/tabExperiencias"
-                        android:clickable="true"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/border_orange_shape"
-                        android:orientation="horizontal"
-                        android:layout_weight="1.3"
-                        android:gravity="center"
-                        android:layout_marginLeft="-2.5px"
-                        >
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/tabVideos"
+                            android:clickable="true"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/border_orange_shape"
                             android:orientation="horizontal"
-                            android:layout_gravity="center|center">
-                            <TextView
-                                android:id="@+id/tabTextExperiencias"
+                            android:layout_weight="0.9"
+                            android:gravity="center"
+                            android:layout_marginLeft="-2.5px">
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="EXPERIENCIA"
-                                android:textColor="@color/ivo_orange"
-                                android:textSize="12sp"/>
+                                android:orientation="horizontal"
+                                android:layout_gravity="center|center">
+                                <TextView
+                                    android:id="@+id/tabTextVideos"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="VIDEOS"
+                                    android:textColor="@color/ivo_orange"
+                                    android:textSize="12sp"/>
+                            </LinearLayout>
                         </LinearLayout>
-                    </LinearLayout>
-
+                        <LinearLayout
+                            android:id="@+id/tabExperiencias"
+                            android:clickable="true"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/border_orange_shape"
+                            android:orientation="horizontal"
+                            android:layout_weight="1.3"
+                            android:gravity="center"
+                            android:layout_marginLeft="-2.5px"
+                            >
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_gravity="center|center">
+                                <TextView
+                                    android:id="@+id/tabTextExperiencias"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="EXPERIENCIA"
+                                    android:textColor="@color/ivo_orange"
+                                    android:textSize="12sp"/>
+                            </LinearLayout>
+                        </LinearLayout>
                 </LinearLayout>
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -662,14 +657,15 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:orientation="vertical"
-                                    android:visibility="gone">
+                                    android:visibility="visible">
 
                                     <LinearLayout
                                         android:id="@+id/content_tab_fotos"
                                         android:layout_width="match_parent"
                                         android:layout_height="230dp"
                                         android:orientation="vertical"
-                                        android:weightSum="3">
+                                        android:weightSum="3"
+                                        android:visibility="gone">
 
                                         <LinearLayout
                                             android:layout_width="fill_parent"
@@ -873,6 +869,10 @@
 
 
                                     </LinearLayout>
+                                    <android.support.v7.widget.RecyclerView
+                                        android:id="@+id/artist_photos_recycler"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="50dp"
@@ -1477,7 +1477,6 @@
                         </ScrollView>
                     </FrameLayout>
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:id="@+id/caracteristicas"

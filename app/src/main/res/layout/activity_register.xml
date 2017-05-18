@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_register"
-    tools:context="com.threedlink.ivotalents.RegisterActivity">
+    tools:context=".activities.RegisterActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
