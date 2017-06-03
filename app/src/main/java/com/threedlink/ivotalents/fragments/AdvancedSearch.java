@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
+import com.threedlink.ivotalents.asynctasks.FontApplyTask;
 
 
 /**
@@ -112,7 +113,7 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_advanced_search, container, false);
         RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_advanced_search);
-        mApp.setFontsOnRelative(myLayout);
+        mApp.applyFonts(myLayout);
         idxLayoutActual=0;
         nextFilter = (LinearLayout) view.findViewById(R.id.nextFilter);
         nextFilter.setOnClickListener(this);
@@ -238,7 +239,7 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
                 TextView text = new TextView(getActivity().getApplicationContext());
                 text.setLayoutParams(paramsTextView);
                 text.setText(array[i]);
-                text.setTypeface(mApp.getFont());
+                text.setTypeface(FontApplyTask.getFont(getActivity().getApplicationContext()));
                 LinearLayout row = new LinearLayout(getActivity().getApplicationContext());
                 row.setLayoutParams(paramsLayout);
                 row.addView(text);
@@ -248,7 +249,7 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
                         LinearLayout l = (LinearLayout) v;
                         TextView t = (TextView) l.getChildAt(0);
                         select2.setText(t.getText());
-                        select2.setTypeface(mApp.getFontBold());
+                        select2.setTypeface(FontApplyTask.getFontBold(getActivity().getApplicationContext()));
                         closeSelect2(v.getRootView());
                     }
                 });
@@ -306,7 +307,7 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
                 TextView text = new TextView(getActivity().getApplicationContext());
                 text.setLayoutParams(paramsTextView);
                 text.setText(array[i]);
-                text.setTypeface(mApp.getFont());
+                text.setTypeface(FontApplyTask.getFont(getActivity().getApplicationContext()));
                 LinearLayout row = new LinearLayout(getActivity().getApplicationContext());
                 row.setLayoutParams(paramsLayout);
                 row.addView(text);
@@ -318,7 +319,7 @@ public class AdvancedSearch extends Fragment implements View.OnClickListener {
                         LinearLayout l = (LinearLayout) v;
                         TextView t = (TextView) l.getChildAt(0);
                         select.setText(t.getText());
-                        select.setTypeface(mApp.getFontBold());
+                        select.setTypeface(FontApplyTask.getFontBold(getActivity().getApplicationContext()));
                         closeSelect(v.getRootView());
                     }
                 });

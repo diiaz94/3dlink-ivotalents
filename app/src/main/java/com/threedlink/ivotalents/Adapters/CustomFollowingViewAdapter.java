@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.threedlink.ivotalents.asynctasks.FontApplyTask;
 import com.threedlink.ivotalents.dtos.RolEntity;
 import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
@@ -60,9 +61,9 @@ public class CustomFollowingViewAdapter extends BaseAdapter {
         holder.getTxtName().setText(list.get(position).getName());
         holder.getTxtAbilitie().setText(list.get(position).getAbility());
 
-        holder.getTxtCategory().setTypeface(mApp.getFont());
-        holder.getTxtName().setTypeface(mApp.getFontBold());
-        holder.getTxtAbilitie().setTypeface(mApp.getFont());
+        holder.getTxtCategory().setTypeface(FontApplyTask.getFont(ctx));
+        holder.getTxtName().setTypeface(FontApplyTask.getFontBold(ctx));
+        holder.getTxtAbilitie().setTypeface(FontApplyTask.getFont(ctx));
 
         //Log.e("GETVIEW HEIGHT::", String.valueOf(row.getLayoutParams().height));
 

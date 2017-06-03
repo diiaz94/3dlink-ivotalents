@@ -8,13 +8,20 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class RolEntity extends User{
-    @SerializedName("nombre")
+
+    @SerializedName("img_url")
+    @Expose
+    String imgUrl;
+
+    @SerializedName(value="name" , alternate={"nombre"})
     @Expose
     String name;
 
+    @SerializedName(value="category" , alternate={"categoria"})
+    @Expose
     String category;
 
-    @SerializedName("habilidad")
+    @SerializedName(value="ability" , alternate={"habilidad"})
     @Expose
     String ability;
 
@@ -81,5 +88,13 @@ public class RolEntity extends User{
 
     public void setPuntuacion(float puntuacion) {
         this.puntuacion = puntuacion;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }

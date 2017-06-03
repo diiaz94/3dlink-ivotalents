@@ -530,7 +530,7 @@
 
                 <LinearLayout android:id="@+id/tabsSection"
                     android:layout_width="match_parent"
-                    android:layout_height="340dp"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginTop="20dp"
                     android:visibility="visible">
@@ -539,7 +539,8 @@
                         android:layout_height="35dp"
                         android:background="@drawable/border_orange_shape"
                         android:orientation="horizontal"
-                        android:weightSum="4">
+                        android:weightSum="4"
+                        android:visibility="gone">
                         <LinearLayout
                             android:id="@+id/tabFotos"
                             android:clickable="true"
@@ -640,7 +641,8 @@
                 </LinearLayout>
                     <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:visibility="gone">
                         <ScrollView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -1476,6 +1478,29 @@
                             </LinearLayout>
                         </ScrollView>
                     </FrameLayout>
+                    <android.support.design.widget.TabLayout
+                        android:id="@+id/tab_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_below="@+id/toolbar"
+                        android:elevation="6dp"
+                        android:minHeight="5dp"
+                        app:tabIndicatorColor="@color/ivo_orange"
+                        app:tabSelectedTextColor="@color/white"
+                        app:tabBackground="@drawable/tab_color_profile"
+                        app:tabTextColor="@color/ivo_orange"
+                        />
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:background="@color/ivo_gray_audio_dark"/>
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp"
+                        android:layout_below="@id/tab_layout"/>
                 </LinearLayout>
 
                 <LinearLayout

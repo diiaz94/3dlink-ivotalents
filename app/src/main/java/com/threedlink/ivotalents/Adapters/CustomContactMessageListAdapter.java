@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.threedlink.ivotalents.asynctasks.FontApplyTask;
 import com.threedlink.ivotalents.dtos.Contact;
 import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
@@ -58,8 +59,8 @@ public class CustomContactMessageListAdapter extends BaseAdapter {
         holder.getTxtName().setText(list.get(position).getName());
         holder.getTxtSector().setText(list.get(position).getSector());
 
-        holder.getTxtName().setTypeface(mApp.getFontBold());
-        holder.getTxtSector().setTypeface(mApp.getFont());
+        holder.getTxtName().setTypeface(FontApplyTask.getFontBold(ctx));
+        holder.getTxtSector().setTypeface(FontApplyTask.getFont(ctx));
 
         //Log.e("GETVIEW HEIGHT::", String.valueOf(row.getLayoutParams().height));
 

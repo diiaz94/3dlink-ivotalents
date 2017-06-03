@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
+import com.threedlink.ivotalents.asynctasks.FontApplyTask;
 
 import java.util.ArrayList;
 
@@ -84,10 +85,10 @@ public class RememberPopUpActivity extends AppCompatActivity {
             }
 
         });
-        user.setTypeface(mApp.getFont());
-        email.setTypeface(mApp.getFont());
-        lbluser.setTypeface(mApp.getFont());
-        lblemail.setTypeface(mApp.getFont());
+        user.setTypeface(FontApplyTask.getFont(getApplicationContext()));
+        email.setTypeface(FontApplyTask.getFont(getApplicationContext()));
+        lbluser.setTypeface(FontApplyTask.getFont(getApplicationContext()));
+        lblemail.setTypeface(FontApplyTask.getFont(getApplicationContext()));
     }
 
     private void goLoginScreen() {

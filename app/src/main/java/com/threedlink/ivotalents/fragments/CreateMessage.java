@@ -131,7 +131,7 @@ public class CreateMessage extends Fragment implements View.OnClickListener {
         });
 
         LinearLayout myLayout = (LinearLayout) view.findViewById(R.id.fragment_create_message);
-        mApp.setFontsOnLinear(myLayout);
+        mApp.applyFonts(myLayout);
 
         return view;
     }

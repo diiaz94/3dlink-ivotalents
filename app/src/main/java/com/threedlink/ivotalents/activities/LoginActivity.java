@@ -52,6 +52,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
+import com.threedlink.ivotalents.asynctasks.FontApplyTask;
 import com.threedlink.ivotalents.fragments.SessionManager;
 import com.threedlink.ivotalents.dtos.Ticket;
 import com.threedlink.ivotalents.dtos.User;
@@ -230,7 +231,7 @@ public class LoginActivity extends AppCompatActivity implements
         mEmailView.post(new Runnable() {
                       @Override
                       public void run() {
-                          setHintTypeface(mEmailView, mApp.getFont());
+                          setHintTypeface(mEmailView, FontApplyTask.getFont(getApplicationContext()));
                       }
                   }
         );
@@ -266,11 +267,11 @@ public class LoginActivity extends AppCompatActivity implements
             }
        });
 
-        text_question.setTypeface(mApp.getFont());
-        register_here.setTypeface(mApp.getFont());
-        remember_password.setTypeface(mApp.getFont());
-        mEmailView.setTypeface(mApp.getFont());
-        mPasswordView.setTypeface(mApp.getFont());
+        text_question.setTypeface(FontApplyTask.getFont(getApplicationContext()));
+        register_here.setTypeface(FontApplyTask.getFont(getApplicationContext()));
+        remember_password.setTypeface(FontApplyTask.getFont(getApplicationContext()));
+        mEmailView.setTypeface(FontApplyTask.getFont(getApplicationContext()));
+        mPasswordView.setTypeface(FontApplyTask.getFont(getApplicationContext()));
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){

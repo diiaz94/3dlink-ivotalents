@@ -93,7 +93,7 @@ public class HomeProvider extends Fragment {
 
 
         RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_home_provider);
-        mApp.setFontsOnRelative(myLayout);
+        mApp.applyFonts(myLayout);
 
         return view;
     }

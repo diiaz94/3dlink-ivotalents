@@ -4,7 +4,9 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -22,8 +24,15 @@ import android.widget.TextView;
 
 import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
+import com.threedlink.ivotalents.adapters.ProfileSwipeAdapter;
+import com.threedlink.ivotalents.fragments.profiletabs.ProfileAudioList;
+import com.threedlink.ivotalents.fragments.profiletabs.ProfileExperience;
+import com.threedlink.ivotalents.fragments.profiletabs.ProfilePhotoGrid;
+import com.threedlink.ivotalents.fragments.profiletabs.ProfileVideoGrid;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -42,8 +51,8 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
     private static final int GRID_SIZE = 9;
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String mName;
+    private String mEmail;
     LinearLayout tabFotos;
     LinearLayout tabAudios;
     LinearLayout tabVideos;
@@ -113,8 +122,8 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
         currentTab = "tabFotos";
 
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(NAME);
-            mParam2 = getArguments().getString(EMAIL);
+            mName = getArguments().getString(NAME);
+            mEmail = getArguments().getString(EMAIL);
         }
     }
 
@@ -153,12 +162,6 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
         tabTextExperiencias = (TextView)view.findViewById(R.id.tabTextExperiencias);
 
 
-        for (int i=0;i<this.fotoLayouts.length;i++) {
-
-            fotoLayouts[i] = (LinearLayout) view.findViewById(mApp.getResourcebyname("foto_"+String.valueOf(i+1)));
-            fotoContents[i] = (ImageView) view.findViewById(mApp.getResourcebyname("foto_content"+String.valueOf(i+1)));
-            fotoLayouts[i].setOnClickListener(this);
-        }
 
         //Para que se vean todos los layouts
         LinearLayout datosPrincipales = (LinearLayout)view.findViewById(R.id.datosPrincipales);
@@ -172,6 +175,48 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
         LinearLayout tabsSection = (LinearLayout)view.findViewById(R.id.tabsSection);
         tabsSection.setVisibility(View.VISIBLE);
 
+        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
+        tabLayout.addTab(tabLayout.newTab().setText("FOTOS"));
+        tabLayout.addTab(tabLayout.newTab().setText("AUDIOS"));
+        tabLayout.addTab(tabLayout.newTab().setText("VIDEOS"));
+        tabLayout.addTab(tabLayout.newTab().setText("EXPERIENCIA"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+
+        final ViewPager viewPager = (ViewPager) view.findViewById(R.id.pager);
+
+        List<Fragment> pageFragments = new ArrayList<>();
+        pageFragments.add(ProfilePhotoGrid.newInstance(mEmail, ""));
+        pageFragments.add(ProfileAudioList.newInstance(mEmail,""));
+        pageFragments.add(ProfileVideoGrid.newInstance(mEmail,""));
+        pageFragments.add(ProfileExperience.newInstance(mEmail,""));
+        final ProfileSwipeAdapter adapter = new ProfileSwipeAdapter
+                (getActivity().getSupportFragmentManager(), pageFragments);
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+/*
+        for (int i=0;i<this.fotoLayouts.length;i++) {
+
+            fotoLayouts[i] = (LinearLayout) view.findViewById(mApp.getResourcebyname("foto_"+String.valueOf(i+1)));
+            fotoContents[i] = (ImageView) view.findViewById(mApp.getResourcebyname("foto_content"+String.valueOf(i+1)));
+            fotoLayouts[i].setOnClickListener(this);
+        }
         activateTab("tabFotos");
         ScrollView parentScrollView = (ScrollView) view.findViewById(R.id.parentScrollView);
         parentScrollView.setOnTouchListener(new View.OnTouchListener() {
@@ -186,15 +231,13 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
         childScrollView.setOnTouchListener(new View.OnTouchListener() {
 
             public boolean onTouch(View v, MotionEvent event)
-            {
-
-                //Disallow the touch request for parent scroll on touch of
+            {   //Disallow the touch request for parent scroll on touch of
                 //child view
                 v.getParent().requestDisallowInterceptTouchEvent(true);
                 return false;
             }
         });
-
+*/
         ic_fb_orange = (ImageView) view.findViewById(R.id.ic_fb_orange);
         ic_fb_orange.setOnClickListener(this);
         ic_tw_orange = (ImageView) view.findViewById(R.id.ic_tw_orange);
@@ -205,7 +248,7 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
 
 
         RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_profile_artist);
-        mApp.setFontsOnRelative(myLayout);
+        mApp.applyFonts(myLayout);
 
         ic_edit_social = (ImageButton)view.findViewById(R.id.ic_edit_social);
         ic_edit_social.setOnClickListener(this);

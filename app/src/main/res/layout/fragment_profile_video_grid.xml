@@ -1,0 +1,106 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.threedlink.ivotalents.fragments.profiletabs.ProfileVideoGrid"
+    android:orientation="vertical">
+
+    <LinearLayout  android:id="@+id/video_preview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/ivo_green"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+            <TextView android:id="@+id/artist_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                android:text="Usuario"
+                android:textStyle="bold"
+                android:tag="bold"/>
+            <TextView android:id="@+id/video_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                android:text="Nombre de video"
+                android:textStyle="normal"
+                android:tag="normal"/>
+            <TextView android:id="@+id/video_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                android:text="Breve descripcion"
+                android:textStyle="normal"
+                android:tag="normal"/>
+
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/ivo_black">
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_video_play"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+        </LinearLayout>
+        <HorizontalScrollView android:id="@+id/video_slider_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:verticalScrollbarPosition="right"
+            android:layout_gravity="top">
+            <LinearLayout android:id="@+id/video_slider_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ivo_gray_audio_dark"
+                android:orientation="horizontal"/>
+        </HorizontalScrollView>
+
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout android:id="@+id/upload_video_to_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true">
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_subir"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SUBIR"
+                        android:textSize="15sp"
+                        android:textColor="@color/ivo_black"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="1dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+</LinearLayout>

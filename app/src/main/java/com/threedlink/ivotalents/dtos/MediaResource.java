@@ -10,10 +10,11 @@ import java.util.TimeZone;
  */
 public class MediaResource {
     private static final String TAG = "MediaResource";
+    
     private String path;
     private String name;
     private String extension;
-    private MediaReourceType type;
+    private MediaResourceType type;
     private String date;
     public static String AudioExtensions = "|mp3|m4a|";
     public static String PhotoExtensions = "|jpg|png|";
@@ -26,6 +27,10 @@ public class MediaResource {
         c.setTimeInMillis(Long.parseLong(timestamp));
         this.date = getDateFromTimeStamp(Long.parseLong(timestamp));
         setDataFromPath();
+    }
+
+    public MediaResource() {
+
     }
 
     private String getDateFromTimeStamp(long timestamp) {
@@ -47,21 +52,21 @@ public class MediaResource {
             this.name = name;
             this.extension = ext;
             if(AudioExtensions.indexOf("|"+ext+"|")!=-1)
-                this.type = MediaReourceType.AUDIO;
+                this.type = MediaResourceType.AUDIO;
             else if(PhotoExtensions.indexOf("|"+ext+"|")!=-1)
-                this.type = MediaReourceType.PHOTO;
+                this.type = MediaResourceType.PHOTO;
             else if(VideoExtensions.indexOf("|"+ext+"|")!=-1)
-                this.type = MediaReourceType.VIDEO;
+                this.type = MediaResourceType.VIDEO;
             else
-                this.type = MediaReourceType.NO_EXTENSION;
+                this.type = MediaResourceType.NO_EXTENSION;
         }catch (Exception e){
             Log.e(TAG,"Error::"+e.toString());
-            this.type = MediaReourceType.NO_EXTENSION;
+            this.type = MediaResourceType.NO_EXTENSION;
         }
 
     }
 
-    public enum MediaReourceType{
+    public enum MediaResourceType{
         VIDEO,
         PHOTO,
         AUDIO,
@@ -89,11 +94,11 @@ public class MediaResource {
         this.extension = extension;
     }
 
-    public MediaReourceType getType() {
+    public MediaResourceType getType() {
         return type;
     }
 
-    public void setType(MediaReourceType type) {
+    public void setType(MediaResourceType type) {
         this.type = type;
     }
     public String getName() {

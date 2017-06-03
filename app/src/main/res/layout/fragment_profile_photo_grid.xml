@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout android:id="@+id/photo_grid_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout android:id="@+id/photo_grid_data_info"
+            android:layout_width="match_parent"
+            android:layout_height="300dip">
+            <GridView android:id="@+id/photo_grid_view"
+                android:listSelector="@drawable/photo_grid_selector"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:numColumns="3"
+                android:gravity="fill"
+                android:stretchMode="columnWidth"
+                android:horizontalSpacing="1dp"
+                android:verticalSpacing="1dp"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/photo_grid_progress_info"
+            android:layout_width="match_parent"
+            android:layout_height="300dip"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <TextView
+                android:id="@+id/photo_grid_text_info"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+            <ProgressBar android:id="@+id/photo_grid_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:progressDrawable="@drawable/circular_progress_bar"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout android:id="@+id/upload_image_to_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true">
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_subir"/>
+                    <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SUBIR"
+                    android:textSize="15sp"
+                    android:textColor="@color/ivo_black"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="1dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/pagination_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp">
+                    <ImageView
+                        android:id="@+id/template_point"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/simple_point"
+                        android:layout_marginRight="5dp"
+                        android:visibility="gone"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.threedlink.ivotalents.activities.PhotoVisorActivity"
+    android:background="@color/black">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="VER FOTOS"
+                        android:tag="normal"
+                        android:textColor="@color/white"
+                        android:textSize="15dp"/>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/ivo_green"></FrameLayout>
+                </LinearLayout>
+                <ImageButton
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:id="@+id/close_visor"
+                    android:background="@drawable/close_icon"
+                    android:layout_gravity="end|center" />
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90pt"
+            android:layout_marginTop="10dp">
+            <ImageView android:id="@+id/visor_photo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Titulo de la foto"
+                android:tag="normal"
+                android:textColor="@color/white"
+                android:textSize="15dp"/>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end">
+                <RelativeLayout android:id="@+id/left_photo_visor"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:clickable="true">
+                    <ImageButton
+                        android:layout_width="15dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/left_arrow_aqua"
+                        android:layout_gravity="end|top"/>
+                </RelativeLayout>
+                <RelativeLayout android:id="@+id/right_photo_visor"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:clickable="true">
+                    <ImageButton
+                        android:layout_width="15dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/right_arrow_aqua"
+                        android:layout_gravity="end|top"/>
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

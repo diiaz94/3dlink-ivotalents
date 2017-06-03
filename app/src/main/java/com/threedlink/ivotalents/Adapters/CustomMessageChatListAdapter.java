@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.threedlink.ivotalents.asynctasks.FontApplyTask;
 import com.threedlink.ivotalents.dtos.Message;
 import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
@@ -58,8 +59,8 @@ public class CustomMessageChatListAdapter extends BaseAdapter {
         holder.getTxtMessage().setText(list.get(position).getMsg());
         holder.getTxtDate().setText(list.get(position).getDate());
 
-        holder.getTxtMessage().setTypeface(mApp.getFont());
-        holder.getTxtDate().setTypeface(mApp.getFont());
+        holder.getTxtMessage().setTypeface(FontApplyTask.getFont(ctx));
+        holder.getTxtDate().setTypeface(FontApplyTask.getFont(ctx));
 
         //Log.e("GETVIEW HEIGHT::", String.valueOf(row.getLayoutParams().height));
 

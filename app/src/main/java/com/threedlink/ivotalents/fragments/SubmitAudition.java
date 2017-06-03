@@ -80,7 +80,7 @@ public class SubmitAudition extends Fragment implements View.OnClickListener {
         submit_audition_2 = (LinearLayout) view.findViewById(R.id.submit_audition_2);
 
         LinearLayout myLayout = (LinearLayout) view.findViewById(R.id.fragment_submit_audition);
-        mApp.setFontsOnLinear(myLayout);
+        mApp.applyFonts(myLayout);
         return view;
     }
 

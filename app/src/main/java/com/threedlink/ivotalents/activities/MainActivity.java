@@ -31,11 +31,11 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.nostra13.universalimageloader.utils.L;
+import com.threedlink.ivotalents.asynctasks.FontApplyTask;
 import com.threedlink.ivotalents.custom.CustomRetrofitCallback;
 import com.threedlink.ivotalents.dtos.RolEntity;
-import com.threedlink.ivotalents.dtos.User;
 import com.threedlink.ivotalents.fragments.AdvancedSearch;
+import com.threedlink.ivotalents.fragments.ArtistCasting;
 import com.threedlink.ivotalents.fragments.Casting;
 import com.threedlink.ivotalents.fragments.CastingDetail;
 import com.threedlink.ivotalents.fragments.Chat;
@@ -58,6 +58,11 @@ import com.threedlink.ivotalents.fragments.SubmitAudition;
 import com.threedlink.ivotalents.fragments.ParticipationsFinished;
 import com.threedlink.ivotalents.fragments.ParticipationsStarted;
 import com.threedlink.ivotalents.fragments.Participations;
+import com.threedlink.ivotalents.fragments.IndustryCasting;
+import com.threedlink.ivotalents.fragments.profiletabs.ProfileExperience;
+import com.threedlink.ivotalents.fragments.profiletabs.ProfileAudioList;
+import com.threedlink.ivotalents.fragments.profiletabs.ProfilePhotoGrid;
+import com.threedlink.ivotalents.fragments.profiletabs.ProfileVideoGrid;
 import com.threedlink.ivotalents.utils.Util;
 import com.threedlink.ivotalents.utils.enums.Rol;
 
@@ -90,7 +95,13 @@ public class MainActivity extends AppCompatActivity implements
         SubmitAudition.OnFragmentInteractionListener,
         Participations.OnFragmentInteractionListener,
         ParticipationsStarted.OnFragmentInteractionListener,
-        ParticipationsFinished.OnFragmentInteractionListener
+        ParticipationsFinished.OnFragmentInteractionListener,
+        ProfilePhotoGrid.OnFragmentInteractionListener,
+        ProfileAudioList.OnFragmentInteractionListener,
+        ProfileVideoGrid.OnFragmentInteractionListener,
+        ProfileExperience.OnFragmentInteractionListener,
+        IndustryCasting.OnFragmentInteractionListener,
+        ArtistCasting.OnFragmentInteractionListener
         {
     DrawerLayout drawer;
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -194,22 +205,22 @@ public class MainActivity extends AppCompatActivity implements
         TextView text_providers = (TextView) findViewById(R.id.text_providers);
         TextView text_search = (TextView) findViewById(R.id.text_search);
 
-        artist_name.setTypeface(mApp.getFontBold());
-        artist_talent.setTypeface(mApp.getFont());
-        artist_count_fans.setTypeface(mApp.getFontBold());
-        text_fans.setTypeface(mApp.getFontSemiBoldItalic());
-        text_view_my_profile.setTypeface(mApp.getFontSemiBoldItalic());
-        logout_text.setTypeface(mApp.getFontSemiBoldItalic());
-        text_dashboard.setTypeface(mApp.getFontSemiBoldItalic());
-        text_receive_msg.setTypeface(mApp.getFontSemiBoldItalic());
-        count_receive_msg.setTypeface(mApp.getFont());
-        text_send_msg.setTypeface(mApp.getFontSemiBoldItalic());
-        text_my_castings.setTypeface(mApp.getFontSemiBoldItalic());
-        text_talent.setTypeface(mApp.getFontLight());
-        text_industries.setTypeface(mApp.getFontLight());
-        text_castings.setTypeface(mApp.getFontLight());
-        text_providers.setTypeface(mApp.getFontLight());
-        text_search.setTypeface(mApp.getFontLight());
+        artist_name.setTypeface(FontApplyTask.getFontBold(getApplicationContext()));
+        artist_talent.setTypeface(FontApplyTask.getFont(getApplicationContext()));
+        artist_count_fans.setTypeface(FontApplyTask.getFontBold(getApplicationContext()));
+        text_fans.setTypeface(FontApplyTask.getFontSemiBoldItalic(getApplicationContext()));
+        text_view_my_profile.setTypeface(FontApplyTask.getFontSemiBoldItalic(getApplicationContext()));
+        logout_text.setTypeface(FontApplyTask.getFontSemiBoldItalic(getApplicationContext()));
+        text_dashboard.setTypeface(FontApplyTask.getFontSemiBoldItalic(getApplicationContext()));
+        text_receive_msg.setTypeface(FontApplyTask.getFontSemiBoldItalic(getApplicationContext()));
+        count_receive_msg.setTypeface(FontApplyTask.getFont(getApplicationContext()));
+        text_send_msg.setTypeface(FontApplyTask.getFontSemiBoldItalic(getApplicationContext()));
+        text_my_castings.setTypeface(FontApplyTask.getFontSemiBoldItalic(getApplicationContext()));
+        text_talent.setTypeface(FontApplyTask.getFontLight(getApplicationContext()));
+        text_industries.setTypeface(FontApplyTask.getFontLight(getApplicationContext()));
+        text_castings.setTypeface(FontApplyTask.getFontLight(getApplicationContext()));
+        text_providers.setTypeface(FontApplyTask.getFontLight(getApplicationContext()));
+        text_search.setTypeface(FontApplyTask.getFontLight(getApplicationContext()));
 
         text_view_my_profile.setOnClickListener(this);
 

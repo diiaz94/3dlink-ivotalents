@@ -3,8 +3,8 @@
     package="com.threedlink.ivotalents">
 
     <uses-sdk
-        android:minSdkVersion="4"
-        android:targetSdkVersion="12" />
+        android:minSdkVersion="15"
+        android:targetSdkVersion="23" />
 
     <uses-feature android:name="android.hardware.camera" />
     <!-- To auto-complete the email text field in the login form with the user's emails -->
@@ -52,11 +52,8 @@
             android:name=".activities.RememberPopUpActivity"
             android:theme="@style/AppTheme.CustomTheme" />
         <activity
-            android:name=".fragments.PopupInfo"
+            android:name=".activities.PopupInfoActivity"
             android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name=".activities.MenuActivity"
-            android:theme="@style/AppTheme.CustomThemeTranslucent" />
         <activity
             android:name=".activities.PrincipalActivity"
             android:label="@string/title_activity_principal"
@@ -68,7 +65,9 @@
             android:name="com.github.florent37.camerafragment.PreviewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeFullscreen" />
-        <activity android:name=".previews.PhotoPreview"></activity>
+        <activity android:name=".previews.PhotoPreview" />
+        <activity android:name=".activities.PhotoVisorActivity"
+                  android:theme="@style/AppTheme.CustomTheme"></activity>
     </application>
 
 </manifest>

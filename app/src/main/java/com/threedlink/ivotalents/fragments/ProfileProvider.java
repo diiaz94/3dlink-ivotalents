@@ -188,7 +188,7 @@ public class ProfileProvider extends Fragment implements View.OnClickListener {
         ic_ig_pink.setOnClickListener(this);
 
         RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_profile_provider);
-        mApp.setFontsOnRelative(myLayout);
+        mApp.applyFonts(myLayout);
 
         ic_edit_social = (ImageButton)view.findViewById(R.id.ic_edit_social);
         ic_edit_social.setOnClickListener(this);

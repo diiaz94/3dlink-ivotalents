@@ -75,7 +75,7 @@ public class Casting extends Fragment implements View.OnClickListener {
 
         btn_do_casting.setOnClickListener(this);
         LinearLayout myLayout = (LinearLayout) view.findViewById(R.id.fragment_casting);
-        mApp.setFontsOnLinear(myLayout);
+        mApp.applyFonts(myLayout);
         // Inflate the layout for this fragment
         return view;
     }

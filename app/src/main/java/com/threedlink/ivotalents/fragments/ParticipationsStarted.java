@@ -48,9 +48,6 @@ public class ParticipationsStarted extends Fragment {
     private IvoTalentsApp mApp;
 
     private OnFragmentInteractionListener mListener;
-    private ListView auditionList;
-
-    RecyclerView rv;
 
     @Bind(R.id.participations_started_container)
     LinearLayout participationsStartedContainer;
@@ -118,7 +115,7 @@ public class ParticipationsStarted extends Fragment {
         participationsStartedTextInfo.setText(getString(R.string.load_participations_started_text));//progress text;
         Log.i("TAG","paso1");
 
-        Call<ArrayList<Casting>> castingCall = mApp.getApiServiceIntance().participationsStarted("");
+        Call<ArrayList<Casting>> castingCall = mApp.getApiServiceIntance().participations("");
         castingCall.enqueue(new CustomRetrofitCallback<ArrayList<Casting>>(getActivity()) {
             @Override
             protected void handleSuccess(Response response) {

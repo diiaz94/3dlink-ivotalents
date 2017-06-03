@@ -2,55 +2,71 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
-
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_margin="1dp">
+        <Button android:id="@+id/btn_see_audition"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@drawable/border_green_shape_solid"
+            android:text="@string/see_audition_text"
+            android:textSize="10dp"
+            android:textStyle="italic"
+            android:tag="italic"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"/>
         <ImageView
             android:id="@+id/rol_entity_image"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="match_parent"
             android:src="@drawable/talent_1"
-            android:scaleType="centerCrop"/>
-        <LinearLayout
+            android:scaleType="centerCrop"
+            android:padding="5dp"
+            android:paddingLeft="12dp"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/rol_entity_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/rol_entity_category"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="MUSICA"
-                android:textStyle="normal"
-                android:tag="normal"
-                android:textSize="10sp"
-                android:layout_marginTop="10dp"/>
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/ivo_orange"/>
-            <TextView
-                android:id="@+id/rol_entity_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="Catherine Lewis"
-                android:textStyle="bold"
-                android:tag="bold"
-                android:textSize="10sp"
-                android:layout_marginTop="5dp"/>
-            <TextView
-                android:id="@+id/rol_entity_abilitie"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="Catherine Lewis"
-                android:textStyle="normal"
-                android:tag="normal"
-                android:textSize="10sp"
-                android:layout_marginTop="0dp"/>
+            android:textColor="@color/black"
+            android:text="MUSICA"
+            android:textStyle="normal"
+            android:tag="normal"
+            android:textSize="10sp"
+            android:layout_marginTop="10dp"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/ivo_orange"/>
+        <TextView
+            android:id="@+id/rol_entity_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Catherine Lewis"
+            android:textStyle="bold"
+            android:tag="bold"
+            android:textSize="10sp"
+            android:layout_marginTop="5dp"/>
+        <TextView
+            android:id="@+id/rol_entity_abilitie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Catherine Lewis"
+            android:textStyle="normal"
+            android:tag="normal"
+            android:textSize="10sp"
+            android:layout_marginTop="0dp"/>
 
-        </LinearLayout>
+    </LinearLayout>
 
 
 </LinearLayout>

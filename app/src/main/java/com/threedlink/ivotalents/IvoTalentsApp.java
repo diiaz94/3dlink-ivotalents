@@ -7,7 +7,6 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.v4.app.Fragment;
@@ -16,12 +15,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
 
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
@@ -37,8 +30,9 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.threedlink.ivotalents.asynctasks.FontApplyTask;
 import com.threedlink.ivotalents.dtos.RolEntity;
-import com.threedlink.ivotalents.fragments.PopupInfo;
+import com.threedlink.ivotalents.activities.PopupInfoActivity;
 import com.threedlink.ivotalents.fragments.SessionManager;
 import com.threedlink.ivotalents.services.ApiService;
 
@@ -53,15 +47,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class IvoTalentsApp extends Application {
 
 
-    private Typeface face;
-    private Typeface faceBold;
-    private Typeface faceSemiBold;
-    private Typeface faceSemiBoldItalic;
-    private Typeface faceLight;
+
     private GoogleSignInOptions googleSignInOptions;
     private GoogleApiClient googleApiClient;
     private ApiService apiService;
     private FragmentTask mFragmentTask;
+    private FontApplyTask mFontApplyTask;
 
     private View mMainContainerView;
     private View mProgressView;
@@ -84,11 +75,7 @@ public class IvoTalentsApp extends Application {
         googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
-        face=Typeface.createFromAsset(getAssets(),"fonts/Exo2-Regular.otf");
-        faceBold=Typeface.createFromAsset(getAssets(),"fonts/Exo2-Bold.otf");
-        faceSemiBold=Typeface.createFromAsset(getAssets(),"fonts/Exo2-SemiBold.otf");
-        faceSemiBoldItalic=Typeface.createFromAsset(getAssets(),"fonts/Exo2-SemiBoldItalic.otf");
-        faceLight=Typeface.createFromAsset(getAssets(),"fonts/Exo2-Light.otf");
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiService.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -122,21 +109,7 @@ public class IvoTalentsApp extends Application {
     }
 
 
-    public Typeface getFont(){
-        return this.face;
-    }
-    public Typeface getFontBold(){
-        return this.faceBold;
-    }
-    public Typeface getFontSemiBold(){
-        return this.faceSemiBold;
-    }
-    public Typeface getFontSemiBoldItalic(){
-        return this.faceSemiBoldItalic;
-    }
-    public Typeface getFontLight(){
-        return this.faceLight;
-    }
+
 
     public GoogleApiClient getGoogleApiClient() {
         return googleApiClient;
@@ -155,9 +128,9 @@ public class IvoTalentsApp extends Application {
     }
 
     public void showError(Activity activity, ArrayList<String> errors){
-        Intent intent = new Intent(activity,PopupInfo.class);
+        Intent intent = new Intent(activity,PopupInfoActivity.class);
         intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
-        PopupInfo.lstError = errors;
+        PopupInfoActivity.lstError = errors;
         startActivity(intent);
     }
     public void logout(View view){
@@ -188,120 +161,6 @@ public class IvoTalentsApp extends Application {
 
     }
 
-    public void setFontsOnRelative(RelativeLayout layout) {
-        for( int i = 0; i < layout.getChildCount(); i++ ) {
-            if (layout.getChildAt(i) instanceof TextView){
-                TextView textView= (TextView) layout.getChildAt(i);
-                if(textView.getTag()!=null){
-                    textView.setTypeface(getFontApply(textView.getTag().toString()));
-                }else{
-                    textView.setTypeface(getFont());
-                }
-            }else if(layout.getChildAt(i) instanceof EditText){
-                EditText editText= (EditText) layout.getChildAt(i);
-                if(editText.getTag()!=null){
-                    editText.setTypeface(getFontApply(editText.getTag().toString()));
-                }else{
-                    editText.setTypeface(getFont());
-                }
-            }else if(layout.getChildAt(i) instanceof CheckBox){
-                CheckBox checkText= (CheckBox) layout.getChildAt(i);
-                if(checkText.getTag()!=null){
-                    checkText.setTypeface(getFontApply(checkText.getTag().toString()));
-                }else{
-                    checkText.setTypeface(getFont());
-                }
-            }else if(layout.getChildAt(i) instanceof LinearLayout){
-                LinearLayout linear= (LinearLayout) layout.getChildAt(i);
-                setFontsOnLinear(linear);
-            }else if(layout.getChildAt(i) instanceof RelativeLayout){
-                RelativeLayout relative= (RelativeLayout) layout.getChildAt(i);
-                setFontsOnRelative(relative);
-            }else if(layout.getChildAt(i) instanceof ScrollView){
-                ScrollView scroll= (ScrollView) layout.getChildAt(i);
-                setFontsOnScroll(scroll);
-            }
-        }
-
-    }
-    public void setFontsOnLinear(LinearLayout layout) {
-        for( int i = 0; i < layout.getChildCount(); i++ ) {
-            if (layout.getChildAt(i) instanceof TextView){
-                TextView textView= (TextView) layout.getChildAt(i);
-                if(textView.getTag()!=null){
-                    textView.setTypeface(getFontApply(textView.getTag().toString()));
-                }else{
-                    textView.setTypeface(getFont());
-                }
-            }else if(layout.getChildAt(i) instanceof EditText){
-                EditText editText= (EditText) layout.getChildAt(i);
-                if(editText.getTag()!=null){
-                    editText.setTypeface(getFontApply(editText.getTag().toString()));
-                }else{
-                    editText.setTypeface(getFont());
-                }
-            }else if(layout.getChildAt(i) instanceof LinearLayout){
-                LinearLayout linear= (LinearLayout) layout.getChildAt(i);
-                setFontsOnLinear(linear);
-            }else if(layout.getChildAt(i) instanceof RelativeLayout){
-                RelativeLayout relative= (RelativeLayout) layout.getChildAt(i);
-                setFontsOnRelative(relative);
-            }else if(layout.getChildAt(i) instanceof ScrollView){
-                ScrollView scroll= (ScrollView) layout.getChildAt(i);
-                setFontsOnScroll(scroll);
-            }
-        }
-    }
-    public void setFontsOnScroll(ScrollView layout) {
-        for( int i = 0; i < layout.getChildCount(); i++ ) {
-            if (layout.getChildAt(i) instanceof TextView){
-                TextView textView= (TextView) layout.getChildAt(i);
-                if(textView.getTag()!=null){
-                    textView.setTypeface(getFontApply(textView.getTag().toString()));
-                }else{
-                    textView.setTypeface(getFont());
-                }
-            }else if(layout.getChildAt(i) instanceof EditText){
-                EditText editText= (EditText) layout.getChildAt(i);
-                if(editText.getTag()!=null){
-                    editText.setTypeface(getFontApply(editText.getTag().toString()));
-                }else{
-                    editText.setTypeface(getFont());
-                }
-            }else if(layout.getChildAt(i) instanceof LinearLayout){
-                LinearLayout linear= (LinearLayout) layout.getChildAt(i);
-                setFontsOnLinear(linear);
-            }else if(layout.getChildAt(i) instanceof RelativeLayout){
-                RelativeLayout relative= (RelativeLayout) layout.getChildAt(i);
-                setFontsOnRelative(relative);
-            }else if(layout.getChildAt(i) instanceof ScrollView){
-                ScrollView scroll= (ScrollView) layout.getChildAt(i);
-                setFontsOnScroll(scroll);
-            }
-        }
-
-    }
-
-    public Typeface getFontApply(String tag){
-        if(tag.indexOf("normal")!=-1){
-            return getFont();
-        }
-        if(tag.indexOf("semibolditalic")!=-1) {
-            return getFontSemiBoldItalic();
-        }
-        if(tag.indexOf("semibold")!=-1){
-            return getFontSemiBold();
-        }
-        if(tag.indexOf("bold")!=-1){
-            return getFontBold();
-        }
-        if(tag.indexOf("light")!=-1) {
-            return getFontLight();
-        }
-
-        return getFont();
-
-    }
 
     public ApiService getApiServiceIntance() {
         return apiService;
@@ -361,6 +220,11 @@ public class IvoTalentsApp extends Application {
     }
     public RolEntity getEntitySession() {
         return this.entitySession;
+    }
+
+    public void applyFonts(View myLayout) {
+        mFontApplyTask = new FontApplyTask(getApplicationContext(), myLayout);
+        mFontApplyTask.execute((Void) null);
     }
 
 

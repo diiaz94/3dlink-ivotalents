@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
+import com.threedlink.ivotalents.asynctasks.FontApplyTask;
 
 /**
  * Created by VP50343 on 27/12/2016.
@@ -62,39 +63,34 @@ public class CustomSwipeAdapterIndustryCastings extends PagerAdapter{
         TextView ind_subtitle_casting_2 = (TextView) item_view.findViewById(R.id.ind_subtitle_casting_2);
         TextView ind_description_casting_2 = (TextView) item_view.findViewById(R.id.ind_description_casting_2);
 
-        if(ind_slide_left_arrow!=null)
-            //ind_slide_left_arrow.setVisibility(first-1>=0?View.VISIBLE:View.INVISIBLE);
-        if(ind_slide_right_arrow!=null)
-            //ind_slide_right_arrow.setVisibility(second+1<image_resources.length-1?View.VISIBLE:View.INVISIBLE);
-
 
         if (first>=0) {
             ind_layout_casting_1.setVisibility(View.VISIBLE);
             ind_category_casting_1.setText("MUSICA");
-            ind_category_casting_1.setTypeface(mApp.getFontBold());
+            ind_category_casting_1.setTypeface(FontApplyTask.getFontBold(ctx));
 
             ind_image_casting_1.setImageResource(image_resources[first]);
 
             ind_title_casting_1.setText(title_casting_resources[first]);
-            ind_title_casting_1.setTypeface(mApp.getFontBold());
+            ind_title_casting_1.setTypeface(FontApplyTask.getFontBold(ctx));
 
             ind_subtitle_casting_1.setText(subtitle_casting_resources[first]);
-            ind_subtitle_casting_1.setTypeface(mApp.getFontBold());
+            ind_subtitle_casting_1.setTypeface(FontApplyTask.getFontBold(ctx));
         }else{
             ind_layout_casting_1.setVisibility(View.GONE);
         }
         if (second<image_resources.length-1) {
             ind_layout_casting_2.setVisibility(View.VISIBLE);
             ind_category_casting_2.setText("MUSICAA");
-            ind_category_casting_2.setTypeface(mApp.getFontBold());
+            ind_category_casting_2.setTypeface(FontApplyTask.getFontBold(ctx));
 
             ind_image_casting_2.setImageResource(image_resources[second]);
 
             ind_title_casting_2.setText(title_casting_resources[second]);
-            ind_title_casting_2.setTypeface(mApp.getFontBold());
+            ind_title_casting_2.setTypeface(FontApplyTask.getFontBold(ctx));
 
             ind_subtitle_casting_2.setText(subtitle_casting_resources[second]);
-            ind_subtitle_casting_2.setTypeface(mApp.getFontBold());
+            ind_subtitle_casting_2.setTypeface(FontApplyTask.getFontBold(ctx));
         }else{
             ind_layout_casting_2.setVisibility(View.GONE);
         }

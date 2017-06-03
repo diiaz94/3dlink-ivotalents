@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
+import com.threedlink.ivotalents.asynctasks.FontApplyTask;
 
 /**
  * Created by diiaz94 on 29-12-2016.
@@ -66,10 +67,10 @@ public class CustomSwipeAdapterCastingRecent extends PagerAdapter {
             recent_category_castings[i].setText(category_resources[first+i]);
             recent_title_castings[i].setText(title_resources[first+i]);
 
-            recent_category_castings[i].setTypeface(mApp.getFont());
-            recent_title_castings[i].setTypeface(mApp.getFontBold());
+            recent_category_castings[i].setTypeface(FontApplyTask.getFont(ctx));
+            recent_title_castings[i].setTypeface(FontApplyTask.getFontBold(ctx));
 
-            buttons_read_more[i].setTypeface(mApp.getFont());
+            buttons_read_more[i].setTypeface(FontApplyTask.getFont(ctx));
 
         }
 

@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 
 import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
+import com.threedlink.ivotalents.asynctasks.FontApplyTask;
 import com.threedlink.ivotalents.dtos.Casting;
 import com.threedlink.ivotalents.viewholders.MessageViewHolder;
 
@@ -58,8 +59,8 @@ public class CustomParticipationsListAdapter extends BaseAdapter {
         holder.getTxtName().setText(list.get(position).getCategory());
         holder.getTxtResume().setText(list.get(position).getDescription());
 
-        holder.getTxtName().setTypeface(mApp.getFontBold());
-        holder.getTxtResume().setTypeface(mApp.getFont());
+        holder.getTxtName().setTypeface(FontApplyTask.getFontBold(ctx));
+        holder.getTxtResume().setTypeface(FontApplyTask.getFont(ctx));
 
         //Log.e("GETVIEW HEIGHT::", String.valueOf(row.getLayoutParams().height));
 

@@ -5,9 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.dtos.RolEntity;
 import com.threedlink.ivotalents.R;
 
@@ -20,10 +23,19 @@ import java.util.List;
 public class CustomRecentViewAdapter extends RecyclerView.Adapter<CustomRecentViewAdapter.EntityViewHolder> {
     private List<RolEntity> items;
     private Context context;
+    private View.OnClickListener btnListener;
+    private final ImageLoader imageLoader;
 
     public CustomRecentViewAdapter(Context context, List<RolEntity> items) {
         this.context = context;
         this.items= items;
+        imageLoader = ((IvoTalentsApp)context.getApplicationContext()).getImageLoader();
+    }
+    public CustomRecentViewAdapter(Context context, List<RolEntity> items,View.OnClickListener btnListener) {
+        this.context = context;
+        this.items= items;
+        this.btnListener = btnListener;
+        imageLoader = ((IvoTalentsApp)context.getApplicationContext()).getImageLoader();
     }
 
     @Override
@@ -33,10 +45,15 @@ public class CustomRecentViewAdapter extends RecyclerView.Adapter<CustomRecentVi
 
     @Override
     public void onBindViewHolder(EntityViewHolder itemsViewHolder, int i) {
+        imageLoader.displayImage(items.get(i).getImgUrl(), itemsViewHolder.imRolEntity);
         itemsViewHolder.imRolEntity.setImageResource(items.get(i).getImageId());
         itemsViewHolder.txtAbilitie.setText(items.get(i).getAbility());
         itemsViewHolder.txtCategory.setText(items.get(i).getCategory());
         itemsViewHolder.txtName.setText(items.get(i).getName());
+        if(btnListener!=null){
+            itemsViewHolder.seeAudition.setVisibility(View.VISIBLE);
+            itemsViewHolder.seeAudition.setOnClickListener(btnListener);
+        }
     }
 
     @Override
@@ -54,6 +71,7 @@ public class CustomRecentViewAdapter extends RecyclerView.Adapter<CustomRecentVi
         protected TextView txtCategory;
         protected TextView txtName;
         protected TextView txtAbilitie;
+        protected Button seeAudition;
 
         public EntityViewHolder(View v) {
             super(v);
@@ -61,6 +79,7 @@ public class CustomRecentViewAdapter extends RecyclerView.Adapter<CustomRecentVi
             this.txtCategory = (TextView) v.findViewById(R.id.rol_entity_category);
             this.txtName = (TextView) v.findViewById(R.id.rol_entity_name);
             this.txtAbilitie = (TextView) v.findViewById(R.id.rol_entity_abilitie);
+            this.seeAudition = (Button) v.findViewById(R.id.btn_see_audition);
         }
     }
 }

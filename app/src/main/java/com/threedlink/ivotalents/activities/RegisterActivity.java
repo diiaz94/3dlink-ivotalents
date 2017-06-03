@@ -37,6 +37,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
+import com.threedlink.ivotalents.asynctasks.FontApplyTask;
 import com.threedlink.ivotalents.fragments.SessionManager;
 import com.threedlink.ivotalents.dtos.Ticket;
 import com.threedlink.ivotalents.dtos.User;
@@ -231,11 +232,11 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        this.user.setTypeface(mApp.getFont());
-        this.email.setTypeface(mApp.getFont());
-        this.pass.setTypeface(mApp.getFont());
-        this.pass_confirm.setTypeface(mApp.getFont());
-        this.read_terms.setTypeface(mApp.getFont());
+        this.user.setTypeface(FontApplyTask.getFont(getApplicationContext()));
+        this.email.setTypeface(FontApplyTask.getFont(getApplicationContext()));
+        this.pass.setTypeface(FontApplyTask.getFont(getApplicationContext()));
+        this.pass_confirm.setTypeface(FontApplyTask.getFont(getApplicationContext()));
+        this.read_terms.setTypeface(FontApplyTask.getFont(getApplicationContext()));
     }
 
     private void doRegister(Rol role) {

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AudioPlayer">
+        <attr name="playButton" format="reference" />
+        <attr name="pauseButton" format="reference" />
+        <attr name="filledPlayerColor" format="color" />
+        <attr name="backgroundPlayerColor" format="color" />
+    </declare-styleable>
+</resources>

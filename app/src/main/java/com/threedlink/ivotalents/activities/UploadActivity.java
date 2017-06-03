@@ -34,8 +34,6 @@ public class UploadActivity extends AppCompatActivity implements UploadResource.
         setContentView(R.layout.activity_upload);
         List<Fragment> pageFragments = new ArrayList<>();
         pageFragments.add(UploadGalleryFile.newInstance("", ""));
-        //pageFragments.add(UploadPhoto.newInstance("", ""));
-        //pageFragments.add(UploadVideo.newInstance("", ""));
         pageFragments.add(UploadFromCamera.newInstance("",""));
         pageFragments.add(UploadVoice.newInstance("",""));
         adapter = new UploadResourceSwipeAdapter(getSupportFragmentManager(),pageFragments);

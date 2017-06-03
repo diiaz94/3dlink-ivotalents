@@ -5,20 +5,22 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.threedlink.ivotalents.custom.CustomRetrofitCallback;
+import com.threedlink.ivotalents.dtos.Artist;
 import com.threedlink.ivotalents.dtos.Casting;
 import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
+import com.threedlink.ivotalents.utils.enums.Rol;
 
 import java.util.ArrayList;
 
@@ -48,9 +50,6 @@ public class ParticipationsFinished extends Fragment {
     private IvoTalentsApp mApp;
 
     private OnFragmentInteractionListener mListener;
-    private ListView auditionList;
-
-    RecyclerView rv;
 
     @Bind(R.id.participations_finished_container)
     LinearLayout participationsFinishedContainer;
@@ -117,8 +116,21 @@ public class ParticipationsFinished extends Fragment {
         participationsFinishedProgressInfo.setVisibility(View.VISIBLE);//progress
         participationsFinishedTextInfo.setText(getString(R.string.load_participations_finished_text));//progress text;
         Log.i("TAG","paso1");
+        participationsFinishedListView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(Rol.valueOf(mApp.getEntitySession().getRole()) == Rol.ARTISTA){
+                    mApp.loadFragment(ArtistCasting.newInstance("","param2"));
+                }
+                if(Rol.valueOf(mApp.getEntitySession().getRole()) == Rol.INDUSTRIA){
+                    mApp.loadFragment(IndustryCasting.newInstance("","param2"));
+                }
 
-        Call<ArrayList<Casting>> castingCall = mApp.getApiServiceIntance().participationsFinished("");
+                //Toast.makeText(getActivity(),"You selected : " + i,Toast.LENGTH_SHORT).show();
+            }
+
+        });
+        Call<ArrayList<Casting>> castingCall = mApp.getApiServiceIntance().participations("");
         castingCall.enqueue(new CustomRetrofitCallback<ArrayList<Casting>>(getActivity()) {
             @Override
             protected void handleSuccess(Response response) {

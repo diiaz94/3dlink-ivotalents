@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
+import com.threedlink.ivotalents.asynctasks.FontApplyTask;
 
 /**
  * Created by VP50343 on 26/12/2016.
@@ -46,9 +47,9 @@ public class CustomSwipeAdapterArtist extends PagerAdapter {
         TextView nameView = (TextView) item_view.findViewById(R.id.name_artist_dashboard);
         TextView talentView = (TextView) item_view.findViewById(R.id.talent_artist_dashboard);
         imageView.setImageResource(image_resources[position]);
-        nameView.setTypeface(mApp.getFontBold());
+        nameView.setTypeface(FontApplyTask.getFontBold(ctx));
         nameView.setText(name_resources[position]);
-        talentView.setTypeface(mApp.getFont());
+        talentView.setTypeface(FontApplyTask.getFont(ctx));
         talentView.setText(talent_resources[position]);
 
         container.addView(item_view);

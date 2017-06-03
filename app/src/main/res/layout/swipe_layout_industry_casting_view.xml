@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:weightSum="3">
+    <LinearLayout android:id="@+id/item_1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:padding="2dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_margin="1dp">
+            <Button android:id="@+id/btn_see_audition_1"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="@drawable/border_green_shape_solid"
+                android:text="@string/see_audition_text"
+                android:textSize="10dp"
+                android:textStyle="italic"
+                android:tag="italic"
+                android:layout_alignParentBottom="true"
+                android:visibility="gone"/>
+            <ImageView
+                android:id="@+id/rol_entity_image_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/talent_1"
+                android:scaleType="centerCrop"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/rol_entity_category_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="MUSICA"
+                android:textStyle="normal"
+                android:tag="normal"
+                android:textSize="10sp"
+                android:layout_marginTop="10dp"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/ivo_orange"/>
+            <TextView
+                android:id="@+id/rol_entity_name_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Catherine Lewis"
+                android:textStyle="bold"
+                android:tag="bold"
+                android:textSize="10sp"
+                android:layout_marginTop="5dp"/>
+            <TextView
+                android:id="@+id/rol_entity_abilitie_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Catherine Lewis"
+                android:textStyle="normal"
+                android:tag="normal"
+                android:textSize="10sp"
+                android:layout_marginTop="0dp"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <LinearLayout android:id="@+id/item_2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:padding="2dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_margin="1dp">
+            <Button android:id="@+id/btn_see_audition_2"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="@drawable/border_green_shape_solid"
+                android:text="@string/see_audition_text"
+                android:textSize="10dp"
+                android:textStyle="italic"
+                android:tag="italic"
+                android:layout_alignParentBottom="true"
+                android:visibility="gone"/>
+            <ImageView
+                android:id="@+id/rol_entity_image_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/talent_2"
+                android:scaleType="centerCrop"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/rol_entity_category_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="MUSICA"
+                android:textStyle="normal"
+                android:tag="normal"
+                android:textSize="10sp"
+                android:layout_marginTop="10dp"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/ivo_orange"/>
+            <TextView
+                android:id="@+id/rol_entity_name_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Catherine Lewis"
+                android:textStyle="bold"
+                android:tag="bold"
+                android:textSize="10sp"
+                android:layout_marginTop="5dp"/>
+            <TextView
+                android:id="@+id/rol_entity_abilitie_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Catherine Lewis"
+                android:textStyle="normal"
+                android:tag="normal"
+                android:textSize="10sp"
+                android:layout_marginTop="0dp"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <LinearLayout android:id="@+id/item_3"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:padding="2dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_margin="1dp">
+            <Button android:id="@+id/btn_see_audition_3"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="@drawable/border_green_shape_solid"
+                android:text="@string/see_audition_text"
+                android:textSize="10dp"
+                android:textStyle="italic"
+                android:tag="italic"
+                android:layout_alignParentBottom="true"
+                android:visibility="gone"/>
+            <ImageView
+                android:id="@+id/rol_entity_image_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/talent_3"
+                android:scaleType="centerCrop"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/rol_entity_category_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="MUSICA"
+                android:textStyle="normal"
+                android:tag="normal"
+                android:textSize="10sp"
+                android:layout_marginTop="10dp"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/ivo_orange"/>
+            <TextView
+                android:id="@+id/rol_entity_name_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Catherine Lewis"
+                android:textStyle="bold"
+                android:tag="bold"
+                android:textSize="10sp"
+                android:layout_marginTop="5dp"/>
+            <TextView
+                android:id="@+id/rol_entity_abilitie_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Catherine Lewis"
+                android:textStyle="normal"
+                android:tag="normal"
+                android:textSize="10sp"
+                android:layout_marginTop="0dp"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

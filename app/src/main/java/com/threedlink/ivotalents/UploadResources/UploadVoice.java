@@ -1,10 +1,12 @@
 package com.threedlink.ivotalents.uploadresources;
 
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -12,9 +14,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.threedlink.ivotalents.R;
+import com.threedlink.ivotalents.utils.Util;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,15 +51,43 @@ public class UploadVoice extends Fragment implements MediaPlayer.OnCompletionLis
     MediaRecorder recorder;
     MediaPlayer player;
     File file;
+
+
+
+    @Bind(R.id.equalizer)
+    ImageView equalizer;
+
+
     @Bind(R.id.status_text)
     TextView statusText;
     @Bind(R.id.init_recording_audio_btn)
     Button initRecordingAudioBtn;
     @Bind(R.id.stop_recording_audio_btn)
     Button stopRecordingAudioBtn;
+
+
+    @Bind(R.id.record_reproductor)
+    RelativeLayout recordReproductor;
+
+    @Bind(R.id.container_filled_reproduced)
+    LinearLayout containerFilledReproduced;
+    @Bind(R.id.filled_reproduced)
+    LinearLayout filledReproduced;
+
     @Bind(R.id.play_record_btn)
     Button playRecordBtn;
+    @Bind(R.id.pause_record_btn)
+    Button pauseRecordBtn;
+
+
+    @Bind(R.id.record_duration)
+    TextView recordDuration;
+
+    CountDownTimer mCountDownTimer;
+
+
     private OnFragmentInteractionListener mListener;
+    private AnimationDrawable mFrameAnimation;
 
     public UploadVoice() {
         // Required empty public constructor
@@ -91,7 +126,9 @@ public class UploadVoice extends Fragment implements MediaPlayer.OnCompletionLis
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_upload_voice, container, false);
         ButterKnife.bind(this, v);
-
+        recordReproductor.setVisibility(View.GONE);
+        equalizer.setBackgroundResource(R.drawable.equalizer_gif);
+        mFrameAnimation = (AnimationDrawable) equalizer.getBackground();
 
         return v;
     }
@@ -123,6 +160,11 @@ public class UploadVoice extends Fragment implements MediaPlayer.OnCompletionLis
     @Override
     public void onCompletion(MediaPlayer mediaPlayer) {
 
+    }
+
+    public void setWidthFilledReproduced(int widthFilledReproduced) {
+        LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(widthFilledReproduced,ViewGroup.LayoutParams.MATCH_PARENT);
+        filledReproduced.setLayoutParams(param);
     }
 
     /**
@@ -164,18 +206,16 @@ public class UploadVoice extends Fragment implements MediaPlayer.OnCompletionLis
                 .getPath());
         try {
             file = File.createTempFile("temporal", ".3gp", path);
-        } catch (IOException e) {
-        }
-        recorder.setOutputFile(file.getAbsolutePath());
-        try {
+            recorder.setOutputFile(file.getAbsolutePath());
             recorder.prepare();
-        } catch (IOException e) {
-        }
-        recorder.start();
+            recorder.start();
+        } catch (IOException e) {}
+
         statusText.setText("Grabando");
-        initRecordingAudioBtn.setEnabled(false);
-        stopRecordingAudioBtn.setEnabled(true);
-        playRecordBtn.setEnabled(false);
+        initRecordingAudioBtn.setVisibility(View.GONE);
+        stopRecordingAudioBtn.setVisibility(View.VISIBLE);
+        recordReproductor.setVisibility(View.GONE);
+        equalizer.setVisibility(View.GONE);
     }
 
     @OnClick(R.id.stop_recording_audio_btn)
@@ -186,22 +226,80 @@ public class UploadVoice extends Fragment implements MediaPlayer.OnCompletionLis
         player.setOnCompletionListener(this);
         try {
             player.setDataSource(file.getAbsolutePath());
-        } catch (IOException e) {
-            Log.e(TAG,e.getMessage());
-        }
-        try {
             player.prepare();
         } catch (IOException e) {
             Log.e(TAG,e.getMessage());
         }
         statusText.setText("Listo para reproducir");
-        initRecordingAudioBtn.setEnabled(true);
-        stopRecordingAudioBtn.setEnabled(false);
-        playRecordBtn.setEnabled(true);
+        initRecordingAudioBtn.setVisibility(View.VISIBLE);
+        stopRecordingAudioBtn.setVisibility(View.GONE);
+        recordReproductor.setVisibility(View.VISIBLE);
+        equalizer.setVisibility(View.VISIBLE);
+        mFrameAnimation.stop();
+        playRecordBtn.setVisibility(View.VISIBLE);
+        pauseRecordBtn.setVisibility(View.GONE);
+
+        recordDuration.setText(Util.formatDuration(player.getDuration()));
+
+
     }
+
     @OnClick(R.id.play_record_btn)
     public void play(View v) {
         player.start();
+        //Toast.makeText(getActivity(), "duration: " + (player.getDuration()-player.getCurrentPosition()), Toast.LENGTH_LONG).show();
+
+        initRecordingAudioBtn.setEnabled(false);
+        mCountDownTimer = new CountDownTimer(player.getDuration()-player.getCurrentPosition(), 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                long totalDuration = player.getDuration();
+                long currentDuration = totalDuration - millisUntilFinished;
+                long totalWidth = containerFilledReproduced.getWidth();
+                int calculateWidth = (int) (currentDuration * totalWidth / totalDuration);
+                recordDuration.setText(Util.formatDuration((int) (totalDuration-currentDuration)));
+                setWidthFilledReproduced(calculateWidth);
+
+
+            }
+
+            public void onFinish() {
+                setWidthFilledReproduced(containerFilledReproduced.getWidth());
+                recordDuration.setText("00:00");
+                initRecordingAudioBtn.setEnabled(true);
+
+            }
+
+        };
+        mCountDownTimer.start();
+        mFrameAnimation.start();
+
+        //Toast.makeText(getActivity(), "duration: " + player.getCurrentPosition(), Toast.LENGTH_LONG).show();
+        playRecordBtn.setVisibility(View.GONE);
+        pauseRecordBtn.setVisibility(View.VISIBLE);
+        player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                playRecordBtn.setVisibility(View.VISIBLE);
+                pauseRecordBtn.setVisibility(View.GONE);
+                setWidthFilledReproduced(0);
+                recordDuration.setText(Util.formatDuration(player.getDuration()));
+                mFrameAnimation.stop();
+            }
+
+        });
+
+    }
+    @OnClick(R.id.pause_record_btn)
+    public void pause(View v) {
+        player.pause();
+        mCountDownTimer.cancel();
+        mFrameAnimation.stop();
+        playRecordBtn.setVisibility(View.VISIBLE);
+        initRecordingAudioBtn.setEnabled(true);
+        pauseRecordBtn.setVisibility(View.GONE);
+
 
     }
 

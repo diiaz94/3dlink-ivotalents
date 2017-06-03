@@ -129,7 +129,7 @@ public class DashboardCasting extends Fragment {
         });
 
         RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_dashboard_casting);
-        mApp.setFontsOnRelative(myLayout);
+        mApp.applyFonts(myLayout);
 
         return view;
     }

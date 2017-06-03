@@ -1,4 +1,4 @@
-package com.threedlink.ivotalents.fragments;
+package com.threedlink.ivotalents.activities;
 
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
@@ -12,10 +12,11 @@ import android.widget.TextView;
 
 import com.threedlink.ivotalents.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
+import com.threedlink.ivotalents.asynctasks.FontApplyTask;
 
 import java.util.ArrayList;
 
-public class PopupInfo extends AppCompatActivity {
+public class PopupInfoActivity extends AppCompatActivity {
     public static ArrayList<String> lstError;
     private TextView msgtext;
     private IvoTalentsApp mApp;
@@ -25,7 +26,7 @@ public class PopupInfo extends AppCompatActivity {
         mApp = ((IvoTalentsApp) getApplicationContext());
         setContentView(R.layout.activity_popup_info);
         msgtext = (TextView) findViewById(R.id.msgtext);
-        msgtext.setTypeface(mApp.getFont());
+        msgtext.setTypeface(FontApplyTask.getFont(getApplicationContext()));
         String formattedMsg = formatMsg();
         msgtext.setText(Html.fromHtml(formattedMsg));
         //The key argument here must match that used in the other activity

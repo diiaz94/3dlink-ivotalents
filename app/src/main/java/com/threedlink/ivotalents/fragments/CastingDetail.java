@@ -89,7 +89,7 @@ public class CastingDetail extends Fragment implements View.OnClickListener {
         if (step==3)  castingDetailStep3.setVisibility(View.VISIBLE);
 
         LinearLayout myLayout = (LinearLayout) view.findViewById(R.id.fragment_detail_casting);
-        mApp.setFontsOnLinear(myLayout);
+        mApp.applyFonts(myLayout);
         // Inflate the layout for this fragment
         return view;
     }

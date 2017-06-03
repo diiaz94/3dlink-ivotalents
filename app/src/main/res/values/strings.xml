@@ -267,4 +267,13 @@
     <string name="label_auditions_participations_text">AUDICIONES</string>
     <string name="label_castings_participations_text">CASTINGS</string>
     <string name="label_both_participations_text">CASTINGS/AUDICIONES</string>
+    <string name="load_photo_grid_text">Cargando imagenes...</string>
+    <string name="see_audition_text">Ver Audición</string>
+    <string name="win_text">GANADOR</string>
+    <string name="lbl_participants">PARTICIPANTES</string>
+    <string name="subtitle_recent_participants">MIRA LAS AUDICIONES RECIENTES</string>
+    <string name="subtitle_favorite_participants">MIRA LAS AUDICIONES QUE TE GUSTARON</string>
+    <string name="lbl_favorites">FAVORITOS</string>
+    <string name="why_participate_casting_txt">POR QUÉ PARTICIPAS EN ESTE CASTING</string>
+    <string name="about_artist_txt">CUÉNTANOS UN POCO MÁS DE TI</string>
 </resources>

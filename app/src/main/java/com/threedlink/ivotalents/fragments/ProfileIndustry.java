@@ -197,7 +197,7 @@ public class ProfileIndustry extends Fragment implements View.OnClickListener {
         ic_ig_blue.setOnClickListener(this);
 
         RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_profile_industry);
-        mApp.setFontsOnRelative(myLayout);
+        mApp.applyFonts(myLayout);
 
         ic_edit_social = (ImageButton)view.findViewById(R.id.ic_edit_social);
         ic_edit_social.setOnClickListener(this);

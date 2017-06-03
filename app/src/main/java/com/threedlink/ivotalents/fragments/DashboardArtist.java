@@ -127,7 +127,7 @@ public class DashboardArtist extends Fragment {
         });
 
         RelativeLayout myLayout = (RelativeLayout) view.findViewById(R.id.fragment_dashboard_artist);
-        mApp.setFontsOnRelative(myLayout);
+        mApp.applyFonts(myLayout);
 
         return view;
     }
