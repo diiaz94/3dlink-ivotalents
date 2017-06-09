@@ -4,22 +4,16 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.threedlink.ivotalents.IvoTalentsApp;
+import com.threedlink.ivotalents.common.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
-import com.threedlink.ivotalents.asynctasks.FontApplyTask;
 import com.threedlink.ivotalents.dtos.MediaResource;
-import com.threedlink.ivotalents.fragments.profiletabs.ProfilePhotoGrid;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

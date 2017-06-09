@@ -1,6 +1,5 @@
 package com.threedlink.ivotalents.activities;
 
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -10,7 +9,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.threedlink.ivotalents.IvoTalentsApp;
+import com.threedlink.ivotalents.common.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
 import com.threedlink.ivotalents.asynctasks.FontApplyTask;
 

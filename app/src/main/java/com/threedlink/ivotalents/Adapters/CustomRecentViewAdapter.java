@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.threedlink.ivotalents.IvoTalentsApp;
+import com.threedlink.ivotalents.common.IvoTalentsApp;
 import com.threedlink.ivotalents.dtos.RolEntity;
 import com.threedlink.ivotalents.R;
 

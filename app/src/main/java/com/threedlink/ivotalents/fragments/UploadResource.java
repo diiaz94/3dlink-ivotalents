@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.threedlink.ivotalents.IvoTalentsApp;
+import com.threedlink.ivotalents.common.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
 import com.threedlink.ivotalents.adapters.UploadResourceSwipeAdapter;
 import com.threedlink.ivotalents.uploadresources.UploadGalleryFile;

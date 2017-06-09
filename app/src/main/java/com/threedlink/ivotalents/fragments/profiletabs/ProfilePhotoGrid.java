@@ -1,25 +1,19 @@
 package com.threedlink.ivotalents.fragments.profiletabs;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.threedlink.ivotalents.IvoTalentsApp;
+import com.threedlink.ivotalents.common.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
-import com.threedlink.ivotalents.activities.PhotoVisorActivity;
-import com.threedlink.ivotalents.adapters.ProfilePhotosGridAdapter;
 import com.threedlink.ivotalents.custom.CustomRetrofitCallback;
 import com.threedlink.ivotalents.dtos.MediaResource;
 import com.threedlink.ivotalents.utils.Util;
@@ -127,14 +121,14 @@ public class ProfilePhotoGrid extends Fragment {
         photoGridDataInfo.setVisibility(View.GONE);//data
         photoGridProgressInfo.setVisibility(View.VISIBLE);//progress
         photoGridTextInfo.setText(getString(R.string.load_photo_grid_text));//progress text;
-        Call<ArrayList<MediaResource>> imagesCall = mApp.getApiServiceIntance().images("","");
+        Call<ArrayList<MediaResource>> imagesCall = mApp.getApiServiceIntance().mediaResources("","");
         imagesCall.enqueue(new CustomRetrofitCallback<ArrayList<MediaResource>>(getActivity()) {
             @Override
             protected void handleSuccess(Response response) {
                 ArrayList<MediaResource> list = (ArrayList<MediaResource>) response.body();
                 Iterator<MediaResource> it = list.iterator();
                 while (it.hasNext()) {
-                    if (it.next().getType() != MediaResource.MediaResourceType.AUDIO) {
+                    if (it.next().getType() != MediaResource.MediaResourceType.PHOTO) {
                         it.remove();
                     }
                 }

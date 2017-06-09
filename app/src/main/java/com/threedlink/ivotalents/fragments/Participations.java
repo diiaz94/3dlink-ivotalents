@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.threedlink.ivotalents.adapters.ParticipationsSwipeAdapter;
-import com.threedlink.ivotalents.IvoTalentsApp;
+import com.threedlink.ivotalents.common.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
 import com.threedlink.ivotalents.dtos.RolEntity;
 import com.threedlink.ivotalents.utils.Util;

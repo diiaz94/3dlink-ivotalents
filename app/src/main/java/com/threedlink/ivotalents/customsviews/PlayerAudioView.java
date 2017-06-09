@@ -2,11 +2,17 @@ package com.threedlink.ivotalents.customsviews;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.CountDownTimer;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -27,7 +33,7 @@ import butterknife.OnClick;
 /**
  * Created by diiaz94 on 23-05-2017.
  */
-public class PlayerAudioView  extends ViewGroup implements MediaPlayer.OnCompletionListener {
+public class PlayerAudioView  extends LinearLayout {
 
     private static final String TAG = "PlayerAudioView";
     View rootView;
@@ -56,45 +62,51 @@ public class PlayerAudioView  extends ViewGroup implements MediaPlayer.OnComplet
     MediaRecorder mRecorder;
     MediaPlayer mPlayer;
     File mFile;
+
     public PlayerAudioView(Context context) {
         super(context);
+        init(null);
     }
 
     public PlayerAudioView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        inflate(getContext(),R.layout.player_audio_view,this);
+        init(attrs);
         TypedArray a = context.getTheme().obtainStyledAttributes(
                 attrs,
                 R.styleable.AudioPlayer,
                 0, 0);
 
         try {
-           // mShowText = a.getBoolean(R.styleable.PieChart_showText, false);
+            // mShowText = a.getBoolean(R.styleable.PieChart_showText, false);
             //mTextPos = a.getInteger(R.styleable.PieChart_labelPosition, 0);
-            init(context);
+            //init(context);
         } finally {
             a.recycle();
         }
     }
 
-    private void init(Context context) {
-        rootView = inflate(context, R.layout.player_audio_view, this);
-        ButterKnife.bind(this,rootView);
-        initPlayer();
+    public PlayerAudioView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init(attrs);
     }
+
+    private void init(@Nullable AttributeSet set) {
+        //rootView = inflate(context, R.layout.player_audio_view, this);
+        //ButterKnife.bind(this,rootView);
+        //initPlayer();
+    }
+
 
     private void initPlayer() {
         mPlayer = new MediaPlayer();
-        mPlayer.setOnCompletionListener(this);
+        //  mPlayer.setOnCompletionListener(this);
         try {
             //mPlayer.setDataSource(mFile.getAbsolutePath());
             mPlayer.prepare();
         } catch (IOException e) {
-            Log.e(TAG,e.getMessage());
+            Log.e(TAG, e.getMessage());
         }
-    }
-
-    public PlayerAudioView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
     }
 
     @Override
@@ -148,13 +160,10 @@ public class PlayerAudioView  extends ViewGroup implements MediaPlayer.OnComplet
 
         });
     }
-        public void setWidthFilledReproduced(int widthFilledReproduced) {
+    public void setWidthFilledReproduced(int widthFilledReproduced) {
             LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(widthFilledReproduced,ViewGroup.LayoutParams.MATCH_PARENT);
             filledReproduced.setLayoutParams(param);
         }
 
-    @Override
-    public void onCompletion(MediaPlayer mediaPlayer) {
 
-    }
 }

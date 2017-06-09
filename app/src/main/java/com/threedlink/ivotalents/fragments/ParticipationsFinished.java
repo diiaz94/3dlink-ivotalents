@@ -16,9 +16,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.threedlink.ivotalents.custom.CustomRetrofitCallback;
-import com.threedlink.ivotalents.dtos.Artist;
 import com.threedlink.ivotalents.dtos.Casting;
-import com.threedlink.ivotalents.IvoTalentsApp;
+import com.threedlink.ivotalents.common.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
 import com.threedlink.ivotalents.utils.enums.Rol;
 

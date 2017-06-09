@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.threedlink.ivotalents.IvoTalentsApp;
+import com.threedlink.ivotalents.common.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
 import com.threedlink.ivotalents.asynctasks.FontApplyTask;
 import com.threedlink.ivotalents.dtos.MediaResource;
@@ -21,10 +21,14 @@ public class CustomAudiosListAdapter extends BaseAdapter {
     private Context ctx;
     private ArrayList<MediaResource> list;
     private IvoTalentsApp mApp;
+    private int btnPlayDrawable;
+    private int btnPauseDrawable;
 
-    public CustomAudiosListAdapter(Context ctx, ArrayList<MediaResource> list) {
+    public CustomAudiosListAdapter(Context ctx, ArrayList<MediaResource> list,int btnPlayDrawable,int btnPauseDrawable) {
         this.ctx = ctx;
         this.list = list;
+        this.btnPlayDrawable = btnPlayDrawable;
+        this.btnPauseDrawable = btnPauseDrawable;
         mApp = ((IvoTalentsApp) ctx);
     }
 
@@ -56,9 +60,27 @@ public class CustomAudiosListAdapter extends BaseAdapter {
             holder = (AudiosViewHolder) row.getTag();
         }
         holder.getRecordReproductor().setBackgroundResource(position%2==0?R.color.ivo_gray_grid:R.color.ivo_gray_light);
-        holder.getTxtName().setText(list.get(position).getName());
 
+        holder.getPlayRecordBtn().setBackgroundResource(btnPlayDrawable);
+        holder.getPauseRecordBtn().setBackgroundResource(btnPauseDrawable);
+
+        holder.getTxtName().setText(list.get(position).getName());
         holder.getTxtName().setTypeface(FontApplyTask.getFontBold(ctx));
+
+
+        final AudiosViewHolder finalHolder = holder;
+        holder.getPlayRecordBtn().setOnClickListener(new View.OnClickListener() {
+            public void onClick(View popupView) {
+                finalHolder.getPlayRecordBtn().setVisibility(View.GONE);
+                finalHolder.getPauseRecordBtn().setVisibility(View.VISIBLE);
+            }
+        });
+        holder.getPauseRecordBtn().setOnClickListener(new View.OnClickListener() {
+            public void onClick(View popupView) {
+                finalHolder.getPauseRecordBtn().setVisibility(View.GONE);
+                finalHolder.getPlayRecordBtn().setVisibility(View.VISIBLE);
+            }
+        });
 
         return row;
 

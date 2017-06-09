@@ -59,7 +59,7 @@ public interface ApiService {
     @Headers({"Content-Type: application/json"})
     @GET("media-resources")
 
-    Call<ArrayList<MediaResource>> images(@Header("Authorizacion") String JWT, @Query("email") String email);
+    Call<ArrayList<MediaResource>> mediaResources(@Header("Authorizacion") String JWT, @Query("email") String email);
 
 }
 

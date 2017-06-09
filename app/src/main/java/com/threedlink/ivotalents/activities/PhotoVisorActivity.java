@@ -5,17 +5,14 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.threedlink.ivotalents.IvoTalentsApp;
+import com.threedlink.ivotalents.common.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
 import com.threedlink.ivotalents.dtos.MediaResource;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;

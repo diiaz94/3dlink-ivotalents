@@ -17,7 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.threedlink.ivotalents.IvoTalentsApp;
+import com.threedlink.ivotalents.common.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
 import com.threedlink.ivotalents.adapters.CustomFollowingViewAdapter;
 import com.threedlink.ivotalents.adapters.CustomRecentCastingsListAdapter;

@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
-import com.threedlink.ivotalents.IvoTalentsApp;
+import com.threedlink.ivotalents.common.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
 import com.threedlink.ivotalents.custom.CustomRetrofitCallback;
 import com.threedlink.ivotalents.dtos.MediaResource;
@@ -18,7 +18,6 @@ import com.threedlink.ivotalents.utils.Util;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -106,7 +105,7 @@ public class ProfileVideoGrid extends Fragment {
     }
 
     private void loadGridViewData() {
-        Call<ArrayList<MediaResource>> imagesCall = mApp.getApiServiceIntance().images("","");
+        Call<ArrayList<MediaResource>> imagesCall = mApp.getApiServiceIntance().mediaResources("","");
         imagesCall.enqueue(new CustomRetrofitCallback<ArrayList<MediaResource>>(getActivity()) {
             @Override
             protected void handleSuccess(Response response) {

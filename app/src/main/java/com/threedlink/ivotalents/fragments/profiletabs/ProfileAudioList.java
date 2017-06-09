@@ -4,7 +4,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +12,11 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.threedlink.ivotalents.IvoTalentsApp;
+import com.threedlink.ivotalents.common.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
 import com.threedlink.ivotalents.adapters.CustomAudiosListAdapter;
 import com.threedlink.ivotalents.custom.CustomRetrofitCallback;
 import com.threedlink.ivotalents.dtos.MediaResource;
-import com.threedlink.ivotalents.fragments.CustomParticipationsListAdapter;
 import com.threedlink.ivotalents.utils.Util;
 
 import java.util.ArrayList;
@@ -115,7 +113,7 @@ public class ProfileAudioList extends Fragment {
         audiosTextInfo.setText(getString(R.string.load_participations_started_text));//progress text;
 
 
-        Call<ArrayList<MediaResource>> mediaResourcesCall = mApp.getApiServiceIntance().images("","");
+        Call<ArrayList<MediaResource>> mediaResourcesCall = mApp.getApiServiceIntance().mediaResources("","");
         mediaResourcesCall.enqueue(new CustomRetrofitCallback<ArrayList<MediaResource>>(getActivity()) {
             @Override
             protected void handleSuccess(Response response) {
@@ -126,7 +124,7 @@ public class ProfileAudioList extends Fragment {
                         it.remove();
                     }
                 }
-                audiosListView.setAdapter(new CustomAudiosListAdapter(getActivity().getApplicationContext(), list));
+                audiosListView.setAdapter(new CustomAudiosListAdapter(getActivity().getApplicationContext(), list,R.drawable.btn_play,R.drawable.btn_pause_orange));
                 audiosDataInfo.setVisibility(View.VISIBLE);
                 audiosProgressInfo.setVisibility(View.GONE);
             }

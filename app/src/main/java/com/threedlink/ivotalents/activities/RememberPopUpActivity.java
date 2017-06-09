@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.threedlink.ivotalents.IvoTalentsApp;
+import com.threedlink.ivotalents.common.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
 import com.threedlink.ivotalents.asynctasks.FontApplyTask;
 

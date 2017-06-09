@@ -45,7 +45,7 @@ import com.threedlink.ivotalents.fragments.DashboardCasting;
 import com.threedlink.ivotalents.fragments.HomeArtist;
 import com.threedlink.ivotalents.fragments.HomeIndustry;
 import com.threedlink.ivotalents.fragments.HomeProvider;
-import com.threedlink.ivotalents.IvoTalentsApp;
+import com.threedlink.ivotalents.common.IvoTalentsApp;
 import com.threedlink.ivotalents.fragments.Messages;
 import com.threedlink.ivotalents.fragments.ProfileArtist;
 import com.threedlink.ivotalents.fragments.ProfileIndustry;

@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.threedlink.ivotalents.IvoTalentsApp;
+import com.threedlink.ivotalents.common.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
 import com.threedlink.ivotalents.adapters.MessagesSwipeAdapter;
 

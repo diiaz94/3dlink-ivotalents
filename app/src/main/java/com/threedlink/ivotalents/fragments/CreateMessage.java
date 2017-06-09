@@ -16,7 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
-import com.threedlink.ivotalents.IvoTalentsApp;
+import com.threedlink.ivotalents.common.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
 import com.threedlink.ivotalents.adapters.CustomContactMessageListAdapter;
 import com.threedlink.ivotalents.dtos.Contact;

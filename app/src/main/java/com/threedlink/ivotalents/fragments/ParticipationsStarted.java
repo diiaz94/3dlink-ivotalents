@@ -5,7 +5,6 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +16,7 @@ import android.widget.TextView;
 
 import com.threedlink.ivotalents.custom.CustomRetrofitCallback;
 import com.threedlink.ivotalents.dtos.Casting;
-import com.threedlink.ivotalents.IvoTalentsApp;
+import com.threedlink.ivotalents.common.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
 
 import java.util.ArrayList;

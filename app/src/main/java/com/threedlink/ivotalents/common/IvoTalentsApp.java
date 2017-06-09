@@ -1,4 +1,4 @@
-package com.threedlink.ivotalents;
+package com.threedlink.ivotalents.common;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -30,6 +30,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.threedlink.ivotalents.R;
 import com.threedlink.ivotalents.asynctasks.FontApplyTask;
 import com.threedlink.ivotalents.dtos.RolEntity;
 import com.threedlink.ivotalents.activities.PopupInfoActivity;
