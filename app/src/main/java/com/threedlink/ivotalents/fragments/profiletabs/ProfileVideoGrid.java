@@ -21,6 +21,7 @@ import java.util.Iterator;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -106,9 +107,9 @@ public class ProfileVideoGrid extends Fragment {
 
     private void loadGridViewData() {
         Call<ArrayList<MediaResource>> imagesCall = mApp.getApiServiceIntance().mediaResources("","");
-        imagesCall.enqueue(new CustomRetrofitCallback<ArrayList<MediaResource>>(getActivity()) {
+        imagesCall.enqueue(new CustomRetrofitCallback<ArrayList<MediaResource>>() {
             @Override
-            protected void handleSuccess(Response response) {
+            public void handleSuccess(Response response) {
                 ArrayList<MediaResource> list = (ArrayList<MediaResource>) response.body();
                 Iterator<MediaResource> it = list.iterator();
                 while (it.hasNext()) {
@@ -126,7 +127,7 @@ public class ProfileVideoGrid extends Fragment {
             }
 
             @Override
-            public void failure(Throwable error) {
+            public void handleError(Response response) {
 
             }
 
@@ -172,4 +173,10 @@ public class ProfileVideoGrid extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    @OnClick(R.id.upload_video_to_profile)
+    public void uploadVoice(View v){
+
+    }
+
 }

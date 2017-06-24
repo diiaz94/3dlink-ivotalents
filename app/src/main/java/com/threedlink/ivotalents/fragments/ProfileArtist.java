@@ -177,7 +177,7 @@ public class ProfileArtist extends Fragment implements View.OnClickListener {
         tabLayout.addTab(tabLayout.newTab().setText("FOTOS"));
         tabLayout.addTab(tabLayout.newTab().setText("AUDIOS"));
         tabLayout.addTab(tabLayout.newTab().setText("VIDEOS"));
-        tabLayout.addTab(tabLayout.newTab().setText("EXPERIENCIA"));
+        tabLayout.addTab(tabLayout.newTab().setText("EXPERI..."));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 

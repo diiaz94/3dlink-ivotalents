@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.threedlink.ivotalents.asynctasks.FontApplyTask;
 import com.threedlink.ivotalents.dtos.RolEntity;
 import com.threedlink.ivotalents.common.IvoTalentsApp;
@@ -21,11 +22,11 @@ import java.util.ArrayList;
 public class CustomFollowingViewAdapter extends BaseAdapter {
     private Context ctx;
     private ArrayList<RolEntity> list;
-    private IvoTalentsApp mApp;
+    private final ImageLoader imageLoader;
     public CustomFollowingViewAdapter(Context ctx, ArrayList<RolEntity> list) {
         this.ctx = ctx;
         this.list = list;
-        mApp = ((IvoTalentsApp) ctx);
+        imageLoader = ((IvoTalentsApp)ctx.getApplicationContext()).getImageLoader();
     }
 
     @Override

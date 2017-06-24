@@ -276,4 +276,5 @@
     <string name="lbl_favorites">FAVORITOS</string>
     <string name="why_participate_casting_txt">POR QUÉ PARTICIPAS EN ESTE CASTING</string>
     <string name="about_artist_txt">CUÉNTANOS UN POCO MÁS DE TI</string>
+    <string name="action_notifications">Notifications</string>
 </resources>

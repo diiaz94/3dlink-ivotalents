@@ -9,10 +9,10 @@
         android:orientation="vertical">
         <LinearLayout android:id="@+id/audios_data_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="300dip">
             <ListView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:id="@+id/audios_list_view"
                 android:horizontalSpacing="5dp"
                 android:verticalSpacing="5dp" />
@@ -33,6 +33,49 @@
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:progressDrawable="@drawable/circular_progress_bar"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout android:id="@+id/upload_voice_to_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true">
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_subir"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SUBIR"
+                        android:textSize="15sp"
+                        android:textColor="@color/ivo_black"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="1dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/pagination_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp">
+                    <ImageView
+                        android:id="@+id/template_point"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/simple_point"
+                        android:layout_marginRight="5dp"
+                        android:visibility="gone"
+                        />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 

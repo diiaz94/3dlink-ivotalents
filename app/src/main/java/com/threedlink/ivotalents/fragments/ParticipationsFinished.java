@@ -130,16 +130,16 @@ public class ParticipationsFinished extends Fragment {
 
         });
         Call<ArrayList<Casting>> castingCall = mApp.getApiServiceIntance().participations("");
-        castingCall.enqueue(new CustomRetrofitCallback<ArrayList<Casting>>(getActivity()) {
+        castingCall.enqueue(new CustomRetrofitCallback<ArrayList<Casting>>() {
             @Override
-            protected void handleSuccess(Response response) {
+            public void handleSuccess(Response response) {
                 participationsFinishedListView.setAdapter(new CustomParticipationsListAdapter(getActivity().getApplicationContext(), (ArrayList<Casting>) response.body()));
                 participationsFinishedDataInfo.setVisibility(View.VISIBLE);
                 participationsFinishedProgressInfo.setVisibility(View.GONE);
             }
 
             @Override
-            public void failure(Throwable error) {
+            public void handleError(Response response) {
                 participationsFinishedTextInfo.setText(getString(R.string.error_load_recents_castings_text));
                 participationsFinishedSpinner.setVisibility(View.GONE);
             }

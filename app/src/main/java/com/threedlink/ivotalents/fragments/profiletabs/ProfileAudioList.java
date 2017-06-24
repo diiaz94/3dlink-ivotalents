@@ -24,6 +24,7 @@ import java.util.Iterator;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -61,6 +62,10 @@ public class ProfileAudioList extends Fragment {
     TextView audiosTextInfo;
     @Bind(R.id.audios_spinner)
     ProgressBar audiosSpinner;
+
+
+    @Bind(R.id.upload_voice_to_profile)
+    LinearLayout uploadVoiceToProfile;
     public ProfileAudioList() {
         // Required empty public constructor
     }
@@ -101,7 +106,7 @@ public class ProfileAudioList extends Fragment {
         ButterKnife.bind(this, v);
 
         boolean isMyOwnProfile = mApp.getEntitySession().getEmail().equalsIgnoreCase(mEmail);
-        //uploadImageToProfile.setVisibility(isMyOwnProfile?View.VISIBLE:View.GONE);
+        uploadVoiceToProfile.setVisibility(isMyOwnProfile?View.VISIBLE:View.GONE);
         loadListViewData();
         return v;
     }
@@ -114,9 +119,9 @@ public class ProfileAudioList extends Fragment {
 
 
         Call<ArrayList<MediaResource>> mediaResourcesCall = mApp.getApiServiceIntance().mediaResources("","");
-        mediaResourcesCall.enqueue(new CustomRetrofitCallback<ArrayList<MediaResource>>(getActivity()) {
+        mediaResourcesCall.enqueue(new CustomRetrofitCallback<ArrayList<MediaResource>>() {
             @Override
-            protected void handleSuccess(Response response) {
+            public void handleSuccess(Response response) {
                 ArrayList<MediaResource> list = (ArrayList<MediaResource>) response.body();
                 Iterator<MediaResource> it = list.iterator();
                 while (it.hasNext()) {
@@ -130,7 +135,7 @@ public class ProfileAudioList extends Fragment {
             }
 
             @Override
-            public void failure(Throwable error) {
+            public void handleError(Response response) {
                 audiosTextInfo.setText(getString(R.string.error_load_recents_castings_text));
                 audiosSpinner.setVisibility(View.GONE);
             }
@@ -176,5 +181,10 @@ public class ProfileAudioList extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @OnClick(R.id.upload_voice_to_profile)
+    public void uploadVoice(View v){
+
     }
 }

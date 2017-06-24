@@ -21,6 +21,7 @@ import com.threedlink.ivotalents.common.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
 import com.threedlink.ivotalents.adapters.CustomFollowingViewAdapter;
 import com.threedlink.ivotalents.adapters.CustomRecentCastingsListAdapter;
+import com.threedlink.ivotalents.common.util.Util;
 import com.threedlink.ivotalents.custom.CustomRetrofitCallback;
 import com.threedlink.ivotalents.dtos.Casting;
 import com.threedlink.ivotalents.dtos.RolEntity;
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -54,8 +56,11 @@ public class HomeArtist extends Fragment {
     private String mParam2;
     private IvoTalentsApp mApp;
 
+
+
     @Bind(R.id.castings_container)
     LinearLayout castingsContainer;
+
     @Bind(R.id.castings_data_info)
     LinearLayout castingsDataInfo;
     @Bind(R.id.castings_recycler)
@@ -66,9 +71,9 @@ public class HomeArtist extends Fragment {
     TextView castingsTextInfo;
     @Bind(R.id.castings_spinner)
     ProgressBar castingsSpinner;
-
     @Bind(R.id.providers_container)
     LinearLayout providersContainer;
+
     @Bind(R.id.providers_data_info)
     LinearLayout providersDataInfo;
     @Bind(R.id.providers_recycler)
@@ -79,6 +84,11 @@ public class HomeArtist extends Fragment {
     TextView providersTextInfo;
     @Bind(R.id.providers_spinner)
     ProgressBar providersSpinner;
+
+    @Bind(R.id.see_all_followers)
+    TextView seeAllFollowers;
+    @Bind(R.id.see_all_followeds)
+    TextView seeAllFolloweds;
 
 
     private RecyclerView recentProvidersGrid;
@@ -149,9 +159,9 @@ public class HomeArtist extends Fragment {
         castingsTextInfo.setText(getString(R.string.load_recents_castings_text));//progress text;
 
         Call<ArrayList<Casting>> castingCall = mApp.getApiServiceIntance().castings("");
-        castingCall.enqueue(new CustomRetrofitCallback<ArrayList<Casting>>(getActivity()) {
+        castingCall.enqueue(new CustomRetrofitCallback<ArrayList<Casting>>() {
             @Override
-            protected void handleSuccess(Response response) {
+            public void handleSuccess(Response response) {
                 ArrayList<Casting> list = (ArrayList<Casting>) response.body();
                 castingsRecycler.setAdapter(new CustomRecentCastingsListAdapter(getActivity().getApplicationContext(),list));
                 castingsDataInfo.setVisibility(View.VISIBLE);
@@ -159,7 +169,7 @@ public class HomeArtist extends Fragment {
             }
 
             @Override
-            public void failure(Throwable error) {
+            public void handleError(Response response) {
                 castingsTextInfo.setText(getString(R.string.error_load_recents_castings_text));
                 castingsSpinner.setVisibility(View.GONE);
             }
@@ -175,17 +185,17 @@ public class HomeArtist extends Fragment {
         providersTextInfo.setText(getString(R.string.load_recents_providers_text));//progress text;
 
         Call<ArrayList<RolEntity>> providersCall = mApp.getApiServiceIntance().providers("");
-        providersCall.enqueue(new CustomRetrofitCallback<ArrayList<RolEntity>>(getActivity()) {
+        providersCall.enqueue(new CustomRetrofitCallback<ArrayList<RolEntity>>() {
             @Override
-            protected void handleSuccess(Response response) {
+            public void handleSuccess(Response response) {
                 ArrayList<RolEntity> list = (ArrayList<RolEntity>) response.body();
-                providersRecycler.setAdapter(new CustomRecentViewAdapter(getActivity().getApplicationContext(),list));
+                providersRecycler.setAdapter(new CustomRecentViewAdapter(getActivity().getApplicationContext(),list.subList(0,3)));
                 providersDataInfo.setVisibility(View.VISIBLE);
                 providersProgressInfo.setVisibility(View.GONE);
             }
 
             @Override
-            public void failure(Throwable error) {
+            public void handleError(Response response) {
                 providersTextInfo.setText(getString(R.string.error_load_recents_providers_text));
                 providersSpinner.setVisibility(View.GONE);
             }
@@ -342,6 +352,18 @@ public class HomeArtist extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
+    @OnClick(R.id.see_all_followers)
+    public void seeAllFollowers(View v){
+        Util.replaceFragment(getActivity().getSupportFragmentManager(),UsersList.newInstance(UsersList.DataSource.FOLLOWERS,"SEGUIDORES"),R.id.content_main);
+    }
+
+    @OnClick(R.id.see_all_followeds)
+    public void seeAllFolloweds(View v){
+        Util.replaceFragment(getActivity().getSupportFragmentManager(),UsersList.newInstance(UsersList.DataSource.FOLLOWEDS,"SEGUIDOS"),R.id.content_main);
+    }
+
 
 }
 

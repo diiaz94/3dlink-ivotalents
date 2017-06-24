@@ -275,7 +275,7 @@
                         android:gravity="center"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp">
-                        <TextView
+                        <TextView android:id="@+id/see_all_followers"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textStyle="italic"
@@ -329,7 +329,7 @@
                         android:gravity="center"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp">
-                        <TextView
+                        <TextView android:id="@+id/see_all_followeds"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textStyle="italic"

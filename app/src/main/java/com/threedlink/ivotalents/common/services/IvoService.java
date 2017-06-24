@@ -1,6 +1,5 @@
-package com.threedlink.ivotalents.services;
+package com.threedlink.ivotalents.common.services;
 
-import com.threedlink.ivotalents.dtos.Artist;
 import com.threedlink.ivotalents.dtos.Casting;
 import com.threedlink.ivotalents.dtos.MediaResource;
 import com.threedlink.ivotalents.dtos.RolEntity;
@@ -22,7 +21,7 @@ import retrofit2.http.Query;
 /**
  * Created by diiaz94 on 19-03-2017.
  */
-public interface ApiService {
+public interface IvoService {
 
    //public static final String BASE_URL = "http://201.210.145.206:8000/api/v1/";
    public static final String BASE_URL = "http://demo4427111.mockable.io/";
@@ -60,6 +59,10 @@ public interface ApiService {
     @GET("media-resources")
 
     Call<ArrayList<MediaResource>> mediaResources(@Header("Authorizacion") String JWT, @Query("email") String email);
+
+    @Headers({"Content-Type: application/json"})
+    @GET("providers")
+    Call<ArrayList<RolEntity>> followers();
 
 }
 

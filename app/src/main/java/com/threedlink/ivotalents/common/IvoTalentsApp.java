@@ -35,7 +35,7 @@ import com.threedlink.ivotalents.asynctasks.FontApplyTask;
 import com.threedlink.ivotalents.dtos.RolEntity;
 import com.threedlink.ivotalents.activities.PopupInfoActivity;
 import com.threedlink.ivotalents.fragments.SessionManager;
-import com.threedlink.ivotalents.services.ApiService;
+import com.threedlink.ivotalents.common.services.IvoService;
 
 import java.util.ArrayList;
 
@@ -51,7 +51,7 @@ public class IvoTalentsApp extends Application {
 
     private GoogleSignInOptions googleSignInOptions;
     private GoogleApiClient googleApiClient;
-    private ApiService apiService;
+    private IvoService ivoService;
     private FragmentTask mFragmentTask;
     private FontApplyTask mFontApplyTask;
 
@@ -78,10 +78,10 @@ public class IvoTalentsApp extends Application {
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ApiService.BASE_URL)
+                .baseUrl(IvoService.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        apiService =   retrofit.create(ApiService.class);
+        ivoService =   retrofit.create(IvoService.class);
 
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
                 .showImageForEmptyUri(R.drawable.ic_empty)
@@ -163,8 +163,8 @@ public class IvoTalentsApp extends Application {
     }
 
 
-    public ApiService getApiServiceIntance() {
-        return apiService;
+    public IvoService getApiServiceIntance() {
+        return ivoService;
     }
 
     public void setAsyncElementsUI(Activity mMainActivity,FragmentManager mFragmenManager,View mProgressView,View mMainContainerView,DrawerLayout mDrawer){

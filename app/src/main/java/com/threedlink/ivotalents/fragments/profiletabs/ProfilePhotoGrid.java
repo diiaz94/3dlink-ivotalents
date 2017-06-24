@@ -23,6 +23,7 @@ import java.util.Iterator;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -122,9 +123,9 @@ public class ProfilePhotoGrid extends Fragment {
         photoGridProgressInfo.setVisibility(View.VISIBLE);//progress
         photoGridTextInfo.setText(getString(R.string.load_photo_grid_text));//progress text;
         Call<ArrayList<MediaResource>> imagesCall = mApp.getApiServiceIntance().mediaResources("","");
-        imagesCall.enqueue(new CustomRetrofitCallback<ArrayList<MediaResource>>(getActivity()) {
+        imagesCall.enqueue(new CustomRetrofitCallback<ArrayList<MediaResource>>() {
             @Override
-            protected void handleSuccess(Response response) {
+            public void handleSuccess(Response response) {
                 ArrayList<MediaResource> list = (ArrayList<MediaResource>) response.body();
                 Iterator<MediaResource> it = list.iterator();
                 while (it.hasNext()) {
@@ -144,7 +145,7 @@ public class ProfilePhotoGrid extends Fragment {
             }
 
             @Override
-            public void failure(Throwable error) {
+            public void handleError(Response response) {
                 photoGridTextInfo.setText(getString(R.string.error_load_recents_castings_text));
                 photoGridSpinner.setVisibility(View.GONE);
             }
@@ -199,5 +200,10 @@ public class ProfilePhotoGrid extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @OnClick(R.id.upload_image_to_profile)
+    public void uploadImage(View v){
+
     }
 }

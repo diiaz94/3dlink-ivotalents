@@ -68,7 +68,8 @@ public class Util {
                     .setAdapter(
                             new ProfilePhotosGridAdapter(parent.getContext()
                                     .getApplicationContext(),list.subList(0,LIMIT)));
-
+            final Intent mIntent = new Intent(parent.getContext(),PhotoVisorActivity.class);
+            mIntent.setFlags(mIntent.FLAG_ACTIVITY_NEW_TASK);
             gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View v,
                                         int position, long id) {
@@ -76,11 +77,9 @@ public class Util {
                     Toast.makeText(parent.getContext(), "selected " + index,
                             Toast.LENGTH_SHORT).show();
                     if(index<realSize){
-                        Intent intent = new Intent(parent.getContext(),PhotoVisorActivity.class);
-                        intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
                         PhotoVisorActivity.mList = list.subList(0,realSize);
                         PhotoVisorActivity.mIndex = index;
-                        parent.getContext().startActivity(intent);
+                        parent.getContext().startActivity(mIntent);
                     }
                 }
             });

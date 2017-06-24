@@ -115,16 +115,16 @@ public class ParticipationsStarted extends Fragment {
         Log.i("TAG","paso1");
 
         Call<ArrayList<Casting>> castingCall = mApp.getApiServiceIntance().participations("");
-        castingCall.enqueue(new CustomRetrofitCallback<ArrayList<Casting>>(getActivity()) {
+        castingCall.enqueue(new CustomRetrofitCallback<ArrayList<Casting>>() {
             @Override
-            protected void handleSuccess(Response response) {
+            public void handleSuccess(Response response) {
                 participationsStartedListView.setAdapter(new CustomParticipationsListAdapter(getActivity().getApplicationContext(), (ArrayList<Casting>) response.body()));
                 participationsStartedDataInfo.setVisibility(View.VISIBLE);
                 participationsStartedProgressInfo.setVisibility(View.GONE);
             }
 
             @Override
-            public void failure(Throwable error) {
+            public void handleError(Response response) {
                 participationsStartedTextInfo.setText(getString(R.string.error_load_recents_castings_text));
                 participationsStartedSpinner.setVisibility(View.GONE);
             }

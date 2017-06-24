@@ -1,4 +1,4 @@
-package com.threedlink.ivotalents.activities;
+package com.threedlink.ivotalents.common.activities;
 
 import android.content.Intent;
 import android.content.res.Resources;
@@ -26,12 +26,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.login.LoginManager;
+import com.google.android.gms.auth.UserRecoverableNotifiedException;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.threedlink.ivotalents.activities.LoginActivity;
 import com.threedlink.ivotalents.asynctasks.FontApplyTask;
+import com.threedlink.ivotalents.common.activities.baseactivities.BaseActivity;
 import com.threedlink.ivotalents.custom.CustomRetrofitCallback;
 import com.threedlink.ivotalents.dtos.RolEntity;
 import com.threedlink.ivotalents.fragments.AdvancedSearch;
@@ -59,6 +62,7 @@ import com.threedlink.ivotalents.fragments.ParticipationsFinished;
 import com.threedlink.ivotalents.fragments.ParticipationsStarted;
 import com.threedlink.ivotalents.fragments.Participations;
 import com.threedlink.ivotalents.fragments.IndustryCasting;
+import com.threedlink.ivotalents.fragments.UsersList;
 import com.threedlink.ivotalents.fragments.profiletabs.ProfileExperience;
 import com.threedlink.ivotalents.fragments.profiletabs.ProfileAudioList;
 import com.threedlink.ivotalents.fragments.profiletabs.ProfilePhotoGrid;
@@ -68,13 +72,15 @@ import com.threedlink.ivotalents.utils.enums.Rol;
 
 import java.util.HashMap;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Response;
 
 /**
  * Created by diiaz94 on 26-08-2016.
  */
-public class MainActivity extends AppCompatActivity implements
+public class MainActivity extends BaseActivity implements
         View.OnClickListener, GoogleApiClient.OnConnectionFailedListener, NavigationView.OnNavigationItemSelectedListener,
         ProfileArtist.OnFragmentInteractionListener,
         ProfileIndustry.OnFragmentInteractionListener,
@@ -101,8 +107,8 @@ public class MainActivity extends AppCompatActivity implements
         ProfileVideoGrid.OnFragmentInteractionListener,
         ProfileExperience.OnFragmentInteractionListener,
         IndustryCasting.OnFragmentInteractionListener,
-        ArtistCasting.OnFragmentInteractionListener
-        {
+        ArtistCasting.OnFragmentInteractionListener,
+        UsersList.OnFragmentInteractionListener {
     DrawerLayout drawer;
     private static final String TAG = MainActivity.class.getSimpleName();
     // Session Manager Class
@@ -117,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements
     private ImageButton menu_icon;
     private ImageButton alert_icon;
     private ImageView profile_photo;
+
     private View mMainContainerView;
     private View mProgressView;
 
@@ -127,7 +134,10 @@ public class MainActivity extends AppCompatActivity implements
     private LinearLayout stars_puntuation;
     private TextView text_my_castings;
 
-            @Override
+    @Bind(R.id.notifications_recycler_view)
+    public LinearLayout notificationsRecyclerView;
+
+    @Override
     protected void onCreate(Bundle saveInstanceState) {
         Log.e("PEDRO", "PASO onCreate MainAct");
         super.onCreate(saveInstanceState);
@@ -137,6 +147,8 @@ public class MainActivity extends AppCompatActivity implements
         .build();
         ImageLoader.getInstance().init(config);*/
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+        com.threedlink.ivotalents.common.util.Util.setActivity(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setLogo(R.drawable.logo_header);
@@ -256,14 +268,14 @@ public class MainActivity extends AppCompatActivity implements
         HashMap<String, String> user = session.getUserDetails();
         String email = user.get(SessionManager.KEY_EMAIL);
         Call<RolEntity> userCall = mApp.getApiServiceIntance().general_information("", email);
-        userCall.enqueue(new CustomRetrofitCallback<RolEntity>(this) {
+        userCall.enqueue(new CustomRetrofitCallback<RolEntity>() {
             @Override
-            protected void handleSuccess(Response response) {
+            public void handleSuccess(Response response) {
                 setScreenUserSesion((RolEntity)response.body());
             }
 
             @Override
-            public void failure(Throwable error) {
+            public void handleError(Response response) {
 
             }
         });
@@ -301,16 +313,9 @@ public class MainActivity extends AppCompatActivity implements
             }
 
             return true;
-        }else{
-            if (id == R.id.close_icon_menu){
-                if (drawer.isDrawerOpen(Gravity.RIGHT)){
-                    drawer.closeDrawer(Gravity.RIGHT);
-                }else{
-                    drawer.openDrawer(Gravity.RIGHT);
-                }
-
-                return true;
-            }
+        }
+        if (id == R.id.menuNotification){
+            com.threedlink.ivotalents.common.util.Util.showNotifications();
         }
         return super.onOptionsItemSelected(item);
     }

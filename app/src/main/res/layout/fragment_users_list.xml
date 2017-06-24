@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/ivo_white_light">
+
+    <LinearLayout android:id="@+id/container_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <TextView android:id="@+id/list_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/ivo_blue"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:tag="bold"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/entities_recycler_view"
+            android:name="com.threedlink.ivotalents.fragments.UsersList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:horizontalSpacing="25dp"
+            android:verticalSpacing="5dp"
+            app:layoutManager="GridLayoutManager"
+            tools:context="com.threedlink.ivotalents.fragments.UsersList"
+            tools:listitem="@layout/item_following"
+            android:layout_above="@+id/list_title"/>
+    </LinearLayout>
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>
+
+

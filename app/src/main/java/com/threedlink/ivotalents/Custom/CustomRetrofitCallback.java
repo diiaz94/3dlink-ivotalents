@@ -5,6 +5,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 
+import com.threedlink.ivotalents.common.util.Util;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -15,34 +17,32 @@ import retrofit2.Response;
 public abstract class CustomRetrofitCallback<T> implements Callback<T> {
 
     private static final String TAG = "CustomRetrofitCallback" ;
-    private Activity activity;
-    public CustomRetrofitCallback(Activity activity) {
-    this.activity = activity;
+    public CustomRetrofitCallback() {
+
     }
+
+
 
     @Override
     public void onResponse(Call<T> call, Response<T> response) {
         if (response.isSuccessful()){
-                handleSuccess(response);
+            handleSuccess(response);
         }else{
-            handleLogicError(response.body());
+            handleError(response);
             Log.v(TAG, "Response not successfully" + response.errorBody());
         }
+        Log.i(TAG,"Response message"+response.message());
     }
 
     @Override
     public void onFailure(Call<T> call, Throwable t) {
-        Toast.makeText(activity,"Por favor revise su conexion a internet...",Toast.LENGTH_SHORT).show();
-        failure(t.getCause());
+        Util.showMessage("Solicitud fallida, revisa tu conexion a internet.");
     }
 
-    protected abstract void handleSuccess(Response response);
-    public abstract void failure(Throwable error);
+    public abstract void handleSuccess(Response response);
+    public abstract void handleError(Response response);
 
-    void handleLogicError(T o) {
-        Log.v(TAG, "Error because userId is " );
 
-    }
 
 
 }

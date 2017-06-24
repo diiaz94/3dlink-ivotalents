@@ -28,8 +28,8 @@
         android:orientation="vertical">
         <ImageView android:id="@+id/equalizer"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:visibility="gone"/>
+        android:layout_height="250dp"
+        android:visibility="gone"/>
         <RelativeLayout android:id="@+id/record_reproductor"
             android:layout_width="match_parent"
             android:layout_height="40dp"

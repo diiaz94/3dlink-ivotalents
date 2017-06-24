@@ -150,9 +150,9 @@ public class IndustryCasting extends Fragment {
         recentAuditionsTextInfo.setText(getString(R.string.load_recents_castings_text));//progress text;
 
         Call<ArrayList<RolEntity>> castingCall = mApp.getApiServiceIntance().providers("");
-        castingCall.enqueue(new CustomRetrofitCallback<ArrayList<RolEntity>>(getActivity()) {
+        castingCall.enqueue(new CustomRetrofitCallback<ArrayList<RolEntity>>() {
             @Override
-            protected void handleSuccess(Response response) {
+            public void handleSuccess(Response response) {
                 ArrayList<RolEntity> list = (ArrayList<RolEntity>) response.body();
                 recentAuditionsViewPager.setAdapter(new CustomSwipeAdapterIndustryCastingView(getActivity().getApplicationContext(),list));
                 recentAuditionsDataInfo.setVisibility(View.VISIBLE);
@@ -160,7 +160,7 @@ public class IndustryCasting extends Fragment {
             }
 
             @Override
-            public void failure(Throwable error) {
+            public void handleError(Response response) {
                 recentAuditionsTextInfo.setText(getString(R.string.error_load_recents_castings_text));
                 recentAuditionsSpinner.setVisibility(View.GONE);
             }
@@ -180,9 +180,9 @@ public class IndustryCasting extends Fragment {
         favoriteAuditionsTextInfo.setText(getString(R.string.load_recents_castings_text));//progress text;
 
         Call<ArrayList<RolEntity>> castingCall = mApp.getApiServiceIntance().providers("");
-        castingCall.enqueue(new CustomRetrofitCallback<ArrayList<RolEntity>>(getActivity()) {
+        castingCall.enqueue(new CustomRetrofitCallback<ArrayList<RolEntity>>() {
             @Override
-            protected void handleSuccess(Response response) {
+            public void handleSuccess(Response response) {
                 ArrayList<RolEntity> list = (ArrayList<RolEntity>) response.body();
                 favoriteAuditionsRecycler.setAdapter(new CustomFavoriteAuditionsListAdapter(getActivity().getApplicationContext(),list.subList(0,2)));
                 favoriteAuditionsDataInfo.setVisibility(View.VISIBLE);
@@ -190,7 +190,7 @@ public class IndustryCasting extends Fragment {
             }
 
             @Override
-            public void failure(Throwable error) {
+            public void handleError(Response response) {
                 favoriteAuditionsTextInfo.setText(getString(R.string.error_load_recents_castings_text));
                 favoriteAuditionsSpinner.setVisibility(View.GONE);
             }
