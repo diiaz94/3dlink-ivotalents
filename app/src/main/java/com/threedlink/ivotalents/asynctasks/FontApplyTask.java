@@ -39,7 +39,7 @@ public class FontApplyTask extends AsyncTask<Void, Void, Void> {
             setFontsOnLinear((LinearLayout) parent);
         if (parent instanceof RelativeLayout)
             setFontsOnRelative((RelativeLayout) parent);
-        if (parent instanceof LinearLayout)
+        if (parent instanceof ScrollView)
             setFontsOnScroll((ScrollView) parent);
         return null;
     }

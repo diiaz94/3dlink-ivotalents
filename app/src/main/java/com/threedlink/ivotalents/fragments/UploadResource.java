@@ -12,12 +12,6 @@ import android.view.ViewGroup;
 
 import com.threedlink.ivotalents.common.IvoTalentsApp;
 import com.threedlink.ivotalents.R;
-import com.threedlink.ivotalents.adapters.UploadResourceSwipeAdapter;
-import com.threedlink.ivotalents.uploadresources.UploadGalleryFile;
-import com.threedlink.ivotalents.uploadresources.UploadPhoto;
-import com.threedlink.ivotalents.uploadresources.UploadVideo;
-import com.threedlink.ivotalents.uploadresources.UploadVoice;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +35,7 @@ public class UploadResource extends Fragment {
     private String mParam2;
     private IvoTalentsApp mApp;
     private OnFragmentInteractionListener mListener;
-    private UploadResourceSwipeAdapter adapter;
+    private com.threedlink.ivotalents.adapters.UploadResourceSwipeAdapter adapter;
     private TabLayout tabLayout;
 
     public UploadResource() {
@@ -83,11 +77,11 @@ public class UploadResource extends Fragment {
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_upload_resource, container, false);
         List<Fragment> pageFragments = new ArrayList<>();
-        pageFragments.add(UploadGalleryFile.newInstance("",""));
-        pageFragments.add(UploadPhoto.newInstance("",""));
-        pageFragments.add(UploadVideo.newInstance("",""));
-        pageFragments.add(UploadVoice.newInstance("",""));
-        adapter = new UploadResourceSwipeAdapter(getActivity().getSupportFragmentManager(),pageFragments);
+        pageFragments.add(com.threedlink.ivotalents.uploadresources.UploadGalleryFile.newInstance("",""));
+        pageFragments.add(com.threedlink.ivotalents.uploadresources.UploadPhoto.newInstance("",""));
+        pageFragments.add(com.threedlink.ivotalents.uploadresources.UploadVideo.newInstance("",""));
+        pageFragments.add(com.threedlink.ivotalents.uploadresources.UploadVoice.newInstance("",""));
+        adapter = new com.threedlink.ivotalents.adapters.UploadResourceSwipeAdapter(getActivity().getSupportFragmentManager(),pageFragments);
 
         tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("GALERIA"));
